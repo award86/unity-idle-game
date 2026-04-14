@@ -15,6 +15,7 @@ public class ResourceSystem
         }
 
         gameData.ore += amount;
+        gameData.totalOreEarned += amount;
     }
 
     public void Mine()

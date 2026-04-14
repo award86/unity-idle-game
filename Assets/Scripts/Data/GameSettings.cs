@@ -3,6 +3,7 @@ public static class GameSettings
     public const int StartOre = 0;
     public const int StartOrePerClick = 1;
     public const int StartOrePerSecond = 0;
+    public const int MaxActiveTemporaryBoosts = 3;
 
     public const float AutoSaveInterval = 5f;
     public const int MaxOfflineSeconds = 7200;

@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject menuOverlayPanel;
     [SerializeField] private GameObject dropdownMenuPanel;
     [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private GameObject mainScreenUpgradeButton;
     [SerializeField] private Transform upgradeListRoot;
     [SerializeField] private UpgradeItemUI upgradeItemPrefab;
     [SerializeField] private Text boostStatusText;
@@ -31,7 +32,8 @@ public class UIManager : MonoBehaviour
         HideUpgradePanel();
         HideResetConfirmation();
         HideOfflineReward();
-        UpdateBoostUI(false, string.Empty, 1f, 0f);
+        SetMainScreenUpgradeButtonVisible(false);
+        UpdateBoostUI(null);
     }
 
     public void UpdateUI(GameData gameData)
@@ -52,37 +54,47 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void InitializeUpgradeList(IReadOnlyList<UpgradeState> upgradeStates, Action<UpgradeState> onBuyRequested)
+    public void InitializeUpgradeList(
+        IReadOnlyList<UpgradeState> upgradeStates,
+        IReadOnlyList<TemporaryBoostState> temporaryBoostStates,
+        Action<UpgradeState> onUpgradeBuyRequested,
+        Action<TemporaryBoostState> onTemporaryBoostRequested)
     {
         ClearUpgradeList();
 
-        if (upgradeListRoot == null || upgradeItemPrefab == null || upgradeStates == null)
+        if (upgradeListRoot == null || upgradeItemPrefab == null)
         {
             return;
         }
 
-        for (int i = 0; i < upgradeStates.Count; i++)
+        if (upgradeStates != null)
         {
-            UpgradeItemUI item = Instantiate(upgradeItemPrefab, upgradeListRoot);
-            item.Initialize(upgradeStates[i], onBuyRequested);
-            upgradeItems.Add(item);
+            for (int i = 0; i < upgradeStates.Count; i++)
+            {
+                UpgradeItemUI item = Instantiate(upgradeItemPrefab, upgradeListRoot);
+                item.Initialize(upgradeStates[i], onUpgradeBuyRequested);
+                upgradeItems.Add(item);
+            }
         }
 
-        RefreshUpgradeList(upgradeStates, 0);
+        if (temporaryBoostStates != null)
+        {
+            for (int i = 0; i < temporaryBoostStates.Count; i++)
+            {
+                UpgradeItemUI item = Instantiate(upgradeItemPrefab, upgradeListRoot);
+                item.Initialize(temporaryBoostStates[i], onTemporaryBoostRequested);
+                upgradeItems.Add(item);
+            }
+        }
+
+        RefreshUpgradeList(0, 0);
     }
 
-    public void RefreshUpgradeList(IReadOnlyList<UpgradeState> upgradeStates, int currentOre)
+    public void RefreshUpgradeList(int currentOre, int activeBoostCount)
     {
-        if (upgradeStates == null)
+        for (int i = 0; i < upgradeItems.Count; i++)
         {
-            return;
-        }
-
-        int itemCount = Mathf.Min(upgradeItems.Count, upgradeStates.Count);
-
-        for (int i = 0; i < itemCount; i++)
-        {
-            upgradeItems[i].Refresh(currentOre);
+            upgradeItems[i].Refresh(currentOre, activeBoostCount);
         }
     }
 
@@ -131,6 +143,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SetMainScreenUpgradeButtonVisible(bool isVisible)
+    {
+        if (mainScreenUpgradeButton != null)
+        {
+            mainScreenUpgradeButton.SetActive(isVisible);
+        }
+    }
+
     public void ShowResetConfirmation()
     {
         HideUpgradePanel();
@@ -174,13 +194,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateBoostUI(bool hasActiveBoost, string boostName, float multiplier, float remainingTime)
+    public void UpdateBoostUI(IReadOnlyList<TemporaryBoostState> activeBoostStates)
     {
         if (boostStatusText == null)
         {
             return;
         }
 
+        bool hasActiveBoost = activeBoostStates != null && activeBoostStates.Count > 0;
         boostStatusText.gameObject.SetActive(hasActiveBoost);
 
         if (!hasActiveBoost)
@@ -189,7 +210,18 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        boostStatusText.text = boostName + " x" + NumberFormatter.FormatFloat(multiplier) + " - " + Mathf.CeilToInt(remainingTime) + "s";
+        List<string> lines = new List<string>();
+
+        for (int i = 0; i < activeBoostStates.Count; i++)
+        {
+            TemporaryBoostState boostState = activeBoostStates[i];
+            lines.Add(
+                boostState.Definition.boostName +
+                " x" + NumberFormatter.FormatFloat(boostState.GetMultiplier()) +
+                " - " + Mathf.CeilToInt(boostState.ActiveRemainingTime) + "s");
+        }
+
+        boostStatusText.text = string.Join("\n", lines);
     }
 
     private void SetMenuOverlayVisible(bool isVisible)

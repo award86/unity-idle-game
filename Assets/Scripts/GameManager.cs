@@ -6,11 +6,13 @@ public class GameManager : MonoBehaviour
     private const string OreKey = "ore";
     private const string OrePerClickKey = "orePerClick";
     private const string OrePerSecondKey = "orePerSecond";
+    private const string TotalOreEarnedKey = "totalOreEarned";
     private const string LastSaveTimeKey = "lastSaveTime";
     private const string LegacyUpgradeLevelKey = "upgradeLevel";
 
     [SerializeField] private UIManager uiManager;
     [SerializeField] private UpgradeConfig upgradeConfig;
+    [SerializeField] private TemporaryBoostConfig temporaryBoostConfig;
 
     private GameData gameData;
     private ResourceSystem resourceSystem;
@@ -24,7 +26,7 @@ public class GameManager : MonoBehaviour
         LoadGame();
 
         resourceSystem = new ResourceSystem(gameData);
-        upgradeManager = new UpgradeManager(gameData, upgradeConfig);
+        upgradeManager = new UpgradeManager(gameData, upgradeConfig, temporaryBoostConfig);
         upgradeManager.LoadUpgradeLevels();
         upgradeManager.UpgradesChanged += HandleUpgradesChanged;
         timeSystem = new TimeSystem(resourceSystem);
@@ -35,7 +37,11 @@ public class GameManager : MonoBehaviour
     {
         if (uiManager != null)
         {
-            uiManager.InitializeUpgradeList(upgradeManager.UpgradeStates, HandleUpgradeBuyRequested);
+            uiManager.InitializeUpgradeList(
+                upgradeManager.UpgradeStates,
+                upgradeManager.TemporaryBoostStates,
+                HandleUpgradeBuyRequested,
+                HandleTemporaryBoostRequested);
         }
 
         RefreshUI();
@@ -163,6 +169,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(OreKey, gameData.ore);
         PlayerPrefs.SetInt(OrePerClickKey, gameData.orePerClick);
         PlayerPrefs.SetInt(OrePerSecondKey, gameData.orePerSecond);
+        PlayerPrefs.SetInt(TotalOreEarnedKey, gameData.totalOreEarned);
         PlayerPrefs.DeleteKey(LegacyUpgradeLevelKey);
 
         if (upgradeManager != null)
@@ -180,7 +187,8 @@ public class GameManager : MonoBehaviour
         {
             ore = PlayerPrefs.GetInt(OreKey, GameSettings.StartOre),
             orePerClick = PlayerPrefs.GetInt(OrePerClickKey, GameSettings.StartOrePerClick),
-            orePerSecond = PlayerPrefs.GetInt(OrePerSecondKey, GameSettings.StartOrePerSecond)
+            orePerSecond = PlayerPrefs.GetInt(OrePerSecondKey, GameSettings.StartOrePerSecond),
+            totalOreEarned = Mathf.Max(0, PlayerPrefs.GetInt(TotalOreEarnedKey, 0))
         };
     }
 
@@ -197,11 +205,13 @@ public class GameManager : MonoBehaviour
             gameData.ore = GameSettings.StartOre;
             gameData.orePerClick = GameSettings.StartOrePerClick;
             gameData.orePerSecond = GameSettings.StartOrePerSecond;
+            gameData.totalOreEarned = 0;
         }
 
         PlayerPrefs.DeleteKey(OreKey);
         PlayerPrefs.DeleteKey(OrePerClickKey);
         PlayerPrefs.DeleteKey(OrePerSecondKey);
+        PlayerPrefs.DeleteKey(TotalOreEarnedKey);
         PlayerPrefs.DeleteKey(LegacyUpgradeLevelKey);
         PlayerPrefs.DeleteKey(LastSaveTimeKey);
 
@@ -238,7 +248,8 @@ public class GameManager : MonoBehaviour
         }
 
         uiManager.UpdateUI(gameData);
-        uiManager.RefreshUpgradeList(upgradeManager.UpgradeStates, gameData.ore);
+        uiManager.RefreshUpgradeList(gameData.ore, upgradeManager.ActiveTemporaryBoostStates.Count);
+        uiManager.SetMainScreenUpgradeButtonVisible(upgradeManager.HasAffordableUpgrade(gameData.ore));
         UpdateBoostUI();
     }
 
@@ -291,6 +302,17 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
+    private void HandleTemporaryBoostRequested(TemporaryBoostState state)
+    {
+        if (upgradeManager == null || !upgradeManager.TryActivateTemporaryBoost(state))
+        {
+            return;
+        }
+
+        RefreshUI();
+        SaveGame();
+    }
+
     private void HandleUpgradesChanged()
     {
         RefreshUI();
@@ -303,11 +325,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager.UpdateBoostUI(
-            upgradeManager.HasActiveBoost,
-            upgradeManager.ActiveBoostName,
-            upgradeManager.ActiveBoostMultiplier,
-            upgradeManager.ActiveBoostRemainingTime);
+        uiManager.UpdateBoostUI(upgradeManager.ActiveTemporaryBoostStates);
     }
 
     private void OnDestroy()

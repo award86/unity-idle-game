@@ -12,14 +12,47 @@ public class UpgradeItemUI : MonoBehaviour
     [SerializeField] private Button buyButton;
     [SerializeField] private Text buyButtonText;
 
-    private UpgradeState state;
-    private Action<UpgradeState> onBuyRequested;
+    private UpgradeState upgradeState;
+    private TemporaryBoostState temporaryBoostState;
+    private Action<UpgradeState> onUpgradeBuyRequested;
+    private Action<TemporaryBoostState> onTemporaryBoostRequested;
 
     public void Initialize(UpgradeState state, Action<UpgradeState> onBuyRequested)
     {
-        this.state = state;
-        this.onBuyRequested = onBuyRequested;
+        upgradeState = state;
+        temporaryBoostState = null;
+        onUpgradeBuyRequested = onBuyRequested;
+        onTemporaryBoostRequested = null;
 
+        SetupButton();
+    }
+
+    public void Initialize(TemporaryBoostState state, Action<TemporaryBoostState> onBuyRequested)
+    {
+        temporaryBoostState = state;
+        upgradeState = null;
+        onTemporaryBoostRequested = onBuyRequested;
+        onUpgradeBuyRequested = null;
+
+        SetupButton();
+    }
+
+    public void Refresh(int currentOre, int activeBoostCount)
+    {
+        if (upgradeState != null)
+        {
+            RefreshUpgrade(currentOre);
+            return;
+        }
+
+        if (temporaryBoostState != null)
+        {
+            RefreshTemporaryBoost(activeBoostCount);
+        }
+    }
+
+    private void SetupButton()
+    {
         if (buyButton != null)
         {
             buyButton.onClick.RemoveAllListeners();
@@ -27,73 +60,121 @@ public class UpgradeItemUI : MonoBehaviour
         }
     }
 
-    public void Refresh(int currentOre)
+    private void RefreshUpgrade(int currentOre)
     {
-        if (state == null)
+        if (upgradeState == null)
+        {
+            return;
+        }
+
+        gameObject.SetActive(true);
+
+        if (nameText != null)
+        {
+            nameText.text = upgradeState.Definition.upgradeName;
+        }
+
+        if (descriptionText != null)
+        {
+            descriptionText.text = upgradeState.Definition.description;
+        }
+
+        if (levelText != null)
+        {
+            levelText.text = upgradeState.Definition.HasMaxLevel
+                ? "Level: " + upgradeState.Level + "/" + upgradeState.Definition.maxLevel
+                : "Level: " + upgradeState.Level;
+        }
+
+        if (costText != null)
+        {
+            costText.text = upgradeState.IsMaxLevel
+                ? "Cost: MAX"
+                : "Cost: " + NumberFormatter.FormatInt(upgradeState.GetCurrentCost());
+        }
+
+        if (effectText != null)
+        {
+            effectText.text = BuildUpgradeEffectText();
+        }
+
+        if (buyButton != null)
+        {
+            buyButton.interactable = !upgradeState.IsMaxLevel && currentOre >= upgradeState.GetCurrentCost();
+        }
+
+        if (buyButtonText != null)
+        {
+            buyButtonText.text = upgradeState.IsMaxLevel ? "Max" : "Buy";
+        }
+    }
+
+    private void RefreshTemporaryBoost(int activeBoostCount)
+    {
+        if (temporaryBoostState == null)
+        {
+            return;
+        }
+
+        bool shouldShow = temporaryBoostState.ShouldShowInList;
+        gameObject.SetActive(shouldShow);
+
+        if (!shouldShow)
         {
             return;
         }
 
         if (nameText != null)
         {
-            nameText.text = state.Definition.upgradeName;
+            nameText.text = temporaryBoostState.Definition.boostName;
         }
 
         if (descriptionText != null)
         {
-            descriptionText.text = state.Definition.description;
+            descriptionText.text = temporaryBoostState.Definition.description;
         }
 
         if (levelText != null)
         {
-            levelText.text = state.Definition.HasMaxLevel
-                ? "Level: " + state.Level + "/" + state.Definition.maxLevel
-                : "Level: " + state.Level;
+            levelText.text = BuildTemporaryBoostStatusText();
         }
 
         if (costText != null)
         {
-            costText.text = state.IsMaxLevel
-                ? "Cost: MAX"
-                : "Cost: " + NumberFormatter.FormatInt(state.GetCurrentCost());
+            costText.text = string.Empty;
         }
 
         if (effectText != null)
         {
-            effectText.text = BuildEffectText();
+            effectText.text = BuildTemporaryBoostEffectText();
         }
 
         if (buyButton != null)
         {
-            buyButton.interactable = !state.IsMaxLevel && currentOre >= state.GetCurrentCost();
+            buyButton.interactable = temporaryBoostState.IsAvailable &&
+                                     activeBoostCount < GameSettings.MaxActiveTemporaryBoosts;
         }
 
         if (buyButtonText != null)
         {
-            buyButtonText.text = state.IsMaxLevel ? "Max" : "Buy";
+            buyButtonText.text = "Activate";
         }
     }
 
-    private string BuildEffectText()
+    private string BuildUpgradeEffectText()
     {
-        float value = state.IsMaxLevel ? state.GetCurrentEffectValue() : state.GetNextLevelValue();
+        float value = upgradeState.IsMaxLevel ? upgradeState.GetCurrentEffectValue() : upgradeState.GetNextLevelValue();
 
-        switch (state.Definition.effectType)
+        switch (upgradeState.Definition.effectType)
         {
-            case UpgradeEffectType.OrePerClickFlat:
+            case UpgradeEffectType.MiningPerClick:
                 return "Effect: +" + NumberFormatter.FormatFloat(value) + " Ore / click";
 
-            case UpgradeEffectType.OrePerClickMultiplier:
-                return "Effect: +" + NumberFormatter.FormatFloat(value * 100f) + "% Ore / click";
-
-            case UpgradeEffectType.OrePerSecondFlat:
+            case UpgradeEffectType.MiningPerSecond:
                 return "Effect: +" + NumberFormatter.FormatFloat(value) + " Ore / sec";
 
-            case UpgradeEffectType.OrePerSecondMultiplier:
+            case UpgradeEffectType.Shuttle:
                 return "Effect: +" + NumberFormatter.FormatFloat(value * 100f) + "% Ore / sec";
-
-            case UpgradeEffectType.TemporaryIncomeMultiplier:
-                return "Effect: x" + NumberFormatter.FormatFloat(value) + " Income for " + Mathf.RoundToInt(state.Definition.durationSeconds) + "s";
 
             default:
                 return "Effect: Unknown";
@@ -102,6 +183,41 @@ public class UpgradeItemUI : MonoBehaviour
 
     private void HandleBuyClicked()
     {
-        onBuyRequested?.Invoke(state);
+        if (upgradeState != null)
+        {
+            onUpgradeBuyRequested?.Invoke(upgradeState);
+            return;
+        }
+
+        if (temporaryBoostState != null)
+        {
+            onTemporaryBoostRequested?.Invoke(temporaryBoostState);
+        }
+    }
+
+    private string BuildTemporaryBoostStatusText()
+    {
+        switch (temporaryBoostState.Definition.availabilityType)
+        {
+            case TemporaryBoostAvailabilityType.ByTime:
+                return "Boost: Ready every " + Mathf.RoundToInt(temporaryBoostState.Definition.appearanceIntervalSeconds) + "s";
+
+            case TemporaryBoostAvailabilityType.ByAccumulatedOre:
+                return "Boost: Ready every " + NumberFormatter.FormatInt(temporaryBoostState.Definition.oreRequiredForAppearance) + " earned Ore";
+
+            default:
+                return "Boost: Ready";
+        }
+    }
+
+    private string BuildTemporaryBoostEffectText()
+    {
+        string targetText = temporaryBoostState.Definition.targetType == TemporaryBoostTargetType.OrePerClick
+            ? "Ore / click"
+            : "Ore / sec";
+
+        return "Effect: x" + NumberFormatter.FormatFloat(temporaryBoostState.GetMultiplier()) +
+               " " + targetText +
+               " for " + Mathf.RoundToInt(temporaryBoostState.Definition.durationSeconds) + "s";
     }
 }

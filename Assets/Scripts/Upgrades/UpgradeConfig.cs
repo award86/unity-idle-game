@@ -18,12 +18,11 @@ public class UpgradeConfig : ScriptableObject
                 id = "spacesuit_efficiency",
                 upgradeName = "Spacesuit Mk I",
                 description = "Reinforced suit boosts manual mining efficiency.",
-                category = UpgradeCategory.Mining,
-                effectType = UpgradeEffectType.OrePerClickMultiplier,
+                effectType = UpgradeEffectType.MiningPerClick,
                 baseCost = 25,
                 costMultiplier = 1.7f,
-                baseValue = 0.25f,
-                valuePerLevel = 0.15f,
+                baseValue = 1f,
+                valuePerLevel = 1f,
                 maxLevel = 5
             },
             new UpgradeDefinition
@@ -31,12 +30,11 @@ public class UpgradeConfig : ScriptableObject
                 id = "plasma_tool",
                 upgradeName = "Plasma Tool",
                 description = "Sharper tools extract more ore per manual click.",
-                category = UpgradeCategory.Mining,
-                effectType = UpgradeEffectType.OrePerClickFlat,
+                effectType = UpgradeEffectType.MiningPerClick,
                 baseCost = 15,
                 costMultiplier = 1.55f,
-                baseValue = 1f,
-                valuePerLevel = 1f,
+                baseValue = 2f,
+                valuePerLevel = 2f,
                 maxLevel = 10
             },
             new UpgradeDefinition
@@ -44,8 +42,7 @@ public class UpgradeConfig : ScriptableObject
                 id = "astronaut_training",
                 upgradeName = "Astronaut Training",
                 description = "Improves the crew's passive mining output.",
-                category = UpgradeCategory.Mining,
-                effectType = UpgradeEffectType.OrePerSecondFlat,
+                effectType = UpgradeEffectType.MiningPerSecond,
                 baseCost = 20,
                 costMultiplier = 1.6f,
                 baseValue = 1f,
@@ -57,8 +54,7 @@ public class UpgradeConfig : ScriptableObject
                 id = "shuttle_engine",
                 upgradeName = "Shuttle Engine",
                 description = "Faster engines improve delivery speed.",
-                category = UpgradeCategory.Shuttle,
-                effectType = UpgradeEffectType.OrePerSecondMultiplier,
+                effectType = UpgradeEffectType.Shuttle,
                 baseCost = 40,
                 costMultiplier = 1.8f,
                 baseValue = 0.20f,
@@ -70,26 +66,12 @@ public class UpgradeConfig : ScriptableObject
                 id = "cargo_capacity",
                 upgradeName = "Cargo Capacity",
                 description = "Bigger cargo pods increase shuttle output.",
-                category = UpgradeCategory.Shuttle,
-                effectType = UpgradeEffectType.OrePerSecondFlat,
+                effectType = UpgradeEffectType.Shuttle,
                 baseCost = 35,
                 costMultiplier = 1.7f,
-                baseValue = 2f,
-                valuePerLevel = 2f,
+                baseValue = 0.15f,
+                valuePerLevel = 0.10f,
                 maxLevel = 8
-            },
-            new UpgradeDefinition
-            {
-                id = "quantum_rush",
-                upgradeName = "Quantum Rush",
-                description = "Temporary x2 income boost for 90 seconds.",
-                category = UpgradeCategory.TemporaryBoost,
-                effectType = UpgradeEffectType.TemporaryIncomeMultiplier,
-                baseCost = 120,
-                costMultiplier = 1.35f,
-                baseValue = 2f,
-                valuePerLevel = 0f,
-                durationSeconds = 90f
             }
         };
     }
