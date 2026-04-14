@@ -38,8 +38,19 @@ public class ShuttleSystem
 
         int sentAmount = gameData.shuttleOre;
         gameData.shuttleOre = 0;
-        gameData.ore += sentAmount;
-        gameData.shuttleSendCooldownRemaining = GetTravelTimeSeconds();
+
+        float travelTimeSeconds = GetTravelTimeSeconds();
+
+        if (travelTimeSeconds <= 0f)
+        {
+            gameData.ore += sentAmount;
+            gameData.shuttleDeliveringOre = 0;
+            gameData.shuttleSendCooldownRemaining = 0f;
+            return sentAmount;
+        }
+
+        gameData.shuttleDeliveringOre = sentAmount;
+        gameData.shuttleSendCooldownRemaining = travelTimeSeconds;
         return sentAmount;
     }
 
@@ -50,7 +61,9 @@ public class ShuttleSystem
 
     public bool CanSend()
     {
-        return gameData.shuttleOre > 0 && gameData.shuttleSendCooldownRemaining <= 0f;
+        return gameData.shuttleOre > 0 &&
+               gameData.shuttleDeliveringOre <= 0 &&
+               gameData.shuttleSendCooldownRemaining <= 0f;
     }
 
     public bool IsFull()
@@ -67,8 +80,16 @@ public class ShuttleSystem
 
         int previousDisplayedSeconds = Mathf.CeilToInt(gameData.shuttleSendCooldownRemaining);
         gameData.shuttleSendCooldownRemaining = Mathf.Max(0f, gameData.shuttleSendCooldownRemaining - deltaTime);
+        bool deliveryCompleted = gameData.shuttleSendCooldownRemaining <= 0f && gameData.shuttleDeliveringOre > 0;
+
+        if (deliveryCompleted)
+        {
+            gameData.ore += gameData.shuttleDeliveringOre;
+            gameData.shuttleDeliveringOre = 0;
+        }
+
         int currentDisplayedSeconds = Mathf.CeilToInt(gameData.shuttleSendCooldownRemaining);
-        return currentDisplayedSeconds != previousDisplayedSeconds;
+        return currentDisplayedSeconds != previousDisplayedSeconds || deliveryCompleted;
     }
 
     private float GetTravelTimeSeconds()

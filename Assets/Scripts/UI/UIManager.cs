@@ -195,7 +195,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ShowOfflineReward(int amount)
+    public void ShowOfflineReward(int warehouseAmount)
     {
         HideMenu();
         HideUpgradePanel();
@@ -203,7 +203,9 @@ public class UIManager : MonoBehaviour
 
         if (offlineRewardText != null)
         {
-            offlineRewardText.text = "You earned " + NumberFormatter.FormatInt(amount) + " Ore while offline.";
+            offlineRewardText.text = "Sent to warehouse while offline: " +
+                                     NumberFormatter.FormatInt(warehouseAmount) +
+                                     " Ore.";
         }
 
         if (offlineRewardPanel != null)

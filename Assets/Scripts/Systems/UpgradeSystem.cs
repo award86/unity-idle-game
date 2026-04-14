@@ -1,4 +1,2 @@
-[System.Obsolete("UpgradeSystem is deprecated. Use UpgradeManager instead.")]
-public class UpgradeSystem
-{
-}
+// Deprecated placeholder.
+// Upgrade logic now lives in UpgradeManager.

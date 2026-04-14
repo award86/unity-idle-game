@@ -33,7 +33,6 @@ public class UpgradeManager
     public IReadOnlyList<UpgradeState> UpgradeStates => upgradeStates;
     public IReadOnlyList<TemporaryBoostState> TemporaryBoostStates => temporaryBoostStates;
     public IReadOnlyList<TemporaryBoostState> ActiveTemporaryBoostStates => activeTemporaryBoostStates;
-    public bool HasActiveBoost => activeTemporaryBoostStates.Count > 0;
 
     public void LoadUpgradeLevels()
     {
@@ -287,12 +286,20 @@ public class UpgradeManager
             return;
         }
 
+        HashSet<string> usedIds = new HashSet<string>();
+
         for (int i = 0; i < temporaryBoostConfig.TemporaryBoosts.Count; i++)
         {
             TemporaryBoostDefinition definition = temporaryBoostConfig.TemporaryBoosts[i];
 
             if (definition == null || string.IsNullOrEmpty(definition.id))
             {
+                continue;
+            }
+
+            if (!usedIds.Add(definition.id))
+            {
+                Debug.LogWarning("Duplicate temporary boost id found and skipped: " + definition.id);
                 continue;
             }
 

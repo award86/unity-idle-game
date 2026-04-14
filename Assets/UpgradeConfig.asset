@@ -37,8 +37,8 @@ MonoBehaviour:
     upgradeName: Astronaut Training
     description: Improves the crew's passive mining output.
     effectType: 1
-    baseCost: 20
-    costMultiplier: 1.6
+    baseCost: 5
+    costMultiplier: 1.2
     valuePerLevel: 1
     shuttleTravelTimeReductionPerLevel: 0
     shuttleCapacityIncreasePerLevel: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     upgradeName: Shuttle Engine
     description: Faster engines improve delivery speed.
     effectType: 2
-    baseCost: 40
+    baseCost: 10
     costMultiplier: 1.8
     valuePerLevel: 0
     shuttleTravelTimeReductionPerLevel: 5

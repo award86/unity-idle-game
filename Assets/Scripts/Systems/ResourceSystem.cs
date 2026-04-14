@@ -19,17 +19,6 @@ public class ResourceSystem
         return shuttleSystem.AddToShuttle(amount);
     }
 
-    public void AddOreToWarehouse(int amount)
-    {
-        if (amount <= 0)
-        {
-            return;
-        }
-
-        gameData.ore += amount;
-        gameData.totalOreEarned += amount;
-    }
-
     public void Mine()
     {
         AddOre(gameData.orePerClick);

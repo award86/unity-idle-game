@@ -5,6 +5,7 @@ public class GameData
 {
     public int ore = GameSettings.StartOre;
     public int shuttleOre = ShuttleConfig.DefaultStartOre;
+    public int shuttleDeliveringOre = 0;
     public int shuttleCapacity = ShuttleConfig.DefaultCapacity;
     public float shuttleTravelTimeSeconds = ShuttleConfig.DefaultTravelTimeSeconds;
     public float shuttleSendCooldownRemaining = 0f;

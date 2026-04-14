@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     private const string OreKey = "ore";
     private const string ShuttleOreKey = "shuttleOre";
+    private const string ShuttleDeliveringOreKey = "shuttleDeliveringOre";
     private const string ShuttleCapacityKey = "shuttleCapacity";
     private const string ShuttleSendCooldownKey = "shuttleSendCooldown";
     private const string OrePerClickKey = "orePerClick";
@@ -24,10 +25,12 @@ public class GameManager : MonoBehaviour
     private UpgradeManager upgradeManager;
     private TimeSystem timeSystem;
     private float autoSaveTimer;
-    private int pendingOfflineOre;
+    private int pendingOfflineMinedOre;
     private int pendingOfflineWarehouseOre;
     private int pendingOfflineShuttleOre;
+    private int pendingOfflineShuttleDeliveringOre;
     private float pendingOfflineShuttleCooldown;
+    private bool pendingOfflineShowRewardPopup;
 
     private void Awake()
     {
@@ -53,18 +56,14 @@ public class GameManager : MonoBehaviour
                 HandleTemporaryBoostRequested);
         }
 
-        RefreshUI();
-        ShowOfflineRewardIfNeeded();
-
-        if (pendingOfflineOre <= 0 &&
-            (pendingOfflineWarehouseOre > 0 ||
-             pendingOfflineShuttleOre != gameData.shuttleOre ||
-             !Mathf.Approximately(pendingOfflineShuttleCooldown, gameData.shuttleSendCooldownRemaining)))
+        if (!ShouldShowOfflineRewardPopup() && HasPendingOfflineStateChanges())
         {
             ApplyPendingOfflineProgress();
-            RefreshUI();
             SaveGame();
         }
+
+        RefreshUI();
+        ShowOfflineRewardIfNeeded();
     }
 
     private void Update()
@@ -221,7 +220,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Rewarded ad is not implemented yet.");
     }
 
-    public void SaveGame()
+    private void SaveGame()
     {
         if (gameData == null)
         {
@@ -230,6 +229,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt(OreKey, gameData.ore);
         PlayerPrefs.SetInt(ShuttleOreKey, gameData.shuttleOre);
+        PlayerPrefs.SetInt(ShuttleDeliveringOreKey, gameData.shuttleDeliveringOre);
         PlayerPrefs.SetInt(ShuttleCapacityKey, gameData.shuttleCapacity);
         PlayerPrefs.SetFloat(ShuttleSendCooldownKey, gameData.shuttleSendCooldownRemaining);
         PlayerPrefs.SetInt(OrePerClickKey, gameData.orePerClick);
@@ -246,41 +246,43 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void LoadGame()
+    private void LoadGame()
     {
-        long offlineSeconds = GetOfflineSeconds();
         int loadedShuttleCapacity = Mathf.Max(
             GetConfiguredShuttleCapacity(),
             PlayerPrefs.GetInt(ShuttleCapacityKey, GetConfiguredShuttleCapacity()));
         int loadedShuttleOre = Mathf.Max(
             0,
             PlayerPrefs.GetInt(ShuttleOreKey, GetConfiguredStartShuttleOre()));
+        int loadedShuttleDeliveringOre = Mathf.Max(
+            0,
+            PlayerPrefs.GetInt(ShuttleDeliveringOreKey, 0));
         float savedShuttleCooldown = PlayerPrefs.HasKey(ShuttleSendCooldownKey)
             ? PlayerPrefs.GetFloat(ShuttleSendCooldownKey, 0f)
             : 0f;
-        float loadedShuttleCooldown = Mathf.Max(
-            0f,
-            savedShuttleCooldown - offlineSeconds);
 
         gameData = new GameData
         {
             ore = PlayerPrefs.GetInt(OreKey, GameSettings.StartOre),
             shuttleOre = loadedShuttleOre,
+            shuttleDeliveringOre = loadedShuttleDeliveringOre,
             shuttleCapacity = loadedShuttleCapacity,
             shuttleTravelTimeSeconds = GetConfiguredShuttleTravelTimeSeconds(),
-            shuttleSendCooldownRemaining = loadedShuttleCooldown,
+            shuttleSendCooldownRemaining = Mathf.Max(0f, savedShuttleCooldown),
             orePerClick = PlayerPrefs.GetInt(OrePerClickKey, GameSettings.StartOrePerClick),
             orePerSecond = PlayerPrefs.GetInt(OrePerSecondKey, GameSettings.StartOrePerSecond),
             totalOreEarned = Mathf.Max(0, PlayerPrefs.GetInt(TotalOreEarnedKey, 0))
         };
     }
 
-    public void ResetGame()
+    private void ResetGame()
     {
-        pendingOfflineOre = 0;
+        pendingOfflineMinedOre = 0;
         pendingOfflineWarehouseOre = 0;
         pendingOfflineShuttleOre = 0;
+        pendingOfflineShuttleDeliveringOre = 0;
         pendingOfflineShuttleCooldown = 0f;
+        pendingOfflineShowRewardPopup = false;
 
         if (gameData == null)
         {
@@ -289,6 +291,7 @@ public class GameManager : MonoBehaviour
 
         gameData.ore = GameSettings.StartOre;
         gameData.shuttleOre = GetConfiguredStartShuttleOre();
+        gameData.shuttleDeliveringOre = 0;
         gameData.shuttleCapacity = GetConfiguredShuttleCapacity();
         gameData.shuttleTravelTimeSeconds = GetConfiguredShuttleTravelTimeSeconds();
         gameData.shuttleSendCooldownRemaining = 0f;
@@ -299,6 +302,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.DeleteKey(OreKey);
         PlayerPrefs.DeleteKey(ShuttleOreKey);
+        PlayerPrefs.DeleteKey(ShuttleDeliveringOreKey);
         PlayerPrefs.DeleteKey(ShuttleCapacityKey);
         PlayerPrefs.DeleteKey(ShuttleSendCooldownKey);
         PlayerPrefs.DeleteKey(OrePerClickKey);
@@ -339,7 +343,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager.UpdateUI(gameData);
+        uiManager.UpdateUI(GetDisplayGameData());
         uiManager.RefreshUpgradeList(gameData.ore, upgradeManager.ActiveTemporaryBoostStates.Count);
         uiManager.SetMainScreenUpgradeButtonVisible(upgradeManager.HasAffordableUpgrade(gameData.ore));
         UpdateBoostUI();
@@ -353,7 +357,10 @@ public class GameManager : MonoBehaviour
         {
             return new OfflineProgress
             {
+                minedOre = 0,
+                warehouseOre = 0,
                 finalShuttleOre = gameData.shuttleOre,
+                finalShuttleDeliveringOre = gameData.shuttleDeliveringOre,
                 finalShuttleCooldown = gameData.shuttleSendCooldownRemaining
             };
         }
@@ -363,76 +370,87 @@ public class GameManager : MonoBehaviour
         int orePerSecond = Mathf.Max(0, gameData.orePerSecond);
         int shuttleCapacity = Mathf.Max(1, gameData.shuttleCapacity);
         int shuttleOre = Mathf.Max(0, gameData.shuttleOre);
+        int shuttleDeliveringOre = Mathf.Max(
+            0,
+            PlayerPrefs.GetInt(ShuttleDeliveringOreKey, gameData.shuttleDeliveringOre));
         float shuttleTravelTime = Mathf.Max(0f, gameData.shuttleTravelTimeSeconds);
         float shuttleCooldown = PlayerPrefs.HasKey(ShuttleSendCooldownKey)
             ? PlayerPrefs.GetFloat(ShuttleSendCooldownKey, 0f)
             : 0f;
         bool autoSendEnabled = gameData.shuttleAutoSendEnabled;
-        int rewardOre = 0;
+        int minedOre = 0;
         int warehouseOre = 0;
         long remainingSeconds = offlineSeconds;
 
-        if (autoSendEnabled && shuttleCooldown <= 0f && shuttleOre >= shuttleCapacity)
-        {
-            warehouseOre += shuttleOre;
-            shuttleOre = 0;
-            shuttleCooldown = shuttleTravelTime;
-        }
-
-        if (!autoSendEnabled)
+        while (remainingSeconds > 0)
         {
             if (shuttleCooldown > 0f)
             {
                 long travelSeconds = Math.Min(remainingSeconds, (long)Math.Ceiling(shuttleCooldown));
                 shuttleCooldown = Mathf.Max(0f, shuttleCooldown - travelSeconds);
                 remainingSeconds -= travelSeconds;
-            }
 
-            if (remainingSeconds > 0 && orePerSecond > 0)
-            {
-                int freeCapacity = Mathf.Max(0, shuttleCapacity - shuttleOre);
-                int minedOre = (int)Math.Min((long)freeCapacity, remainingSeconds * orePerSecond);
-                shuttleOre += minedOre;
-                rewardOre += minedOre;
-            }
-        }
-        else
-        {
-            while (remainingSeconds > 0)
-            {
-                if (shuttleCooldown > 0f)
+                if (shuttleCooldown <= 0f && shuttleDeliveringOre > 0)
                 {
-                    long travelSeconds = Math.Min(remainingSeconds, (long)Math.Ceiling(shuttleCooldown));
-                    shuttleCooldown = Mathf.Max(0f, shuttleCooldown - travelSeconds);
-                    remainingSeconds -= travelSeconds;
-                    continue;
+                    warehouseOre += shuttleDeliveringOre;
+                    shuttleDeliveringOre = 0;
                 }
 
-                int freeCapacity = Mathf.Max(0, shuttleCapacity - shuttleOre);
+                continue;
+            }
 
-                if (freeCapacity <= 0)
+            if (autoSendEnabled && shuttleOre >= shuttleCapacity)
+            {
+                if (shuttleTravelTime <= 0f)
                 {
                     warehouseOre += shuttleOre;
                     shuttleOre = 0;
-                    shuttleCooldown = shuttleTravelTime;
                     continue;
                 }
 
-                if (orePerSecond <= 0)
-                {
-                    break;
-                }
+                shuttleDeliveringOre = shuttleOre;
+                shuttleOre = 0;
+                shuttleCooldown = shuttleTravelTime;
+                continue;
+            }
 
-                long secondsToFill = Math.Max(1L, (long)Math.Ceiling((double)freeCapacity / orePerSecond));
-                long miningSeconds = Math.Min(remainingSeconds, secondsToFill);
-                int minedOre = (int)Math.Min((long)freeCapacity, miningSeconds * orePerSecond);
-                shuttleOre += minedOre;
-                rewardOre += minedOre;
-                remainingSeconds -= miningSeconds;
+            if (orePerSecond <= 0)
+            {
+                break;
+            }
 
-                if (shuttleOre >= shuttleCapacity)
+            int freeCapacity = Mathf.Max(0, shuttleCapacity - shuttleOre);
+
+            if (freeCapacity <= 0)
+            {
+                break;
+            }
+
+            if (!autoSendEnabled)
+            {
+                int minedAmount = (int)Math.Min((long)freeCapacity, remainingSeconds * orePerSecond);
+                shuttleOre += minedAmount;
+                minedOre += minedAmount;
+                break;
+            }
+
+            long secondsToFill = Math.Max(1L, (long)Math.Ceiling((double)freeCapacity / orePerSecond));
+            long miningSeconds = Math.Min(remainingSeconds, secondsToFill);
+            int minedAmountToShuttle = (int)Math.Min((long)freeCapacity, miningSeconds * orePerSecond);
+            shuttleOre += minedAmountToShuttle;
+            minedOre += minedAmountToShuttle;
+            remainingSeconds -= miningSeconds;
+
+            if (shuttleOre >= shuttleCapacity)
+            {
+                if (shuttleTravelTime <= 0f)
                 {
                     warehouseOre += shuttleOre;
+                    shuttleOre = 0;
+                }
+                else
+                {
+                    shuttleDeliveringOre = shuttleOre;
                     shuttleOre = 0;
                     shuttleCooldown = shuttleTravelTime;
                 }
@@ -441,10 +459,12 @@ public class GameManager : MonoBehaviour
 
         return new OfflineProgress
         {
-            rewardOre = rewardOre,
+            minedOre = minedOre,
             warehouseOre = warehouseOre,
             finalShuttleOre = shuttleOre,
-            finalShuttleCooldown = shuttleCooldown
+            finalShuttleDeliveringOre = shuttleDeliveringOre,
+            finalShuttleCooldown = shuttleCooldown,
+            shouldShowPopup = autoSendEnabled && warehouseOre > 0
         };
     }
 
@@ -489,12 +509,12 @@ public class GameManager : MonoBehaviour
 
     private void ShowOfflineRewardIfNeeded()
     {
-        if (pendingOfflineOre <= 0 || uiManager == null)
+        if (!ShouldShowOfflineRewardPopup() || uiManager == null)
         {
             return;
         }
 
-        uiManager.ShowOfflineReward(pendingOfflineOre);
+        uiManager.ShowOfflineReward(pendingOfflineWarehouseOre);
     }
 
     private void HandleUpgradeBuyRequested(UpgradeState state)
@@ -561,38 +581,77 @@ public class GameManager : MonoBehaviour
 
     private void CacheOfflineProgress(OfflineProgress offlineProgress)
     {
-        pendingOfflineOre = offlineProgress.rewardOre;
+        pendingOfflineMinedOre = offlineProgress.minedOre;
         pendingOfflineWarehouseOre = offlineProgress.warehouseOre;
         pendingOfflineShuttleOre = offlineProgress.finalShuttleOre;
+        pendingOfflineShuttleDeliveringOre = offlineProgress.finalShuttleDeliveringOre;
         pendingOfflineShuttleCooldown = offlineProgress.finalShuttleCooldown;
+        pendingOfflineShowRewardPopup = offlineProgress.shouldShowPopup;
     }
 
     private void ApplyPendingOfflineProgress()
     {
-        if (pendingOfflineOre <= 0 &&
-            pendingOfflineWarehouseOre <= 0 &&
-            pendingOfflineShuttleOre == gameData.shuttleOre &&
-            Mathf.Approximately(pendingOfflineShuttleCooldown, gameData.shuttleSendCooldownRemaining))
+        if (!ShouldShowOfflineRewardPopup() && !HasPendingOfflineStateChanges())
         {
             return;
         }
 
         gameData.ore += pendingOfflineWarehouseOre;
         gameData.shuttleOre = Mathf.Max(0, pendingOfflineShuttleOre);
+        gameData.shuttleDeliveringOre = Mathf.Max(0, pendingOfflineShuttleDeliveringOre);
         gameData.shuttleSendCooldownRemaining = Mathf.Max(0f, pendingOfflineShuttleCooldown);
-        gameData.totalOreEarned += pendingOfflineOre;
+        gameData.totalOreEarned += pendingOfflineMinedOre;
 
-        pendingOfflineOre = 0;
+        pendingOfflineMinedOre = 0;
         pendingOfflineWarehouseOre = 0;
         pendingOfflineShuttleOre = gameData.shuttleOre;
+        pendingOfflineShuttleDeliveringOre = gameData.shuttleDeliveringOre;
         pendingOfflineShuttleCooldown = gameData.shuttleSendCooldownRemaining;
+        pendingOfflineShowRewardPopup = false;
+    }
+
+    private bool ShouldShowOfflineRewardPopup()
+    {
+        return pendingOfflineShowRewardPopup;
+    }
+
+    private GameData GetDisplayGameData()
+    {
+        if (!ShouldShowOfflineRewardPopup())
+        {
+            return gameData;
+        }
+
+        return new GameData
+        {
+            ore = gameData.ore,
+            shuttleOre = Mathf.Max(0, pendingOfflineShuttleOre),
+            shuttleDeliveringOre = Mathf.Max(0, pendingOfflineShuttleDeliveringOre),
+            shuttleCapacity = gameData.shuttleCapacity,
+            shuttleTravelTimeSeconds = gameData.shuttleTravelTimeSeconds,
+            shuttleSendCooldownRemaining = Mathf.Max(0f, pendingOfflineShuttleCooldown),
+            shuttleAutoSendEnabled = gameData.shuttleAutoSendEnabled,
+            orePerClick = gameData.orePerClick,
+            orePerSecond = gameData.orePerSecond,
+            totalOreEarned = gameData.totalOreEarned + pendingOfflineMinedOre
+        };
+    }
+
+    private bool HasPendingOfflineStateChanges()
+    {
+        return pendingOfflineWarehouseOre > 0 ||
+               pendingOfflineShuttleOre != gameData.shuttleOre ||
+               pendingOfflineShuttleDeliveringOre != gameData.shuttleDeliveringOre ||
+               !Mathf.Approximately(pendingOfflineShuttleCooldown, gameData.shuttleSendCooldownRemaining);
     }
 
     private struct OfflineProgress
     {
-        public int rewardOre;
+        public int minedOre;
         public int warehouseOre;
         public int finalShuttleOre;
+        public int finalShuttleDeliveringOre;
         public float finalShuttleCooldown;
+        public bool shouldShowPopup;
     }
 }
