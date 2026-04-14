@@ -25,10 +25,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject resetConfirmationPanel;
     [SerializeField] private GameObject offlineRewardPanel;
     [SerializeField] private Text offlineRewardText;
+    [SerializeField] private GameObject boostOfferPanel;
+    [SerializeField] private Text boostOfferNameText;
+    [SerializeField] private Text boostOfferDescriptionText;
+    [SerializeField] private Text boostOfferEffectText;
 
     private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
 
     public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
+    public bool IsBoostOfferVisible => boostOfferPanel != null && boostOfferPanel.activeSelf;
 
     private void Awake()
     {
@@ -37,6 +42,7 @@ public class UIManager : MonoBehaviour
         HideUpgradePanel();
         HideResetConfirmation();
         HideOfflineReward();
+        HideBoostOffer();
         SetMainScreenUpgradeButtonVisible(false);
         UpdateBoostUI(null);
     }
@@ -82,9 +88,7 @@ public class UIManager : MonoBehaviour
 
     public void InitializeUpgradeList(
         IReadOnlyList<UpgradeState> upgradeStates,
-        IReadOnlyList<TemporaryBoostState> temporaryBoostStates,
-        Action<UpgradeState> onUpgradeBuyRequested,
-        Action<TemporaryBoostState> onTemporaryBoostRequested)
+        Action<UpgradeState> onUpgradeBuyRequested)
     {
         ClearUpgradeList();
 
@@ -103,24 +107,14 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (temporaryBoostStates != null)
-        {
-            for (int i = 0; i < temporaryBoostStates.Count; i++)
-            {
-                UpgradeItemUI item = Instantiate(upgradeItemPrefab, upgradeListRoot);
-                item.Initialize(temporaryBoostStates[i], onTemporaryBoostRequested);
-                upgradeItems.Add(item);
-            }
-        }
-
-        RefreshUpgradeList(0, 0);
+        RefreshUpgradeList(0);
     }
 
-    public void RefreshUpgradeList(int currentOre, int activeBoostCount)
+    public void RefreshUpgradeList(int currentOre)
     {
         for (int i = 0; i < upgradeItems.Count; i++)
         {
-            upgradeItems[i].Refresh(currentOre, activeBoostCount);
+            upgradeItems[i].Refresh(currentOre);
         }
     }
 
@@ -222,6 +216,46 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowBoostOffer(TemporaryBoostState boostState)
+    {
+        if (boostState == null)
+        {
+            return;
+        }
+
+        HideMenu();
+        HideUpgradePanel();
+        HideResetConfirmation();
+
+        if (boostOfferNameText != null)
+        {
+            boostOfferNameText.text = boostState.Definition.boostName;
+        }
+
+        if (boostOfferDescriptionText != null)
+        {
+            boostOfferDescriptionText.text = boostState.Definition.description;
+        }
+
+        if (boostOfferEffectText != null)
+        {
+            boostOfferEffectText.text = BuildBoostOfferEffectText(boostState);
+        }
+
+        if (boostOfferPanel != null)
+        {
+            boostOfferPanel.SetActive(true);
+        }
+    }
+
+    public void HideBoostOffer()
+    {
+        if (boostOfferPanel != null)
+        {
+            boostOfferPanel.SetActive(false);
+        }
+    }
+
     public void UpdateBoostUI(IReadOnlyList<TemporaryBoostState> activeBoostStates)
     {
         if (boostStatusText == null)
@@ -276,6 +310,21 @@ public class UIManager : MonoBehaviour
         }
 
         upgradeItems.Clear();
+    }
+
+    private string BuildBoostOfferEffectText(TemporaryBoostState boostState)
+    {
+        string targetText = boostState.Definition.targetType == TemporaryBoostTargetType.OrePerClick
+            ? "Ore / click"
+            : "Ore / sec";
+
+        return "Effect: x" +
+               NumberFormatter.FormatFloat(boostState.GetMultiplier()) +
+               " " +
+               targetText +
+               " for " +
+               Mathf.RoundToInt(boostState.Definition.durationSeconds) +
+               "s";
     }
 
     private string FormatTimer(float seconds)

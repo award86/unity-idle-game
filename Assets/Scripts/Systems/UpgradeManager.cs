@@ -127,6 +127,18 @@ public class UpgradeManager
         return true;
     }
 
+    public bool TryDeclineTemporaryBoost(TemporaryBoostState state)
+    {
+        if (state == null || !state.IsAvailable || state.IsActive)
+        {
+            return false;
+        }
+
+        ResetTemporaryBoostAvailability(state);
+        UpgradesChanged?.Invoke();
+        return true;
+    }
+
     public bool HasAffordableUpgrade(int currentOre)
     {
         for (int i = 0; i < upgradeStates.Count; i++)
@@ -143,23 +155,22 @@ public class UpgradeManager
                 return true;
             }
         }
+        return false;
+    }
 
-        if (activeTemporaryBoostStates.Count >= GameSettings.MaxActiveTemporaryBoosts)
-        {
-            return false;
-        }
-
+    public TemporaryBoostState GetNextAvailableTemporaryBoost()
+    {
         for (int i = 0; i < temporaryBoostStates.Count; i++)
         {
             TemporaryBoostState state = temporaryBoostStates[i];
 
             if (state.IsAvailable && !state.IsActive)
             {
-                return true;
+                return state;
             }
         }
 
-        return false;
+        return null;
     }
 
     public void Update(float deltaTime)

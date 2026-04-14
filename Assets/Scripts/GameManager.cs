@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     private int pendingOfflineShuttleDeliveringOre;
     private float pendingOfflineShuttleCooldown;
     private bool pendingOfflineShowRewardPopup;
+    private TemporaryBoostState pendingBoostOfferState;
+    private bool suppressBoostOfferPopup;
 
     private void Awake()
     {
@@ -51,9 +53,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager.InitializeUpgradeList(
                 upgradeManager.UpgradeStates,
-                upgradeManager.TemporaryBoostStates,
-                HandleUpgradeBuyRequested,
-                HandleTemporaryBoostRequested);
+                HandleUpgradeBuyRequested);
         }
 
         if (!ShouldShowOfflineRewardPopup() && HasPendingOfflineStateChanges())
@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
 
         RefreshUI();
         ShowOfflineRewardIfNeeded();
+        TryShowNextBoostOffer();
     }
 
     private void Update()
@@ -114,6 +115,8 @@ public class GameManager : MonoBehaviour
         {
             SaveGame();
         }
+
+        TryShowNextBoostOffer();
     }
 
     public void OnMineButtonClicked()
@@ -212,12 +215,65 @@ public class GameManager : MonoBehaviour
 
         RefreshUI();
         SaveGame();
+        TryShowNextBoostOffer();
     }
 
     public void OnClaimOfflineRewardX2ButtonClicked()
     {
         // TODO: Show rewarded ad and give x2 offline reward after ad is completed.
         Debug.Log("Rewarded ad is not implemented yet.");
+    }
+
+    public void OnAcceptBoostButtonClicked()
+    {
+        if (upgradeManager == null)
+        {
+            return;
+        }
+
+        TemporaryBoostState boostState = pendingBoostOfferState;
+        pendingBoostOfferState = null;
+
+        if (uiManager != null)
+        {
+            uiManager.HideBoostOffer();
+        }
+
+        if (!upgradeManager.TryActivateTemporaryBoost(boostState))
+        {
+            TryShowNextBoostOffer();
+            return;
+        }
+
+        RefreshUI();
+        SaveGame();
+        TryShowNextBoostOffer();
+    }
+
+    public void OnDeclineBoostButtonClicked()
+    {
+        if (upgradeManager == null)
+        {
+            return;
+        }
+
+        TemporaryBoostState boostState = pendingBoostOfferState;
+        pendingBoostOfferState = null;
+
+        if (uiManager != null)
+        {
+            uiManager.HideBoostOffer();
+        }
+
+        if (!upgradeManager.TryDeclineTemporaryBoost(boostState))
+        {
+            TryShowNextBoostOffer();
+            return;
+        }
+
+        RefreshUI();
+        SaveGame();
+        TryShowNextBoostOffer();
     }
 
     private void SaveGame()
@@ -283,6 +339,7 @@ public class GameManager : MonoBehaviour
         pendingOfflineShuttleDeliveringOre = 0;
         pendingOfflineShuttleCooldown = 0f;
         pendingOfflineShowRewardPopup = false;
+        pendingBoostOfferState = null;
 
         if (gameData == null)
         {
@@ -320,6 +377,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager.HideOfflineReward();
             uiManager.HideUpgradePanel();
+            uiManager.HideBoostOffer();
         }
     }
 
@@ -327,12 +385,20 @@ public class GameManager : MonoBehaviour
     {
         if (pauseStatus)
         {
+            suppressBoostOfferPopup = true;
+            DismissPendingBoostOffer();
             SaveGame();
+            return;
         }
+
+        suppressBoostOfferPopup = false;
+        TryShowNextBoostOffer();
     }
 
     private void OnApplicationQuit()
     {
+        suppressBoostOfferPopup = true;
+        DismissPendingBoostOffer();
         SaveGame();
     }
 
@@ -344,7 +410,7 @@ public class GameManager : MonoBehaviour
         }
 
         uiManager.UpdateUI(GetDisplayGameData());
-        uiManager.RefreshUpgradeList(gameData.ore, upgradeManager.ActiveTemporaryBoostStates.Count);
+        uiManager.RefreshUpgradeList(gameData.ore);
         uiManager.SetMainScreenUpgradeButtonVisible(upgradeManager.HasAffordableUpgrade(gameData.ore));
         UpdateBoostUI();
     }
@@ -529,21 +595,11 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
-    private void HandleTemporaryBoostRequested(TemporaryBoostState state)
-    {
-        if (upgradeManager == null || !upgradeManager.TryActivateTemporaryBoost(state))
-        {
-            return;
-        }
-
-        RefreshUI();
-        SaveGame();
-    }
-
     private void HandleUpgradesChanged()
     {
         TryAutoSendShuttle();
         RefreshUI();
+        TryShowNextBoostOffer();
     }
 
     private void UpdateBoostUI()
@@ -587,6 +643,64 @@ public class GameManager : MonoBehaviour
         pendingOfflineShuttleDeliveringOre = offlineProgress.finalShuttleDeliveringOre;
         pendingOfflineShuttleCooldown = offlineProgress.finalShuttleCooldown;
         pendingOfflineShowRewardPopup = offlineProgress.shouldShowPopup;
+    }
+
+    private void TryShowNextBoostOffer()
+    {
+        if (uiManager == null ||
+            upgradeManager == null ||
+            suppressBoostOfferPopup ||
+            uiManager.IsOfflineRewardVisible ||
+            upgradeManager.ActiveTemporaryBoostStates.Count >= GameSettings.MaxActiveTemporaryBoosts)
+        {
+            return;
+        }
+
+        if (pendingBoostOfferState != null &&
+            (!pendingBoostOfferState.IsAvailable || pendingBoostOfferState.IsActive))
+        {
+            pendingBoostOfferState = null;
+
+            if (uiManager.IsBoostOfferVisible)
+            {
+                uiManager.HideBoostOffer();
+            }
+        }
+
+        if (uiManager.IsBoostOfferVisible)
+        {
+            return;
+        }
+
+        if (pendingBoostOfferState == null)
+        {
+            pendingBoostOfferState = upgradeManager.GetNextAvailableTemporaryBoost();
+        }
+
+        if (pendingBoostOfferState == null)
+        {
+            return;
+        }
+
+        uiManager.ShowBoostOffer(pendingBoostOfferState);
+    }
+
+    private void DismissPendingBoostOffer()
+    {
+        if (uiManager != null)
+        {
+            uiManager.HideBoostOffer();
+        }
+
+        if (upgradeManager == null || pendingBoostOfferState == null)
+        {
+            pendingBoostOfferState = null;
+            return;
+        }
+
+        TemporaryBoostState boostState = pendingBoostOfferState;
+        pendingBoostOfferState = null;
+        upgradeManager.TryDeclineTemporaryBoost(boostState);
     }
 
     private void ApplyPendingOfflineProgress()

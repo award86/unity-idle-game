@@ -13,42 +13,18 @@ public class UpgradeItemUI : MonoBehaviour
     [SerializeField] private Text buyButtonText;
 
     private UpgradeState upgradeState;
-    private TemporaryBoostState temporaryBoostState;
     private Action<UpgradeState> onUpgradeBuyRequested;
-    private Action<TemporaryBoostState> onTemporaryBoostRequested;
 
     public void Initialize(UpgradeState state, Action<UpgradeState> onBuyRequested)
     {
         upgradeState = state;
-        temporaryBoostState = null;
         onUpgradeBuyRequested = onBuyRequested;
-        onTemporaryBoostRequested = null;
-
         SetupButton();
     }
 
-    public void Initialize(TemporaryBoostState state, Action<TemporaryBoostState> onBuyRequested)
+    public void Refresh(int currentOre)
     {
-        temporaryBoostState = state;
-        upgradeState = null;
-        onTemporaryBoostRequested = onBuyRequested;
-        onUpgradeBuyRequested = null;
-
-        SetupButton();
-    }
-
-    public void Refresh(int currentOre, int activeBoostCount)
-    {
-        if (upgradeState != null)
-        {
-            RefreshUpgrade(currentOre);
-            return;
-        }
-
-        if (temporaryBoostState != null)
-        {
-            RefreshTemporaryBoost(activeBoostCount);
-        }
+        RefreshUpgrade(currentOre);
     }
 
     private void SetupButton()
@@ -109,58 +85,6 @@ public class UpgradeItemUI : MonoBehaviour
         }
     }
 
-    private void RefreshTemporaryBoost(int activeBoostCount)
-    {
-        if (temporaryBoostState == null)
-        {
-            return;
-        }
-
-        bool shouldShow = temporaryBoostState.ShouldShowInList;
-        gameObject.SetActive(shouldShow);
-
-        if (!shouldShow)
-        {
-            return;
-        }
-
-        if (nameText != null)
-        {
-            nameText.text = temporaryBoostState.Definition.boostName;
-        }
-
-        if (descriptionText != null)
-        {
-            descriptionText.text = temporaryBoostState.Definition.description;
-        }
-
-        if (levelText != null)
-        {
-            levelText.text = BuildTemporaryBoostStatusText();
-        }
-
-        if (costText != null)
-        {
-            costText.text = string.Empty;
-        }
-
-        if (effectText != null)
-        {
-            effectText.text = BuildTemporaryBoostEffectText();
-        }
-
-        if (buyButton != null)
-        {
-            buyButton.interactable = temporaryBoostState.IsAvailable &&
-                                     activeBoostCount < GameSettings.MaxActiveTemporaryBoosts;
-        }
-
-        if (buyButtonText != null)
-        {
-            buyButtonText.text = "Activate";
-        }
-    }
-
     private string BuildUpgradeEffectText()
     {
         switch (upgradeState.Definition.effectType)
@@ -217,41 +141,6 @@ public class UpgradeItemUI : MonoBehaviour
 
     private void HandleBuyClicked()
     {
-        if (upgradeState != null)
-        {
-            onUpgradeBuyRequested?.Invoke(upgradeState);
-            return;
-        }
-
-        if (temporaryBoostState != null)
-        {
-            onTemporaryBoostRequested?.Invoke(temporaryBoostState);
-        }
-    }
-
-    private string BuildTemporaryBoostStatusText()
-    {
-        switch (temporaryBoostState.Definition.availabilityType)
-        {
-            case TemporaryBoostAvailabilityType.ByTime:
-                return "Boost: Ready every " + Mathf.RoundToInt(temporaryBoostState.Definition.appearanceIntervalSeconds) + "s";
-
-            case TemporaryBoostAvailabilityType.ByAccumulatedOre:
-                return "Boost: Ready every " + NumberFormatter.FormatInt(temporaryBoostState.Definition.oreRequiredForAppearance) + " earned Ore";
-
-            default:
-                return "Boost: Ready";
-        }
-    }
-
-    private string BuildTemporaryBoostEffectText()
-    {
-        string targetText = temporaryBoostState.Definition.targetType == TemporaryBoostTargetType.OrePerClick
-            ? "Ore / click"
-            : "Ore / sec";
-
-        return "Effect: x" + NumberFormatter.FormatFloat(temporaryBoostState.GetMultiplier()) +
-               " " + targetText +
-               " for " + Mathf.RoundToInt(temporaryBoostState.Definition.durationSeconds) + "s";
+        onUpgradeBuyRequested?.Invoke(upgradeState);
     }
 }
