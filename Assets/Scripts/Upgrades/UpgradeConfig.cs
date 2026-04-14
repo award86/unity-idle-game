@@ -21,7 +21,6 @@ public class UpgradeConfig : ScriptableObject
                 effectType = UpgradeEffectType.MiningPerClick,
                 baseCost = 25,
                 costMultiplier = 1.7f,
-                baseValue = 1f,
                 valuePerLevel = 1f,
                 maxLevel = 5
             },
@@ -33,7 +32,6 @@ public class UpgradeConfig : ScriptableObject
                 effectType = UpgradeEffectType.MiningPerClick,
                 baseCost = 15,
                 costMultiplier = 1.55f,
-                baseValue = 2f,
                 valuePerLevel = 2f,
                 maxLevel = 10
             },
@@ -45,7 +43,6 @@ public class UpgradeConfig : ScriptableObject
                 effectType = UpgradeEffectType.MiningPerSecond,
                 baseCost = 20,
                 costMultiplier = 1.6f,
-                baseValue = 1f,
                 valuePerLevel = 1f,
                 maxLevel = 12
             },
@@ -57,8 +54,9 @@ public class UpgradeConfig : ScriptableObject
                 effectType = UpgradeEffectType.Shuttle,
                 baseCost = 40,
                 costMultiplier = 1.8f,
-                baseValue = 0.20f,
-                valuePerLevel = 0.10f,
+                valuePerLevel = 0f,
+                shuttleTravelTimeReductionPerLevel = 5f,
+                shuttleCapacityIncreasePerLevel = 0,
                 maxLevel = 6
             },
             new UpgradeDefinition
@@ -69,9 +67,23 @@ public class UpgradeConfig : ScriptableObject
                 effectType = UpgradeEffectType.Shuttle,
                 baseCost = 35,
                 costMultiplier = 1.7f,
-                baseValue = 0.15f,
-                valuePerLevel = 0.10f,
+                valuePerLevel = 0f,
+                shuttleTravelTimeReductionPerLevel = 0f,
+                shuttleCapacityIncreasePerLevel = 25,
                 maxLevel = 8
+            },
+            new UpgradeDefinition
+            {
+                id = "auto_shuttle_dispatch",
+                upgradeName = "Auto Dispatch",
+                description = "Launches the shuttle automatically as soon as it is full.",
+                effectType = UpgradeEffectType.ShuttleAutoSend,
+                baseCost = 120,
+                costMultiplier = 1f,
+                valuePerLevel = 0f,
+                shuttleTravelTimeReductionPerLevel = 0f,
+                shuttleCapacityIncreasePerLevel = 0,
+                maxLevel = 1
             }
         };
     }

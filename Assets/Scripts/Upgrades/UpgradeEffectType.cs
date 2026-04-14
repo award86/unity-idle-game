@@ -2,5 +2,6 @@ public enum UpgradeEffectType
 {
     MiningPerClick,
     MiningPerSecond,
-    Shuttle
+    Shuttle,
+    ShuttleAutoSend
 }

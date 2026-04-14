@@ -14,29 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TemporaryBoostConfig
   temporaryBoosts:
   - id: quantum_rush
-    boostName: ABC
-    description: Temporary x3 income boost that appears after enough ore is earned.
+    boostName: X2 click
+    description: 'x2 click boost '
     multiplier: 2
     targetType: 0
-    durationSeconds: 5
+    durationSeconds: 30
     availabilityType: 0
-    appearanceIntervalSeconds: 10
+    appearanceIntervalSeconds: 60
     oreRequiredForAppearance: 250
   - id: quantum_rush
-    boostName: ABC
-    description: Temporary x5 income boost that appears after enough ore is earned.
-    multiplier: 5
+    boostName: X3 income
+    description: x3 income boost
+    multiplier: 3
     targetType: 1
-    durationSeconds: 10
+    durationSeconds: 30
     availabilityType: 0
-    appearanceIntervalSeconds: 15
-    oreRequiredForAppearance: 250
-  - id: quantum_rush
-    boostName: ABC
-    description: Temporary x5 income boost that appears after enough ore is earned.
-    multiplier: 2
-    targetType: 0
-    durationSeconds: 10
-    availabilityType: 0
-    appearanceIntervalSeconds: 10
+    appearanceIntervalSeconds: 120
     oreRequiredForAppearance: 250

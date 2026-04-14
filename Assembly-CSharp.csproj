@@ -64,11 +64,13 @@
     <Compile Include="Assets\Scripts\Systems\UpgradeManager.cs" />
     <Compile Include="Assets\Scripts\Systems\ResourceSystem.cs" />
     <Compile Include="Assets\Scripts\Upgrades\UpgradeConfig.cs" />
+    <Compile Include="Assets\Scripts\Data\ShuttleConfig.cs" />
     <Compile Include="Assets\Scripts\Systems\UpgradeSystem.cs" />
     <Compile Include="Assets\Scripts\Upgrades\TemporaryBoostTargetType.cs" />
     <Compile Include="Assets\Scripts\Utilities\NumberFormatter.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Systems\ShuttleSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

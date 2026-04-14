@@ -163,22 +163,56 @@ public class UpgradeItemUI : MonoBehaviour
 
     private string BuildUpgradeEffectText()
     {
-        float value = upgradeState.IsMaxLevel ? upgradeState.GetCurrentEffectValue() : upgradeState.GetNextLevelValue();
-
         switch (upgradeState.Definition.effectType)
         {
             case UpgradeEffectType.MiningPerClick:
-                return "Effect: +" + NumberFormatter.FormatFloat(value) + " Ore / click";
+                float clickValue = upgradeState.IsMaxLevel ? upgradeState.GetCurrentEffectValue() : upgradeState.GetNextLevelValue();
+                return "Effect: +" + NumberFormatter.FormatFloat(clickValue) + " Ore / click";
 
             case UpgradeEffectType.MiningPerSecond:
-                return "Effect: +" + NumberFormatter.FormatFloat(value) + " Ore / sec";
+                float passiveValue = upgradeState.IsMaxLevel ? upgradeState.GetCurrentEffectValue() : upgradeState.GetNextLevelValue();
+                return "Effect: +" + NumberFormatter.FormatFloat(passiveValue) + " Ore / sec";
 
             case UpgradeEffectType.Shuttle:
-                return "Effect: +" + NumberFormatter.FormatFloat(value * 100f) + "% Ore / sec";
+                return BuildShuttleEffectText();
+
+            case UpgradeEffectType.ShuttleAutoSend:
+                return "Effect: Auto send when shuttle is full";
 
             default:
                 return "Effect: Unknown";
         }
+    }
+
+    private string BuildShuttleEffectText()
+    {
+        float travelTimeReduction = upgradeState.IsMaxLevel
+            ? upgradeState.GetCurrentShuttleTravelTimeReduction()
+            : upgradeState.GetNextShuttleTravelTimeReduction();
+        int capacityIncrease = upgradeState.IsMaxLevel
+            ? upgradeState.GetCurrentShuttleCapacityIncrease()
+            : upgradeState.GetNextShuttleCapacityIncrease();
+
+        bool hasTravelBonus = travelTimeReduction > 0f;
+        bool hasCapacityBonus = capacityIncrease > 0;
+
+        if (hasTravelBonus && hasCapacityBonus)
+        {
+            return "Effect: -" + NumberFormatter.FormatFloat(travelTimeReduction) +
+                   "s travel time, +" + NumberFormatter.FormatInt(capacityIncrease) + " capacity";
+        }
+
+        if (hasTravelBonus)
+        {
+            return "Effect: -" + NumberFormatter.FormatFloat(travelTimeReduction) + "s travel time";
+        }
+
+        if (hasCapacityBonus)
+        {
+            return "Effect: +" + NumberFormatter.FormatInt(capacityIncrease) + " capacity";
+        }
+
+        return "Effect: Shuttle upgrade";
     }
 
     private void HandleBuyClicked()

@@ -23,12 +23,42 @@ public class UpgradeState
             return 0f;
         }
 
-        return Definition.baseValue + (Definition.valuePerLevel * (Level - 1));
+        return Definition.valuePerLevel * Level;
     }
 
     public float GetNextLevelValue()
     {
-        return Definition.baseValue + (Definition.valuePerLevel * Level);
+        return Definition.valuePerLevel * (Level + 1);
+    }
+
+    public float GetCurrentShuttleTravelTimeReduction()
+    {
+        if (Level <= 0)
+        {
+            return 0f;
+        }
+
+        return Definition.shuttleTravelTimeReductionPerLevel * Level;
+    }
+
+    public float GetNextShuttleTravelTimeReduction()
+    {
+        return Definition.shuttleTravelTimeReductionPerLevel * (Level + 1);
+    }
+
+    public int GetCurrentShuttleCapacityIncrease()
+    {
+        if (Level <= 0)
+        {
+            return 0;
+        }
+
+        return Definition.shuttleCapacityIncreasePerLevel * Level;
+    }
+
+    public int GetNextShuttleCapacityIncrease()
+    {
+        return Definition.shuttleCapacityIncreasePerLevel * (Level + 1);
     }
 
     public void SetLevel(int level)

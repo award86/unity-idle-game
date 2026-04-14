@@ -7,10 +7,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text oreText;
+    [SerializeField] private Text shuttleText;
     [SerializeField] private Text orePerSecondText;
 
     [FormerlySerializedAs("upgradeCostText")]
     [SerializeField] private Text orePerClickText;
+    [SerializeField] private Button sendShuttleButton;
+    [SerializeField] private Text sendShuttleButtonText;
 
     [SerializeField] private GameObject menuOverlayPanel;
     [SerializeField] private GameObject dropdownMenuPanel;
@@ -24,6 +27,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text offlineRewardText;
 
     private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
+
+    public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
 
     private void Awake()
     {
@@ -40,7 +45,16 @@ public class UIManager : MonoBehaviour
     {
         if (oreText != null)
         {
-            oreText.text = "Ore: " + NumberFormatter.FormatInt(gameData.ore);
+            oreText.text = "Warehouse Ore: " + NumberFormatter.FormatInt(gameData.ore);
+        }
+
+        if (shuttleText != null)
+        {
+            shuttleText.text =
+                "Shuttle: " +
+                NumberFormatter.FormatInt(gameData.shuttleOre) +
+                " / " +
+                NumberFormatter.FormatInt(gameData.shuttleCapacity);
         }
 
         if (orePerSecondText != null)
@@ -51,6 +65,18 @@ public class UIManager : MonoBehaviour
         if (orePerClickText != null)
         {
             orePerClickText.text = "Ore / click: " + NumberFormatter.FormatInt(gameData.orePerClick);
+        }
+
+        if (sendShuttleButton != null)
+        {
+            sendShuttleButton.interactable = gameData.shuttleSendCooldownRemaining <= 0f;
+        }
+
+        if (sendShuttleButtonText != null)
+        {
+            sendShuttleButtonText.text = gameData.shuttleSendCooldownRemaining > 0f
+                ? "Send " + FormatTimer(gameData.shuttleSendCooldownRemaining)
+                : "Send";
         }
     }
 
@@ -248,5 +274,13 @@ public class UIManager : MonoBehaviour
         }
 
         upgradeItems.Clear();
+    }
+
+    private string FormatTimer(float seconds)
+    {
+        int totalSeconds = Mathf.CeilToInt(seconds);
+        int minutes = totalSeconds / 60;
+        int remainingSeconds = totalSeconds % 60;
+        return minutes.ToString("00") + ":" + remainingSeconds.ToString("00");
     }
 }

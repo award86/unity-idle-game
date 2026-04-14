@@ -10,15 +10,21 @@ public class UpgradeManager
     private const string TemporaryBoostOreThresholdKeyPrefix = "temporary_boost_ore_threshold_";
 
     private readonly GameData gameData;
+    private readonly ShuttleConfig shuttleConfig;
     private readonly List<UpgradeState> upgradeStates = new List<UpgradeState>();
     private readonly List<TemporaryBoostState> temporaryBoostStates = new List<TemporaryBoostState>();
     private readonly List<TemporaryBoostState> activeTemporaryBoostStates = new List<TemporaryBoostState>();
 
     public event Action UpgradesChanged;
 
-    public UpgradeManager(GameData gameData, UpgradeConfig upgradeConfig, TemporaryBoostConfig temporaryBoostConfig)
+    public UpgradeManager(
+        GameData gameData,
+        ShuttleConfig shuttleConfig,
+        UpgradeConfig upgradeConfig,
+        TemporaryBoostConfig temporaryBoostConfig)
     {
         this.gameData = gameData;
+        this.shuttleConfig = shuttleConfig;
         BuildUpgradeStates(upgradeConfig);
         BuildTemporaryBoostStates(temporaryBoostConfig);
         RecalculateIncome();
@@ -174,30 +180,44 @@ public class UpgradeManager
     {
         float orePerClick = GameSettings.StartOrePerClick;
         float orePerSecond = GameSettings.StartOrePerSecond;
-        float shuttleOrePerSecondMultiplier = 1f;
+        int shuttleCapacity = GetBaseShuttleCapacity();
+        float shuttleTravelTimeSeconds = GetBaseShuttleTravelTimeSeconds();
+        bool shuttleAutoSendEnabled = false;
 
         for (int i = 0; i < upgradeStates.Count; i++)
         {
             UpgradeState state = upgradeStates[i];
-            float effectValue = state.GetCurrentEffectValue();
-
-            if (effectValue <= 0f)
-            {
-                continue;
-            }
 
             switch (state.Definition.effectType)
             {
                 case UpgradeEffectType.MiningPerClick:
-                    orePerClick += effectValue;
+                    float clickEffectValue = state.GetCurrentEffectValue();
+
+                    if (clickEffectValue > 0f)
+                    {
+                        orePerClick += clickEffectValue;
+                    }
                     break;
 
                 case UpgradeEffectType.MiningPerSecond:
-                    orePerSecond += effectValue;
+                    float passiveEffectValue = state.GetCurrentEffectValue();
+
+                    if (passiveEffectValue > 0f)
+                    {
+                        orePerSecond += passiveEffectValue;
+                    }
                     break;
 
                 case UpgradeEffectType.Shuttle:
-                    shuttleOrePerSecondMultiplier *= 1f + effectValue;
+                    shuttleCapacity += state.GetCurrentShuttleCapacityIncrease();
+                    shuttleTravelTimeSeconds -= state.GetCurrentShuttleTravelTimeReduction();
+                    break;
+
+                case UpgradeEffectType.ShuttleAutoSend:
+                    if (state.Level > 0)
+                    {
+                        shuttleAutoSendEnabled = true;
+                    }
                     break;
             }
         }
@@ -222,7 +242,18 @@ public class UpgradeManager
         }
 
         gameData.orePerClick = Mathf.Max(GameSettings.StartOrePerClick, Mathf.RoundToInt(orePerClick * orePerClickMultiplier));
-        gameData.orePerSecond = Mathf.Max(GameSettings.StartOrePerSecond, Mathf.RoundToInt(orePerSecond * shuttleOrePerSecondMultiplier * orePerSecondMultiplier));
+        gameData.orePerSecond = Mathf.Max(GameSettings.StartOrePerSecond, Mathf.RoundToInt(orePerSecond * orePerSecondMultiplier));
+        gameData.shuttleCapacity = Mathf.Max(1, shuttleCapacity);
+        gameData.shuttleTravelTimeSeconds = Mathf.Max(0f, shuttleTravelTimeSeconds);
+        gameData.shuttleAutoSendEnabled = shuttleAutoSendEnabled;
+        gameData.shuttleOre = Mathf.Max(0, gameData.shuttleOre);
+
+        if (gameData.shuttleSendCooldownRemaining > 0f)
+        {
+            gameData.shuttleSendCooldownRemaining = Mathf.Min(
+                gameData.shuttleSendCooldownRemaining,
+                gameData.shuttleTravelTimeSeconds);
+        }
     }
 
     private void BuildUpgradeStates(UpgradeConfig upgradeConfig)
@@ -439,5 +470,19 @@ public class UpgradeManager
     private string GetTemporaryBoostOreThresholdKey(string boostId)
     {
         return TemporaryBoostOreThresholdKeyPrefix + boostId;
+    }
+
+    private int GetBaseShuttleCapacity()
+    {
+        return shuttleConfig != null
+            ? shuttleConfig.Capacity
+            : ShuttleConfig.DefaultCapacity;
+    }
+
+    private float GetBaseShuttleTravelTimeSeconds()
+    {
+        return shuttleConfig != null
+            ? shuttleConfig.TravelTimeSeconds
+            : ShuttleConfig.DefaultTravelTimeSeconds;
     }
 }
