@@ -50,10 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Systems\TimeSystem.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\UpgradeDefinition.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\UpgradeCategory.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\UpgradeEffectType.cs" />
     <Compile Include="Assets\Scripts\Data\GameData.cs" />
     <Compile Include="Assets\Scripts\Data\GameSettings.cs" />
+    <Compile Include="Assets\Scripts\UI\UpgradeItemUI.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\UpgradeState.cs" />
+    <Compile Include="Assets\Scripts\Systems\UpgradeManager.cs" />
     <Compile Include="Assets\Scripts\Systems\ResourceSystem.cs" />
+    <Compile Include="Assets\Scripts\Upgrades\UpgradeConfig.cs" />
     <Compile Include="Assets\Scripts\Systems\UpgradeSystem.cs" />
+    <Compile Include="Assets\Scripts\Utilities\NumberFormatter.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
   </ItemGroup>

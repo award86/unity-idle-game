@@ -6,14 +6,15 @@ public class GameManager : MonoBehaviour
     private const string OreKey = "ore";
     private const string OrePerClickKey = "orePerClick";
     private const string OrePerSecondKey = "orePerSecond";
-    private const string UpgradeLevelKey = "upgradeLevel";
     private const string LastSaveTimeKey = "lastSaveTime";
+    private const string LegacyUpgradeLevelKey = "upgradeLevel";
 
     [SerializeField] private UIManager uiManager;
+    [SerializeField] private UpgradeConfig upgradeConfig;
 
     private GameData gameData;
     private ResourceSystem resourceSystem;
-    private UpgradeSystem upgradeSystem;
+    private UpgradeManager upgradeManager;
     private TimeSystem timeSystem;
     private float autoSaveTimer;
     private int pendingOfflineOre;
@@ -23,9 +24,19 @@ public class GameManager : MonoBehaviour
         LoadGame();
 
         resourceSystem = new ResourceSystem(gameData);
-        upgradeSystem = new UpgradeSystem(gameData);
+        upgradeManager = new UpgradeManager(gameData, upgradeConfig);
+        upgradeManager.LoadUpgradeLevels();
+        upgradeManager.UpgradesChanged += HandleUpgradesChanged;
         timeSystem = new TimeSystem(resourceSystem);
         pendingOfflineOre = CalculateOfflineOre();
+    }
+
+    private void Start()
+    {
+        if (uiManager != null)
+        {
+            uiManager.InitializeUpgradeList(upgradeManager.UpgradeStates, HandleUpgradeBuyRequested);
+        }
 
         RefreshUI();
         ShowOfflineRewardIfNeeded();
@@ -36,6 +47,12 @@ public class GameManager : MonoBehaviour
         if (timeSystem.UpdateTimer(Time.deltaTime))
         {
             RefreshUI();
+        }
+
+        if (upgradeManager != null)
+        {
+            upgradeManager.Update(Time.deltaTime);
+            UpdateBoostUI();
         }
 
         autoSaveTimer += Time.deltaTime;
@@ -55,13 +72,14 @@ public class GameManager : MonoBehaviour
 
     public void OnUpgradeButtonClicked()
     {
-        if (!upgradeSystem.UpgradeOrePerSecond())
+        if (uiManager == null)
         {
             return;
         }
 
-        RefreshUI();
-        SaveGame();
+        uiManager.HideMenu();
+        uiManager.HideResetConfirmation();
+        uiManager.ToggleUpgradePanel();
     }
 
     public void OnMenuButtonClicked()
@@ -71,6 +89,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        uiManager.HideUpgradePanel();
         uiManager.HideResetConfirmation();
         uiManager.ToggleMenu();
     }
@@ -144,29 +163,24 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(OreKey, gameData.ore);
         PlayerPrefs.SetInt(OrePerClickKey, gameData.orePerClick);
         PlayerPrefs.SetInt(OrePerSecondKey, gameData.orePerSecond);
-        PlayerPrefs.SetInt(UpgradeLevelKey, gameData.upgradeLevel);
+        PlayerPrefs.DeleteKey(LegacyUpgradeLevelKey);
+
+        if (upgradeManager != null)
+        {
+            upgradeManager.SaveUpgradeLevels();
+        }
+
         PlayerPrefs.SetString(LastSaveTimeKey, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
         PlayerPrefs.Save();
     }
 
     public void LoadGame()
     {
-        bool hasUpgradeLevel = PlayerPrefs.HasKey(UpgradeLevelKey);
-        int savedOrePerSecond = Mathf.Max(0, PlayerPrefs.GetInt(OrePerSecondKey, 0));
-        int savedUpgradeLevel = hasUpgradeLevel
-            ? Mathf.Max(0, PlayerPrefs.GetInt(UpgradeLevelKey, 0))
-            : savedOrePerSecond;
-
         gameData = new GameData
         {
             ore = PlayerPrefs.GetInt(OreKey, GameSettings.StartOre),
-            orePerClick = hasUpgradeLevel
-                ? Mathf.Max(GameSettings.StartOrePerClick, PlayerPrefs.GetInt(OrePerClickKey, GameSettings.StartOrePerClick))
-                : GameSettings.BaseOrePerClick + (savedUpgradeLevel * GameSettings.OrePerClickPerUpgradeLevel),
-            orePerSecond = hasUpgradeLevel
-                ? savedOrePerSecond
-                : GameSettings.BaseOrePerSecond + (savedUpgradeLevel * GameSettings.OrePerSecondPerUpgradeLevel),
-            upgradeLevel = savedUpgradeLevel
+            orePerClick = PlayerPrefs.GetInt(OrePerClickKey, GameSettings.StartOrePerClick),
+            orePerSecond = PlayerPrefs.GetInt(OrePerSecondKey, GameSettings.StartOrePerSecond)
         };
     }
 
@@ -183,18 +197,23 @@ public class GameManager : MonoBehaviour
             gameData.ore = GameSettings.StartOre;
             gameData.orePerClick = GameSettings.StartOrePerClick;
             gameData.orePerSecond = GameSettings.StartOrePerSecond;
-            gameData.upgradeLevel = GameSettings.StartUpgradeLevel;
         }
 
         PlayerPrefs.DeleteKey(OreKey);
         PlayerPrefs.DeleteKey(OrePerClickKey);
         PlayerPrefs.DeleteKey(OrePerSecondKey);
-        PlayerPrefs.DeleteKey(UpgradeLevelKey);
+        PlayerPrefs.DeleteKey(LegacyUpgradeLevelKey);
         PlayerPrefs.DeleteKey(LastSaveTimeKey);
+
+        if (upgradeManager != null)
+        {
+            upgradeManager.ResetUpgrades();
+        }
 
         if (uiManager != null)
         {
             uiManager.HideOfflineReward();
+            uiManager.HideUpgradePanel();
         }
     }
 
@@ -218,7 +237,9 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager.UpdateUI(gameData, upgradeSystem.GetUpgradeCost());
+        uiManager.UpdateUI(gameData);
+        uiManager.RefreshUpgradeList(upgradeManager.UpgradeStates, gameData.ore);
+        UpdateBoostUI();
     }
 
     private int CalculateOfflineOre()
@@ -257,5 +278,43 @@ public class GameManager : MonoBehaviour
         }
 
         uiManager.ShowOfflineReward(pendingOfflineOre);
+    }
+
+    private void HandleUpgradeBuyRequested(UpgradeState state)
+    {
+        if (upgradeManager == null || !upgradeManager.TryBuyUpgrade(state))
+        {
+            return;
+        }
+
+        RefreshUI();
+        SaveGame();
+    }
+
+    private void HandleUpgradesChanged()
+    {
+        RefreshUI();
+    }
+
+    private void UpdateBoostUI()
+    {
+        if (uiManager == null || upgradeManager == null)
+        {
+            return;
+        }
+
+        uiManager.UpdateBoostUI(
+            upgradeManager.HasActiveBoost,
+            upgradeManager.ActiveBoostName,
+            upgradeManager.ActiveBoostMultiplier,
+            upgradeManager.ActiveBoostRemainingTime);
+    }
+
+    private void OnDestroy()
+    {
+        if (upgradeManager != null)
+        {
+            upgradeManager.UpgradesChanged -= HandleUpgradesChanged;
+        }
     }
 }

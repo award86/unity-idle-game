@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ec5ba44fb9d264189fedc649808f55, type: 3}
+  m_Name: UpgradeConfig
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeConfig
+  upgrades:
+  - id: spacesuit_mk1
+    upgradeName: Spacesuit Mk I
+    description: Improves manual mining efficiency and increases ore gained per click.
+    category: 0
+    effectType: 0
+    baseCost: 100
+    costMultiplier: 1.5
+    baseValue: 1
+    valuePerLevel: 1
+    maxLevel: 20
+    durationSeconds: 0
+  - id: plasma_tool
+    upgradeName: Plasma Tool
+    description: Adds a stronger mining tool for faster manual ore extraction.
+    category: 0
+    effectType: 0
+    baseCost: 200
+    costMultiplier: 1.65
+    baseValue: 5
+    valuePerLevel: 5
+    maxLevel: 15
+    durationSeconds: 0
+  - id: astronaut_training
+    upgradeName: Astronaut Training
+    description: Trains the crew to extract ore automatically over time.
+    category: 0
+    effectType: 2
+    baseCost: 250
+    costMultiplier: 1.58
+    baseValue: 1
+    valuePerLevel: 1
+    maxLevel: 25
+    durationSeconds: 0
+  - id: cargo_capacity
+    upgradeName: Cargo Capacity
+    description: Expands cargo systems and allows better mining efficiency scaling.
+    category: 1
+    effectType: 2
+    baseCost: 600
+    costMultiplier: 1.6
+    baseValue: 2
+    valuePerLevel: 1
+    maxLevel: 10
+    durationSeconds: 0
+  - id: shuttle_engine
+    upgradeName: Shuttle Engine
+    description: Upgrades mining transport systems and boosts passive ore flow.
+    category: 1
+    effectType: 2
+    baseCost: 500
+    costMultiplier: 1.7
+    baseValue: 3
+    valuePerLevel: 2
+    maxLevel: 20
+    durationSeconds: 0
+  - id: quantum_rush
+    upgradeName: Quantum Rush
+    description: Activates a temporary mining surge that massively boosts production.
+    category: 2
+    effectType: 4
+    baseCost: 1000
+    costMultiplier: 2
+    baseValue: 5
+    valuePerLevel: 5
+    maxLevel: 5
+    durationSeconds: 30

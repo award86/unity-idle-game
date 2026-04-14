@@ -1,40 +1,88 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text oreText;
     [SerializeField] private Text orePerSecondText;
-    [SerializeField] private Text upgradeCostText;
+
+    [FormerlySerializedAs("upgradeCostText")]
+    [SerializeField] private Text orePerClickText;
+
     [SerializeField] private GameObject menuOverlayPanel;
     [SerializeField] private GameObject dropdownMenuPanel;
+    [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private Transform upgradeListRoot;
+    [SerializeField] private UpgradeItemUI upgradeItemPrefab;
+    [SerializeField] private Text boostStatusText;
     [SerializeField] private GameObject resetConfirmationPanel;
     [SerializeField] private GameObject offlineRewardPanel;
     [SerializeField] private Text offlineRewardText;
+
+    private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
 
     private void Awake()
     {
         HideMenuOverlay();
         HideMenu();
+        HideUpgradePanel();
         HideResetConfirmation();
         HideOfflineReward();
+        UpdateBoostUI(false, string.Empty, 1f, 0f);
     }
 
-    public void UpdateUI(GameData gameData, int upgradeCost)
+    public void UpdateUI(GameData gameData)
     {
         if (oreText != null)
         {
-            oreText.text = "Ore: " + FormatNumber(gameData.ore);
+            oreText.text = "Ore: " + NumberFormatter.FormatInt(gameData.ore);
         }
 
         if (orePerSecondText != null)
         {
-            orePerSecondText.text = "Ore / sec: " + FormatNumber(gameData.orePerSecond);
+            orePerSecondText.text = "Ore / sec: " + NumberFormatter.FormatInt(gameData.orePerSecond);
         }
 
-        if (upgradeCostText != null)
+        if (orePerClickText != null)
         {
-            upgradeCostText.text = "Upgrade Cost: " + FormatNumber(upgradeCost);
+            orePerClickText.text = "Ore / click: " + NumberFormatter.FormatInt(gameData.orePerClick);
+        }
+    }
+
+    public void InitializeUpgradeList(IReadOnlyList<UpgradeState> upgradeStates, Action<UpgradeState> onBuyRequested)
+    {
+        ClearUpgradeList();
+
+        if (upgradeListRoot == null || upgradeItemPrefab == null || upgradeStates == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < upgradeStates.Count; i++)
+        {
+            UpgradeItemUI item = Instantiate(upgradeItemPrefab, upgradeListRoot);
+            item.Initialize(upgradeStates[i], onBuyRequested);
+            upgradeItems.Add(item);
+        }
+
+        RefreshUpgradeList(upgradeStates, 0);
+    }
+
+    public void RefreshUpgradeList(IReadOnlyList<UpgradeState> upgradeStates, int currentOre)
+    {
+        if (upgradeStates == null)
+        {
+            return;
+        }
+
+        int itemCount = Mathf.Min(upgradeItems.Count, upgradeStates.Count);
+
+        for (int i = 0; i < itemCount; i++)
+        {
+            upgradeItems[i].Refresh(currentOre);
         }
     }
 
@@ -65,8 +113,28 @@ public class UIManager : MonoBehaviour
         HideMenuOverlay();
     }
 
+    public void ToggleUpgradePanel()
+    {
+        if (upgradePanel == null)
+        {
+            return;
+        }
+
+        upgradePanel.SetActive(!upgradePanel.activeSelf);
+    }
+
+    public void HideUpgradePanel()
+    {
+        if (upgradePanel != null)
+        {
+            upgradePanel.SetActive(false);
+        }
+    }
+
     public void ShowResetConfirmation()
     {
+        HideUpgradePanel();
+
         if (resetConfirmationPanel != null)
         {
             resetConfirmationPanel.SetActive(true);
@@ -84,11 +152,12 @@ public class UIManager : MonoBehaviour
     public void ShowOfflineReward(int amount)
     {
         HideMenu();
+        HideUpgradePanel();
         HideResetConfirmation();
 
         if (offlineRewardText != null)
         {
-            offlineRewardText.text = "You earned " + FormatNumber(amount) + " Ore while offline.";
+            offlineRewardText.text = "You earned " + NumberFormatter.FormatInt(amount) + " Ore while offline.";
         }
 
         if (offlineRewardPanel != null)
@@ -105,6 +174,24 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateBoostUI(bool hasActiveBoost, string boostName, float multiplier, float remainingTime)
+    {
+        if (boostStatusText == null)
+        {
+            return;
+        }
+
+        boostStatusText.gameObject.SetActive(hasActiveBoost);
+
+        if (!hasActiveBoost)
+        {
+            boostStatusText.text = string.Empty;
+            return;
+        }
+
+        boostStatusText.text = boostName + " x" + NumberFormatter.FormatFloat(multiplier) + " - " + Mathf.CeilToInt(remainingTime) + "s";
+    }
+
     private void SetMenuOverlayVisible(bool isVisible)
     {
         if (menuOverlayPanel != null)
@@ -118,23 +205,16 @@ public class UIManager : MonoBehaviour
         SetMenuOverlayVisible(false);
     }
 
-    private string FormatNumber(int value)
+    private void ClearUpgradeList()
     {
-        if (value >= GameSettings.NumberFormatB)
+        for (int i = 0; i < upgradeItems.Count; i++)
         {
-            return (value / (float)GameSettings.NumberFormatB).ToString("0.#") + "B";
+            if (upgradeItems[i] != null)
+            {
+                Destroy(upgradeItems[i].gameObject);
+            }
         }
 
-        if (value >= GameSettings.NumberFormatM)
-        {
-            return (value / (float)GameSettings.NumberFormatM).ToString("0.#") + "M";
-        }
-
-        if (value >= GameSettings.NumberFormatK)
-        {
-            return (value / (float)GameSettings.NumberFormatK).ToString("0.#") + "K";
-        }
-
-        return value.ToString();
+        upgradeItems.Clear();
     }
 }
