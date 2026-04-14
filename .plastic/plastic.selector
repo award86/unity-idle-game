@@ -1,0 +1,4 @@
+repository "IdleSpace/IdleSpace@18966716519110@cloud"
+  path "/"
+    br "/main"
+    co "/main"
