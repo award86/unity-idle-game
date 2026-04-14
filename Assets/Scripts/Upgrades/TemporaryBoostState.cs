@@ -10,7 +10,6 @@ public class TemporaryBoostState
     public TemporaryBoostDefinition Definition { get; }
     public bool IsAvailable { get; private set; }
     public bool IsActive { get; private set; }
-    public bool ShouldShowInList => IsAvailable && !IsActive;
     public float TimeUntilAvailable { get; private set; }
     public int NextOreThreshold { get; private set; }
     public float ActiveRemainingTime { get; private set; }

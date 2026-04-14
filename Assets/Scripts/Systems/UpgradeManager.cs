@@ -31,7 +31,6 @@ public class UpgradeManager
     }
 
     public IReadOnlyList<UpgradeState> UpgradeStates => upgradeStates;
-    public IReadOnlyList<TemporaryBoostState> TemporaryBoostStates => temporaryBoostStates;
     public IReadOnlyList<TemporaryBoostState> ActiveTemporaryBoostStates => activeTemporaryBoostStates;
 
     public void LoadUpgradeLevels()
