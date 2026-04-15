@@ -13,6 +13,7 @@ public class UpgradeManager
     private readonly GameData gameData;
     private readonly ResourceSystem resourceSystem;
     private readonly ShuttleConfig gameConfig;
+    private readonly MissionManager missionManager;
     private readonly List<UpgradeState> upgradeStates = new List<UpgradeState>();
     private readonly List<BuildingState> buildingStates = new List<BuildingState>();
     private readonly List<TemporaryBoostState> temporaryBoostStates = new List<TemporaryBoostState>();
@@ -26,11 +27,13 @@ public class UpgradeManager
         ShuttleConfig gameConfig,
         UpgradeConfig upgradeConfig,
         BuildingConfig buildingConfig,
-        TemporaryBoostConfig temporaryBoostConfig)
+        TemporaryBoostConfig temporaryBoostConfig,
+        MissionManager missionManager = null)
     {
         this.gameData = gameData;
         this.resourceSystem = resourceSystem;
         this.gameConfig = gameConfig;
+        this.missionManager = missionManager;
         BuildUpgradeStates(upgradeConfig);
         BuildBuildingStates(buildingConfig);
         BuildTemporaryBoostStates(temporaryBoostConfig);
@@ -320,6 +323,24 @@ public class UpgradeManager
         ApplyEffects(upgradeStates, ref orePerClick, ref orePerSecond, ref energyMax, ref energyRegenAmount,
             ref energyRegenInterval, ref metalPerCraft, ref metalOreCost, ref metalEnergyCost,
             ref platformCapacity, ref shuttleCapacity, ref shuttleLoadingTimeSeconds, ref shuttleTravelTimeSeconds, ref shuttleAutoSendEnabled);
+
+        if (missionManager != null)
+        {
+            missionManager.ApplyMetaBonusEffects(
+                ref orePerClick,
+                ref orePerSecond,
+                ref energyMax,
+                ref energyRegenAmount,
+                ref energyRegenInterval,
+                ref metalPerCraft,
+                ref metalOreCost,
+                ref metalEnergyCost,
+                ref platformCapacity,
+                ref shuttleCapacity,
+                ref shuttleLoadingTimeSeconds,
+                ref shuttleTravelTimeSeconds,
+                ref shuttleAutoSendEnabled);
+        }
 
         float orePerClickMultiplier = 1f;
         float orePerSecondMultiplier = 1f;

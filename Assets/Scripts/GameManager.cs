@@ -29,12 +29,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UpgradeConfig upgradeConfig;
     [SerializeField] private BuildingConfig buildingConfig;
     [SerializeField] private TemporaryBoostConfig temporaryBoostConfig;
+    [SerializeField] private MissionConfig missionConfig;
+    [SerializeField] private MetaBonusConfig metaBonusConfig;
 
     private GameData gameData;
     private PlatformSystem platformSystem;
     private ShuttleSystem shuttleSystem;
     private ResourceSystem resourceSystem;
     private UpgradeManager upgradeManager;
+    private MissionManager missionManager;
     private TimeSystem timeSystem;
     private EnergySystem energySystem;
     private float autoSaveTimer;
@@ -49,14 +52,24 @@ public class GameManager : MonoBehaviour
     {
         LoadGame();
 
+        MissionConfig resolvedMissionConfig = missionConfig != null
+            ? missionConfig
+            : MissionConfig.CreateRuntimeDefault();
+        MetaBonusConfig resolvedMetaBonusConfig = metaBonusConfig != null
+            ? metaBonusConfig
+            : MetaBonusConfig.CreateRuntimeDefault();
+
         platformSystem = new PlatformSystem(gameData);
         shuttleSystem = new ShuttleSystem(gameData, platformSystem);
         resourceSystem = new ResourceSystem(gameData, platformSystem);
-        upgradeManager = new UpgradeManager(gameData, resourceSystem, gameConfig, upgradeConfig, buildingConfig, temporaryBoostConfig);
+        missionManager = new MissionManager(gameData, resolvedMissionConfig, resolvedMetaBonusConfig);
+        missionManager.LoadProgress();
+        upgradeManager = new UpgradeManager(gameData, resourceSystem, gameConfig, upgradeConfig, buildingConfig, temporaryBoostConfig, missionManager);
         upgradeManager.LoadUpgradeLevels();
         upgradeManager.UpgradesChanged += HandleUpgradesChanged;
         timeSystem = new TimeSystem(resourceSystem);
         energySystem = new EnergySystem(gameData, resourceSystem);
+        SyncMissionProgress();
         CacheOfflineProgress(CalculateOfflineProgress());
     }
 
@@ -70,11 +83,15 @@ public class GameManager : MonoBehaviour
             uiManager.InitializeBuildingList(
                 upgradeManager.BuildingStates,
                 HandleBuildingBuyRequested);
+            uiManager.InitializeMetaBonusList(
+                missionManager != null ? missionManager.MetaBonusStates : null,
+                HandleMetaBonusBuyRequested);
         }
 
         if (!ShouldShowOfflineRewardPopup() && HasPendingOfflineStateChanges())
         {
             ApplyPendingOfflineProgress();
+            SyncMissionProgress();
             SaveGame();
         }
 
@@ -120,6 +137,12 @@ public class GameManager : MonoBehaviour
             shouldSaveGame = true;
         }
 
+        if (SyncMissionProgress())
+        {
+            shouldRefreshUi = true;
+            shouldSaveGame = true;
+        }
+
         if (UpdateBoostOfferAutoClose(Time.deltaTime))
         {
             shouldRefreshUi = true;
@@ -150,7 +173,13 @@ public class GameManager : MonoBehaviour
     {
         resourceSystem.MineOre();
         TryAutoSendShuttle();
+        bool missionChanged = SyncMissionProgress();
         RefreshUI();
+
+        if (missionChanged)
+        {
+            SaveGame();
+        }
     }
 
     public void OnProduceMetalButtonClicked()
@@ -160,6 +189,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        SyncMissionProgress();
         RefreshUI();
         SaveGame();
     }
@@ -188,6 +218,18 @@ public class GameManager : MonoBehaviour
         uiManager.OpenBuildingPanel();
     }
 
+    public void OnMissionButtonClicked()
+    {
+        if (uiManager == null)
+        {
+            return;
+        }
+
+        uiManager.HideMenu();
+        uiManager.HideResetConfirmation();
+        uiManager.OpenMissionPanel();
+    }
+
     public void OnSendShuttleButtonClicked()
     {
         if (shuttleSystem == null)
@@ -213,6 +255,7 @@ public class GameManager : MonoBehaviour
 
         uiManager.HideUpgradePanel();
         uiManager.HideBuildPanel();
+        uiManager.HideMissionPanel();
         uiManager.HideResetConfirmation();
         uiManager.ToggleMenu();
     }
@@ -258,6 +301,7 @@ public class GameManager : MonoBehaviour
         ApplyPendingOfflineProgress();
 
         TryAutoSendShuttle();
+        SyncMissionProgress();
 
         if (uiManager != null)
         {
@@ -356,6 +400,11 @@ public class GameManager : MonoBehaviour
         if (upgradeManager != null)
         {
             upgradeManager.SaveUpgradeLevels();
+        }
+
+        if (missionManager != null)
+        {
+            missionManager.SaveProgress();
         }
 
         PlayerPrefs.SetString(LastSaveTimeKey, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
@@ -492,11 +541,22 @@ public class GameManager : MonoBehaviour
             upgradeManager.ResetUpgrades();
         }
 
+        if (missionManager != null)
+        {
+            missionManager.ResetProgress();
+
+            if (upgradeManager != null)
+            {
+                upgradeManager.RecalculateIncome();
+            }
+        }
+
         if (uiManager != null)
         {
             uiManager.HideOfflineReward();
             uiManager.HideUpgradePanel();
             uiManager.HideBuildPanel();
+            uiManager.HideMissionPanel();
             uiManager.HideBoostOffer();
         }
     }
@@ -539,10 +599,16 @@ public class GameManager : MonoBehaviour
             upgradeManager.IsUpgradeCategoryUnlocked(UpgradeCategory.Shuttle));
         uiManager.RefreshUpgradeList(displayData);
         uiManager.RefreshBuildingList(displayData);
+        uiManager.RefreshMetaBonusList(displayData);
         uiManager.SetMainScreenUpgradeButtonVisible(
             upgradeManager.HasAnyUnlockedUpgradeCategory() &&
             upgradeManager.HasAffordableUpgrade());
         uiManager.SetMainScreenBuildButtonVisible(upgradeManager.BuildingStates.Count > 0);
+        uiManager.SetMainScreenMissionButtonVisible(missionManager != null);
+        uiManager.UpdateMissionInfo(
+            missionManager != null
+                ? missionManager.GetMissionProgress(upgradeManager)
+                : default);
         UpdateBoostUI();
     }
 
@@ -924,6 +990,7 @@ public class GameManager : MonoBehaviour
         }
 
         TryAutoSendShuttle();
+        SyncMissionProgress();
         RefreshUI();
         SaveGame();
     }
@@ -936,6 +1003,23 @@ public class GameManager : MonoBehaviour
         }
 
         TryAutoSendShuttle();
+        SyncMissionProgress();
+        RefreshUI();
+        SaveGame();
+    }
+
+    private void HandleMetaBonusBuyRequested(MetaBonusState state)
+    {
+        if (missionManager == null || !missionManager.TryBuyMetaBonus(state))
+        {
+            return;
+        }
+
+        if (upgradeManager != null)
+        {
+            upgradeManager.RecalculateIncome();
+        }
+
         RefreshUI();
         SaveGame();
     }
@@ -943,6 +1027,7 @@ public class GameManager : MonoBehaviour
     private void HandleUpgradesChanged()
     {
         TryAutoSendShuttle();
+        SyncMissionProgress();
         RefreshUI();
         TryShowNextBoostOffer();
     }
@@ -996,6 +1081,13 @@ public class GameManager : MonoBehaviour
         }
 
         return shuttleSystem.AutoSendToWarehouse() > 0;
+    }
+
+    private bool SyncMissionProgress()
+    {
+        return missionManager != null &&
+               upgradeManager != null &&
+               missionManager.UpdateMissionProgress(upgradeManager);
     }
 
     private void CacheOfflineProgress(OfflineProgress offlineProgress)

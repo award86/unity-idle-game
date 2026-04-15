@@ -33,8 +33,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dropdownMenuPanel;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject buildPanel;
+    [SerializeField] private GameObject missionPanel;
     [SerializeField] private GameObject mainScreenUpgradeButton;
     [SerializeField] private GameObject mainScreenBuildButton;
+    [SerializeField] private GameObject mainScreenMissionButton;
     [SerializeField] private Button minerTabButton;
     [SerializeField] private Button platformTabButton;
     [SerializeField] private Button powerTabButton;
@@ -42,9 +44,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button shuttleTabButton;
     [SerializeField] private Transform upgradeListRoot;
     [SerializeField] private Transform buildListRoot;
+    [SerializeField] private Transform metaBonusListRoot;
     [SerializeField] private UpgradeItemUI upgradeItemPrefab;
     [SerializeField] private BuildingItemUI buildingItemPrefab;
+    [SerializeField] private MetaBonusItemUI metaBonusItemPrefab;
     [SerializeField] private Text boostStatusText;
+    [SerializeField] private Text missionStatusText;
+    [SerializeField] private Text missionTitleText;
+    [SerializeField] private Text missionDescriptionText;
+    [SerializeField] private Text missionProgressText;
+    [SerializeField] private Text missionRewardText;
     [SerializeField] private GameObject resetConfirmationPanel;
     [SerializeField] private GameObject offlineRewardPanel;
     [SerializeField] private Text offlineRewardText;
@@ -55,6 +64,7 @@ public class UIManager : MonoBehaviour
 
     private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
     private readonly List<BuildingItemUI> buildingItems = new List<BuildingItemUI>();
+    private readonly List<MetaBonusItemUI> metaBonusItems = new List<MetaBonusItemUI>();
     private GameData lastDisplayedGameData;
     private UpgradeCategory selectedUpgradeCategory = UpgradeCategory.Miner;
 
@@ -62,12 +72,14 @@ public class UIManager : MonoBehaviour
     public bool IsBoostOfferVisible => boostOfferPanel != null && boostOfferPanel.activeSelf;
     public bool IsUpgradePanelVisible => upgradePanel != null && upgradePanel.activeSelf;
     public bool IsBuildPanelVisible => buildPanel != null && buildPanel.activeSelf;
+    public bool IsMissionPanelVisible => missionPanel != null && missionPanel.activeSelf;
     public bool IsMenuVisible => dropdownMenuPanel != null && dropdownMenuPanel.activeSelf;
     public bool IsResetConfirmationVisible => resetConfirmationPanel != null && resetConfirmationPanel.activeSelf;
     public bool IsBusyWithOtherWindow =>
         IsOfflineRewardVisible ||
         IsUpgradePanelVisible ||
         IsBuildPanelVisible ||
+        IsMissionPanelVisible ||
         IsMenuVisible ||
         IsResetConfirmationVisible;
 
@@ -78,11 +90,13 @@ public class UIManager : MonoBehaviour
         HideMenu();
         HideUpgradePanel();
         HideBuildPanel();
+        HideMissionPanel();
         HideResetConfirmation();
         HideOfflineReward();
         HideBoostOffer();
         SetMainScreenUpgradeButtonVisible(false);
         SetMainScreenBuildButtonVisible(false);
+        SetMainScreenMissionButtonVisible(false);
         UpdateBoostUI(null);
     }
 
@@ -274,6 +288,30 @@ public class UIManager : MonoBehaviour
         RefreshBuildingList(lastDisplayedGameData ?? new GameData());
     }
 
+    public void InitializeMetaBonusList(
+        IReadOnlyList<MetaBonusState> metaBonusStates,
+        Action<MetaBonusState> onMetaBonusBuyRequested)
+    {
+        ClearMetaBonusList();
+
+        if (metaBonusListRoot == null || metaBonusItemPrefab == null)
+        {
+            return;
+        }
+
+        if (metaBonusStates != null)
+        {
+            for (int i = 0; i < metaBonusStates.Count; i++)
+            {
+                MetaBonusItemUI item = Instantiate(metaBonusItemPrefab, metaBonusListRoot);
+                item.Initialize(metaBonusStates[i], onMetaBonusBuyRequested);
+                metaBonusItems.Add(item);
+            }
+        }
+
+        RefreshMetaBonusList(lastDisplayedGameData ?? new GameData());
+    }
+
     public void RefreshBuildingList(GameData gameData)
     {
         lastDisplayedGameData = gameData;
@@ -283,6 +321,18 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < buildingItems.Count; i++)
         {
             buildingItems[i].Refresh(gameData, shouldShowBuildings);
+        }
+    }
+
+    public void RefreshMetaBonusList(GameData gameData)
+    {
+        lastDisplayedGameData = gameData;
+
+        bool shouldShowMetaBonuses = missionPanel != null && missionPanel.activeSelf;
+
+        for (int i = 0; i < metaBonusItems.Count; i++)
+        {
+            metaBonusItems[i].Refresh(gameData, shouldShowMetaBonuses);
         }
     }
 
@@ -357,6 +407,7 @@ public class UIManager : MonoBehaviour
         }
 
         HideBuildPanel();
+        HideMissionPanel();
         upgradePanel.SetActive(true);
         RefreshPanelLists();
     }
@@ -378,7 +429,30 @@ public class UIManager : MonoBehaviour
         }
 
         HideUpgradePanel();
+        HideMissionPanel();
         buildPanel.SetActive(true);
+        RefreshPanelLists();
+    }
+
+    public void OpenMissionPanel()
+    {
+        if (missionPanel == null)
+        {
+            return;
+        }
+
+        bool wasVisible = missionPanel.activeSelf;
+
+        if (wasVisible)
+        {
+            missionPanel.SetActive(false);
+            RefreshPanelLists();
+            return;
+        }
+
+        HideUpgradePanel();
+        HideBuildPanel();
+        missionPanel.SetActive(true);
         RefreshPanelLists();
     }
 
@@ -402,6 +476,16 @@ public class UIManager : MonoBehaviour
         RefreshPanelLists();
     }
 
+    public void HideMissionPanel()
+    {
+        if (missionPanel != null)
+        {
+            missionPanel.SetActive(false);
+        }
+
+        RefreshPanelLists();
+    }
+
     public void SetMainScreenUpgradeButtonVisible(bool isVisible)
     {
         if (mainScreenUpgradeButton != null)
@@ -418,10 +502,55 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void SetMainScreenMissionButtonVisible(bool isVisible)
+    {
+        if (mainScreenMissionButton != null)
+        {
+            mainScreenMissionButton.SetActive(isVisible);
+        }
+    }
+
+    public void UpdateMissionInfo(MissionProgressData progressData)
+    {
+        if (missionStatusText != null)
+        {
+            missionStatusText.text = progressData.hasMission
+                ? "Mission " + progressData.missionNumber + "/" + progressData.missionCount + ": " + progressData.missionName
+                : "Missions complete";
+        }
+
+        if (missionTitleText != null)
+        {
+            missionTitleText.text = progressData.missionName;
+        }
+
+        if (missionDescriptionText != null)
+        {
+            missionDescriptionText.text = progressData.description;
+        }
+
+        if (missionProgressText != null)
+        {
+            missionProgressText.text = progressData.hasMission
+                ? progressData.progressLabel + ": " +
+                  NumberFormatter.FormatInt(progressData.currentValue) + " / " +
+                  NumberFormatter.FormatInt(progressData.targetValue)
+                : "Progress: Completed";
+        }
+
+        if (missionRewardText != null)
+        {
+            missionRewardText.text = progressData.hasMission
+                ? "Reward: " + NumberFormatter.FormatInt(progressData.crystalReward) + " Crystal"
+                : "Reward: All claimed";
+        }
+    }
+
     public void ShowResetConfirmation()
     {
         HideUpgradePanel();
         HideBuildPanel();
+        HideMissionPanel();
 
         if (resetConfirmationPanel != null)
         {
@@ -442,6 +571,7 @@ public class UIManager : MonoBehaviour
         HideMenu();
         HideUpgradePanel();
         HideBuildPanel();
+        HideMissionPanel();
         HideResetConfirmation();
 
         if (offlineRewardText != null)
@@ -475,6 +605,7 @@ public class UIManager : MonoBehaviour
         HideMenu();
         HideUpgradePanel();
         HideBuildPanel();
+        HideMissionPanel();
         HideResetConfirmation();
 
         if (boostOfferNameText != null)
@@ -597,10 +728,24 @@ public class UIManager : MonoBehaviour
         buildingItems.Clear();
     }
 
+    private void ClearMetaBonusList()
+    {
+        for (int i = 0; i < metaBonusItems.Count; i++)
+        {
+            if (metaBonusItems[i] != null)
+            {
+                Destroy(metaBonusItems[i].gameObject);
+            }
+        }
+
+        metaBonusItems.Clear();
+    }
+
     private void RefreshPanelLists()
     {
         RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
         RefreshBuildingList(lastDisplayedGameData ?? new GameData());
+        RefreshMetaBonusList(lastDisplayedGameData ?? new GameData());
     }
 
     private void SetTabInteractable(Button button, bool isInteractable)
