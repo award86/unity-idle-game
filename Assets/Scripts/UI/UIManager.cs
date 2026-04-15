@@ -27,9 +27,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject sharedOverlayPanel;
     [SerializeField] private GameObject dropdownMenuPanel;
     [SerializeField] private GameObject upgradePanel;
+    [SerializeField] private GameObject buildPanel;
     [SerializeField] private GameObject mainScreenUpgradeButton;
     [SerializeField] private GameObject mainScreenBuildButton;
+    [SerializeField] private Button minerTabButton;
+    [SerializeField] private Button platformTabButton;
+    [SerializeField] private Button powerTabButton;
+    [SerializeField] private Button factoryTabButton;
+    [SerializeField] private Button shuttleTabButton;
     [SerializeField] private Transform upgradeListRoot;
+    [SerializeField] private Transform buildListRoot;
     [SerializeField] private UpgradeItemUI upgradeItemPrefab;
     [SerializeField] private BuildingItemUI buildingItemPrefab;
     [SerializeField] private Text boostStatusText;
@@ -45,17 +52,17 @@ public class UIManager : MonoBehaviour
     private readonly List<BuildingItemUI> buildingItems = new List<BuildingItemUI>();
     private GameData lastDisplayedGameData;
     private UpgradeCategory selectedUpgradeCategory = UpgradeCategory.Miner;
-    private PanelContentMode currentPanelContentMode = PanelContentMode.Upgrades;
 
     public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
     public bool IsBoostOfferVisible => boostOfferPanel != null && boostOfferPanel.activeSelf;
     public bool IsUpgradePanelVisible => upgradePanel != null && upgradePanel.activeSelf;
-    public bool IsBuildingPanelMode => currentPanelContentMode == PanelContentMode.Buildings;
+    public bool IsBuildPanelVisible => buildPanel != null && buildPanel.activeSelf;
     public bool IsMenuVisible => dropdownMenuPanel != null && dropdownMenuPanel.activeSelf;
     public bool IsResetConfirmationVisible => resetConfirmationPanel != null && resetConfirmationPanel.activeSelf;
     public bool IsBusyWithOtherWindow =>
         IsOfflineRewardVisible ||
         IsUpgradePanelVisible ||
+        IsBuildPanelVisible ||
         IsMenuVisible ||
         IsResetConfirmationVisible;
 
@@ -64,6 +71,7 @@ public class UIManager : MonoBehaviour
         HideSharedOverlay();
         HideMenu();
         HideUpgradePanel();
+        HideBuildPanel();
         HideResetConfirmation();
         HideOfflineReward();
         HideBoostOffer();
@@ -141,7 +149,9 @@ public class UIManager : MonoBehaviour
 
         if (produceMetalButton != null)
         {
-            produceMetalButton.interactable = CanProduceMetal(gameData);
+            bool canShowProduceMetal = gameData.metalPerCraft > 0;
+            produceMetalButton.gameObject.SetActive(canShowProduceMetal);
+            produceMetalButton.interactable = canShowProduceMetal && CanProduceMetal(gameData);
         }
 
         if (produceMetalButtonText != null)
@@ -180,7 +190,7 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < upgradeItems.Count; i++)
         {
-            upgradeItems[i].Refresh(gameData, selectedUpgradeCategory, currentPanelContentMode == PanelContentMode.Upgrades);
+            upgradeItems[i].Refresh(gameData, selectedUpgradeCategory, upgradePanel != null && upgradePanel.activeSelf);
         }
     }
 
@@ -190,7 +200,7 @@ public class UIManager : MonoBehaviour
     {
         ClearBuildingList();
 
-        if (upgradeListRoot == null || buildingItemPrefab == null)
+        if (buildListRoot == null || buildingItemPrefab == null)
         {
             return;
         }
@@ -199,7 +209,7 @@ public class UIManager : MonoBehaviour
         {
             for (int i = 0; i < buildingStates.Count; i++)
             {
-                BuildingItemUI item = Instantiate(buildingItemPrefab, upgradeListRoot);
+                BuildingItemUI item = Instantiate(buildingItemPrefab, buildListRoot);
                 item.Initialize(buildingStates[i], onBuildingBuyRequested);
                 buildingItems.Add(item);
             }
@@ -212,7 +222,7 @@ public class UIManager : MonoBehaviour
     {
         lastDisplayedGameData = gameData;
 
-        bool shouldShowBuildings = currentPanelContentMode == PanelContentMode.Buildings;
+        bool shouldShowBuildings = buildPanel != null && buildPanel.activeSelf;
 
         for (int i = 0; i < buildingItems.Count; i++)
         {
@@ -223,6 +233,27 @@ public class UIManager : MonoBehaviour
     public void SetUpgradeCategory(UpgradeCategory category)
     {
         selectedUpgradeCategory = category;
+        RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
+    }
+
+    public void UpdateUpgradeCategoryTabs(
+        bool minerUnlocked,
+        bool platformUnlocked,
+        bool powerUnlocked,
+        bool factoryUnlocked,
+        bool shuttleUnlocked)
+    {
+        SetTabInteractable(minerTabButton, minerUnlocked);
+        SetTabInteractable(platformTabButton, platformUnlocked);
+        SetTabInteractable(powerTabButton, powerUnlocked);
+        SetTabInteractable(factoryTabButton, factoryUnlocked);
+        SetTabInteractable(shuttleTabButton, shuttleUnlocked);
+
+        if (!IsCategoryUnlocked(selectedUpgradeCategory, minerUnlocked, platformUnlocked, powerUnlocked, factoryUnlocked, shuttleUnlocked))
+        {
+            selectedUpgradeCategory = GetFirstUnlockedCategory(minerUnlocked, platformUnlocked, powerUnlocked, factoryUnlocked, shuttleUnlocked);
+        }
+
         RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
     }
 
@@ -260,8 +291,13 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        if (!upgradePanel.activeSelf)
+        {
+            HideBuildPanel();
+        }
+
         upgradePanel.SetActive(!upgradePanel.activeSelf);
-        RefreshVisiblePanelMode();
+        RefreshPanelLists();
     }
 
     public void OpenUpgradePanel()
@@ -271,45 +307,39 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        bool wasVisibleInSameMode =
-            upgradePanel.activeSelf &&
-            currentPanelContentMode == PanelContentMode.Upgrades;
+        bool wasVisible = upgradePanel.activeSelf;
 
-        currentPanelContentMode = PanelContentMode.Upgrades;
-
-        if (wasVisibleInSameMode)
+        if (wasVisible)
         {
             upgradePanel.SetActive(false);
-            RefreshVisiblePanelMode();
+            RefreshPanelLists();
             return;
         }
 
+        HideBuildPanel();
         upgradePanel.SetActive(true);
-        RefreshVisiblePanelMode();
+        RefreshPanelLists();
     }
 
     public void OpenBuildingPanel()
     {
-        if (upgradePanel == null)
+        if (buildPanel == null)
         {
             return;
         }
 
-        bool wasVisibleInSameMode =
-            upgradePanel.activeSelf &&
-            currentPanelContentMode == PanelContentMode.Buildings;
+        bool wasVisible = buildPanel.activeSelf;
 
-        currentPanelContentMode = PanelContentMode.Buildings;
-
-        if (wasVisibleInSameMode)
+        if (wasVisible)
         {
-            upgradePanel.SetActive(false);
-            RefreshVisiblePanelMode();
+            buildPanel.SetActive(false);
+            RefreshPanelLists();
             return;
         }
 
-        upgradePanel.SetActive(true);
-        RefreshVisiblePanelMode();
+        HideUpgradePanel();
+        buildPanel.SetActive(true);
+        RefreshPanelLists();
     }
 
     public void HideUpgradePanel()
@@ -319,7 +349,17 @@ public class UIManager : MonoBehaviour
             upgradePanel.SetActive(false);
         }
 
-        RefreshVisiblePanelMode();
+        RefreshPanelLists();
+    }
+
+    public void HideBuildPanel()
+    {
+        if (buildPanel != null)
+        {
+            buildPanel.SetActive(false);
+        }
+
+        RefreshPanelLists();
     }
 
     public void SetMainScreenUpgradeButtonVisible(bool isVisible)
@@ -341,6 +381,7 @@ public class UIManager : MonoBehaviour
     public void ShowResetConfirmation()
     {
         HideUpgradePanel();
+        HideBuildPanel();
 
         if (resetConfirmationPanel != null)
         {
@@ -360,6 +401,7 @@ public class UIManager : MonoBehaviour
     {
         HideMenu();
         HideUpgradePanel();
+        HideBuildPanel();
         HideResetConfirmation();
 
         if (offlineRewardText != null)
@@ -392,6 +434,7 @@ public class UIManager : MonoBehaviour
 
         HideMenu();
         HideUpgradePanel();
+        HideBuildPanel();
         HideResetConfirmation();
 
         if (boostOfferNameText != null)
@@ -496,10 +539,83 @@ public class UIManager : MonoBehaviour
         buildingItems.Clear();
     }
 
-    private void RefreshVisiblePanelMode()
+    private void RefreshPanelLists()
     {
         RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
         RefreshBuildingList(lastDisplayedGameData ?? new GameData());
+    }
+
+    private void SetTabInteractable(Button button, bool isInteractable)
+    {
+        if (button != null)
+        {
+            button.interactable = isInteractable;
+        }
+    }
+
+    private bool IsCategoryUnlocked(
+        UpgradeCategory category,
+        bool minerUnlocked,
+        bool platformUnlocked,
+        bool powerUnlocked,
+        bool factoryUnlocked,
+        bool shuttleUnlocked)
+    {
+        switch (category)
+        {
+            case UpgradeCategory.Miner:
+                return minerUnlocked;
+
+            case UpgradeCategory.Platform:
+                return platformUnlocked;
+
+            case UpgradeCategory.PowerStation:
+                return powerUnlocked;
+
+            case UpgradeCategory.Factory:
+                return factoryUnlocked;
+
+            case UpgradeCategory.Shuttle:
+                return shuttleUnlocked;
+
+            default:
+                return false;
+        }
+    }
+
+    private UpgradeCategory GetFirstUnlockedCategory(
+        bool minerUnlocked,
+        bool platformUnlocked,
+        bool powerUnlocked,
+        bool factoryUnlocked,
+        bool shuttleUnlocked)
+    {
+        if (minerUnlocked)
+        {
+            return UpgradeCategory.Miner;
+        }
+
+        if (platformUnlocked)
+        {
+            return UpgradeCategory.Platform;
+        }
+
+        if (powerUnlocked)
+        {
+            return UpgradeCategory.PowerStation;
+        }
+
+        if (factoryUnlocked)
+        {
+            return UpgradeCategory.Factory;
+        }
+
+        if (shuttleUnlocked)
+        {
+            return UpgradeCategory.Shuttle;
+        }
+
+        return UpgradeCategory.Miner;
     }
 
     private string BuildBoostOfferEffectText(TemporaryBoostState boostState)
@@ -553,11 +669,5 @@ public class UIManager : MonoBehaviour
         int minutes = totalSeconds / 60;
         int remainingSeconds = totalSeconds % 60;
         return minutes.ToString("00") + ":" + remainingSeconds.ToString("00");
-    }
-
-    private enum PanelContentMode
-    {
-        Upgrades,
-        Buildings
     }
 }

@@ -43,7 +43,7 @@ public class UpgradeItemUI : MonoBehaviour
             return;
         }
 
-        bool shouldShow = shouldDisplayUpgradeList && upgradeState.Definition.category == selectedCategory;
+        bool shouldShow = shouldDisplayUpgradeList && upgradeState.Definition.ResolvedCategory == selectedCategory;
         gameObject.SetActive(shouldShow);
 
         if (!shouldShow)

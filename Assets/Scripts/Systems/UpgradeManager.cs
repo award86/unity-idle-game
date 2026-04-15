@@ -202,6 +202,11 @@ public class UpgradeManager
                 continue;
             }
 
+            if (!IsUpgradeCategoryUnlocked(state.Definition.ResolvedCategory))
+            {
+                continue;
+            }
+
             if (state.CanAfford(gameData))
             {
                 return true;
@@ -228,6 +233,49 @@ public class UpgradeManager
         }
 
         return false;
+    }
+
+    public bool HasAnyUnlockedUpgradeCategory()
+    {
+        return IsUpgradeCategoryUnlocked(UpgradeCategory.Miner) ||
+               IsUpgradeCategoryUnlocked(UpgradeCategory.Platform) ||
+               IsUpgradeCategoryUnlocked(UpgradeCategory.PowerStation) ||
+               IsUpgradeCategoryUnlocked(UpgradeCategory.Factory) ||
+               IsUpgradeCategoryUnlocked(UpgradeCategory.Shuttle);
+    }
+
+    public bool IsUpgradeCategoryUnlocked(UpgradeCategory category)
+    {
+        switch (category)
+        {
+            case UpgradeCategory.Miner:
+                return true;
+
+            case UpgradeCategory.Platform:
+                return HasUnlockedBuildingEffect(
+                    UpgradeEffectType.PlatformCapacity,
+                    UpgradeEffectType.OrePerSecond);
+
+            case UpgradeCategory.PowerStation:
+                return HasUnlockedBuildingEffect(
+                    UpgradeEffectType.EnergyCapacity,
+                    UpgradeEffectType.EnergyRegenAmount,
+                    UpgradeEffectType.EnergyRegenIntervalReduction);
+
+            case UpgradeCategory.Factory:
+                return HasUnlockedBuildingEffect(
+                    UpgradeEffectType.MetalProductionAmount,
+                    UpgradeEffectType.MetalOreCostReduction,
+                    UpgradeEffectType.MetalEnergyCostReduction);
+
+            case UpgradeCategory.Shuttle:
+                return HasUnlockedBuildingEffect(
+                    UpgradeEffectType.PlatformCapacity,
+                    UpgradeEffectType.OrePerSecond);
+
+            default:
+                return false;
+        }
     }
 
     public TemporaryBoostState GetNextAvailableTemporaryBoost()
@@ -262,12 +310,20 @@ public class UpgradeManager
     {
         float orePerClick = GetBaseOrePerClick();
         float orePerSecond = GetBaseOrePerSecond();
-        int energyMax = GetBaseEnergyMax();
-        int energyRegenAmount = GetBaseEnergyRegenAmount();
-        float energyRegenInterval = GetBaseEnergyRegenInterval();
-        int metalPerCraft = GetBaseMetalPerCraft();
-        int metalOreCost = GetBaseMetalOreCost();
-        int metalEnergyCost = GetBaseMetalEnergyCost();
+        bool hasPowerStation = HasUnlockedBuildingEffect(
+            UpgradeEffectType.EnergyCapacity,
+            UpgradeEffectType.EnergyRegenAmount,
+            UpgradeEffectType.EnergyRegenIntervalReduction);
+        bool hasMetalFactory = HasUnlockedBuildingEffect(
+            UpgradeEffectType.MetalProductionAmount,
+            UpgradeEffectType.MetalOreCostReduction,
+            UpgradeEffectType.MetalEnergyCostReduction);
+        int energyMax = hasPowerStation ? GetBaseEnergyMax() : 0;
+        int energyRegenAmount = hasPowerStation ? GetBaseEnergyRegenAmount() : 0;
+        float energyRegenInterval = hasPowerStation ? GetBaseEnergyRegenInterval() : 0f;
+        int metalPerCraft = hasMetalFactory ? GetBaseMetalPerCraft() : 0;
+        int metalOreCost = hasMetalFactory ? GetBaseMetalOreCost() : 0;
+        int metalEnergyCost = hasMetalFactory ? GetBaseMetalEnergyCost() : 0;
         int platformCapacity = GetBasePlatformCapacity();
         int shuttleCapacity = GetBaseShuttleCapacity();
         float shuttleTravelTimeSeconds = GetBaseShuttleTravelTimeSeconds();
@@ -302,18 +358,22 @@ public class UpgradeManager
 
         gameData.orePerClick = Mathf.Max(GetBaseOrePerClick(), Mathf.RoundToInt(orePerClick * orePerClickMultiplier));
         gameData.orePerSecond = Mathf.Max(GetBaseOrePerSecond(), Mathf.RoundToInt(orePerSecond * orePerSecondMultiplier));
-        gameData.energyMax = Mathf.Max(1, energyMax);
-        gameData.energyRegenAmount = Mathf.Max(0, energyRegenAmount);
-        gameData.energyRegenInterval = Mathf.Max(GetMinEnergyRegenInterval(), energyRegenInterval);
-        gameData.metalPerCraft = Mathf.Max(1, metalPerCraft);
-        gameData.metalOreCost = Mathf.Max(0, metalOreCost);
-        gameData.metalEnergyCost = Mathf.Max(0, metalEnergyCost);
+        gameData.energyMax = hasPowerStation ? Mathf.Max(1, energyMax) : 0;
+        gameData.energyRegenAmount = hasPowerStation ? Mathf.Max(0, energyRegenAmount) : 0;
+        gameData.energyRegenInterval = hasPowerStation
+            ? Mathf.Max(GetMinEnergyRegenInterval(), energyRegenInterval)
+            : 0f;
+        gameData.metalPerCraft = hasMetalFactory ? Mathf.Max(1, metalPerCraft) : 0;
+        gameData.metalOreCost = hasMetalFactory ? Mathf.Max(0, metalOreCost) : 0;
+        gameData.metalEnergyCost = hasMetalFactory ? Mathf.Max(0, metalEnergyCost) : 0;
         gameData.platformCapacity = Mathf.Max(1, platformCapacity);
         gameData.shuttleCapacity = Mathf.Max(1, shuttleCapacity);
         gameData.shuttleTravelTimeSeconds = Mathf.Max(0f, shuttleTravelTimeSeconds);
         gameData.shuttleAutoSendEnabled = shuttleAutoSendEnabled;
         gameData.shuttleOre = Mathf.Clamp(gameData.shuttleOre, 0, gameData.platformCapacity);
-        gameData.energy = Mathf.Min(gameData.energy, gameData.energyMax);
+        gameData.energy = hasPowerStation
+            ? Mathf.Min(gameData.energy, gameData.energyMax)
+            : 0;
 
         if (gameData.shuttleSendCooldownRemaining > 0f)
         {
@@ -322,7 +382,7 @@ public class UpgradeManager
                 gameData.shuttleTravelTimeSeconds);
         }
 
-        if (gameData.energy >= gameData.energyMax)
+        if (!hasPowerStation || gameData.energy >= gameData.energyMax)
         {
             gameData.energyRegenTimer = 0f;
         }
@@ -671,6 +731,41 @@ public class UpgradeManager
         return gameConfig != null
             ? gameConfig.StartPlatformCapacity
             : ShuttleConfig.DefaultPlatformCapacity;
+    }
+
+    private bool HasUnlockedBuildingEffect(params UpgradeEffectType[] effectTypes)
+    {
+        if (effectTypes == null || effectTypes.Length <= 0)
+        {
+            return false;
+        }
+
+        for (int buildingIndex = 0; buildingIndex < buildingStates.Count; buildingIndex++)
+        {
+            BuildingState buildingState = buildingStates[buildingIndex];
+
+            if (buildingState.Level <= 0)
+            {
+                continue;
+            }
+
+            IReadOnlyList<UpgradeEffectDefinition> effects = buildingState.Definition.Effects;
+
+            for (int effectIndex = 0; effectIndex < effects.Count; effectIndex++)
+            {
+                UpgradeEffectType effectType = effects[effectIndex].effectType;
+
+                for (int requestedIndex = 0; requestedIndex < effectTypes.Length; requestedIndex++)
+                {
+                    if (effectType == effectTypes[requestedIndex])
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     private bool IsTemporaryBoostTargetUnlocked(TemporaryBoostState state)

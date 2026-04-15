@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
     public void OnUpgradeButtonClicked()
     {
-        if (uiManager == null)
+        if (uiManager == null || upgradeManager == null || !upgradeManager.HasAnyUnlockedUpgradeCategory())
         {
             return;
         }
@@ -207,6 +207,7 @@ public class GameManager : MonoBehaviour
         }
 
         uiManager.HideUpgradePanel();
+        uiManager.HideBuildPanel();
         uiManager.HideResetConfirmation();
         uiManager.ToggleMenu();
     }
@@ -270,7 +271,14 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager.SetUpgradeCategory((UpgradeCategory)categoryIndex);
+        UpgradeCategory category = (UpgradeCategory)categoryIndex;
+
+        if (upgradeManager == null || !upgradeManager.IsUpgradeCategoryUnlocked(category))
+        {
+            return;
+        }
+
+        uiManager.SetUpgradeCategory(category);
         RefreshUI();
     }
 
@@ -453,6 +461,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager.HideOfflineReward();
             uiManager.HideUpgradePanel();
+            uiManager.HideBuildPanel();
             uiManager.HideBoostOffer();
         }
     }
@@ -487,10 +496,18 @@ public class GameManager : MonoBehaviour
 
         GameData displayData = GetDisplayGameData();
         uiManager.UpdateUI(displayData);
+        uiManager.UpdateUpgradeCategoryTabs(
+            upgradeManager.IsUpgradeCategoryUnlocked(UpgradeCategory.Miner),
+            upgradeManager.IsUpgradeCategoryUnlocked(UpgradeCategory.Platform),
+            upgradeManager.IsUpgradeCategoryUnlocked(UpgradeCategory.PowerStation),
+            upgradeManager.IsUpgradeCategoryUnlocked(UpgradeCategory.Factory),
+            upgradeManager.IsUpgradeCategoryUnlocked(UpgradeCategory.Shuttle));
         uiManager.RefreshUpgradeList(displayData);
         uiManager.RefreshBuildingList(displayData);
-        uiManager.SetMainScreenUpgradeButtonVisible(upgradeManager.HasAffordableUpgrade());
-        uiManager.SetMainScreenBuildButtonVisible(upgradeManager.HasAffordableBuilding());
+        uiManager.SetMainScreenUpgradeButtonVisible(
+            upgradeManager.HasAnyUnlockedUpgradeCategory() &&
+            upgradeManager.HasAffordableUpgrade());
+        uiManager.SetMainScreenBuildButtonVisible(upgradeManager.BuildingStates.Count > 0);
         UpdateBoostUI();
     }
 

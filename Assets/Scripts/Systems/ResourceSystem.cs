@@ -112,6 +112,11 @@ public class ResourceSystem
 
     public bool TryProduceMetal()
     {
+        if (gameData.metalPerCraft <= 0)
+        {
+            return false;
+        }
+
         List<ResourceAmount> productionCosts = GetMetalProductionCosts();
 
         if (!TrySpend(productionCosts))
