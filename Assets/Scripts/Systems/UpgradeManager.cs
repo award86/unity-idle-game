@@ -10,7 +10,8 @@ public class UpgradeManager
     private const string TemporaryBoostOreThresholdKeyPrefix = "temporary_boost_ore_threshold_";
 
     private readonly GameData gameData;
-    private readonly ShuttleConfig shuttleConfig;
+    private readonly ResourceSystem resourceSystem;
+    private readonly ShuttleConfig gameConfig;
     private readonly List<UpgradeState> upgradeStates = new List<UpgradeState>();
     private readonly List<TemporaryBoostState> temporaryBoostStates = new List<TemporaryBoostState>();
     private readonly List<TemporaryBoostState> activeTemporaryBoostStates = new List<TemporaryBoostState>();
@@ -19,12 +20,14 @@ public class UpgradeManager
 
     public UpgradeManager(
         GameData gameData,
-        ShuttleConfig shuttleConfig,
+        ResourceSystem resourceSystem,
+        ShuttleConfig gameConfig,
         UpgradeConfig upgradeConfig,
         TemporaryBoostConfig temporaryBoostConfig)
     {
         this.gameData = gameData;
-        this.shuttleConfig = shuttleConfig;
+        this.resourceSystem = resourceSystem;
+        this.gameConfig = gameConfig;
         BuildUpgradeStates(upgradeConfig);
         BuildTemporaryBoostStates(temporaryBoostConfig);
         RecalculateIncome();
@@ -95,14 +98,16 @@ public class UpgradeManager
             return false;
         }
 
-        int cost = state.GetCurrentCost();
-
-        if (gameData.ore < cost)
+        if (!state.CanAfford(gameData))
         {
             return false;
         }
 
-        gameData.ore -= cost;
+        if (!resourceSystem.TrySpend(state.GetCurrentCosts()))
+        {
+            return false;
+        }
+
         state.IncreaseLevel();
         RecalculateIncome();
         UpgradesChanged?.Invoke();
@@ -138,7 +143,7 @@ public class UpgradeManager
         return true;
     }
 
-    public bool HasAffordableUpgrade(int currentOre)
+    public bool HasAffordableUpgrade()
     {
         for (int i = 0; i < upgradeStates.Count; i++)
         {
@@ -149,7 +154,7 @@ public class UpgradeManager
                 continue;
             }
 
-            if (currentOre >= state.GetCurrentCost())
+            if (state.CanAfford(gameData))
             {
                 return true;
             }
@@ -163,7 +168,7 @@ public class UpgradeManager
         {
             TemporaryBoostState state = temporaryBoostStates[i];
 
-            if (state.IsAvailable && !state.IsActive)
+            if (state.IsAvailable && !state.IsActive && IsTemporaryBoostTargetUnlocked(state))
             {
                 return state;
             }
@@ -187,8 +192,14 @@ public class UpgradeManager
 
     public void RecalculateIncome()
     {
-        float orePerClick = GameSettings.StartOrePerClick;
-        float orePerSecond = GameSettings.StartOrePerSecond;
+        float orePerClick = GetBaseOrePerClick();
+        float orePerSecond = GetBaseOrePerSecond();
+        int energyMax = GetBaseEnergyMax();
+        int energyRegenAmount = GetBaseEnergyRegenAmount();
+        float energyRegenInterval = GetBaseEnergyRegenInterval();
+        int metalPerCraft = GetBaseMetalPerCraft();
+        int metalOreCost = GetBaseMetalOreCost();
+        int metalEnergyCost = GetBaseMetalEnergyCost();
         int shuttleCapacity = GetBaseShuttleCapacity();
         float shuttleTravelTimeSeconds = GetBaseShuttleTravelTimeSeconds();
         bool shuttleAutoSendEnabled = false;
@@ -196,38 +207,62 @@ public class UpgradeManager
         for (int i = 0; i < upgradeStates.Count; i++)
         {
             UpgradeState state = upgradeStates[i];
-
-            switch (state.Definition.effectType)
+            if (state.Level <= 0)
             {
-                case UpgradeEffectType.MiningPerClick:
-                    float clickEffectValue = state.GetCurrentEffectValue();
+                continue;
+            }
 
-                    if (clickEffectValue > 0f)
-                    {
-                        orePerClick += clickEffectValue;
-                    }
-                    break;
+            for (int effectIndex = 0; effectIndex < state.Definition.Effects.Count; effectIndex++)
+            {
+                UpgradeEffectDefinition effect = state.Definition.Effects[effectIndex];
+                float effectValue = state.GetCurrentEffectValue(effect);
 
-                case UpgradeEffectType.MiningPerSecond:
-                    float passiveEffectValue = state.GetCurrentEffectValue();
+                switch (effect.effectType)
+                {
+                    case UpgradeEffectType.OrePerClick:
+                        orePerClick += effectValue;
+                        break;
 
-                    if (passiveEffectValue > 0f)
-                    {
-                        orePerSecond += passiveEffectValue;
-                    }
-                    break;
+                    case UpgradeEffectType.OrePerSecond:
+                        orePerSecond += effectValue;
+                        break;
 
-                case UpgradeEffectType.Shuttle:
-                    shuttleCapacity += state.GetCurrentShuttleCapacityIncrease();
-                    shuttleTravelTimeSeconds -= state.GetCurrentShuttleTravelTimeReduction();
-                    break;
+                    case UpgradeEffectType.EnergyCapacity:
+                        energyMax += Mathf.RoundToInt(effectValue);
+                        break;
 
-                case UpgradeEffectType.ShuttleAutoSend:
-                    if (state.Level > 0)
-                    {
+                    case UpgradeEffectType.EnergyRegenAmount:
+                        energyRegenAmount += Mathf.RoundToInt(effectValue);
+                        break;
+
+                    case UpgradeEffectType.EnergyRegenIntervalReduction:
+                        energyRegenInterval -= effectValue;
+                        break;
+
+                    case UpgradeEffectType.MetalProductionAmount:
+                        metalPerCraft += Mathf.RoundToInt(effectValue);
+                        break;
+
+                    case UpgradeEffectType.MetalOreCostReduction:
+                        metalOreCost -= Mathf.RoundToInt(effectValue);
+                        break;
+
+                    case UpgradeEffectType.MetalEnergyCostReduction:
+                        metalEnergyCost -= Mathf.RoundToInt(effectValue);
+                        break;
+
+                    case UpgradeEffectType.ShuttleCapacity:
+                        shuttleCapacity += Mathf.RoundToInt(effectValue);
+                        break;
+
+                    case UpgradeEffectType.ShuttleTravelTimeReduction:
+                        shuttleTravelTimeSeconds -= effectValue;
+                        break;
+
+                    case UpgradeEffectType.ShuttleAutoSend:
                         shuttleAutoSendEnabled = true;
-                    }
-                    break;
+                        break;
+                }
             }
         }
 
@@ -250,18 +285,30 @@ public class UpgradeManager
             }
         }
 
-        gameData.orePerClick = Mathf.Max(GameSettings.StartOrePerClick, Mathf.RoundToInt(orePerClick * orePerClickMultiplier));
-        gameData.orePerSecond = Mathf.Max(GameSettings.StartOrePerSecond, Mathf.RoundToInt(orePerSecond * orePerSecondMultiplier));
+        gameData.orePerClick = Mathf.Max(GetBaseOrePerClick(), Mathf.RoundToInt(orePerClick * orePerClickMultiplier));
+        gameData.orePerSecond = Mathf.Max(GetBaseOrePerSecond(), Mathf.RoundToInt(orePerSecond * orePerSecondMultiplier));
+        gameData.energyMax = Mathf.Max(1, energyMax);
+        gameData.energyRegenAmount = Mathf.Max(0, energyRegenAmount);
+        gameData.energyRegenInterval = Mathf.Max(GetMinEnergyRegenInterval(), energyRegenInterval);
+        gameData.metalPerCraft = Mathf.Max(1, metalPerCraft);
+        gameData.metalOreCost = Mathf.Max(0, metalOreCost);
+        gameData.metalEnergyCost = Mathf.Max(0, metalEnergyCost);
         gameData.shuttleCapacity = Mathf.Max(1, shuttleCapacity);
         gameData.shuttleTravelTimeSeconds = Mathf.Max(0f, shuttleTravelTimeSeconds);
         gameData.shuttleAutoSendEnabled = shuttleAutoSendEnabled;
         gameData.shuttleOre = Mathf.Max(0, gameData.shuttleOre);
+        gameData.energy = Mathf.Min(gameData.energy, gameData.energyMax);
 
         if (gameData.shuttleSendCooldownRemaining > 0f)
         {
             gameData.shuttleSendCooldownRemaining = Mathf.Min(
                 gameData.shuttleSendCooldownRemaining,
                 gameData.shuttleTravelTimeSeconds);
+        }
+
+        if (gameData.energy >= gameData.energyMax)
+        {
+            gameData.energyRegenTimer = 0f;
         }
     }
 
@@ -332,7 +379,9 @@ public class UpgradeManager
 
         if (state.Definition.availabilityType == TemporaryBoostAvailabilityType.ByAccumulatedOre)
         {
-            state.SetAvailable(gameData.totalOreEarned >= state.NextOreThreshold);
+            state.SetAvailable(
+                gameData.totalOreEarned >= state.NextOreThreshold &&
+                IsTemporaryBoostTargetUnlocked(state));
         }
     }
 
@@ -358,20 +407,27 @@ public class UpgradeManager
         state.SetNextOreThreshold(PlayerPrefs.GetInt(oreThresholdKey, state.Definition.oreRequiredForAppearance));
         state.Deactivate();
 
+        if (state.IsAvailable && !IsTemporaryBoostTargetUnlocked(state))
+        {
+            state.SetAvailable(false);
+        }
+
         if (state.IsAvailable)
         {
             return;
         }
 
         if (state.Definition.availabilityType == TemporaryBoostAvailabilityType.ByTime &&
-            state.TimeUntilAvailable <= 0f)
+            state.TimeUntilAvailable <= 0f &&
+            IsTemporaryBoostTargetUnlocked(state))
         {
             state.SetAvailable(true);
             return;
         }
 
         if (state.Definition.availabilityType == TemporaryBoostAvailabilityType.ByAccumulatedOre &&
-            gameData.totalOreEarned >= state.NextOreThreshold)
+            gameData.totalOreEarned >= state.NextOreThreshold &&
+            IsTemporaryBoostTargetUnlocked(state))
         {
             state.SetAvailable(true);
         }
@@ -422,7 +478,7 @@ public class UpgradeManager
                 case TemporaryBoostAvailabilityType.ByTime:
                     state.SetTimeUntilAvailable(state.TimeUntilAvailable - deltaTime);
 
-                    if (state.TimeUntilAvailable <= 0f)
+                    if (state.TimeUntilAvailable <= 0f && IsTemporaryBoostTargetUnlocked(state))
                     {
                         state.SetAvailable(true);
                         hasChanges = true;
@@ -430,7 +486,8 @@ public class UpgradeManager
                     break;
 
                 case TemporaryBoostAvailabilityType.ByAccumulatedOre:
-                    if (gameData.totalOreEarned >= state.NextOreThreshold)
+                    if (gameData.totalOreEarned >= state.NextOreThreshold &&
+                        IsTemporaryBoostTargetUnlocked(state))
                     {
                         state.SetAvailable(true);
                         hasChanges = true;
@@ -491,15 +548,98 @@ public class UpgradeManager
 
     private int GetBaseShuttleCapacity()
     {
-        return shuttleConfig != null
-            ? shuttleConfig.Capacity
+        return gameConfig != null
+            ? gameConfig.Capacity
             : ShuttleConfig.DefaultCapacity;
     }
 
     private float GetBaseShuttleTravelTimeSeconds()
     {
-        return shuttleConfig != null
-            ? shuttleConfig.TravelTimeSeconds
+        return gameConfig != null
+            ? gameConfig.TravelTimeSeconds
             : ShuttleConfig.DefaultTravelTimeSeconds;
+    }
+
+    private int GetBaseOrePerClick()
+    {
+        return gameConfig != null
+            ? gameConfig.StartOrePerClick
+            : ShuttleConfig.DefaultStartOrePerClick;
+    }
+
+    private int GetBaseOrePerSecond()
+    {
+        return gameConfig != null
+            ? gameConfig.StartOrePerSecond
+            : ShuttleConfig.DefaultStartOrePerSecond;
+    }
+
+    private int GetBaseEnergyMax()
+    {
+        return gameConfig != null
+            ? gameConfig.StartEnergyMax
+            : ShuttleConfig.DefaultStartEnergyMax;
+    }
+
+    private int GetBaseEnergyRegenAmount()
+    {
+        return gameConfig != null
+            ? gameConfig.StartEnergyRegenAmount
+            : ShuttleConfig.DefaultStartEnergyRegenAmount;
+    }
+
+    private float GetBaseEnergyRegenInterval()
+    {
+        return gameConfig != null
+            ? gameConfig.StartEnergyRegenInterval
+            : ShuttleConfig.DefaultStartEnergyRegenInterval;
+    }
+
+    private float GetMinEnergyRegenInterval()
+    {
+        return gameConfig != null
+            ? gameConfig.MinEnergyRegenInterval
+            : ShuttleConfig.DefaultMinEnergyRegenInterval;
+    }
+
+    private int GetBaseMetalPerCraft()
+    {
+        return gameConfig != null
+            ? gameConfig.MetalPerCraft
+            : ShuttleConfig.DefaultMetalPerCraft;
+    }
+
+    private int GetBaseMetalOreCost()
+    {
+        return gameConfig != null
+            ? gameConfig.MetalOreCost
+            : ShuttleConfig.DefaultMetalOreCost;
+    }
+
+    private int GetBaseMetalEnergyCost()
+    {
+        return gameConfig != null
+            ? gameConfig.MetalEnergyCost
+            : ShuttleConfig.DefaultMetalEnergyCost;
+    }
+
+    private bool IsTemporaryBoostTargetUnlocked(TemporaryBoostState state)
+    {
+        if (state == null || state.Definition == null)
+        {
+            return false;
+        }
+
+        switch (state.Definition.targetType)
+        {
+            case TemporaryBoostTargetType.OrePerClick:
+                return gameData.orePerClick > 0;
+
+            case TemporaryBoostTargetType.OrePerSecond:
+                return gameData.orePerSecond > 0;
+
+            default:
+                return true;
+        }
     }
 }

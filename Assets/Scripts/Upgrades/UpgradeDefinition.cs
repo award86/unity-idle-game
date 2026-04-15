@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -10,13 +11,13 @@ public class UpgradeDefinition
     [TextArea]
     public string description = "Upgrade description";
 
-    public UpgradeEffectType effectType = UpgradeEffectType.MiningPerClick;
-    public int baseCost = 10;
+    public UpgradeCategory category = UpgradeCategory.Miner;
+    public List<ResourceAmount> baseCosts = new List<ResourceAmount>();
+    public List<UpgradeEffectDefinition> effects = new List<UpgradeEffectDefinition>();
     public float costMultiplier = 1.5f;
-    public float valuePerLevel = 0f;
-    public float shuttleTravelTimeReductionPerLevel = 0f;
-    public int shuttleCapacityIncreasePerLevel = 0;
     public int maxLevel = 0;
 
+    public IReadOnlyList<ResourceAmount> BaseCosts => baseCosts;
+    public IReadOnlyList<UpgradeEffectDefinition> Effects => effects;
     public bool HasMaxLevel => maxLevel > 0;
 }

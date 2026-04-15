@@ -13,63 +13,115 @@ MonoBehaviour:
   m_Name: UpgradeConfig
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeConfig
   upgrades:
-  - id: spacesuit_efficiency
-    upgradeName: Spacesuit Mk I
-    description: Reinforced suit boosts manual mining efficiency.
-    effectType: 0
-    baseCost: 25
+  - id: drill_gloves
+    upgradeName: Drill Gloves
+    description: Improves manual ore extraction on every tap.
+    category: 0
+    baseCosts:
+    - resourceType: 0
+      amount: 25
+    effects:
+    - effectType: 0
+      valuePerLevel: 1
     costMultiplier: 1.7
-    valuePerLevel: 1
-    shuttleTravelTimeReductionPerLevel: 0
-    shuttleCapacityIncreasePerLevel: 0
     maxLevel: 5
-  - id: plasma_tool
-    upgradeName: Plasma Tool
-    description: Sharper tools extract more ore per manual click.
-    effectType: 0
-    baseCost: 15
-    costMultiplier: 1.55
-    valuePerLevel: 2
-    shuttleTravelTimeReductionPerLevel: 0
-    shuttleCapacityIncreasePerLevel: 0
+  - id: mining_drones
+    upgradeName: Mining Drones
+    description: Adds passive ore extraction every second.
+    category: 0
+    baseCosts:
+    - resourceType: 0
+      amount: 20
+    effects:
+    - effectType: 1
+      valuePerLevel: 1
+    costMultiplier: 1.6
     maxLevel: 10
-  - id: astronaut_training
-    upgradeName: Astronaut Training
-    description: Improves the crew's passive mining output.
-    effectType: 1
-    baseCost: 5
-    costMultiplier: 1.2
-    valuePerLevel: 1
-    shuttleTravelTimeReductionPerLevel: 0
-    shuttleCapacityIncreasePerLevel: 0
-    maxLevel: 12
+  - id: battery_matrix
+    upgradeName: Battery Matrix
+    description: Expands your total energy capacity.
+    category: 1
+    baseCosts:
+    - resourceType: 0
+      amount: 30
+    effects:
+    - effectType: 2
+      valuePerLevel: 5
+    costMultiplier: 1.65
+    maxLevel: 8
+  - id: solar_core
+    upgradeName: Solar Core
+    description: Improves energy regeneration output.
+    category: 1
+    baseCosts:
+    - resourceType: 0
+      amount: 35
+    effects:
+    - effectType: 3
+      valuePerLevel: 1
+    costMultiplier: 1.7
+    maxLevel: 6
+  - id: smelter_output
+    upgradeName: Smelter Output
+    description: Produces more metal from every smelting action.
+    category: 2
+    baseCosts:
+    - resourceType: 0
+      amount: 40
+    effects:
+    - effectType: 5
+      valuePerLevel: 1
+    costMultiplier: 1.75
+    maxLevel: 6
+  - id: efficient_smelting
+    upgradeName: Efficient Smelting
+    description: Reduces ore needed for each metal craft.
+    category: 2
+    baseCosts:
+    - resourceType: 0
+      amount: 50
+    - resourceType: 2
+      amount: 5
+    effects:
+    - effectType: 6
+      valuePerLevel: 2
+    costMultiplier: 1.8
+    maxLevel: 8
   - id: shuttle_engine
     upgradeName: Shuttle Engine
-    description: Faster engines improve delivery speed.
-    effectType: 2
-    baseCost: 10
+    description: Boosts shuttle travel speed between base and mine.
+    category: 3
+    baseCosts:
+    - resourceType: 2
+      amount: 10
+    effects:
+    - effectType: 9
+      valuePerLevel: 5
     costMultiplier: 1.8
-    valuePerLevel: 0
-    shuttleTravelTimeReductionPerLevel: 5
-    shuttleCapacityIncreasePerLevel: 0
     maxLevel: 6
   - id: cargo_capacity
     upgradeName: Cargo Capacity
-    description: Bigger cargo pods increase shuttle output.
-    effectType: 2
-    baseCost: 35
+    description: Increases how much ore the shuttle can haul.
+    category: 3
+    baseCosts:
+    - resourceType: 2
+      amount: 8
+    - resourceType: 0
+      amount: 8
+    effects:
+    - effectType: 8
+      valuePerLevel: 25
     costMultiplier: 1.7
-    valuePerLevel: 0
-    shuttleTravelTimeReductionPerLevel: 0
-    shuttleCapacityIncreasePerLevel: 25
     maxLevel: 8
   - id: auto_shuttle_dispatch
     upgradeName: Auto Dispatch
-    description: Launches the shuttle automatically as soon as it is full.
-    effectType: 3
-    baseCost: 120
+    description: Launches the shuttle automatically when it is full.
+    category: 3
+    baseCosts:
+    - resourceType: 2
+      amount: 25
+    effects:
+    - effectType: 10
+      valuePerLevel: 1
     costMultiplier: 1
-    valuePerLevel: 0
-    shuttleTravelTimeReductionPerLevel: 0
-    shuttleCapacityIncreasePerLevel: 0
     maxLevel: 1

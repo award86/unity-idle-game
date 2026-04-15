@@ -22,9 +22,9 @@ public class UpgradeItemUI : MonoBehaviour
         SetupButton();
     }
 
-    public void Refresh(int currentOre)
+    public void Refresh(GameData gameData, UpgradeCategory selectedCategory)
     {
-        RefreshUpgrade(currentOre);
+        RefreshUpgrade(gameData, selectedCategory);
     }
 
     private void SetupButton()
@@ -36,14 +36,20 @@ public class UpgradeItemUI : MonoBehaviour
         }
     }
 
-    private void RefreshUpgrade(int currentOre)
+    private void RefreshUpgrade(GameData gameData, UpgradeCategory selectedCategory)
     {
-        if (upgradeState == null)
+        if (upgradeState == null || gameData == null)
         {
             return;
         }
 
-        gameObject.SetActive(true);
+        bool shouldShow = upgradeState.Definition.category == selectedCategory;
+        gameObject.SetActive(shouldShow);
+
+        if (!shouldShow)
+        {
+            return;
+        }
 
         if (nameText != null)
         {
@@ -66,7 +72,7 @@ public class UpgradeItemUI : MonoBehaviour
         {
             costText.text = upgradeState.IsMaxLevel
                 ? "Cost: MAX"
-                : "Cost: " + NumberFormatter.FormatInt(upgradeState.GetCurrentCost());
+                : "Cost: " + BuildCostText(upgradeState.GetCurrentCosts());
         }
 
         if (effectText != null)
@@ -76,7 +82,7 @@ public class UpgradeItemUI : MonoBehaviour
 
         if (buyButton != null)
         {
-            buyButton.interactable = !upgradeState.IsMaxLevel && currentOre >= upgradeState.GetCurrentCost();
+            buyButton.interactable = !upgradeState.IsMaxLevel && upgradeState.CanAfford(gameData);
         }
 
         if (buyButtonText != null)
@@ -87,56 +93,104 @@ public class UpgradeItemUI : MonoBehaviour
 
     private string BuildUpgradeEffectText()
     {
-        switch (upgradeState.Definition.effectType)
+        if (upgradeState.Definition.Effects.Count <= 0)
         {
-            case UpgradeEffectType.MiningPerClick:
-                float clickValue = upgradeState.IsMaxLevel ? upgradeState.GetCurrentEffectValue() : upgradeState.GetNextLevelValue();
-                return "Effect: +" + NumberFormatter.FormatFloat(clickValue) + " Ore / click";
+            return "Effect: None";
+        }
 
-            case UpgradeEffectType.MiningPerSecond:
-                float passiveValue = upgradeState.IsMaxLevel ? upgradeState.GetCurrentEffectValue() : upgradeState.GetNextLevelValue();
-                return "Effect: +" + NumberFormatter.FormatFloat(passiveValue) + " Ore / sec";
+        string[] effectLines = new string[upgradeState.Definition.Effects.Count];
 
-            case UpgradeEffectType.Shuttle:
-                return BuildShuttleEffectText();
+        for (int i = 0; i < upgradeState.Definition.Effects.Count; i++)
+        {
+            effectLines[i] = BuildEffectLine(upgradeState.Definition.Effects[i]);
+        }
+
+        return "Effect: " + string.Join("\n", effectLines);
+    }
+
+    private string BuildEffectLine(UpgradeEffectDefinition effect)
+    {
+        float effectValue = upgradeState.IsMaxLevel
+            ? upgradeState.GetCurrentEffectValue(effect)
+            : upgradeState.GetNextEffectValue(effect);
+
+        switch (effect.effectType)
+        {
+            case UpgradeEffectType.OrePerClick:
+                return "+" + NumberFormatter.FormatFloat(effectValue) + " Ore / click";
+
+            case UpgradeEffectType.OrePerSecond:
+                return "+" + NumberFormatter.FormatFloat(effectValue) + " Ore / sec";
+
+            case UpgradeEffectType.EnergyCapacity:
+                return "+" + NumberFormatter.FormatFloat(effectValue) + " Energy cap";
+
+            case UpgradeEffectType.EnergyRegenAmount:
+                return "+" + NumberFormatter.FormatFloat(effectValue) + " Energy regen";
+
+            case UpgradeEffectType.EnergyRegenIntervalReduction:
+                return "-" + NumberFormatter.FormatFloat(effectValue) + "s Energy interval";
+
+            case UpgradeEffectType.MetalProductionAmount:
+                return "+" + NumberFormatter.FormatFloat(effectValue) + " Metal / craft";
+
+            case UpgradeEffectType.MetalOreCostReduction:
+                return "-" + NumberFormatter.FormatFloat(effectValue) + " Ore craft cost";
+
+            case UpgradeEffectType.MetalEnergyCostReduction:
+                return "-" + NumberFormatter.FormatFloat(effectValue) + " Energy craft cost";
+
+            case UpgradeEffectType.ShuttleCapacity:
+                return "+" + NumberFormatter.FormatFloat(effectValue) + " Shuttle capacity";
+
+            case UpgradeEffectType.ShuttleTravelTimeReduction:
+                return "-" + NumberFormatter.FormatFloat(effectValue) + "s Shuttle travel";
 
             case UpgradeEffectType.ShuttleAutoSend:
-                return "Effect: Auto send when shuttle is full";
+                return "Unlock auto dispatch";
 
             default:
-                return "Effect: Unknown";
+                return "Unknown";
         }
     }
 
-    private string BuildShuttleEffectText()
+    private string BuildCostText(System.Collections.Generic.IReadOnlyList<ResourceAmount> costs)
     {
-        float travelTimeReduction = upgradeState.IsMaxLevel
-            ? upgradeState.GetCurrentShuttleTravelTimeReduction()
-            : upgradeState.GetNextShuttleTravelTimeReduction();
-        int capacityIncrease = upgradeState.IsMaxLevel
-            ? upgradeState.GetCurrentShuttleCapacityIncrease()
-            : upgradeState.GetNextShuttleCapacityIncrease();
-
-        bool hasTravelBonus = travelTimeReduction > 0f;
-        bool hasCapacityBonus = capacityIncrease > 0;
-
-        if (hasTravelBonus && hasCapacityBonus)
+        if (costs == null || costs.Count <= 0)
         {
-            return "Effect: -" + NumberFormatter.FormatFloat(travelTimeReduction) +
-                   "s travel time, +" + NumberFormatter.FormatInt(capacityIncrease) + " capacity";
+            return "Free";
         }
 
-        if (hasTravelBonus)
+        string[] costParts = new string[costs.Count];
+
+        for (int i = 0; i < costs.Count; i++)
         {
-            return "Effect: -" + NumberFormatter.FormatFloat(travelTimeReduction) + "s travel time";
+            ResourceAmount cost = costs[i];
+            costParts[i] = NumberFormatter.FormatInt(cost.amount) + " " + GetResourceLabel(cost.resourceType);
         }
 
-        if (hasCapacityBonus)
-        {
-            return "Effect: +" + NumberFormatter.FormatInt(capacityIncrease) + " capacity";
-        }
+        return string.Join(", ", costParts);
+    }
 
-        return "Effect: Shuttle upgrade";
+    private string GetResourceLabel(ResourceType resourceType)
+    {
+        switch (resourceType)
+        {
+            case ResourceType.Ore:
+                return "Ore";
+
+            case ResourceType.Energy:
+                return "Energy";
+
+            case ResourceType.Metal:
+                return "Metal";
+
+            case ResourceType.Crystal:
+                return "Crystal";
+
+            default:
+                return resourceType.ToString();
+        }
     }
 
     private void HandleBuyClicked()

@@ -7,15 +7,24 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text oreText;
+    [SerializeField] private Text energyText;
+    [SerializeField] private Text metalText;
+    [SerializeField] private Text crystalText;
     [SerializeField] private Text shuttleText;
     [SerializeField] private Text orePerSecondText;
 
     [FormerlySerializedAs("upgradeCostText")]
     [SerializeField] private Text orePerClickText;
+    [SerializeField] private Image energyFillImage;
+    [SerializeField] private Text energyBarText;
     [SerializeField] private Button sendShuttleButton;
     [SerializeField] private Text sendShuttleButtonText;
+    [SerializeField] private Button produceMetalButton;
+    [SerializeField] private Text produceMetalButtonText;
 
-    [SerializeField] private GameObject menuOverlayPanel;
+    [FormerlySerializedAs("menuOverlayPanel")]
+    [FormerlySerializedAs("boostOfferOverlayPanel")]
+    [SerializeField] private GameObject sharedOverlayPanel;
     [SerializeField] private GameObject dropdownMenuPanel;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject mainScreenUpgradeButton;
@@ -31,13 +40,23 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text boostOfferEffectText;
 
     private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
+    private GameData lastDisplayedGameData;
+    private UpgradeCategory selectedUpgradeCategory = UpgradeCategory.Miner;
 
     public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
     public bool IsBoostOfferVisible => boostOfferPanel != null && boostOfferPanel.activeSelf;
+    public bool IsUpgradePanelVisible => upgradePanel != null && upgradePanel.activeSelf;
+    public bool IsMenuVisible => dropdownMenuPanel != null && dropdownMenuPanel.activeSelf;
+    public bool IsResetConfirmationVisible => resetConfirmationPanel != null && resetConfirmationPanel.activeSelf;
+    public bool IsBusyWithOtherWindow =>
+        IsOfflineRewardVisible ||
+        IsUpgradePanelVisible ||
+        IsMenuVisible ||
+        IsResetConfirmationVisible;
 
     private void Awake()
     {
-        HideMenuOverlay();
+        HideSharedOverlay();
         HideMenu();
         HideUpgradePanel();
         HideResetConfirmation();
@@ -49,9 +68,26 @@ public class UIManager : MonoBehaviour
 
     public void UpdateUI(GameData gameData)
     {
+        lastDisplayedGameData = gameData;
+
         if (oreText != null)
         {
             oreText.text = "Warehouse Ore: " + NumberFormatter.FormatInt(gameData.ore);
+        }
+
+        if (energyText != null)
+        {
+            energyText.text = "Energy: " + NumberFormatter.FormatInt(gameData.energy) + " / " + NumberFormatter.FormatInt(gameData.energyMax);
+        }
+
+        if (metalText != null)
+        {
+            metalText.text = "Metal: " + NumberFormatter.FormatInt(gameData.metal);
+        }
+
+        if (crystalText != null)
+        {
+            crystalText.text = "Crystal: " + NumberFormatter.FormatInt(gameData.crystal);
         }
 
         if (shuttleText != null)
@@ -73,6 +109,18 @@ public class UIManager : MonoBehaviour
             orePerClickText.text = "Ore / click: " + NumberFormatter.FormatInt(gameData.orePerClick);
         }
 
+        if (energyFillImage != null)
+        {
+            energyFillImage.fillAmount = gameData.energyMax > 0
+                ? Mathf.Clamp01(gameData.energy / (float)gameData.energyMax)
+                : 0f;
+        }
+
+        if (energyBarText != null)
+        {
+            energyBarText.text = NumberFormatter.FormatInt(gameData.energy) + " / " + NumberFormatter.FormatInt(gameData.energyMax);
+        }
+
         if (sendShuttleButton != null)
         {
             sendShuttleButton.interactable = gameData.shuttleSendCooldownRemaining <= 0f;
@@ -83,6 +131,16 @@ public class UIManager : MonoBehaviour
             sendShuttleButtonText.text = gameData.shuttleSendCooldownRemaining > 0f
                 ? "Send " + FormatTimer(gameData.shuttleSendCooldownRemaining)
                 : "Send";
+        }
+
+        if (produceMetalButton != null)
+        {
+            produceMetalButton.interactable = CanProduceMetal(gameData);
+        }
+
+        if (produceMetalButtonText != null)
+        {
+            produceMetalButtonText.text = BuildMetalProductionText(gameData);
         }
     }
 
@@ -107,15 +165,23 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        RefreshUpgradeList(0);
+        RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
     }
 
-    public void RefreshUpgradeList(int currentOre)
+    public void RefreshUpgradeList(GameData gameData)
     {
+        lastDisplayedGameData = gameData;
+
         for (int i = 0; i < upgradeItems.Count; i++)
         {
-            upgradeItems[i].Refresh(currentOre);
+            upgradeItems[i].Refresh(gameData, selectedUpgradeCategory);
         }
+    }
+
+    public void SetUpgradeCategory(UpgradeCategory category)
+    {
+        selectedUpgradeCategory = category;
+        RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
     }
 
     public void ToggleMenu()
@@ -127,7 +193,7 @@ public class UIManager : MonoBehaviour
 
         bool shouldShowMenu = !dropdownMenuPanel.activeSelf;
         dropdownMenuPanel.SetActive(shouldShowMenu);
-        SetMenuOverlayVisible(shouldShowMenu);
+        SetSharedOverlayVisible(shouldShowMenu);
 
         if (!shouldShowMenu)
         {
@@ -142,7 +208,7 @@ public class UIManager : MonoBehaviour
             dropdownMenuPanel.SetActive(false);
         }
 
-        HideMenuOverlay();
+        HideSharedOverlay();
     }
 
     public void ToggleUpgradePanel()
@@ -246,6 +312,8 @@ public class UIManager : MonoBehaviour
         {
             boostOfferPanel.SetActive(true);
         }
+
+        SetSharedOverlayVisible(true);
     }
 
     public void HideBoostOffer()
@@ -254,6 +322,8 @@ public class UIManager : MonoBehaviour
         {
             boostOfferPanel.SetActive(false);
         }
+
+        SetSharedOverlayVisible(false);
     }
 
     public void UpdateBoostUI(IReadOnlyList<TemporaryBoostState> activeBoostStates)
@@ -286,17 +356,17 @@ public class UIManager : MonoBehaviour
         boostStatusText.text = string.Join("\n", lines);
     }
 
-    private void SetMenuOverlayVisible(bool isVisible)
+    private void SetSharedOverlayVisible(bool isVisible)
     {
-        if (menuOverlayPanel != null)
+        if (sharedOverlayPanel != null)
         {
-            menuOverlayPanel.SetActive(isVisible);
+            sharedOverlayPanel.SetActive(isVisible);
         }
     }
 
-    private void HideMenuOverlay()
+    private void HideSharedOverlay()
     {
-        SetMenuOverlayVisible(false);
+        SetSharedOverlayVisible(false);
     }
 
     private void ClearUpgradeList()
@@ -325,6 +395,36 @@ public class UIManager : MonoBehaviour
                " for " +
                Mathf.RoundToInt(boostState.Definition.durationSeconds) +
                "s";
+    }
+
+    private bool CanProduceMetal(GameData gameData)
+    {
+        return gameData != null &&
+               gameData.ore >= gameData.metalOreCost &&
+               gameData.energy >= gameData.metalEnergyCost;
+    }
+
+    private string BuildMetalProductionText(GameData gameData)
+    {
+        if (gameData == null)
+        {
+            return "Produce Metal";
+        }
+
+        List<string> costParts = new List<string>();
+
+        if (gameData.metalOreCost > 0)
+        {
+            costParts.Add(NumberFormatter.FormatInt(gameData.metalOreCost) + " Ore");
+        }
+
+        if (gameData.metalEnergyCost > 0)
+        {
+            costParts.Add(NumberFormatter.FormatInt(gameData.metalEnergyCost) + " Energy");
+        }
+
+        string costLine = costParts.Count > 0 ? string.Join(" + ", costParts) : "Free";
+        return "Produce " + NumberFormatter.FormatInt(gameData.metalPerCraft) + " Metal\n" + costLine;
     }
 
     private string FormatTimer(float seconds)

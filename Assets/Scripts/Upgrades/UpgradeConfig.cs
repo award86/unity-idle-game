@@ -15,74 +15,192 @@ public class UpgradeConfig : ScriptableObject
         {
             new UpgradeDefinition
             {
-                id = "spacesuit_efficiency",
-                upgradeName = "Spacesuit Mk I",
-                description = "Reinforced suit boosts manual mining efficiency.",
-                effectType = UpgradeEffectType.MiningPerClick,
-                baseCost = 25,
+                id = "drill_gloves",
+                upgradeName = "Drill Gloves",
+                description = "Improves manual ore extraction on every tap.",
+                category = UpgradeCategory.Miner,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Ore, 25)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.OrePerClick,
+                        valuePerLevel = 1f
+                    }
+                },
                 costMultiplier = 1.7f,
-                valuePerLevel = 1f,
                 maxLevel = 5
             },
             new UpgradeDefinition
             {
-                id = "plasma_tool",
-                upgradeName = "Plasma Tool",
-                description = "Sharper tools extract more ore per manual click.",
-                effectType = UpgradeEffectType.MiningPerClick,
-                baseCost = 15,
-                costMultiplier = 1.55f,
-                valuePerLevel = 2f,
+                id = "mining_drones",
+                upgradeName = "Mining Drones",
+                description = "Adds passive ore extraction every second.",
+                category = UpgradeCategory.Miner,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Ore, 20)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.OrePerSecond,
+                        valuePerLevel = 1f
+                    }
+                },
+                costMultiplier = 1.6f,
                 maxLevel = 10
             },
             new UpgradeDefinition
             {
-                id = "astronaut_training",
-                upgradeName = "Astronaut Training",
-                description = "Improves the crew's passive mining output.",
-                effectType = UpgradeEffectType.MiningPerSecond,
-                baseCost = 20,
-                costMultiplier = 1.6f,
-                valuePerLevel = 1f,
-                maxLevel = 12
+                id = "battery_matrix",
+                upgradeName = "Battery Matrix",
+                description = "Expands your total energy capacity.",
+                category = UpgradeCategory.PowerStation,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Ore, 30)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.EnergyCapacity,
+                        valuePerLevel = 5f
+                    }
+                },
+                costMultiplier = 1.65f,
+                maxLevel = 8
+            },
+            new UpgradeDefinition
+            {
+                id = "solar_core",
+                upgradeName = "Solar Core",
+                description = "Improves energy regeneration output.",
+                category = UpgradeCategory.PowerStation,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Ore, 35)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.EnergyRegenAmount,
+                        valuePerLevel = 1f
+                    }
+                },
+                costMultiplier = 1.7f,
+                maxLevel = 6
+            },
+            new UpgradeDefinition
+            {
+                id = "smelter_output",
+                upgradeName = "Smelter Output",
+                description = "Produces more metal from every smelting action.",
+                category = UpgradeCategory.Factory,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Ore, 40)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.MetalProductionAmount,
+                        valuePerLevel = 1f
+                    }
+                },
+                costMultiplier = 1.75f,
+                maxLevel = 6
+            },
+            new UpgradeDefinition
+            {
+                id = "efficient_smelting",
+                upgradeName = "Efficient Smelting",
+                description = "Reduces ore needed for each metal craft.",
+                category = UpgradeCategory.Factory,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Ore, 50),
+                    new ResourceAmount(ResourceType.Metal, 5)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.MetalOreCostReduction,
+                        valuePerLevel = 2f
+                    }
+                },
+                costMultiplier = 1.8f,
+                maxLevel = 8
             },
             new UpgradeDefinition
             {
                 id = "shuttle_engine",
                 upgradeName = "Shuttle Engine",
-                description = "Faster engines improve delivery speed.",
-                effectType = UpgradeEffectType.Shuttle,
-                baseCost = 40,
+                description = "Boosts shuttle travel speed between base and mine.",
+                category = UpgradeCategory.Shuttle,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Metal, 10)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.ShuttleTravelTimeReduction,
+                        valuePerLevel = 5f
+                    }
+                },
                 costMultiplier = 1.8f,
-                valuePerLevel = 0f,
-                shuttleTravelTimeReductionPerLevel = 5f,
-                shuttleCapacityIncreasePerLevel = 0,
                 maxLevel = 6
             },
             new UpgradeDefinition
             {
                 id = "cargo_capacity",
                 upgradeName = "Cargo Capacity",
-                description = "Bigger cargo pods increase shuttle output.",
-                effectType = UpgradeEffectType.Shuttle,
-                baseCost = 35,
+                description = "Increases how much ore the shuttle can haul.",
+                category = UpgradeCategory.Shuttle,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Metal, 8)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.ShuttleCapacity,
+                        valuePerLevel = 25f
+                    }
+                },
                 costMultiplier = 1.7f,
-                valuePerLevel = 0f,
-                shuttleTravelTimeReductionPerLevel = 0f,
-                shuttleCapacityIncreasePerLevel = 25,
                 maxLevel = 8
             },
             new UpgradeDefinition
             {
                 id = "auto_shuttle_dispatch",
                 upgradeName = "Auto Dispatch",
-                description = "Launches the shuttle automatically as soon as it is full.",
-                effectType = UpgradeEffectType.ShuttleAutoSend,
-                baseCost = 120,
+                description = "Launches the shuttle automatically when it is full.",
+                category = UpgradeCategory.Shuttle,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Metal, 25)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.ShuttleAutoSend,
+                        valuePerLevel = 1f
+                    }
+                },
                 costMultiplier = 1f,
-                valuePerLevel = 0f,
-                shuttleTravelTimeReductionPerLevel = 0f,
-                shuttleCapacityIncreasePerLevel = 0,
                 maxLevel = 1
             }
         };

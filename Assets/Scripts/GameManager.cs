@@ -1,21 +1,25 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     private const string OreKey = "ore";
+    private const string ResourceKeyPrefix = "resource_";
     private const string ShuttleOreKey = "shuttleOre";
     private const string ShuttleDeliveringOreKey = "shuttleDeliveringOre";
     private const string ShuttleCapacityKey = "shuttleCapacity";
     private const string ShuttleSendCooldownKey = "shuttleSendCooldown";
     private const string OrePerClickKey = "orePerClick";
     private const string OrePerSecondKey = "orePerSecond";
+    private const string EnergyRegenTimerKey = "energyRegenTimer";
     private const string TotalOreEarnedKey = "totalOreEarned";
     private const string LastSaveTimeKey = "lastSaveTime";
     private const string LegacyUpgradeLevelKey = "upgradeLevel";
 
     [SerializeField] private UIManager uiManager;
-    [SerializeField] private ShuttleConfig shuttleConfig;
+    [FormerlySerializedAs("shuttleConfig")]
+    [SerializeField] private ShuttleConfig gameConfig;
     [SerializeField] private UpgradeConfig upgradeConfig;
     [SerializeField] private TemporaryBoostConfig temporaryBoostConfig;
 
@@ -24,15 +28,14 @@ public class GameManager : MonoBehaviour
     private ResourceSystem resourceSystem;
     private UpgradeManager upgradeManager;
     private TimeSystem timeSystem;
+    private EnergySystem energySystem;
     private float autoSaveTimer;
-    private int pendingOfflineMinedOre;
     private int pendingOfflineWarehouseOre;
-    private int pendingOfflineShuttleOre;
-    private int pendingOfflineShuttleDeliveringOre;
-    private float pendingOfflineShuttleCooldown;
     private bool pendingOfflineShowRewardPopup;
+    private GameData pendingOfflinePreviewData;
     private TemporaryBoostState pendingBoostOfferState;
     private bool suppressBoostOfferPopup;
+    private float boostOfferAutoCloseTimer;
 
     private void Awake()
     {
@@ -40,10 +43,11 @@ public class GameManager : MonoBehaviour
 
         shuttleSystem = new ShuttleSystem(gameData);
         resourceSystem = new ResourceSystem(gameData, shuttleSystem);
-        upgradeManager = new UpgradeManager(gameData, shuttleConfig, upgradeConfig, temporaryBoostConfig);
+        upgradeManager = new UpgradeManager(gameData, resourceSystem, gameConfig, upgradeConfig, temporaryBoostConfig);
         upgradeManager.LoadUpgradeLevels();
         upgradeManager.UpgradesChanged += HandleUpgradesChanged;
         timeSystem = new TimeSystem(resourceSystem);
+        energySystem = new EnergySystem(gameData, resourceSystem);
         CacheOfflineProgress(CalculateOfflineProgress());
     }
 
@@ -82,6 +86,11 @@ public class GameManager : MonoBehaviour
             shouldRefreshUi = true;
         }
 
+        if (energySystem != null && energySystem.Update(Time.deltaTime))
+        {
+            shouldRefreshUi = true;
+        }
+
         if (upgradeManager != null)
         {
             upgradeManager.Update(Time.deltaTime);
@@ -94,6 +103,12 @@ public class GameManager : MonoBehaviour
         }
 
         if (TryAutoSendShuttle())
+        {
+            shouldRefreshUi = true;
+            shouldSaveGame = true;
+        }
+
+        if (UpdateBoostOfferAutoClose(Time.deltaTime))
         {
             shouldRefreshUi = true;
             shouldSaveGame = true;
@@ -121,9 +136,20 @@ public class GameManager : MonoBehaviour
 
     public void OnMineButtonClicked()
     {
-        resourceSystem.Mine();
+        resourceSystem.MineOre();
         TryAutoSendShuttle();
         RefreshUI();
+    }
+
+    public void OnProduceMetalButtonClicked()
+    {
+        if (resourceSystem == null || !resourceSystem.TryProduceMetal())
+        {
+            return;
+        }
+
+        RefreshUI();
+        SaveGame();
     }
 
     public void OnUpgradeButtonClicked()
@@ -218,6 +244,17 @@ public class GameManager : MonoBehaviour
         TryShowNextBoostOffer();
     }
 
+    public void OnUpgradeCategoryTabClicked(int categoryIndex)
+    {
+        if (uiManager == null || !Enum.IsDefined(typeof(UpgradeCategory), categoryIndex))
+        {
+            return;
+        }
+
+        uiManager.SetUpgradeCategory((UpgradeCategory)categoryIndex);
+        RefreshUI();
+    }
+
     public void OnClaimOfflineRewardX2ButtonClicked()
     {
         // TODO: Show rewarded ad and give x2 offline reward after ad is completed.
@@ -233,6 +270,7 @@ public class GameManager : MonoBehaviour
 
         TemporaryBoostState boostState = pendingBoostOfferState;
         pendingBoostOfferState = null;
+        boostOfferAutoCloseTimer = 0f;
 
         if (uiManager != null)
         {
@@ -252,28 +290,12 @@ public class GameManager : MonoBehaviour
 
     public void OnDeclineBoostButtonClicked()
     {
-        if (upgradeManager == null)
-        {
-            return;
-        }
+        DismissBoostOfferAndRefresh();
+    }
 
-        TemporaryBoostState boostState = pendingBoostOfferState;
-        pendingBoostOfferState = null;
-
-        if (uiManager != null)
-        {
-            uiManager.HideBoostOffer();
-        }
-
-        if (!upgradeManager.TryDeclineTemporaryBoost(boostState))
-        {
-            TryShowNextBoostOffer();
-            return;
-        }
-
-        RefreshUI();
-        SaveGame();
-        TryShowNextBoostOffer();
+    public void OnBoostOfferOverlayClicked()
+    {
+        DismissBoostOfferAndRefresh();
     }
 
     private void SaveGame()
@@ -283,6 +305,10 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        SaveResource(ResourceType.Ore, gameData.ore);
+        SaveResource(ResourceType.Energy, gameData.energy);
+        SaveResource(ResourceType.Metal, gameData.metal);
+        SaveResource(ResourceType.Crystal, gameData.crystal);
         PlayerPrefs.SetInt(OreKey, gameData.ore);
         PlayerPrefs.SetInt(ShuttleOreKey, gameData.shuttleOre);
         PlayerPrefs.SetInt(ShuttleDeliveringOreKey, gameData.shuttleDeliveringOre);
@@ -290,6 +316,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat(ShuttleSendCooldownKey, gameData.shuttleSendCooldownRemaining);
         PlayerPrefs.SetInt(OrePerClickKey, gameData.orePerClick);
         PlayerPrefs.SetInt(OrePerSecondKey, gameData.orePerSecond);
+        PlayerPrefs.SetFloat(EnergyRegenTimerKey, gameData.energyRegenTimer);
         PlayerPrefs.SetInt(TotalOreEarnedKey, gameData.totalOreEarned);
         PlayerPrefs.DeleteKey(LegacyUpgradeLevelKey);
 
@@ -304,6 +331,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadGame()
     {
+        gameData = new GameData();
+
         int loadedShuttleCapacity = Mathf.Max(
             GetConfiguredShuttleCapacity(),
             PlayerPrefs.GetInt(ShuttleCapacityKey, GetConfiguredShuttleCapacity()));
@@ -317,28 +346,33 @@ public class GameManager : MonoBehaviour
             ? PlayerPrefs.GetFloat(ShuttleSendCooldownKey, 0f)
             : 0f;
 
-        gameData = new GameData
-        {
-            ore = PlayerPrefs.GetInt(OreKey, GameSettings.StartOre),
-            shuttleOre = loadedShuttleOre,
-            shuttleDeliveringOre = loadedShuttleDeliveringOre,
-            shuttleCapacity = loadedShuttleCapacity,
-            shuttleTravelTimeSeconds = GetConfiguredShuttleTravelTimeSeconds(),
-            shuttleSendCooldownRemaining = Mathf.Max(0f, savedShuttleCooldown),
-            orePerClick = PlayerPrefs.GetInt(OrePerClickKey, GameSettings.StartOrePerClick),
-            orePerSecond = PlayerPrefs.GetInt(OrePerSecondKey, GameSettings.StartOrePerSecond),
-            totalOreEarned = Mathf.Max(0, PlayerPrefs.GetInt(TotalOreEarnedKey, 0))
-        };
+        gameData.ore = GetSavedResourceAmount(ResourceType.Ore, GetConfiguredStartOre(), OreKey);
+        gameData.energy = GetSavedResourceAmount(ResourceType.Energy, GetConfiguredStartEnergy());
+        gameData.metal = GetSavedResourceAmount(ResourceType.Metal, GetConfiguredStartMetal());
+        gameData.crystal = GetSavedResourceAmount(ResourceType.Crystal, GetConfiguredStartCrystal());
+        gameData.shuttleOre = loadedShuttleOre;
+        gameData.shuttleDeliveringOre = loadedShuttleDeliveringOre;
+        gameData.shuttleCapacity = loadedShuttleCapacity;
+        gameData.shuttleTravelTimeSeconds = GetConfiguredShuttleTravelTimeSeconds();
+        gameData.shuttleSendCooldownRemaining = Mathf.Max(0f, savedShuttleCooldown);
+        gameData.orePerClick = PlayerPrefs.GetInt(OrePerClickKey, GetConfiguredStartOrePerClick());
+        gameData.orePerSecond = PlayerPrefs.GetInt(OrePerSecondKey, GetConfiguredStartOrePerSecond());
+        gameData.energyMax = GetConfiguredStartEnergyMax();
+        gameData.energyRegenAmount = GetConfiguredStartEnergyRegenAmount();
+        gameData.energyRegenInterval = GetConfiguredStartEnergyRegenInterval();
+        gameData.energyRegenTimer = PlayerPrefs.GetFloat(EnergyRegenTimerKey, 0f);
+        gameData.metalPerCraft = GetConfiguredMetalPerCraft();
+        gameData.metalOreCost = GetConfiguredMetalOreCost();
+        gameData.metalEnergyCost = GetConfiguredMetalEnergyCost();
+        gameData.totalOreEarned = Mathf.Max(0, PlayerPrefs.GetInt(TotalOreEarnedKey, 0));
+        gameData.EnsureDefaultResources();
     }
 
     private void ResetGame()
     {
-        pendingOfflineMinedOre = 0;
         pendingOfflineWarehouseOre = 0;
-        pendingOfflineShuttleOre = 0;
-        pendingOfflineShuttleDeliveringOre = 0;
-        pendingOfflineShuttleCooldown = 0f;
         pendingOfflineShowRewardPopup = false;
+        pendingOfflinePreviewData = null;
         pendingBoostOfferState = null;
 
         if (gameData == null)
@@ -346,24 +380,40 @@ public class GameManager : MonoBehaviour
             gameData = new GameData();
         }
 
-        gameData.ore = GameSettings.StartOre;
+        gameData.ore = GetConfiguredStartOre();
+        gameData.energy = GetConfiguredStartEnergy();
+        gameData.metal = GetConfiguredStartMetal();
+        gameData.crystal = GetConfiguredStartCrystal();
         gameData.shuttleOre = GetConfiguredStartShuttleOre();
         gameData.shuttleDeliveringOre = 0;
         gameData.shuttleCapacity = GetConfiguredShuttleCapacity();
         gameData.shuttleTravelTimeSeconds = GetConfiguredShuttleTravelTimeSeconds();
         gameData.shuttleSendCooldownRemaining = 0f;
         gameData.shuttleAutoSendEnabled = false;
-        gameData.orePerClick = GameSettings.StartOrePerClick;
-        gameData.orePerSecond = GameSettings.StartOrePerSecond;
+        gameData.orePerClick = GetConfiguredStartOrePerClick();
+        gameData.orePerSecond = GetConfiguredStartOrePerSecond();
+        gameData.energyMax = GetConfiguredStartEnergyMax();
+        gameData.energyRegenAmount = GetConfiguredStartEnergyRegenAmount();
+        gameData.energyRegenInterval = GetConfiguredStartEnergyRegenInterval();
+        gameData.energyRegenTimer = 0f;
+        gameData.metalPerCraft = GetConfiguredMetalPerCraft();
+        gameData.metalOreCost = GetConfiguredMetalOreCost();
+        gameData.metalEnergyCost = GetConfiguredMetalEnergyCost();
         gameData.totalOreEarned = 0;
+        gameData.EnsureDefaultResources();
 
         PlayerPrefs.DeleteKey(OreKey);
+        DeleteResourceKey(ResourceType.Ore);
+        DeleteResourceKey(ResourceType.Energy);
+        DeleteResourceKey(ResourceType.Metal);
+        DeleteResourceKey(ResourceType.Crystal);
         PlayerPrefs.DeleteKey(ShuttleOreKey);
         PlayerPrefs.DeleteKey(ShuttleDeliveringOreKey);
         PlayerPrefs.DeleteKey(ShuttleCapacityKey);
         PlayerPrefs.DeleteKey(ShuttleSendCooldownKey);
         PlayerPrefs.DeleteKey(OrePerClickKey);
         PlayerPrefs.DeleteKey(OrePerSecondKey);
+        PlayerPrefs.DeleteKey(EnergyRegenTimerKey);
         PlayerPrefs.DeleteKey(TotalOreEarnedKey);
         PlayerPrefs.DeleteKey(LegacyUpgradeLevelKey);
         PlayerPrefs.DeleteKey(LastSaveTimeKey);
@@ -409,41 +459,43 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager.UpdateUI(GetDisplayGameData());
-        uiManager.RefreshUpgradeList(gameData.ore);
-        uiManager.SetMainScreenUpgradeButtonVisible(upgradeManager.HasAffordableUpgrade(gameData.ore));
+        GameData displayData = GetDisplayGameData();
+        uiManager.UpdateUI(displayData);
+        uiManager.RefreshUpgradeList(displayData);
+        uiManager.SetMainScreenUpgradeButtonVisible(upgradeManager.HasAffordableUpgrade());
         UpdateBoostUI();
     }
 
     private OfflineProgress CalculateOfflineProgress()
     {
         long offlineSeconds = GetOfflineSeconds();
+        GameData previewData = gameData.Clone();
 
         if (offlineSeconds <= 0)
         {
             return new OfflineProgress
             {
-                minedOre = 0,
                 warehouseOre = 0,
-                finalShuttleOre = gameData.shuttleOre,
-                finalShuttleDeliveringOre = gameData.shuttleDeliveringOre,
-                finalShuttleCooldown = gameData.shuttleSendCooldownRemaining
+                previewData = previewData
             };
         }
 
         offlineSeconds = Math.Min(offlineSeconds, GameSettings.MaxOfflineSeconds);
 
-        int orePerSecond = Mathf.Max(0, gameData.orePerSecond);
-        int shuttleCapacity = Mathf.Max(1, gameData.shuttleCapacity);
-        int shuttleOre = Mathf.Max(0, gameData.shuttleOre);
-        int shuttleDeliveringOre = Mathf.Max(
-            0,
-            PlayerPrefs.GetInt(ShuttleDeliveringOreKey, gameData.shuttleDeliveringOre));
-        float shuttleTravelTime = Mathf.Max(0f, gameData.shuttleTravelTimeSeconds);
-        float shuttleCooldown = PlayerPrefs.HasKey(ShuttleSendCooldownKey)
-            ? PlayerPrefs.GetFloat(ShuttleSendCooldownKey, 0f)
-            : 0f;
-        bool autoSendEnabled = gameData.shuttleAutoSendEnabled;
+        if (energySystem != null)
+        {
+            EnergySystem.EnergyOfflineProgress energyProgress = energySystem.CalculateOfflineProgress(offlineSeconds);
+            previewData.energy = energyProgress.energy;
+            previewData.energyRegenTimer = energyProgress.regenTimer;
+        }
+
+        int orePerSecond = Mathf.Max(0, previewData.orePerSecond);
+        int shuttleCapacity = Mathf.Max(1, previewData.shuttleCapacity);
+        int shuttleOre = Mathf.Max(0, previewData.shuttleOre);
+        int shuttleDeliveringOre = Mathf.Max(0, previewData.shuttleDeliveringOre);
+        float shuttleTravelTime = Mathf.Max(0f, previewData.shuttleTravelTimeSeconds);
+        float shuttleCooldown = Mathf.Max(0f, previewData.shuttleSendCooldownRemaining);
+        bool autoSendEnabled = previewData.shuttleAutoSendEnabled;
         int minedOre = 0;
         int warehouseOre = 0;
         long remainingSeconds = offlineSeconds;
@@ -525,11 +577,8 @@ public class GameManager : MonoBehaviour
 
         return new OfflineProgress
         {
-            minedOre = minedOre,
             warehouseOre = warehouseOre,
-            finalShuttleOre = shuttleOre,
-            finalShuttleDeliveringOre = shuttleDeliveringOre,
-            finalShuttleCooldown = shuttleCooldown,
+            previewData = BuildOfflinePreviewData(previewData, shuttleOre, shuttleDeliveringOre, shuttleCooldown, minedOre, warehouseOre),
             shouldShowPopup = autoSendEnabled && warehouseOre > 0
         };
     }
@@ -554,23 +603,114 @@ public class GameManager : MonoBehaviour
 
     private int GetConfiguredStartShuttleOre()
     {
-        return shuttleConfig != null
-            ? shuttleConfig.StartOre
+        return gameConfig != null
+            ? gameConfig.ShuttleStartOre
             : ShuttleConfig.DefaultStartOre;
     }
 
     private int GetConfiguredShuttleCapacity()
     {
-        return shuttleConfig != null
-            ? shuttleConfig.Capacity
+        return gameConfig != null
+            ? gameConfig.Capacity
             : ShuttleConfig.DefaultCapacity;
     }
 
     private float GetConfiguredShuttleTravelTimeSeconds()
     {
-        return shuttleConfig != null
-            ? shuttleConfig.TravelTimeSeconds
+        return gameConfig != null
+            ? gameConfig.TravelTimeSeconds
             : ShuttleConfig.DefaultTravelTimeSeconds;
+    }
+
+    private int GetConfiguredStartOre()
+    {
+        return gameConfig != null
+            ? gameConfig.StartOre
+            : ShuttleConfig.DefaultStartOre;
+    }
+
+    private int GetConfiguredStartEnergy()
+    {
+        return gameConfig != null
+            ? gameConfig.StartEnergy
+            : ShuttleConfig.DefaultStartEnergy;
+    }
+
+    private int GetConfiguredStartMetal()
+    {
+        return gameConfig != null
+            ? gameConfig.StartMetal
+            : ShuttleConfig.DefaultStartMetal;
+    }
+
+    private int GetConfiguredStartCrystal()
+    {
+        return gameConfig != null
+            ? gameConfig.StartCrystal
+            : ShuttleConfig.DefaultStartCrystal;
+    }
+
+    private int GetConfiguredStartOrePerClick()
+    {
+        return gameConfig != null
+            ? gameConfig.StartOrePerClick
+            : ShuttleConfig.DefaultStartOrePerClick;
+    }
+
+    private int GetConfiguredStartOrePerSecond()
+    {
+        return gameConfig != null
+            ? gameConfig.StartOrePerSecond
+            : ShuttleConfig.DefaultStartOrePerSecond;
+    }
+
+    private int GetConfiguredStartEnergyMax()
+    {
+        return gameConfig != null
+            ? gameConfig.StartEnergyMax
+            : ShuttleConfig.DefaultStartEnergyMax;
+    }
+
+    private int GetConfiguredStartEnergyRegenAmount()
+    {
+        return gameConfig != null
+            ? gameConfig.StartEnergyRegenAmount
+            : ShuttleConfig.DefaultStartEnergyRegenAmount;
+    }
+
+    private float GetConfiguredStartEnergyRegenInterval()
+    {
+        return gameConfig != null
+            ? gameConfig.StartEnergyRegenInterval
+            : ShuttleConfig.DefaultStartEnergyRegenInterval;
+    }
+
+    private int GetConfiguredMetalPerCraft()
+    {
+        return gameConfig != null
+            ? gameConfig.MetalPerCraft
+            : ShuttleConfig.DefaultMetalPerCraft;
+    }
+
+    private int GetConfiguredMetalOreCost()
+    {
+        return gameConfig != null
+            ? gameConfig.MetalOreCost
+            : ShuttleConfig.DefaultMetalOreCost;
+    }
+
+    private int GetConfiguredMetalEnergyCost()
+    {
+        return gameConfig != null
+            ? gameConfig.MetalEnergyCost
+            : ShuttleConfig.DefaultMetalEnergyCost;
+    }
+
+    private float GetConfiguredBoostOfferAutoCloseSeconds()
+    {
+        return gameConfig != null
+            ? gameConfig.BoostOfferAutoCloseSeconds
+            : ShuttleConfig.DefaultBoostOfferAutoCloseSeconds;
     }
 
     private void ShowOfflineRewardIfNeeded()
@@ -612,6 +752,24 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateBoostUI(upgradeManager.ActiveTemporaryBoostStates);
     }
 
+    private bool UpdateBoostOfferAutoClose(float deltaTime)
+    {
+        if (uiManager == null || !uiManager.IsBoostOfferVisible || pendingBoostOfferState == null)
+        {
+            return false;
+        }
+
+        boostOfferAutoCloseTimer -= deltaTime;
+
+        if (boostOfferAutoCloseTimer > 0f)
+        {
+            return false;
+        }
+
+        DismissPendingBoostOffer();
+        return true;
+    }
+
     private void OnDestroy()
     {
         if (upgradeManager != null)
@@ -637,11 +795,8 @@ public class GameManager : MonoBehaviour
 
     private void CacheOfflineProgress(OfflineProgress offlineProgress)
     {
-        pendingOfflineMinedOre = offlineProgress.minedOre;
         pendingOfflineWarehouseOre = offlineProgress.warehouseOre;
-        pendingOfflineShuttleOre = offlineProgress.finalShuttleOre;
-        pendingOfflineShuttleDeliveringOre = offlineProgress.finalShuttleDeliveringOre;
-        pendingOfflineShuttleCooldown = offlineProgress.finalShuttleCooldown;
+        pendingOfflinePreviewData = offlineProgress.previewData;
         pendingOfflineShowRewardPopup = offlineProgress.shouldShowPopup;
     }
 
@@ -650,7 +805,7 @@ public class GameManager : MonoBehaviour
         if (uiManager == null ||
             upgradeManager == null ||
             suppressBoostOfferPopup ||
-            uiManager.IsOfflineRewardVisible ||
+            uiManager.IsBusyWithOtherWindow ||
             upgradeManager.ActiveTemporaryBoostStates.Count >= GameSettings.MaxActiveTemporaryBoosts)
         {
             return;
@@ -682,6 +837,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        boostOfferAutoCloseTimer = GetConfiguredBoostOfferAutoCloseSeconds();
         uiManager.ShowBoostOffer(pendingBoostOfferState);
     }
 
@@ -700,7 +856,21 @@ public class GameManager : MonoBehaviour
 
         TemporaryBoostState boostState = pendingBoostOfferState;
         pendingBoostOfferState = null;
+        boostOfferAutoCloseTimer = 0f;
         upgradeManager.TryDeclineTemporaryBoost(boostState);
+    }
+
+    private void DismissBoostOfferAndRefresh()
+    {
+        if (pendingBoostOfferState == null && (uiManager == null || !uiManager.IsBoostOfferVisible))
+        {
+            return;
+        }
+
+        DismissPendingBoostOffer();
+        RefreshUI();
+        SaveGame();
+        TryShowNextBoostOffer();
     }
 
     private void ApplyPendingOfflineProgress()
@@ -710,17 +880,13 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        gameData.ore += pendingOfflineWarehouseOre;
-        gameData.shuttleOre = Mathf.Max(0, pendingOfflineShuttleOre);
-        gameData.shuttleDeliveringOre = Mathf.Max(0, pendingOfflineShuttleDeliveringOre);
-        gameData.shuttleSendCooldownRemaining = Mathf.Max(0f, pendingOfflineShuttleCooldown);
-        gameData.totalOreEarned += pendingOfflineMinedOre;
+        if (pendingOfflinePreviewData != null)
+        {
+            gameData.CopyFrom(pendingOfflinePreviewData);
+        }
 
-        pendingOfflineMinedOre = 0;
         pendingOfflineWarehouseOre = 0;
-        pendingOfflineShuttleOre = gameData.shuttleOre;
-        pendingOfflineShuttleDeliveringOre = gameData.shuttleDeliveringOre;
-        pendingOfflineShuttleCooldown = gameData.shuttleSendCooldownRemaining;
+        pendingOfflinePreviewData = null;
         pendingOfflineShowRewardPopup = false;
     }
 
@@ -731,41 +897,84 @@ public class GameManager : MonoBehaviour
 
     private GameData GetDisplayGameData()
     {
-        if (!ShouldShowOfflineRewardPopup())
+        if (!ShouldShowOfflineRewardPopup() || pendingOfflinePreviewData == null)
         {
             return gameData;
         }
 
-        return new GameData
-        {
-            ore = gameData.ore,
-            shuttleOre = Mathf.Max(0, pendingOfflineShuttleOre),
-            shuttleDeliveringOre = Mathf.Max(0, pendingOfflineShuttleDeliveringOre),
-            shuttleCapacity = gameData.shuttleCapacity,
-            shuttleTravelTimeSeconds = gameData.shuttleTravelTimeSeconds,
-            shuttleSendCooldownRemaining = Mathf.Max(0f, pendingOfflineShuttleCooldown),
-            shuttleAutoSendEnabled = gameData.shuttleAutoSendEnabled,
-            orePerClick = gameData.orePerClick,
-            orePerSecond = gameData.orePerSecond,
-            totalOreEarned = gameData.totalOreEarned + pendingOfflineMinedOre
-        };
+        return pendingOfflinePreviewData;
     }
 
     private bool HasPendingOfflineStateChanges()
     {
-        return pendingOfflineWarehouseOre > 0 ||
-               pendingOfflineShuttleOre != gameData.shuttleOre ||
-               pendingOfflineShuttleDeliveringOre != gameData.shuttleDeliveringOre ||
-               !Mathf.Approximately(pendingOfflineShuttleCooldown, gameData.shuttleSendCooldownRemaining);
+        if (pendingOfflinePreviewData == null)
+        {
+            return false;
+        }
+
+        return pendingOfflinePreviewData.ore != gameData.ore ||
+               pendingOfflinePreviewData.energy != gameData.energy ||
+               pendingOfflinePreviewData.metal != gameData.metal ||
+               pendingOfflinePreviewData.crystal != gameData.crystal ||
+               pendingOfflinePreviewData.shuttleOre != gameData.shuttleOre ||
+               pendingOfflinePreviewData.shuttleDeliveringOre != gameData.shuttleDeliveringOre ||
+               !Mathf.Approximately(pendingOfflinePreviewData.shuttleSendCooldownRemaining, gameData.shuttleSendCooldownRemaining) ||
+               !Mathf.Approximately(pendingOfflinePreviewData.energyRegenTimer, gameData.energyRegenTimer) ||
+               pendingOfflinePreviewData.totalOreEarned != gameData.totalOreEarned;
+    }
+
+    private GameData BuildOfflinePreviewData(
+        GameData previewData,
+        int shuttleOre,
+        int shuttleDeliveringOre,
+        float shuttleCooldown,
+        int minedOre,
+        int warehouseOre)
+    {
+        previewData.shuttleOre = Mathf.Max(0, shuttleOre);
+        previewData.shuttleDeliveringOre = Mathf.Max(0, shuttleDeliveringOre);
+        previewData.shuttleSendCooldownRemaining = Mathf.Max(0f, shuttleCooldown);
+        previewData.ore += warehouseOre;
+        previewData.totalOreEarned += minedOre;
+        return previewData;
+    }
+
+    private void SaveResource(ResourceType resourceType, int amount)
+    {
+        PlayerPrefs.SetInt(GetResourceKey(resourceType), Mathf.Max(0, amount));
+    }
+
+    private int GetSavedResourceAmount(ResourceType resourceType, int defaultValue, string legacyKey = null)
+    {
+        string resourceKey = GetResourceKey(resourceType);
+
+        if (PlayerPrefs.HasKey(resourceKey))
+        {
+            return Mathf.Max(0, PlayerPrefs.GetInt(resourceKey, defaultValue));
+        }
+
+        if (!string.IsNullOrEmpty(legacyKey))
+        {
+            return Mathf.Max(0, PlayerPrefs.GetInt(legacyKey, defaultValue));
+        }
+
+        return defaultValue;
+    }
+
+    private string GetResourceKey(ResourceType resourceType)
+    {
+        return ResourceKeyPrefix + resourceType;
+    }
+
+    private void DeleteResourceKey(ResourceType resourceType)
+    {
+        PlayerPrefs.DeleteKey(GetResourceKey(resourceType));
     }
 
     private struct OfflineProgress
     {
-        public int minedOre;
         public int warehouseOre;
-        public int finalShuttleOre;
-        public int finalShuttleDeliveringOre;
-        public float finalShuttleCooldown;
+        public GameData previewData;
         public bool shouldShowPopup;
     }
 }

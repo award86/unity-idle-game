@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66dfafc2b6ce2d049b218752ef3272e9, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: Assembly-CSharp::ShuttleConfig
+  startOreAmount: 0
+  startEnergy: 10
+  startMetal: 0
+  startCrystal: 0
+  startOrePerClick: 1
+  startOrePerSecond: 0
+  startEnergyMax: 10
+  startEnergyRegenAmount: 1
+  startEnergyRegenInterval: 5
+  minEnergyRegenInterval: 0.5
+  metalPerCraft: 1
+  metalOreCost: 20
+  metalEnergyCost: 2
+  orePerCrystal: 1000
+  metalPerCrystal: 50
+  shuttleStartOre: 0
+  shuttleCapacity: 100
+  shuttleTravelTimeSeconds: 60

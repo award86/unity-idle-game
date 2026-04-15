@@ -1,7 +1,14 @@
 public enum UpgradeEffectType
 {
-    MiningPerClick,
-    MiningPerSecond,
-    Shuttle,
+    OrePerClick,
+    OrePerSecond,
+    EnergyCapacity,
+    EnergyRegenAmount,
+    EnergyRegenIntervalReduction,
+    MetalProductionAmount,
+    MetalOreCostReduction,
+    MetalEnergyCostReduction,
+    ShuttleCapacity,
+    ShuttleTravelTimeReduction,
     ShuttleAutoSend
 }

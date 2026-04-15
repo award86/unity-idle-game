@@ -1,7 +1,7 @@
 public class TimeSystem
 {
     private readonly ResourceSystem resourceSystem;
-    private float timer;
+    private float oreTimer;
 
     public TimeSystem(ResourceSystem resourceSystem)
     {
@@ -11,12 +11,12 @@ public class TimeSystem
     public bool UpdateTimer(float deltaTime)
     {
         bool resourcesAdded = false;
-        timer += deltaTime;
+        oreTimer += deltaTime;
 
-        while (timer >= 1f)
+        while (oreTimer >= 1f)
         {
-            timer -= 1f;
-            resourceSystem.AddPassiveIncome();
+            oreTimer -= 1f;
+            resourceSystem.AddPassiveOre();
             resourcesAdded = true;
         }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeState
@@ -11,54 +12,60 @@ public class UpgradeState
     public int Level { get; private set; }
     public bool IsMaxLevel => Definition.HasMaxLevel && Level >= Definition.maxLevel;
 
-    public int GetCurrentCost()
+    public List<ResourceAmount> GetCurrentCosts()
     {
-        return Mathf.CeilToInt(Definition.baseCost * Mathf.Pow(Definition.costMultiplier, Level));
+        List<ResourceAmount> scaledCosts = new List<ResourceAmount>();
+
+        for (int i = 0; i < Definition.BaseCosts.Count; i++)
+        {
+            ResourceAmount baseCost = Definition.BaseCosts[i];
+
+            if (baseCost == null || baseCost.amount <= 0)
+            {
+                continue;
+            }
+
+            scaledCosts.Add(new ResourceAmount(baseCost.resourceType, GetScaledCost(baseCost.amount)));
+        }
+
+        return scaledCosts;
     }
 
-    public float GetCurrentEffectValue()
+    public bool CanAfford(GameData gameData)
     {
-        if (Level <= 0)
+        List<ResourceAmount> costs = GetCurrentCosts();
+
+        for (int i = 0; i < costs.Count; i++)
+        {
+            ResourceAmount cost = costs[i];
+
+            if (gameData.GetResourceAmount(cost.resourceType) < cost.amount)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public float GetCurrentEffectValue(UpgradeEffectDefinition effect)
+    {
+        if (effect == null || Level <= 0)
         {
             return 0f;
         }
 
-        return Definition.valuePerLevel * Level;
+        return effect.valuePerLevel * Level;
     }
 
-    public float GetNextLevelValue()
+    public float GetNextEffectValue(UpgradeEffectDefinition effect)
     {
-        return Definition.valuePerLevel * (Level + 1);
-    }
-
-    public float GetCurrentShuttleTravelTimeReduction()
-    {
-        if (Level <= 0)
+        if (effect == null)
         {
             return 0f;
         }
 
-        return Definition.shuttleTravelTimeReductionPerLevel * Level;
-    }
-
-    public float GetNextShuttleTravelTimeReduction()
-    {
-        return Definition.shuttleTravelTimeReductionPerLevel * (Level + 1);
-    }
-
-    public int GetCurrentShuttleCapacityIncrease()
-    {
-        if (Level <= 0)
-        {
-            return 0;
-        }
-
-        return Definition.shuttleCapacityIncreasePerLevel * Level;
-    }
-
-    public int GetNextShuttleCapacityIncrease()
-    {
-        return Definition.shuttleCapacityIncreasePerLevel * (Level + 1);
+        return effect.valuePerLevel * (Level + 1);
     }
 
     public void SetLevel(int level)
@@ -69,5 +76,10 @@ public class UpgradeState
     public void IncreaseLevel()
     {
         Level += 1;
+    }
+
+    private int GetScaledCost(int baseAmount)
+    {
+        return Mathf.CeilToInt(baseAmount * Mathf.Pow(Definition.costMultiplier, Level));
     }
 }
