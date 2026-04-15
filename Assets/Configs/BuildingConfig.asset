@@ -13,42 +13,44 @@ MonoBehaviour:
   m_Name: BuildingConfig
   m_EditorClassIdentifier: Assembly-CSharp::BuildingConfig
   buildings:
-  - id: power_station
-    buildingName: Power Station
-    description: Expands total energy reserves and boosts regeneration.
+  - id: mining_platform
+    buildingName: Mining Platform
+    description: Expands platform storage and adds passive ore extraction on site.
     baseCosts:
     - resourceType: 0
-      amount: 40
+      amount: 30
+    effects:
+    - effectType: 8
+      valuePerLevel: 25
+    - effectType: 1
+      valuePerLevel: 1
+    costMultiplier: 1.65
+    maxLevel: 8
+  - id: power_station
+    buildingName: Power Station
+    description: Activates the energy grid and improves battery output.
+    baseCosts:
+    - resourceType: 0
+      amount: 55
     effects:
     - effectType: 2
       valuePerLevel: 5
     - effectType: 3
       valuePerLevel: 1
-    costMultiplier: 1.7
-    maxLevel: 10
+    costMultiplier: 1.75
+    maxLevel: 8
   - id: metal_factory
     buildingName: Metal Factory
-    description: Improves metal output and reduces smelting waste.
+    description: Unlocks metal production and improves each refining batch.
     baseCosts:
     - resourceType: 0
-      amount: 60
+      amount: 90
+    - resourceType: 1
+      amount: 10
     effects:
     - effectType: 5
       valuePerLevel: 1
     - effectType: 6
       valuePerLevel: 1
     costMultiplier: 1.8
-    maxLevel: 8
-  - id: mining_platform
-    buildingName: Mining Platform
-    description: Expands platform storage and supports ore extraction on site.
-    baseCosts:
-    - resourceType: 0
-      amount: 50
-    effects:
-    - effectType: 8
-      valuePerLevel: 50
-    - effectType: 1
-      valuePerLevel: 1
-    costMultiplier: 1.75
-    maxLevel: 10
+    maxLevel: 6

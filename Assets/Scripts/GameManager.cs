@@ -315,11 +315,6 @@ public class GameManager : MonoBehaviour
         TryShowNextBoostOffer();
     }
 
-    public void OnDeclineBoostButtonClicked()
-    {
-        DismissBoostOfferAndRefresh();
-    }
-
     public void OnBoostOfferOverlayClicked()
     {
         DismissBoostOfferAndRefresh();

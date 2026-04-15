@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 public class ShuttleConfig : ScriptableObject
 {
     public const int DefaultStartOre = 0;
-    public const int DefaultStartEnergy = 10;
+    public const int DefaultStartEnergy = 0;
     public const int DefaultStartMetal = 0;
     public const int DefaultStartCrystal = 0;
     public const int DefaultStartOrePerClick = 1;
@@ -13,15 +13,15 @@ public class ShuttleConfig : ScriptableObject
     public const int DefaultStartEnergyMax = 10;
     public const int DefaultStartEnergyRegenAmount = 1;
     public const float DefaultStartEnergyRegenInterval = 5f;
-    public const float DefaultMinEnergyRegenInterval = 0.5f;
+    public const float DefaultMinEnergyRegenInterval = 1f;
     public const int DefaultMetalPerCraft = 1;
-    public const int DefaultMetalOreCost = 20;
-    public const int DefaultMetalEnergyCost = 2;
-    public const int DefaultOrePerCrystal = 1000;
-    public const int DefaultMetalPerCrystal = 50;
-    public const int DefaultPlatformCapacity = 100;
-    public const int DefaultCapacity = 100;
-    public const float DefaultTravelTimeSeconds = 60f;
+    public const int DefaultMetalOreCost = 25;
+    public const int DefaultMetalEnergyCost = 3;
+    public const int DefaultOrePerCrystal = 2500;
+    public const int DefaultMetalPerCrystal = 100;
+    public const int DefaultPlatformCapacity = 30;
+    public const int DefaultCapacity = 20;
+    public const float DefaultTravelTimeSeconds = 10f;
     public const float DefaultBoostOfferAutoCloseSeconds = 5f;
 
     [Header("Resources")]

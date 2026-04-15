@@ -56,11 +56,6 @@ public class PlatformSystem
         return GetStoredOre() > 0;
     }
 
-    public bool IsFull()
-    {
-        return gameData.platformCapacity > 0 && gameData.shuttleOre >= gameData.platformCapacity;
-    }
-
     public int GetAutoSendThreshold()
     {
         return Mathf.Max(1, Mathf.Min(gameData.platformCapacity, gameData.shuttleCapacity));

@@ -215,26 +215,6 @@ public class UpgradeManager
         return false;
     }
 
-    public bool HasAffordableBuilding()
-    {
-        for (int i = 0; i < buildingStates.Count; i++)
-        {
-            BuildingState state = buildingStates[i];
-
-            if (state.IsMaxLevel)
-            {
-                continue;
-            }
-
-            if (state.CanAfford(gameData))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public bool HasAnyUnlockedUpgradeCategory()
     {
         return IsUpgradeCategoryUnlocked(UpgradeCategory.Miner) ||

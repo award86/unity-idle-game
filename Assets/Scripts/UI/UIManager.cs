@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text energyText;
     [SerializeField] private Text metalText;
     [SerializeField] private Text crystalText;
+    [SerializeField] private Text platformText;
     [SerializeField] private Text shuttleText;
     [SerializeField] private Text orePerSecondText;
 
@@ -104,13 +105,22 @@ public class UIManager : MonoBehaviour
             crystalText.text = "Crystal: " + NumberFormatter.FormatInt(gameData.crystal);
         }
 
-        if (shuttleText != null)
+        if (platformText != null)
         {
-            shuttleText.text =
+            platformText.text =
                 "Platform: " +
                 NumberFormatter.FormatInt(gameData.shuttleOre) +
                 " / " +
                 NumberFormatter.FormatInt(gameData.platformCapacity);
+        }
+
+        if (shuttleText != null)
+        {
+            shuttleText.text =
+                "Shuttle: " +
+                NumberFormatter.FormatInt(GetDisplayedShuttleLoad(gameData)) +
+                " / " +
+                NumberFormatter.FormatInt(gameData.shuttleCapacity);
         }
 
         if (orePerSecondText != null)
@@ -282,22 +292,6 @@ public class UIManager : MonoBehaviour
         }
 
         HideSharedOverlay();
-    }
-
-    public void ToggleUpgradePanel()
-    {
-        if (upgradePanel == null)
-        {
-            return;
-        }
-
-        if (!upgradePanel.activeSelf)
-        {
-            HideBuildPanel();
-        }
-
-        upgradePanel.SetActive(!upgradePanel.activeSelf);
-        RefreshPanelLists();
     }
 
     public void OpenUpgradePanel()
@@ -638,6 +632,16 @@ public class UIManager : MonoBehaviour
         return gameData != null &&
                gameData.ore >= gameData.metalOreCost &&
                gameData.energy >= gameData.metalEnergyCost;
+    }
+
+    private int GetDisplayedShuttleLoad(GameData gameData)
+    {
+        if (gameData == null)
+        {
+            return 0;
+        }
+
+        return Mathf.Max(0, gameData.shuttleDeliveringOre);
     }
 
     private string BuildMetalProductionText(GameData gameData)

@@ -19,24 +19,50 @@ MonoBehaviour:
     category: 0
     baseCosts:
     - resourceType: 0
-      amount: 25
+      amount: 10
     effects:
     - effectType: 0
       valuePerLevel: 1
-    costMultiplier: 1.7
-    maxLevel: 5
+    costMultiplier: 1.6
+    maxLevel: 8
   - id: mining_drones
     upgradeName: Mining Drones
     description: Adds passive ore extraction every second.
     category: 0
     baseCosts:
     - resourceType: 0
-      amount: 20
+      amount: 24
     effects:
     - effectType: 1
       valuePerLevel: 1
-    costMultiplier: 1.6
+    costMultiplier: 1.75
     maxLevel: 10
+  - id: storage_crates
+    upgradeName: Storage Crates
+    description: Adds extra ore storage to the mining platform.
+    category: 4
+    baseCosts:
+    - resourceType: 0
+      amount: 35
+    effects:
+    - effectType: 8
+      valuePerLevel: 25
+    costMultiplier: 1.65
+    maxLevel: 6
+  - id: ore_silos
+    upgradeName: Ore Silos
+    description: Massively expands long-term storage on the platform.
+    category: 4
+    baseCosts:
+    - resourceType: 0
+      amount: 70
+    - resourceType: 2
+      amount: 4
+    effects:
+    - effectType: 8
+      valuePerLevel: 50
+    costMultiplier: 1.8
+    maxLevel: 5
   - id: battery_matrix
     upgradeName: Battery Matrix
     description: Expands your total energy capacity.
@@ -46,32 +72,50 @@ MonoBehaviour:
       amount: 30
     effects:
     - effectType: 2
-      valuePerLevel: 5
+      valuePerLevel: 10
     costMultiplier: 1.65
-    maxLevel: 8
+    maxLevel: 6
   - id: solar_core
     upgradeName: Solar Core
     description: Improves energy regeneration output.
     category: 1
     baseCosts:
     - resourceType: 0
-      amount: 35
+      amount: 45
+    - resourceType: 2
+      amount: 3
     effects:
     - effectType: 3
       valuePerLevel: 1
-    costMultiplier: 1.7
+    costMultiplier: 1.75
     maxLevel: 6
+  - id: coolant_loop
+    upgradeName: Coolant Loop
+    description: Reduces the delay between energy regeneration ticks.
+    category: 1
+    baseCosts:
+    - resourceType: 0
+      amount: 65
+    - resourceType: 2
+      amount: 6
+    effects:
+    - effectType: 4
+      valuePerLevel: 0.35
+    costMultiplier: 1.85
+    maxLevel: 5
   - id: smelter_output
     upgradeName: Smelter Output
-    description: Produces more metal from every smelting action.
+    description: Produces more metal from every refining action.
     category: 2
     baseCosts:
     - resourceType: 0
-      amount: 40
+      amount: 50
+    - resourceType: 2
+      amount: 4
     effects:
     - effectType: 5
       valuePerLevel: 1
-    costMultiplier: 1.75
+    costMultiplier: 1.8
     maxLevel: 6
   - id: efficient_smelting
     upgradeName: Efficient Smelting
@@ -79,39 +123,53 @@ MonoBehaviour:
     category: 2
     baseCosts:
     - resourceType: 0
-      amount: 50
+      amount: 60
     - resourceType: 2
-      amount: 5
+      amount: 6
     effects:
     - effectType: 6
       valuePerLevel: 2
-    costMultiplier: 1.8
-    maxLevel: 8
+    costMultiplier: 1.85
+    maxLevel: 6
+  - id: power_routing
+    upgradeName: Power Routing
+    description: Cuts the energy required for each metal craft.
+    category: 2
+    baseCosts:
+    - resourceType: 0
+      amount: 75
+    - resourceType: 2
+      amount: 8
+    effects:
+    - effectType: 7
+      valuePerLevel: 1
+    costMultiplier: 1.9
+    maxLevel: 4
   - id: shuttle_engine
     upgradeName: Shuttle Engine
-    description: Boosts shuttle travel speed between base and mine.
+    description: Cuts travel time between the platform and the warehouse.
     category: 3
     baseCosts:
     - resourceType: 2
-      amount: 10
+      amount: 6
     effects:
-    - effectType: 9
-      valuePerLevel: 5
-    costMultiplier: 1.8
+    - effectType: 10
+      valuePerLevel: 1.5
+    costMultiplier: 1.7
     maxLevel: 6
   - id: cargo_capacity
     upgradeName: Cargo Capacity
-    description: Increases how much ore the shuttle can haul.
+    description: Increases how much ore the shuttle can haul per trip.
     category: 3
     baseCosts:
     - resourceType: 2
       amount: 8
     - resourceType: 0
-      amount: 8
+      amount: 25
     effects:
-    - effectType: 8
-      valuePerLevel: 25
-    costMultiplier: 1.7
+    - effectType: 9
+      valuePerLevel: 10
+    costMultiplier: 1.75
     maxLevel: 8
   - id: auto_shuttle_dispatch
     upgradeName: Auto Dispatch
@@ -119,9 +177,9 @@ MonoBehaviour:
     category: 3
     baseCosts:
     - resourceType: 2
-      amount: 25
+      amount: 20
     effects:
-    - effectType: 10
+    - effectType: 11
       valuePerLevel: 1
     costMultiplier: 1
     maxLevel: 1

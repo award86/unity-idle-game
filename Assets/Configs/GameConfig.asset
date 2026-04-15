@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::ShuttleConfig
   startOreAmount: 0
-  startEnergy: 10
+  startEnergy: 0
   startMetal: 0
   startCrystal: 0
   startOrePerClick: 1
@@ -21,12 +21,14 @@ MonoBehaviour:
   startEnergyMax: 10
   startEnergyRegenAmount: 1
   startEnergyRegenInterval: 5
-  minEnergyRegenInterval: 0.5
+  minEnergyRegenInterval: 1
   metalPerCraft: 1
-  metalOreCost: 20
-  metalEnergyCost: 2
-  orePerCrystal: 1000
-  metalPerCrystal: 50
+  metalOreCost: 25
+  metalEnergyCost: 3
+  orePerCrystal: 2500
+  metalPerCrystal: 100
+  startPlatformCapacity: 30
   shuttleStartOre: 0
-  shuttleCapacity: 100
-  shuttleTravelTimeSeconds: 60
+  shuttleCapacity: 20
+  shuttleTravelTimeSeconds: 10
+  boostOfferAutoCloseSeconds: 5

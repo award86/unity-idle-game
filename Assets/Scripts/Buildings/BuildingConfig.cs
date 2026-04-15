@@ -15,12 +15,37 @@ public class BuildingConfig : ScriptableObject
         {
             new BuildingDefinition
             {
-                id = "power_station",
-                buildingName = "Power Station",
-                description = "Expands total energy reserves and boosts regeneration.",
+                id = "mining_platform",
+                buildingName = "Mining Platform",
+                description = "Expands platform storage and adds passive ore extraction on site.",
                 baseCosts = new List<ResourceAmount>
                 {
-                    new ResourceAmount(ResourceType.Ore, 40)
+                    new ResourceAmount(ResourceType.Ore, 30)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.PlatformCapacity,
+                        valuePerLevel = 25f
+                    },
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.OrePerSecond,
+                        valuePerLevel = 1f
+                    }
+                },
+                costMultiplier = 1.65f,
+                maxLevel = 8
+            },
+            new BuildingDefinition
+            {
+                id = "power_station",
+                buildingName = "Power Station",
+                description = "Activates the energy grid and improves battery output.",
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Ore, 55)
                 },
                 effects = new List<UpgradeEffectDefinition>
                 {
@@ -35,17 +60,18 @@ public class BuildingConfig : ScriptableObject
                         valuePerLevel = 1f
                     }
                 },
-                costMultiplier = 1.7f,
-                maxLevel = 10
+                costMultiplier = 1.75f,
+                maxLevel = 8
             },
             new BuildingDefinition
             {
                 id = "metal_factory",
                 buildingName = "Metal Factory",
-                description = "Improves metal output and reduces smelting waste.",
+                description = "Unlocks metal production and improves each refining batch.",
                 baseCosts = new List<ResourceAmount>
                 {
-                    new ResourceAmount(ResourceType.Ore, 60)
+                    new ResourceAmount(ResourceType.Ore, 90),
+                    new ResourceAmount(ResourceType.Energy, 10)
                 },
                 effects = new List<UpgradeEffectDefinition>
                 {
@@ -61,32 +87,7 @@ public class BuildingConfig : ScriptableObject
                     }
                 },
                 costMultiplier = 1.8f,
-                maxLevel = 8
-            },
-            new BuildingDefinition
-            {
-                id = "mining_platform",
-                buildingName = "Mining Platform",
-                description = "Expands platform storage and supports ore extraction on site.",
-                baseCosts = new List<ResourceAmount>
-                {
-                    new ResourceAmount(ResourceType.Ore, 50)
-                },
-                effects = new List<UpgradeEffectDefinition>
-                {
-                    new UpgradeEffectDefinition
-                    {
-                        effectType = UpgradeEffectType.PlatformCapacity,
-                        valuePerLevel = 50f
-                    },
-                    new UpgradeEffectDefinition
-                    {
-                        effectType = UpgradeEffectType.OrePerSecond,
-                        valuePerLevel = 1f
-                    }
-                },
-                costMultiplier = 1.75f,
-                maxLevel = 10
+                maxLevel = 6
             }
         };
     }
