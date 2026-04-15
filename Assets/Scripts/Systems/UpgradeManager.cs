@@ -37,7 +37,10 @@ public class UpgradeManager
         BuildUpgradeStates(upgradeConfig);
         BuildBuildingStates(buildingConfig);
         BuildTemporaryBoostStates(temporaryBoostConfig);
-        RecalculateIncome();
+        // Persistent resource values are loaded before upgrade/building levels.
+        // Recalculating here would temporarily treat every unlock as level 0 and
+        // clamp saved energy/platform ore down to the "no buildings" state.
+        // The first real recalculation should happen after LoadUpgradeLevels().
     }
 
     public IReadOnlyList<UpgradeState> UpgradeStates => upgradeStates;

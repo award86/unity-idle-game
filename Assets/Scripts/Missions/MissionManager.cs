@@ -4,6 +4,7 @@ using UnityEngine;
 public class MissionManager
 {
     private const string MissionIndexKey = "mission_index";
+    private const string MissionRewardReadyKey = "mission_reward_ready";
     private const string MetaBonusLevelKeyPrefix = "meta_bonus_level_";
 
     private readonly GameData gameData;
@@ -23,10 +24,17 @@ public class MissionManager
         : null;
     public int CurrentMissionIndex { get; private set; }
     public bool HasActiveMission => ActiveMission != null;
+    public bool IsActiveMissionReadyToClaim { get; private set; }
 
     public void LoadProgress()
     {
         CurrentMissionIndex = Mathf.Clamp(PlayerPrefs.GetInt(MissionIndexKey, 0), 0, missions.Count);
+        IsActiveMissionReadyToClaim = PlayerPrefs.GetInt(MissionRewardReadyKey, 0) == 1 && HasActiveMission;
+
+        if (IsActiveMissionReadyToClaim && CurrentMissionIndex == missions.Count - 1)
+        {
+            TryClaimActiveMissionReward();
+        }
 
         for (int i = 0; i < metaBonusStates.Count; i++)
         {
@@ -38,6 +46,7 @@ public class MissionManager
     public void SaveProgress()
     {
         PlayerPrefs.SetInt(MissionIndexKey, CurrentMissionIndex);
+        PlayerPrefs.SetInt(MissionRewardReadyKey, IsActiveMissionReadyToClaim ? 1 : 0);
 
         for (int i = 0; i < metaBonusStates.Count; i++)
         {
@@ -49,7 +58,9 @@ public class MissionManager
     public void ResetProgress()
     {
         CurrentMissionIndex = 0;
+        IsActiveMissionReadyToClaim = false;
         PlayerPrefs.DeleteKey(MissionIndexKey);
+        PlayerPrefs.DeleteKey(MissionRewardReadyKey);
 
         for (int i = 0; i < metaBonusStates.Count; i++)
         {
@@ -75,7 +86,7 @@ public class MissionManager
     {
         MissionDefinition activeMission = ActiveMission;
 
-        if (activeMission == null || upgradeManager == null)
+        if (activeMission == null || upgradeManager == null || IsActiveMissionReadyToClaim)
         {
             return false;
         }
@@ -87,8 +98,30 @@ public class MissionManager
             return false;
         }
 
+        if (CurrentMissionIndex >= missions.Count - 1)
+        {
+            gameData.crystal += Mathf.Max(0, activeMission.crystalReward);
+            CurrentMissionIndex = missions.Count;
+            IsActiveMissionReadyToClaim = false;
+            return true;
+        }
+
+        IsActiveMissionReadyToClaim = true;
+        return true;
+    }
+
+    public bool TryClaimActiveMissionReward()
+    {
+        MissionDefinition activeMission = ActiveMission;
+
+        if (activeMission == null || !IsActiveMissionReadyToClaim)
+        {
+            return false;
+        }
+
         gameData.crystal += Mathf.Max(0, activeMission.crystalReward);
         CurrentMissionIndex = Mathf.Min(CurrentMissionIndex + 1, missions.Count);
+        IsActiveMissionReadyToClaim = false;
         return true;
     }
 
@@ -101,9 +134,11 @@ public class MissionManager
             return new MissionProgressData
             {
                 hasMission = false,
-                missionName = "All Missions Complete",
-                description = "You finished every configured mission.",
-                progressLabel = "Completed",
+                isCompleted = true,
+                canClaimReward = false,
+                missionName = string.Empty,
+                description = string.Empty,
+                progressLabel = string.Empty,
                 currentValue = 0,
                 targetValue = 0,
                 crystalReward = 0,
@@ -253,6 +288,8 @@ public class MissionManager
         MissionProgressData progressData = new MissionProgressData
         {
             hasMission = true,
+            isCompleted = IsActiveMissionReadyToClaim,
+            canClaimReward = IsActiveMissionReadyToClaim,
             missionName = mission.missionName,
             description = mission.description,
             crystalReward = Mathf.Max(0, mission.crystalReward),
@@ -294,6 +331,7 @@ public class MissionManager
         }
 
         progressData.targetValue = Mathf.Max(1, progressData.targetValue);
+        progressData.isCompleted = progressData.isCompleted || progressData.currentValue >= progressData.targetValue;
         return progressData;
     }
 

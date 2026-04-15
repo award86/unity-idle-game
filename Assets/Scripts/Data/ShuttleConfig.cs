@@ -24,6 +24,7 @@ public class ShuttleConfig : ScriptableObject
     public const float DefaultLoadingTimeSeconds = 2f;
     public const float DefaultTravelTimeSeconds = 10f;
     public const float DefaultBoostOfferAutoCloseSeconds = 5f;
+    public const string DefaultNoMissionsText = "No missions";
 
     [Header("Resources")]
     [SerializeField] private int startOreAmount = DefaultStartOre;
@@ -59,6 +60,9 @@ public class ShuttleConfig : ScriptableObject
     [Header("Boost Offer")]
     [SerializeField] private float boostOfferAutoCloseSeconds = DefaultBoostOfferAutoCloseSeconds;
 
+    [Header("UI")]
+    [SerializeField] private string noMissionsText = DefaultNoMissionsText;
+
     public int StartOre => Mathf.Max(0, startOreAmount);
     public int StartEnergy => Mathf.Max(0, startEnergy);
     public int StartMetal => Mathf.Max(0, startMetal);
@@ -76,7 +80,6 @@ public class ShuttleConfig : ScriptableObject
     public int MetalEnergyCost => Mathf.Max(0, metalEnergyCost);
     public int OrePerCrystal => Mathf.Max(1, orePerCrystal);
     public int MetalPerCrystal => Mathf.Max(1, metalPerCrystal);
-    public float OreToMetalRatio => MetalPerCraft > 0 ? MetalOreCost / (float)MetalPerCraft : 0f;
 
     public int StartPlatformCapacity => Mathf.Max(1, startPlatformCapacity);
     public int ShuttleStartOre => Mathf.Max(0, shuttleStartOre);
@@ -84,4 +87,5 @@ public class ShuttleConfig : ScriptableObject
     public float LoadingTimeSeconds => Mathf.Max(0f, shuttleLoadingTimeSeconds);
     public float TravelTimeSeconds => Mathf.Max(0f, shuttleTravelTimeSeconds);
     public float BoostOfferAutoCloseSeconds => Mathf.Max(0f, boostOfferAutoCloseSeconds);
+    public string NoMissionsText => string.IsNullOrWhiteSpace(noMissionsText) ? DefaultNoMissionsText : noMissionsText;
 }

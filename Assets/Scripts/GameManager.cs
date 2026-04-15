@@ -201,8 +201,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager.HideMenu();
-        uiManager.HideResetConfirmation();
+        PrepareMainPanelOpen();
         uiManager.OpenUpgradePanel();
     }
 
@@ -213,8 +212,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager.HideMenu();
-        uiManager.HideResetConfirmation();
+        PrepareMainPanelOpen();
         uiManager.OpenBuildingPanel();
     }
 
@@ -225,9 +223,20 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        uiManager.HideMenu();
-        uiManager.HideResetConfirmation();
+        PrepareMainPanelOpen();
         uiManager.OpenMissionPanel();
+    }
+
+    public void OnClaimMissionRewardButtonClicked()
+    {
+        if (missionManager == null || !missionManager.TryClaimActiveMissionReward())
+        {
+            return;
+        }
+
+        SyncMissionProgress();
+        RefreshUI();
+        SaveGame();
     }
 
     public void OnSendShuttleButtonClicked()
@@ -333,8 +342,7 @@ public class GameManager : MonoBehaviour
 
     public void OnClaimOfflineRewardX2ButtonClicked()
     {
-        // TODO: Show rewarded ad and give x2 offline reward after ad is completed.
-        Debug.Log("Rewarded ad is not implemented yet.");
+        // Rewarded ad flow is not implemented yet.
     }
 
     public void OnAcceptBoostButtonClicked()
@@ -608,7 +616,8 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateMissionInfo(
             missionManager != null
                 ? missionManager.GetMissionProgress(upgradeManager)
-                : default);
+                : default,
+            GetConfiguredNoMissionsText());
         UpdateBoostUI();
     }
 
@@ -712,6 +721,14 @@ public class GameManager : MonoBehaviour
                 long travelSeconds = Math.Min(remainingSeconds, (long)Math.Ceiling(shuttleCooldown));
                 shuttleCooldown = Mathf.Max(0f, shuttleCooldown - travelSeconds);
                 remainingSeconds -= travelSeconds;
+
+                if (hasMiningPlatform && orePerSecond > 0 && storedPlatformOre < platformCapacity)
+                {
+                    int availableCapacityWhileTravelling = Mathf.Max(0, platformCapacity - storedPlatformOre);
+                    int minedWhileTravelling = (int)Math.Min((long)availableCapacityWhileTravelling, travelSeconds * orePerSecond);
+                    storedPlatformOre += minedWhileTravelling;
+                    minedOre += minedWhileTravelling;
+                }
 
                 if (shuttleCooldown <= 0f && shuttleDeliveringOre > 0)
                 {
@@ -972,6 +989,13 @@ public class GameManager : MonoBehaviour
             : ShuttleConfig.DefaultBoostOfferAutoCloseSeconds;
     }
 
+    private string GetConfiguredNoMissionsText()
+    {
+        return gameConfig != null
+            ? gameConfig.NoMissionsText
+            : ShuttleConfig.DefaultNoMissionsText;
+    }
+
     private void ShowOfflineRewardIfNeeded()
     {
         if (!ShouldShowOfflineRewardPopup() || uiManager == null)
@@ -1066,6 +1090,17 @@ public class GameManager : MonoBehaviour
         {
             upgradeManager.UpgradesChanged -= HandleUpgradesChanged;
         }
+    }
+
+    private void PrepareMainPanelOpen()
+    {
+        if (uiManager == null)
+        {
+            return;
+        }
+
+        uiManager.HideMenu();
+        uiManager.HideResetConfirmation();
     }
 
     private bool TryAutoSendShuttle()

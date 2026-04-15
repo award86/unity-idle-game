@@ -33,3 +33,4 @@ MonoBehaviour:
   shuttleLoadingTimeSeconds: 5
   shuttleTravelTimeSeconds: 60
   boostOfferAutoCloseSeconds: 5
+  noMissionsText: No missions

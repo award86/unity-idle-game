@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text orePerClickText;
     [SerializeField] private Image energyFillImage;
     [SerializeField] private Text energyBarText;
+    [SerializeField] private float energyDisplaySpeed = 8f;
     [SerializeField] private Image platformFillImage;
     [SerializeField] private Text platformBarText;
     [SerializeField] private Image shuttleFillImage;
@@ -54,6 +55,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text missionDescriptionText;
     [SerializeField] private Text missionProgressText;
     [SerializeField] private Text missionRewardText;
+    [SerializeField] private Text metaBonusHeaderText;
+    [SerializeField] private Button missionClaimButton;
+    [SerializeField] private Text missionClaimButtonText;
     [SerializeField] private GameObject resetConfirmationPanel;
     [SerializeField] private GameObject offlineRewardPanel;
     [SerializeField] private Text offlineRewardText;
@@ -67,6 +71,8 @@ public class UIManager : MonoBehaviour
     private readonly List<MetaBonusItemUI> metaBonusItems = new List<MetaBonusItemUI>();
     private GameData lastDisplayedGameData;
     private UpgradeCategory selectedUpgradeCategory = UpgradeCategory.Miner;
+    private float displayedEnergyAmount;
+    private bool hasDisplayedEnergyAmount;
 
     public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
     public bool IsBoostOfferVisible => boostOfferPanel != null && boostOfferPanel.activeSelf;
@@ -100,6 +106,16 @@ public class UIManager : MonoBehaviour
         UpdateBoostUI(null);
     }
 
+    private void Update()
+    {
+        if (lastDisplayedGameData == null)
+        {
+            return;
+        }
+
+        RefreshEnergyVisuals(lastDisplayedGameData, false);
+    }
+
     public void UpdateUI(GameData gameData)
     {
         lastDisplayedGameData = gameData;
@@ -118,15 +134,6 @@ public class UIManager : MonoBehaviour
         {
             bool shouldUseLegacyEnergyText = !IsEnergyBarActive();
             energyText.gameObject.SetActive(shouldUseLegacyEnergyText);
-
-            if (shouldUseLegacyEnergyText)
-            {
-                energyText.text =
-                    "Energy: " +
-                    NumberFormatter.FormatInt(gameData.energy) +
-                    " / " +
-                    NumberFormatter.FormatInt(gameData.energyMax);
-            }
         }
 
         if (crystalText != null)
@@ -174,17 +181,7 @@ public class UIManager : MonoBehaviour
             orePerClickText.text = "Ore / click: " + NumberFormatter.FormatInt(gameData.orePerClick);
         }
 
-        if (energyFillImage != null)
-        {
-            energyFillImage.fillAmount = gameData.energyMax > 0
-                ? Mathf.Clamp01(gameData.energy / (float)gameData.energyMax)
-                : 0f;
-        }
-
-        if (energyBarText != null)
-        {
-            energyBarText.text = NumberFormatter.FormatInt(gameData.energy) + " / " + NumberFormatter.FormatInt(gameData.energyMax);
-        }
+        RefreshEnergyVisuals(gameData, !hasDisplayedEnergyAmount);
 
         UpdatePlatformBar(gameData);
         UpdateShuttleBar(gameData);
@@ -251,7 +248,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
+        RefreshUpgradeList(GetDisplayDataOrDefault());
     }
 
     public void RefreshUpgradeList(GameData gameData)
@@ -285,7 +282,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        RefreshBuildingList(lastDisplayedGameData ?? new GameData());
+        RefreshBuildingList(GetDisplayDataOrDefault());
     }
 
     public void InitializeMetaBonusList(
@@ -309,7 +306,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        RefreshMetaBonusList(lastDisplayedGameData ?? new GameData());
+        RefreshMetaBonusList(GetDisplayDataOrDefault());
     }
 
     public void RefreshBuildingList(GameData gameData)
@@ -330,6 +327,11 @@ public class UIManager : MonoBehaviour
 
         bool shouldShowMetaBonuses = missionPanel != null && missionPanel.activeSelf;
 
+        if (metaBonusListRoot != null)
+        {
+            metaBonusListRoot.gameObject.SetActive(shouldShowMetaBonuses);
+        }
+
         for (int i = 0; i < metaBonusItems.Count; i++)
         {
             metaBonusItems[i].Refresh(gameData, shouldShowMetaBonuses);
@@ -339,7 +341,7 @@ public class UIManager : MonoBehaviour
     public void SetUpgradeCategory(UpgradeCategory category)
     {
         selectedUpgradeCategory = category;
-        RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
+        RefreshUpgradeList(GetDisplayDataOrDefault());
     }
 
     public void UpdateUpgradeCategoryTabs(
@@ -360,7 +362,7 @@ public class UIManager : MonoBehaviour
             selectedUpgradeCategory = GetFirstUnlockedCategory(minerUnlocked, platformUnlocked, powerUnlocked, factoryUnlocked, shuttleUnlocked);
         }
 
-        RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
+        RefreshUpgradeList(GetDisplayDataOrDefault());
     }
 
     public void ToggleMenu()
@@ -510,47 +512,110 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateMissionInfo(MissionProgressData progressData)
+    public void UpdateMissionInfo(MissionProgressData progressData, string noMissionsText)
     {
+        bool hasMission = progressData.hasMission;
+
+        if (metaBonusHeaderText != null)
+        {
+            metaBonusHeaderText.gameObject.SetActive(true);
+            metaBonusHeaderText.text = "Meta Bonuses";
+        }
+
+        if (metaBonusListRoot != null)
+        {
+            metaBonusListRoot.gameObject.SetActive(true);
+        }
+
         if (missionStatusText != null)
         {
-            missionStatusText.text = progressData.hasMission
-                ? "Mission " + progressData.missionNumber + "/" + progressData.missionCount + ": " + progressData.missionName
-                : "Missions complete";
+            missionStatusText.gameObject.SetActive(true);
+
+            if (!hasMission)
+            {
+                missionStatusText.text = string.IsNullOrWhiteSpace(noMissionsText)
+                    ? ShuttleConfig.DefaultNoMissionsText
+                    : noMissionsText;
+            }
+            else
+            {
+                missionStatusText.text =
+                    "Mission " +
+                    progressData.missionNumber +
+                    "/" +
+                    progressData.missionCount +
+                    (progressData.canClaimReward ? " Complete" : string.Empty);
+            }
         }
 
         if (missionTitleText != null)
         {
-            missionTitleText.text = progressData.missionName;
+            missionTitleText.gameObject.SetActive(hasMission);
+            missionTitleText.text = hasMission ? progressData.missionName : string.Empty;
         }
 
         if (missionDescriptionText != null)
         {
-            missionDescriptionText.text = progressData.description;
+            missionDescriptionText.gameObject.SetActive(hasMission);
+            missionDescriptionText.text = hasMission ? progressData.description : string.Empty;
         }
 
         if (missionProgressText != null)
         {
-            missionProgressText.text = progressData.hasMission
-                ? progressData.progressLabel + ": " +
-                  NumberFormatter.FormatInt(progressData.currentValue) + " / " +
-                  NumberFormatter.FormatInt(progressData.targetValue)
-                : "Progress: Completed";
+            missionProgressText.gameObject.SetActive(hasMission);
+
+            if (!hasMission)
+            {
+                missionProgressText.text = string.Empty;
+            }
+            else if (progressData.isCompleted)
+            {
+                missionProgressText.text =
+                    progressData.progressLabel + ": " +
+                    NumberFormatter.FormatInt(progressData.targetValue) + " / " +
+                    NumberFormatter.FormatInt(progressData.targetValue);
+            }
+            else
+            {
+                missionProgressText.text =
+                    progressData.progressLabel + ": " +
+                    NumberFormatter.FormatInt(progressData.currentValue) + " / " +
+                    NumberFormatter.FormatInt(progressData.targetValue);
+            }
         }
 
         if (missionRewardText != null)
         {
-            missionRewardText.text = progressData.hasMission
-                ? "Reward: " + NumberFormatter.FormatInt(progressData.crystalReward) + " Crystal"
-                : "Reward: All claimed";
+            missionRewardText.gameObject.SetActive(hasMission);
+
+            if (!hasMission)
+            {
+                missionRewardText.text = string.Empty;
+            }
+            else
+            {
+                missionRewardText.text =
+                    (progressData.canClaimReward ? "Reward ready: " : "Reward: ") +
+                    NumberFormatter.FormatInt(progressData.crystalReward) +
+                    " Crystal";
+            }
+        }
+
+        if (missionClaimButton != null)
+        {
+            missionClaimButton.gameObject.SetActive(progressData.canClaimReward);
+            missionClaimButton.interactable = progressData.canClaimReward;
+        }
+
+        if (missionClaimButtonText != null)
+        {
+            missionClaimButtonText.text = "Claim Reward";
         }
     }
 
     public void ShowResetConfirmation()
     {
-        HideUpgradePanel();
-        HideBuildPanel();
-        HideMissionPanel();
+        HideAllContentPanels();
 
         if (resetConfirmationPanel != null)
         {
@@ -569,9 +634,7 @@ public class UIManager : MonoBehaviour
     public void ShowOfflineReward(int warehouseAmount)
     {
         HideMenu();
-        HideUpgradePanel();
-        HideBuildPanel();
-        HideMissionPanel();
+        HideAllContentPanels();
         HideResetConfirmation();
 
         if (offlineRewardText != null)
@@ -603,9 +666,7 @@ public class UIManager : MonoBehaviour
         }
 
         HideMenu();
-        HideUpgradePanel();
-        HideBuildPanel();
-        HideMissionPanel();
+        HideAllContentPanels();
         HideResetConfirmation();
 
         if (boostOfferNameText != null)
@@ -743,9 +804,22 @@ public class UIManager : MonoBehaviour
 
     private void RefreshPanelLists()
     {
-        RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
-        RefreshBuildingList(lastDisplayedGameData ?? new GameData());
-        RefreshMetaBonusList(lastDisplayedGameData ?? new GameData());
+        GameData displayData = GetDisplayDataOrDefault();
+        RefreshUpgradeList(displayData);
+        RefreshBuildingList(displayData);
+        RefreshMetaBonusList(displayData);
+    }
+
+    private GameData GetDisplayDataOrDefault()
+    {
+        return lastDisplayedGameData ?? new GameData();
+    }
+
+    private void HideAllContentPanels()
+    {
+        HideUpgradePanel();
+        HideBuildPanel();
+        HideMissionPanel();
     }
 
     private void SetTabInteractable(Button button, bool isInteractable)
@@ -866,6 +940,79 @@ public class UIManager : MonoBehaviour
     private bool IsGraphicActive(Graphic graphic)
     {
         return graphic != null && graphic.gameObject.activeInHierarchy;
+    }
+
+    private void RefreshEnergyVisuals(GameData gameData, bool snapToTarget)
+    {
+        if (gameData == null)
+        {
+            return;
+        }
+
+        float targetDisplayedEnergy = GetEnergyDisplayTarget(gameData);
+
+        if (!hasDisplayedEnergyAmount || snapToTarget)
+        {
+            displayedEnergyAmount = targetDisplayedEnergy;
+            hasDisplayedEnergyAmount = true;
+        }
+        else
+        {
+            float maxDelta = Mathf.Max(0.1f, energyDisplaySpeed) * Time.unscaledDeltaTime * Mathf.Max(1f, gameData.energyMax);
+            displayedEnergyAmount = Mathf.MoveTowards(displayedEnergyAmount, targetDisplayedEnergy, maxDelta);
+        }
+
+        displayedEnergyAmount = Mathf.Clamp(displayedEnergyAmount, 0f, Mathf.Max(0, gameData.energyMax));
+
+        if (energyFillImage != null)
+        {
+            energyFillImage.fillAmount = gameData.energyMax > 0
+                ? Mathf.Clamp01(displayedEnergyAmount / gameData.energyMax)
+                : 0f;
+        }
+
+        string displayedEnergyText = FormatEnergyValue(displayedEnergyAmount);
+        string energyMaxText = NumberFormatter.FormatInt(gameData.energyMax);
+
+        if (energyBarText != null)
+        {
+            energyBarText.text = displayedEnergyText + " / " + energyMaxText;
+        }
+
+        if (energyText != null && energyText.gameObject.activeSelf)
+        {
+            energyText.text = "Energy: " + displayedEnergyText + " / " + energyMaxText;
+        }
+    }
+
+    private float GetEnergyDisplayTarget(GameData gameData)
+    {
+        if (gameData == null || gameData.energyMax <= 0)
+        {
+            return 0f;
+        }
+
+        float targetDisplayedEnergy = gameData.energy;
+
+        if (gameData.energy < gameData.energyMax &&
+            gameData.energyRegenAmount > 0 &&
+            gameData.energyRegenInterval > 0f)
+        {
+            float regenProgress = Mathf.Clamp01(gameData.energyRegenTimer / gameData.energyRegenInterval);
+            float pendingEnergy = Mathf.Min(
+                gameData.energyRegenAmount,
+                gameData.energyMax - gameData.energy);
+            targetDisplayedEnergy += pendingEnergy * regenProgress;
+        }
+
+        return Mathf.Clamp(targetDisplayedEnergy, 0f, gameData.energyMax);
+    }
+
+    private string FormatEnergyValue(float value)
+    {
+        return Mathf.Approximately(value, Mathf.Round(value))
+            ? NumberFormatter.FormatInt(Mathf.RoundToInt(value))
+            : value.ToString("0.0");
     }
 
     private void UpdatePlatformBar(GameData gameData)

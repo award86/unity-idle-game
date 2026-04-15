@@ -49,8 +49,8 @@ public class MetaBonusItemUI : MonoBehaviour
         if (levelText != null)
         {
             levelText.text = metaBonusState.Definition.HasMaxLevel
-                ? "Level: " + metaBonusState.Level + "/" + metaBonusState.Definition.maxLevel
-                : "Level: " + metaBonusState.Level;
+                ? "Bonus Level: " + metaBonusState.Level + "/" + metaBonusState.Definition.maxLevel
+                : "Bonus Level: " + metaBonusState.Level;
         }
 
         if (costText != null)

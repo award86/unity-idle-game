@@ -88,7 +88,7 @@ MonoBehaviour:
     - effectType: 2
       valuePerLevel: 10
     costMultiplier: 1.65
-    maxLevel: 6
+    maxLevel: 14
   - id: solar_core
     upgradeName: Solar Core
     description: Improves energy regeneration output.
