@@ -1,8 +1,9 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeItemUI : MonoBehaviour
+public class BuildingItemUI : MonoBehaviour
 {
     [SerializeField] private Text nameText;
     [SerializeField] private Text descriptionText;
@@ -12,19 +13,68 @@ public class UpgradeItemUI : MonoBehaviour
     [SerializeField] private Button buyButton;
     [SerializeField] private Text buyButtonText;
 
-    private UpgradeState upgradeState;
-    private Action<UpgradeState> onUpgradeBuyRequested;
+    private BuildingState buildingState;
+    private Action<BuildingState> onBuildingBuyRequested;
 
-    public void Initialize(UpgradeState state, Action<UpgradeState> onBuyRequested)
+    public void Initialize(BuildingState state, Action<BuildingState> onBuyRequested)
     {
-        upgradeState = state;
-        onUpgradeBuyRequested = onBuyRequested;
+        buildingState = state;
+        onBuildingBuyRequested = onBuyRequested;
         SetupButton();
     }
 
-    public void Refresh(GameData gameData, UpgradeCategory selectedCategory, bool shouldDisplayUpgradeList)
+    public void Refresh(GameData gameData, bool shouldShow)
     {
-        RefreshUpgrade(gameData, selectedCategory, shouldDisplayUpgradeList);
+        if (buildingState == null || gameData == null)
+        {
+            return;
+        }
+
+        gameObject.SetActive(shouldShow);
+
+        if (!shouldShow)
+        {
+            return;
+        }
+
+        if (nameText != null)
+        {
+            nameText.text = buildingState.Definition.buildingName;
+        }
+
+        if (descriptionText != null)
+        {
+            descriptionText.text = buildingState.Definition.description;
+        }
+
+        if (levelText != null)
+        {
+            levelText.text = buildingState.Definition.HasMaxLevel
+                ? "Level: " + buildingState.Level + "/" + buildingState.Definition.maxLevel
+                : "Level: " + buildingState.Level;
+        }
+
+        if (costText != null)
+        {
+            costText.text = buildingState.IsMaxLevel
+                ? "Cost: MAX"
+                : "Cost: " + BuildCostText(buildingState.GetCurrentCosts());
+        }
+
+        if (effectText != null)
+        {
+            effectText.text = BuildBuildingEffectText();
+        }
+
+        if (buyButton != null)
+        {
+            buyButton.interactable = !buildingState.IsMaxLevel && buildingState.CanAfford(gameData);
+        }
+
+        if (buyButtonText != null)
+        {
+            buyButtonText.text = buildingState.IsMaxLevel ? "Max" : "Build";
+        }
     }
 
     private void SetupButton()
@@ -36,73 +86,18 @@ public class UpgradeItemUI : MonoBehaviour
         }
     }
 
-    private void RefreshUpgrade(GameData gameData, UpgradeCategory selectedCategory, bool shouldDisplayUpgradeList)
+    private string BuildBuildingEffectText()
     {
-        if (upgradeState == null || gameData == null)
-        {
-            return;
-        }
-
-        bool shouldShow = shouldDisplayUpgradeList && upgradeState.Definition.category == selectedCategory;
-        gameObject.SetActive(shouldShow);
-
-        if (!shouldShow)
-        {
-            return;
-        }
-
-        if (nameText != null)
-        {
-            nameText.text = upgradeState.Definition.upgradeName;
-        }
-
-        if (descriptionText != null)
-        {
-            descriptionText.text = upgradeState.Definition.description;
-        }
-
-        if (levelText != null)
-        {
-            levelText.text = upgradeState.Definition.HasMaxLevel
-                ? "Level: " + upgradeState.Level + "/" + upgradeState.Definition.maxLevel
-                : "Level: " + upgradeState.Level;
-        }
-
-        if (costText != null)
-        {
-            costText.text = upgradeState.IsMaxLevel
-                ? "Cost: MAX"
-                : "Cost: " + BuildCostText(upgradeState.GetCurrentCosts());
-        }
-
-        if (effectText != null)
-        {
-            effectText.text = BuildUpgradeEffectText();
-        }
-
-        if (buyButton != null)
-        {
-            buyButton.interactable = !upgradeState.IsMaxLevel && upgradeState.CanAfford(gameData);
-        }
-
-        if (buyButtonText != null)
-        {
-            buyButtonText.text = upgradeState.IsMaxLevel ? "Max" : "Buy";
-        }
-    }
-
-    private string BuildUpgradeEffectText()
-    {
-        if (upgradeState.Definition.Effects.Count <= 0)
+        if (buildingState.Definition.Effects.Count <= 0)
         {
             return "Effect: None";
         }
 
-        string[] effectLines = new string[upgradeState.Definition.Effects.Count];
+        string[] effectLines = new string[buildingState.Definition.Effects.Count];
 
-        for (int i = 0; i < upgradeState.Definition.Effects.Count; i++)
+        for (int i = 0; i < buildingState.Definition.Effects.Count; i++)
         {
-            effectLines[i] = BuildEffectLine(upgradeState.Definition.Effects[i]);
+            effectLines[i] = BuildEffectLine(buildingState.Definition.Effects[i]);
         }
 
         return "Effect: " + string.Join("\n", effectLines);
@@ -110,9 +105,9 @@ public class UpgradeItemUI : MonoBehaviour
 
     private string BuildEffectLine(UpgradeEffectDefinition effect)
     {
-        float effectValue = upgradeState.IsMaxLevel
-            ? upgradeState.GetCurrentEffectValue(effect)
-            : upgradeState.GetNextEffectValue(effect);
+        float effectValue = buildingState.IsMaxLevel
+            ? buildingState.GetCurrentEffectValue(effect)
+            : buildingState.GetNextEffectValue(effect);
 
         switch (effect.effectType)
         {
@@ -157,7 +152,7 @@ public class UpgradeItemUI : MonoBehaviour
         }
     }
 
-    private string BuildCostText(System.Collections.Generic.IReadOnlyList<ResourceAmount> costs)
+    private string BuildCostText(IReadOnlyList<ResourceAmount> costs)
     {
         if (costs == null || costs.Count <= 0)
         {
@@ -198,6 +193,6 @@ public class UpgradeItemUI : MonoBehaviour
 
     private void HandleBuyClicked()
     {
-        onUpgradeBuyRequested?.Invoke(upgradeState);
+        onBuildingBuyRequested?.Invoke(buildingState);
     }
 }

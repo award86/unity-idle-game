@@ -28,8 +28,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dropdownMenuPanel;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject mainScreenUpgradeButton;
+    [SerializeField] private GameObject mainScreenBuildButton;
     [SerializeField] private Transform upgradeListRoot;
     [SerializeField] private UpgradeItemUI upgradeItemPrefab;
+    [SerializeField] private BuildingItemUI buildingItemPrefab;
     [SerializeField] private Text boostStatusText;
     [SerializeField] private GameObject resetConfirmationPanel;
     [SerializeField] private GameObject offlineRewardPanel;
@@ -40,12 +42,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text boostOfferEffectText;
 
     private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
+    private readonly List<BuildingItemUI> buildingItems = new List<BuildingItemUI>();
     private GameData lastDisplayedGameData;
     private UpgradeCategory selectedUpgradeCategory = UpgradeCategory.Miner;
+    private PanelContentMode currentPanelContentMode = PanelContentMode.Upgrades;
 
     public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
     public bool IsBoostOfferVisible => boostOfferPanel != null && boostOfferPanel.activeSelf;
     public bool IsUpgradePanelVisible => upgradePanel != null && upgradePanel.activeSelf;
+    public bool IsBuildingPanelMode => currentPanelContentMode == PanelContentMode.Buildings;
     public bool IsMenuVisible => dropdownMenuPanel != null && dropdownMenuPanel.activeSelf;
     public bool IsResetConfirmationVisible => resetConfirmationPanel != null && resetConfirmationPanel.activeSelf;
     public bool IsBusyWithOtherWindow =>
@@ -63,6 +68,7 @@ public class UIManager : MonoBehaviour
         HideOfflineReward();
         HideBoostOffer();
         SetMainScreenUpgradeButtonVisible(false);
+        SetMainScreenBuildButtonVisible(false);
         UpdateBoostUI(null);
     }
 
@@ -93,10 +99,10 @@ public class UIManager : MonoBehaviour
         if (shuttleText != null)
         {
             shuttleText.text =
-                "Shuttle: " +
+                "Platform: " +
                 NumberFormatter.FormatInt(gameData.shuttleOre) +
                 " / " +
-                NumberFormatter.FormatInt(gameData.shuttleCapacity);
+                NumberFormatter.FormatInt(gameData.platformCapacity);
         }
 
         if (orePerSecondText != null)
@@ -174,7 +180,43 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < upgradeItems.Count; i++)
         {
-            upgradeItems[i].Refresh(gameData, selectedUpgradeCategory);
+            upgradeItems[i].Refresh(gameData, selectedUpgradeCategory, currentPanelContentMode == PanelContentMode.Upgrades);
+        }
+    }
+
+    public void InitializeBuildingList(
+        IReadOnlyList<BuildingState> buildingStates,
+        Action<BuildingState> onBuildingBuyRequested)
+    {
+        ClearBuildingList();
+
+        if (upgradeListRoot == null || buildingItemPrefab == null)
+        {
+            return;
+        }
+
+        if (buildingStates != null)
+        {
+            for (int i = 0; i < buildingStates.Count; i++)
+            {
+                BuildingItemUI item = Instantiate(buildingItemPrefab, upgradeListRoot);
+                item.Initialize(buildingStates[i], onBuildingBuyRequested);
+                buildingItems.Add(item);
+            }
+        }
+
+        RefreshBuildingList(lastDisplayedGameData ?? new GameData());
+    }
+
+    public void RefreshBuildingList(GameData gameData)
+    {
+        lastDisplayedGameData = gameData;
+
+        bool shouldShowBuildings = currentPanelContentMode == PanelContentMode.Buildings;
+
+        for (int i = 0; i < buildingItems.Count; i++)
+        {
+            buildingItems[i].Refresh(gameData, shouldShowBuildings);
         }
     }
 
@@ -219,6 +261,55 @@ public class UIManager : MonoBehaviour
         }
 
         upgradePanel.SetActive(!upgradePanel.activeSelf);
+        RefreshVisiblePanelMode();
+    }
+
+    public void OpenUpgradePanel()
+    {
+        if (upgradePanel == null)
+        {
+            return;
+        }
+
+        bool wasVisibleInSameMode =
+            upgradePanel.activeSelf &&
+            currentPanelContentMode == PanelContentMode.Upgrades;
+
+        currentPanelContentMode = PanelContentMode.Upgrades;
+
+        if (wasVisibleInSameMode)
+        {
+            upgradePanel.SetActive(false);
+            RefreshVisiblePanelMode();
+            return;
+        }
+
+        upgradePanel.SetActive(true);
+        RefreshVisiblePanelMode();
+    }
+
+    public void OpenBuildingPanel()
+    {
+        if (upgradePanel == null)
+        {
+            return;
+        }
+
+        bool wasVisibleInSameMode =
+            upgradePanel.activeSelf &&
+            currentPanelContentMode == PanelContentMode.Buildings;
+
+        currentPanelContentMode = PanelContentMode.Buildings;
+
+        if (wasVisibleInSameMode)
+        {
+            upgradePanel.SetActive(false);
+            RefreshVisiblePanelMode();
+            return;
+        }
+
+        upgradePanel.SetActive(true);
+        RefreshVisiblePanelMode();
     }
 
     public void HideUpgradePanel()
@@ -227,6 +318,8 @@ public class UIManager : MonoBehaviour
         {
             upgradePanel.SetActive(false);
         }
+
+        RefreshVisiblePanelMode();
     }
 
     public void SetMainScreenUpgradeButtonVisible(bool isVisible)
@@ -234,6 +327,14 @@ public class UIManager : MonoBehaviour
         if (mainScreenUpgradeButton != null)
         {
             mainScreenUpgradeButton.SetActive(isVisible);
+        }
+    }
+
+    public void SetMainScreenBuildButtonVisible(bool isVisible)
+    {
+        if (mainScreenBuildButton != null)
+        {
+            mainScreenBuildButton.SetActive(isVisible);
         }
     }
 
@@ -382,6 +483,25 @@ public class UIManager : MonoBehaviour
         upgradeItems.Clear();
     }
 
+    private void ClearBuildingList()
+    {
+        for (int i = 0; i < buildingItems.Count; i++)
+        {
+            if (buildingItems[i] != null)
+            {
+                Destroy(buildingItems[i].gameObject);
+            }
+        }
+
+        buildingItems.Clear();
+    }
+
+    private void RefreshVisiblePanelMode()
+    {
+        RefreshUpgradeList(lastDisplayedGameData ?? new GameData());
+        RefreshBuildingList(lastDisplayedGameData ?? new GameData());
+    }
+
     private string BuildBoostOfferEffectText(TemporaryBoostState boostState)
     {
         string targetText = boostState.Definition.targetType == TemporaryBoostTargetType.OrePerClick
@@ -433,5 +553,11 @@ public class UIManager : MonoBehaviour
         int minutes = totalSeconds / 60;
         int remainingSeconds = totalSeconds % 60;
         return minutes.ToString("00") + ":" + remainingSeconds.ToString("00");
+    }
+
+    private enum PanelContentMode
+    {
+        Upgrades,
+        Buildings
     }
 }

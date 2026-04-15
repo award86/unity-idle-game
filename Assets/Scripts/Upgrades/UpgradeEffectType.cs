@@ -8,6 +8,7 @@ public enum UpgradeEffectType
     MetalProductionAmount,
     MetalOreCostReduction,
     MetalEnergyCostReduction,
+    PlatformCapacity,
     ShuttleCapacity,
     ShuttleTravelTimeReduction,
     ShuttleAutoSend

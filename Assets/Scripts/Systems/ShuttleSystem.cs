@@ -3,30 +3,12 @@ using UnityEngine;
 public class ShuttleSystem
 {
     private readonly GameData gameData;
+    private readonly PlatformSystem platformSystem;
 
-    public ShuttleSystem(GameData gameData)
+    public ShuttleSystem(GameData gameData, PlatformSystem platformSystem)
     {
         this.gameData = gameData;
-    }
-
-    public int AddToShuttle(int amount)
-    {
-        if (amount <= 0 || gameData.shuttleSendCooldownRemaining > 0f)
-        {
-            return 0;
-        }
-
-        int freeCapacity = GetFreeCapacity();
-
-        if (freeCapacity <= 0)
-        {
-            return 0;
-        }
-
-        int addedAmount = Mathf.Min(amount, freeCapacity);
-        gameData.shuttleOre += addedAmount;
-        gameData.totalOreEarned += addedAmount;
-        return addedAmount;
+        this.platformSystem = platformSystem;
     }
 
     public int SendToWarehouse()
@@ -36,8 +18,14 @@ public class ShuttleSystem
             return 0;
         }
 
-        int sentAmount = gameData.shuttleOre;
-        gameData.shuttleOre = 0;
+        int sentAmount = platformSystem != null
+            ? platformSystem.TakeOre(gameData.shuttleCapacity)
+            : 0;
+
+        if (sentAmount <= 0)
+        {
+            return 0;
+        }
 
         float travelTimeSeconds = GetTravelTimeSeconds();
 
@@ -54,21 +42,19 @@ public class ShuttleSystem
         return sentAmount;
     }
 
-    public int GetFreeCapacity()
-    {
-        return Mathf.Max(0, gameData.shuttleCapacity - gameData.shuttleOre);
-    }
-
     public bool CanSend()
     {
-        return gameData.shuttleOre > 0 &&
+        return platformSystem != null &&
+               platformSystem.HasOre() &&
                gameData.shuttleDeliveringOre <= 0 &&
                gameData.shuttleSendCooldownRemaining <= 0f;
     }
 
-    public bool IsFull()
+    public bool IsReadyForAutoSend()
     {
-        return gameData.shuttleCapacity > 0 && gameData.shuttleOre >= gameData.shuttleCapacity;
+        return CanSend() &&
+               platformSystem != null &&
+               platformSystem.HasEnoughOreForAutoSend();
     }
 
     public bool UpdateCooldown(float deltaTime)

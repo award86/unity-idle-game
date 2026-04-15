@@ -4,12 +4,12 @@ using UnityEngine;
 public class ResourceSystem
 {
     private readonly GameData gameData;
-    private readonly ShuttleSystem shuttleSystem;
+    private readonly PlatformSystem platformSystem;
 
-    public ResourceSystem(GameData gameData, ShuttleSystem shuttleSystem)
+    public ResourceSystem(GameData gameData, PlatformSystem platformSystem)
     {
         this.gameData = gameData;
-        this.shuttleSystem = shuttleSystem;
+        this.platformSystem = platformSystem;
         gameData.EnsureDefaultResources();
     }
 
@@ -92,12 +92,12 @@ public class ResourceSystem
 
     public int AddProducedOre(int amount)
     {
-        if (shuttleSystem == null)
+        if (platformSystem == null)
         {
             return 0;
         }
 
-        return shuttleSystem.AddToShuttle(amount);
+        return platformSystem.AddOre(amount);
     }
 
     public void MineOre()

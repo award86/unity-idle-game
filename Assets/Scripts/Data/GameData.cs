@@ -7,6 +7,7 @@ public class GameData
     public List<ResourceState> resources = new List<ResourceState>();
     public int shuttleOre = ShuttleConfig.DefaultStartOre;
     public int shuttleDeliveringOre = 0;
+    public int platformCapacity = ShuttleConfig.DefaultPlatformCapacity;
     public int shuttleCapacity = ShuttleConfig.DefaultCapacity;
     public float shuttleTravelTimeSeconds = ShuttleConfig.DefaultTravelTimeSeconds;
     public float shuttleSendCooldownRemaining = 0f;
@@ -97,6 +98,7 @@ public class GameData
 
         shuttleOre = source.shuttleOre;
         shuttleDeliveringOre = source.shuttleDeliveringOre;
+        platformCapacity = source.platformCapacity;
         shuttleCapacity = source.shuttleCapacity;
         shuttleTravelTimeSeconds = source.shuttleTravelTimeSeconds;
         shuttleSendCooldownRemaining = source.shuttleSendCooldownRemaining;
