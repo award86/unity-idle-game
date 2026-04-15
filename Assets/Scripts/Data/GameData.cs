@@ -7,8 +7,10 @@ public class GameData
     public List<ResourceState> resources = new List<ResourceState>();
     public bool hasMiningPlatform = false;
     public int shuttleOre = ShuttleConfig.DefaultStartOre;
+    public int shuttleDockedOre = 0;
     public int shuttleLoadingOre = 0;
     public int shuttleLoadingTargetOre = 0;
+    public bool shuttleSendAfterLoading = false;
     public int shuttleDeliveringOre = 0;
     public int platformCapacity = ShuttleConfig.DefaultPlatformCapacity;
     public int shuttleCapacity = ShuttleConfig.DefaultCapacity;
@@ -103,8 +105,10 @@ public class GameData
 
         hasMiningPlatform = source.hasMiningPlatform;
         shuttleOre = source.shuttleOre;
+        shuttleDockedOre = source.shuttleDockedOre;
         shuttleLoadingOre = source.shuttleLoadingOre;
         shuttleLoadingTargetOre = source.shuttleLoadingTargetOre;
+        shuttleSendAfterLoading = source.shuttleSendAfterLoading;
         shuttleDeliveringOre = source.shuttleDeliveringOre;
         platformCapacity = source.platformCapacity;
         shuttleCapacity = source.shuttleCapacity;

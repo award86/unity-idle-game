@@ -63,12 +63,20 @@ public class PlatformSystem
 
     public int GetAutoSendThreshold()
     {
-        return Mathf.Max(1, Mathf.Min(gameData.platformCapacity, gameData.shuttleCapacity));
+        int remainingShuttleSpace = Mathf.Max(0, gameData.shuttleCapacity - gameData.shuttleDockedOre);
+
+        if (remainingShuttleSpace <= 0)
+        {
+            return 0;
+        }
+
+        return Mathf.Max(1, Mathf.Min(gameData.platformCapacity, remainingShuttleSpace));
     }
 
     public bool HasEnoughOreForAutoSend()
     {
-        return GetStoredOre() >= GetAutoSendThreshold();
+        int autoSendThreshold = GetAutoSendThreshold();
+        return autoSendThreshold > 0 && GetStoredOre() >= autoSendThreshold;
     }
 
     private bool IsLoadingToShuttle()

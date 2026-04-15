@@ -27,9 +27,9 @@ MonoBehaviour:
   metalEnergyCost: 3
   orePerCrystal: 2500
   metalPerCrystal: 100
-  startPlatformCapacity: 30
+  startPlatformCapacity: 100
   shuttleStartOre: 0
-  shuttleCapacity: 20
+  shuttleCapacity: 50
   shuttleLoadingTimeSeconds: 5
-  shuttleTravelTimeSeconds: 10
+  shuttleTravelTimeSeconds: 60
   boostOfferAutoCloseSeconds: 5

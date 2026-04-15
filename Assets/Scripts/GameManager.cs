@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour
     private const string OreKey = "ore";
     private const string ResourceKeyPrefix = "resource_";
     private const string ShuttleOreKey = "shuttleOre";
+    private const string ShuttleDockedOreKey = "shuttleDockedOre";
     private const string ShuttleLoadingOreKey = "shuttleLoadingOre";
     private const string ShuttleLoadingTargetOreKey = "shuttleLoadingTargetOre";
     private const string ShuttleLoadingCooldownKey = "shuttleLoadingCooldown";
+    private const string ShuttleSendAfterLoadingKey = "shuttleSendAfterLoading";
     private const string ShuttleDeliveringOreKey = "shuttleDeliveringOre";
     private const string PlatformCapacityKey = "platformCapacity";
     private const string ShuttleCapacityKey = "shuttleCapacity";
@@ -336,9 +338,11 @@ public class GameManager : MonoBehaviour
         SaveResource(ResourceType.Crystal, gameData.crystal);
         PlayerPrefs.SetInt(OreKey, gameData.ore);
         PlayerPrefs.SetInt(ShuttleOreKey, gameData.shuttleOre);
+        PlayerPrefs.SetInt(ShuttleDockedOreKey, gameData.shuttleDockedOre);
         PlayerPrefs.SetInt(ShuttleLoadingOreKey, gameData.shuttleLoadingOre);
         PlayerPrefs.SetInt(ShuttleLoadingTargetOreKey, gameData.shuttleLoadingTargetOre);
         PlayerPrefs.SetFloat(ShuttleLoadingCooldownKey, gameData.shuttleLoadingCooldownRemaining);
+        PlayerPrefs.SetInt(ShuttleSendAfterLoadingKey, gameData.shuttleSendAfterLoading ? 1 : 0);
         PlayerPrefs.SetInt(ShuttleDeliveringOreKey, gameData.shuttleDeliveringOre);
         PlayerPrefs.SetInt(PlatformCapacityKey, gameData.platformCapacity);
         PlayerPrefs.SetInt(ShuttleCapacityKey, gameData.shuttleCapacity);
@@ -371,6 +375,10 @@ public class GameManager : MonoBehaviour
         int loadedShuttleOre = Mathf.Max(
             0,
             PlayerPrefs.GetInt(ShuttleOreKey, GetConfiguredStartShuttleOre()));
+        int loadedShuttleDockedOre = Mathf.Clamp(
+            Mathf.Max(0, PlayerPrefs.GetInt(ShuttleDockedOreKey, 0)),
+            0,
+            loadedShuttleCapacity);
         int loadedShuttleLoadingOre = Mathf.Max(
             0,
             PlayerPrefs.GetInt(ShuttleLoadingOreKey, 0));
@@ -392,9 +400,11 @@ public class GameManager : MonoBehaviour
         gameData.metal = GetSavedResourceAmount(ResourceType.Metal, GetConfiguredStartMetal());
         gameData.crystal = GetSavedResourceAmount(ResourceType.Crystal, GetConfiguredStartCrystal());
         gameData.shuttleOre = loadedShuttleOre;
+        gameData.shuttleDockedOre = loadedShuttleDockedOre;
         gameData.shuttleLoadingOre = loadedShuttleLoadingOre;
         gameData.shuttleLoadingTargetOre = Mathf.Max(gameData.shuttleLoadingOre, loadedShuttleLoadingTargetOre);
         gameData.shuttleDeliveringOre = loadedShuttleDeliveringOre;
+        gameData.shuttleSendAfterLoading = PlayerPrefs.GetInt(ShuttleSendAfterLoadingKey, 0) == 1;
         gameData.platformCapacity = loadedPlatformCapacity;
         gameData.shuttleCapacity = loadedShuttleCapacity;
         gameData.shuttleLoadingTimeSeconds = GetConfiguredShuttleLoadingTimeSeconds();
@@ -431,8 +441,10 @@ public class GameManager : MonoBehaviour
         gameData.metal = GetConfiguredStartMetal();
         gameData.crystal = GetConfiguredStartCrystal();
         gameData.shuttleOre = GetConfiguredStartShuttleOre();
+        gameData.shuttleDockedOre = 0;
         gameData.shuttleLoadingOre = 0;
         gameData.shuttleLoadingTargetOre = 0;
+        gameData.shuttleSendAfterLoading = false;
         gameData.shuttleDeliveringOre = 0;
         gameData.platformCapacity = GetConfiguredStartPlatformCapacity();
         gameData.shuttleCapacity = GetConfiguredShuttleCapacity();
@@ -459,9 +471,11 @@ public class GameManager : MonoBehaviour
         DeleteResourceKey(ResourceType.Metal);
         DeleteResourceKey(ResourceType.Crystal);
         PlayerPrefs.DeleteKey(ShuttleOreKey);
+        PlayerPrefs.DeleteKey(ShuttleDockedOreKey);
         PlayerPrefs.DeleteKey(ShuttleLoadingOreKey);
         PlayerPrefs.DeleteKey(ShuttleLoadingTargetOreKey);
         PlayerPrefs.DeleteKey(ShuttleLoadingCooldownKey);
+        PlayerPrefs.DeleteKey(ShuttleSendAfterLoadingKey);
         PlayerPrefs.DeleteKey(ShuttleDeliveringOreKey);
         PlayerPrefs.DeleteKey(PlatformCapacityKey);
         PlayerPrefs.DeleteKey(ShuttleCapacityKey);
@@ -562,10 +576,12 @@ public class GameManager : MonoBehaviour
             : Mathf.Max(1, previewData.shuttleCapacity);
         int shuttleCapacity = Mathf.Max(1, previewData.shuttleCapacity);
         int storedPlatformOre = Mathf.Max(0, previewData.shuttleOre);
+        int shuttleDockedOre = Mathf.Clamp(Mathf.Max(0, previewData.shuttleDockedOre), 0, shuttleCapacity);
         int shuttleLoadingOre = Mathf.Max(0, previewData.shuttleLoadingOre);
         int shuttleLoadingTargetOre = Mathf.Max(shuttleLoadingOre, previewData.shuttleLoadingTargetOre);
         float shuttleLoadingTime = Mathf.Max(0f, previewData.shuttleLoadingTimeSeconds);
         float shuttleLoadingCooldown = Mathf.Max(0f, previewData.shuttleLoadingCooldownRemaining);
+        bool shuttleSendAfterLoading = previewData.shuttleSendAfterLoading;
         int shuttleDeliveringOre = Mathf.Max(0, previewData.shuttleDeliveringOre);
         float shuttleTravelTime = Mathf.Max(0f, previewData.shuttleTravelTimeSeconds);
         float shuttleCooldown = Mathf.Max(0f, previewData.shuttleSendCooldownRemaining);
@@ -573,7 +589,6 @@ public class GameManager : MonoBehaviour
         int minedOre = 0;
         int warehouseOre = 0;
         long remainingSeconds = offlineSeconds;
-        int autoSendThreshold = Mathf.Max(1, Mathf.Min(platformCapacity, shuttleCapacity));
 
         while (remainingSeconds > 0)
         {
@@ -599,19 +614,28 @@ public class GameManager : MonoBehaviour
                         storedPlatformOre);
                     storedPlatformOre -= remainingLoadOre;
                     shuttleLoadingOre += remainingLoadOre;
-
-                    if (shuttleTravelTime <= 0f)
-                    {
-                        warehouseOre += shuttleLoadingOre;
-                    }
-                    else
-                    {
-                        shuttleDeliveringOre = shuttleLoadingOre;
-                        shuttleCooldown = shuttleTravelTime;
-                    }
+                    shuttleDockedOre = Math.Min(shuttleCapacity, shuttleDockedOre + shuttleLoadingOre);
 
                     shuttleLoadingOre = 0;
                     shuttleLoadingTargetOre = 0;
+
+                    if (shuttleSendAfterLoading)
+                    {
+                        int cargoToSend = shuttleDockedOre;
+                        shuttleDockedOre = 0;
+
+                        if (shuttleTravelTime <= 0f)
+                        {
+                            warehouseOre += cargoToSend;
+                        }
+                        else
+                        {
+                            shuttleDeliveringOre = cargoToSend;
+                            shuttleCooldown = shuttleTravelTime;
+                        }
+                    }
+
+                    shuttleSendAfterLoading = false;
                 }
 
                 continue;
@@ -632,28 +656,61 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
-            if (autoSendEnabled && storedPlatformOre >= autoSendThreshold)
+            if (autoSendEnabled && shuttleDockedOre >= shuttleCapacity)
             {
-                int sentAmount = Mathf.Min(storedPlatformOre, shuttleCapacity);
+                int cargoToSend = shuttleDockedOre;
+                shuttleDockedOre = 0;
+
+                if (shuttleTravelTime <= 0f)
+                {
+                    warehouseOre += cargoToSend;
+                }
+                else
+                {
+                    shuttleDeliveringOre = cargoToSend;
+                    shuttleCooldown = shuttleTravelTime;
+                }
+
+                continue;
+            }
+
+            int remainingShuttleCapacity = Math.Max(0, shuttleCapacity - shuttleDockedOre);
+            int autoSendThreshold = remainingShuttleCapacity <= 0
+                ? 0
+                : Math.Max(1, Math.Min(platformCapacity, remainingShuttleCapacity));
+
+            if (autoSendEnabled && autoSendThreshold > 0 && storedPlatformOre >= autoSendThreshold)
+            {
+                int sentAmount = Math.Min(storedPlatformOre, remainingShuttleCapacity);
 
                 if (shuttleLoadingTime > 0f)
                 {
                     shuttleLoadingTargetOre = sentAmount;
                     shuttleLoadingOre = 0;
                     shuttleLoadingCooldown = shuttleLoadingTime;
+                    shuttleSendAfterLoading = shuttleDockedOre + sentAmount >= shuttleCapacity;
                     continue;
                 }
 
                 storedPlatformOre -= sentAmount;
+                shuttleDockedOre = Math.Min(shuttleCapacity, shuttleDockedOre + sentAmount);
 
-                if (shuttleTravelTime <= 0f)
+                if (shuttleDockedOre >= shuttleCapacity)
                 {
-                    warehouseOre += sentAmount;
-                    continue;
+                    int cargoToSend = shuttleDockedOre;
+                    shuttleDockedOre = 0;
+
+                    if (shuttleTravelTime <= 0f)
+                    {
+                        warehouseOre += cargoToSend;
+                    }
+                    else
+                    {
+                        shuttleDeliveringOre = cargoToSend;
+                        shuttleCooldown = shuttleTravelTime;
+                    }
                 }
 
-                shuttleDeliveringOre = sentAmount;
-                shuttleCooldown = shuttleTravelTime;
                 continue;
             }
 
@@ -692,9 +749,11 @@ public class GameManager : MonoBehaviour
             previewData = BuildOfflinePreviewData(
                 previewData,
                 storedPlatformOre,
+                shuttleDockedOre,
                 shuttleLoadingOre,
                 shuttleLoadingTargetOre,
                 shuttleLoadingCooldown,
+                shuttleSendAfterLoading,
                 shuttleDeliveringOre,
                 shuttleCooldown,
                 minedOre,
@@ -936,7 +995,7 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
-        return shuttleSystem.SendToWarehouse() > 0;
+        return shuttleSystem.AutoSendToWarehouse() > 0;
     }
 
     private void CacheOfflineProgress(OfflineProgress offlineProgress)
@@ -1063,8 +1122,10 @@ public class GameManager : MonoBehaviour
                pendingOfflinePreviewData.metal != gameData.metal ||
                pendingOfflinePreviewData.crystal != gameData.crystal ||
                pendingOfflinePreviewData.shuttleOre != gameData.shuttleOre ||
+               pendingOfflinePreviewData.shuttleDockedOre != gameData.shuttleDockedOre ||
                pendingOfflinePreviewData.shuttleLoadingOre != gameData.shuttleLoadingOre ||
                pendingOfflinePreviewData.shuttleLoadingTargetOre != gameData.shuttleLoadingTargetOre ||
+               pendingOfflinePreviewData.shuttleSendAfterLoading != gameData.shuttleSendAfterLoading ||
                pendingOfflinePreviewData.shuttleDeliveringOre != gameData.shuttleDeliveringOre ||
                pendingOfflinePreviewData.platformCapacity != gameData.platformCapacity ||
                !Mathf.Approximately(pendingOfflinePreviewData.shuttleLoadingCooldownRemaining, gameData.shuttleLoadingCooldownRemaining) ||
@@ -1076,18 +1137,22 @@ public class GameManager : MonoBehaviour
     private GameData BuildOfflinePreviewData(
         GameData previewData,
         int shuttleOre,
+        int shuttleDockedOre,
         int shuttleLoadingOre,
         int shuttleLoadingTargetOre,
         float shuttleLoadingCooldown,
+        bool shuttleSendAfterLoading,
         int shuttleDeliveringOre,
         float shuttleCooldown,
         int minedOre,
         int warehouseOre)
     {
         previewData.shuttleOre = Mathf.Max(0, shuttleOre);
+        previewData.shuttleDockedOre = Mathf.Max(0, shuttleDockedOre);
         previewData.shuttleLoadingOre = Mathf.Max(0, shuttleLoadingOre);
         previewData.shuttleLoadingTargetOre = Mathf.Max(previewData.shuttleLoadingOre, shuttleLoadingTargetOre);
         previewData.shuttleLoadingCooldownRemaining = Mathf.Max(0f, shuttleLoadingCooldown);
+        previewData.shuttleSendAfterLoading = shuttleSendAfterLoading;
         previewData.shuttleDeliveringOre = Mathf.Max(0, shuttleDeliveringOre);
         previewData.shuttleSendCooldownRemaining = Mathf.Max(0f, shuttleCooldown);
         previewData.ore += warehouseOre;

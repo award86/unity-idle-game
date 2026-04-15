@@ -18,6 +18,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text orePerClickText;
     [SerializeField] private Image energyFillImage;
     [SerializeField] private Text energyBarText;
+    [SerializeField] private Image platformFillImage;
+    [SerializeField] private Text platformBarText;
+    [SerializeField] private Image shuttleFillImage;
+    [SerializeField] private Text shuttleBarText;
     [SerializeField] private Button sendShuttleButton;
     [SerializeField] private Text sendShuttleButtonText;
     [SerializeField] private Button produceMetalButton;
@@ -69,7 +73,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        HideLegacyEnergyText();
+        HideLegacyTextsIfBarsConfigured();
         HideSharedOverlay();
         HideMenu();
         HideUpgradePanel();
@@ -96,6 +100,21 @@ public class UIManager : MonoBehaviour
             metalText.text = "Metal: " + NumberFormatter.FormatInt(gameData.metal);
         }
 
+        if (energyText != null)
+        {
+            bool shouldUseLegacyEnergyText = !IsEnergyBarActive();
+            energyText.gameObject.SetActive(shouldUseLegacyEnergyText);
+
+            if (shouldUseLegacyEnergyText)
+            {
+                energyText.text =
+                    "Energy: " +
+                    NumberFormatter.FormatInt(gameData.energy) +
+                    " / " +
+                    NumberFormatter.FormatInt(gameData.energyMax);
+            }
+        }
+
         if (crystalText != null)
         {
             crystalText.text = "Crystal: " + NumberFormatter.FormatInt(gameData.crystal);
@@ -103,9 +122,10 @@ public class UIManager : MonoBehaviour
 
         if (platformText != null)
         {
-            platformText.gameObject.SetActive(gameData.hasMiningPlatform);
+            bool shouldUseLegacyPlatformText = !IsPlatformBarActive();
+            platformText.gameObject.SetActive(shouldUseLegacyPlatformText && gameData.hasMiningPlatform);
 
-            if (gameData.hasMiningPlatform)
+            if (shouldUseLegacyPlatformText && gameData.hasMiningPlatform)
             {
                 platformText.text =
                     "Platform: " +
@@ -117,11 +137,17 @@ public class UIManager : MonoBehaviour
 
         if (shuttleText != null)
         {
-            shuttleText.text =
-                "Shuttle: " +
-                NumberFormatter.FormatInt(GetDisplayedShuttleLoad(gameData)) +
-                " / " +
-                NumberFormatter.FormatInt(gameData.shuttleCapacity);
+            bool shouldUseLegacyShuttleText = !IsShuttleBarActive();
+            shuttleText.gameObject.SetActive(shouldUseLegacyShuttleText);
+
+            if (shouldUseLegacyShuttleText)
+            {
+                shuttleText.text =
+                    "Shuttle: " +
+                    NumberFormatter.FormatInt(GetDisplayedShuttleLoad(gameData)) +
+                    " / " +
+                    NumberFormatter.FormatInt(gameData.shuttleCapacity);
+            }
         }
 
         if (orePerSecondText != null)
@@ -146,6 +172,9 @@ public class UIManager : MonoBehaviour
             energyBarText.text = NumberFormatter.FormatInt(gameData.energy) + " / " + NumberFormatter.FormatInt(gameData.energyMax);
         }
 
+        UpdatePlatformBar(gameData);
+        UpdateShuttleBar(gameData);
+
         if (sendShuttleButton != null)
         {
             bool shuttleIsIdle =
@@ -156,7 +185,7 @@ public class UIManager : MonoBehaviour
                 gameData.shuttleSendCooldownRemaining <= 0f;
 
             sendShuttleButton.interactable = gameData.hasMiningPlatform
-                ? shuttleIsIdle
+                ? shuttleIsIdle && (gameData.shuttleDockedOre > 0 || gameData.shuttleOre > 0)
                 : shuttleIsIdle && gameData.shuttleOre > 0;
         }
 
@@ -524,11 +553,21 @@ public class UIManager : MonoBehaviour
         SetSharedOverlayVisible(false);
     }
 
-    private void HideLegacyEnergyText()
+    private void HideLegacyTextsIfBarsConfigured()
     {
         if (energyText != null)
         {
-            energyText.gameObject.SetActive(false);
+            energyText.gameObject.SetActive(!IsEnergyBarActive());
+        }
+
+        if (platformText != null)
+        {
+            platformText.gameObject.SetActive(!IsPlatformBarActive());
+        }
+
+        if (shuttleText != null)
+        {
+            shuttleText.gameObject.SetActive(!IsShuttleBarActive());
         }
     }
 
@@ -659,6 +698,83 @@ public class UIManager : MonoBehaviour
                gameData.energy >= gameData.metalEnergyCost;
     }
 
+    private bool IsEnergyBarActive()
+    {
+        return IsBarActive(energyFillImage, energyBarText);
+    }
+
+    private bool IsPlatformBarActive()
+    {
+        return IsBarActive(platformFillImage, platformBarText);
+    }
+
+    private bool IsShuttleBarActive()
+    {
+        return IsBarActive(shuttleFillImage, shuttleBarText);
+    }
+
+    private bool IsBarActive(Graphic fillGraphic, Graphic textGraphic)
+    {
+        return IsGraphicActive(fillGraphic) || IsGraphicActive(textGraphic);
+    }
+
+    private bool IsGraphicActive(Graphic graphic)
+    {
+        return graphic != null && graphic.gameObject.activeInHierarchy;
+    }
+
+    private void UpdatePlatformBar(GameData gameData)
+    {
+        if (gameData == null)
+        {
+            return;
+        }
+
+        int currentPlatformOre = gameData.hasMiningPlatform ? gameData.shuttleOre : 0;
+        int maxPlatformOre = gameData.hasMiningPlatform ? gameData.platformCapacity : 0;
+
+        if (platformFillImage != null)
+        {
+            platformFillImage.fillAmount = maxPlatformOre > 0
+                ? Mathf.Clamp01(currentPlatformOre / (float)maxPlatformOre)
+                : 0f;
+        }
+
+        if (platformBarText != null)
+        {
+            platformBarText.text =
+                NumberFormatter.FormatInt(currentPlatformOre) +
+                " / " +
+                NumberFormatter.FormatInt(maxPlatformOre);
+        }
+    }
+
+    private void UpdateShuttleBar(GameData gameData)
+    {
+        if (gameData == null)
+        {
+            return;
+        }
+
+        int currentShuttleOre = GetDisplayedShuttleLoad(gameData);
+        int maxShuttleOre = gameData.shuttleCapacity;
+
+        if (shuttleFillImage != null)
+        {
+            shuttleFillImage.fillAmount = maxShuttleOre > 0
+                ? Mathf.Clamp01(currentShuttleOre / (float)maxShuttleOre)
+                : 0f;
+        }
+
+        if (shuttleBarText != null)
+        {
+            shuttleBarText.text =
+                NumberFormatter.FormatInt(currentShuttleOre) +
+                " / " +
+                NumberFormatter.FormatInt(maxShuttleOre);
+        }
+    }
+
     private int GetDisplayedShuttleLoad(GameData gameData)
     {
         if (gameData == null)
@@ -683,7 +799,12 @@ public class UIManager : MonoBehaviour
 
         if (gameData.shuttleLoadingCooldownRemaining > 0f || gameData.shuttleLoadingOre > 0)
         {
-            return Mathf.Max(0, gameData.shuttleLoadingOre);
+            return Mathf.Clamp(gameData.shuttleDockedOre + gameData.shuttleLoadingOre, 0, gameData.shuttleCapacity);
+        }
+
+        if (gameData.shuttleDockedOre > 0)
+        {
+            return Mathf.Max(0, gameData.shuttleDockedOre);
         }
 
         return Mathf.Max(0, gameData.shuttleDeliveringOre);

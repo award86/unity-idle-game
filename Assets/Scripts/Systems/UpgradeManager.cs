@@ -359,6 +359,9 @@ public class UpgradeManager
         gameData.shuttleOre = hasMiningPlatform
             ? Mathf.Clamp(gameData.shuttleOre, 0, gameData.platformCapacity)
             : Mathf.Clamp(gameData.shuttleOre, 0, gameData.shuttleCapacity);
+        gameData.shuttleDockedOre = hasMiningPlatform
+            ? Mathf.Clamp(gameData.shuttleDockedOre, 0, gameData.shuttleCapacity)
+            : 0;
         gameData.energy = hasPowerStation
             ? Mathf.Min(gameData.energy, gameData.energyMax)
             : 0;
