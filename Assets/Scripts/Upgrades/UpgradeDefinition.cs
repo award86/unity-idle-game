@@ -33,6 +33,7 @@ public class UpgradeDefinition
                     return UpgradeCategory.Miner;
 
                 case UpgradeEffectType.PlatformCapacity:
+                case UpgradeEffectType.ShuttleLoadingTimeReduction:
                     return UpgradeCategory.Platform;
 
                 case UpgradeEffectType.EnergyCapacity:

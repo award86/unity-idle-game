@@ -146,6 +146,9 @@ public class UpgradeItemUI : MonoBehaviour
             case UpgradeEffectType.ShuttleCapacity:
                 return "+" + NumberFormatter.FormatFloat(effectValue) + " Shuttle capacity";
 
+            case UpgradeEffectType.ShuttleLoadingTimeReduction:
+                return "-" + NumberFormatter.FormatFloat(effectValue) + "s Shuttle loading";
+
             case UpgradeEffectType.ShuttleTravelTimeReduction:
                 return "-" + NumberFormatter.FormatFloat(effectValue) + "s Shuttle travel";
 

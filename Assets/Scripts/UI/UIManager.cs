@@ -69,6 +69,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        HideLegacyEnergyText();
         HideSharedOverlay();
         HideMenu();
         HideUpgradePanel();
@@ -90,11 +91,6 @@ public class UIManager : MonoBehaviour
             oreText.text = "Warehouse Ore: " + NumberFormatter.FormatInt(gameData.ore);
         }
 
-        if (energyText != null)
-        {
-            energyText.text = "Energy: " + NumberFormatter.FormatInt(gameData.energy) + " / " + NumberFormatter.FormatInt(gameData.energyMax);
-        }
-
         if (metalText != null)
         {
             metalText.text = "Metal: " + NumberFormatter.FormatInt(gameData.metal);
@@ -107,11 +103,16 @@ public class UIManager : MonoBehaviour
 
         if (platformText != null)
         {
-            platformText.text =
-                "Platform: " +
-                NumberFormatter.FormatInt(gameData.shuttleOre) +
-                " / " +
-                NumberFormatter.FormatInt(gameData.platformCapacity);
+            platformText.gameObject.SetActive(gameData.hasMiningPlatform);
+
+            if (gameData.hasMiningPlatform)
+            {
+                platformText.text =
+                    "Platform: " +
+                    NumberFormatter.FormatInt(gameData.shuttleOre) +
+                    " / " +
+                    NumberFormatter.FormatInt(gameData.platformCapacity);
+            }
         }
 
         if (shuttleText != null)
@@ -147,14 +148,30 @@ public class UIManager : MonoBehaviour
 
         if (sendShuttleButton != null)
         {
-            sendShuttleButton.interactable = gameData.shuttleSendCooldownRemaining <= 0f;
+            bool shuttleIsIdle =
+                gameData.shuttleLoadingTargetOre <= 0 &&
+                gameData.shuttleLoadingOre <= 0 &&
+                gameData.shuttleDeliveringOre <= 0 &&
+                gameData.shuttleLoadingCooldownRemaining <= 0f &&
+                gameData.shuttleSendCooldownRemaining <= 0f;
+
+            sendShuttleButton.interactable = gameData.hasMiningPlatform
+                ? shuttleIsIdle
+                : shuttleIsIdle && gameData.shuttleOre > 0;
         }
 
         if (sendShuttleButtonText != null)
         {
-            sendShuttleButtonText.text = gameData.shuttleSendCooldownRemaining > 0f
-                ? "Send " + FormatTimer(gameData.shuttleSendCooldownRemaining)
-                : "Send";
+            if (gameData.shuttleLoadingCooldownRemaining > 0f)
+            {
+                sendShuttleButtonText.text = "Loading " + FormatTimer(gameData.shuttleLoadingCooldownRemaining);
+            }
+            else
+            {
+                sendShuttleButtonText.text = gameData.shuttleSendCooldownRemaining > 0f
+                    ? "Send " + FormatTimer(gameData.shuttleSendCooldownRemaining)
+                    : "Send";
+            }
         }
 
         if (produceMetalButton != null)
@@ -507,6 +524,14 @@ public class UIManager : MonoBehaviour
         SetSharedOverlayVisible(false);
     }
 
+    private void HideLegacyEnergyText()
+    {
+        if (energyText != null)
+        {
+            energyText.gameObject.SetActive(false);
+        }
+    }
+
     private void ClearUpgradeList()
     {
         for (int i = 0; i < upgradeItems.Count; i++)
@@ -639,6 +664,26 @@ public class UIManager : MonoBehaviour
         if (gameData == null)
         {
             return 0;
+        }
+
+        if (!gameData.hasMiningPlatform)
+        {
+            if (gameData.shuttleLoadingCooldownRemaining > 0f || gameData.shuttleLoadingOre > 0)
+            {
+                return Mathf.Max(0, gameData.shuttleLoadingOre);
+            }
+
+            if (gameData.shuttleDeliveringOre > 0 || gameData.shuttleSendCooldownRemaining > 0f)
+            {
+                return Mathf.Max(0, gameData.shuttleDeliveringOre);
+            }
+
+            return Mathf.Max(0, gameData.shuttleOre);
+        }
+
+        if (gameData.shuttleLoadingCooldownRemaining > 0f || gameData.shuttleLoadingOre > 0)
+        {
+            return Mathf.Max(0, gameData.shuttleLoadingOre);
         }
 
         return Mathf.Max(0, gameData.shuttleDeliveringOre);

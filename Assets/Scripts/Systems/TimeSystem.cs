@@ -1,7 +1,7 @@
 public class TimeSystem
 {
     private readonly ResourceSystem resourceSystem;
-    private float oreTimer;
+    private float passiveOreBuffer;
 
     public TimeSystem(ResourceSystem resourceSystem)
     {
@@ -10,13 +10,33 @@ public class TimeSystem
 
     public bool UpdateTimer(float deltaTime)
     {
-        bool resourcesAdded = false;
-        oreTimer += deltaTime;
-
-        while (oreTimer >= 1f)
+        if (resourceSystem == null || deltaTime <= 0f)
         {
-            oreTimer -= 1f;
-            resourceSystem.AddPassiveOre();
+            return false;
+        }
+
+        int orePerSecond = resourceSystem.GetPassiveOrePerSecond();
+
+        if (orePerSecond <= 0)
+        {
+            passiveOreBuffer = 0f;
+            return false;
+        }
+
+        bool resourcesAdded = false;
+        passiveOreBuffer += orePerSecond * deltaTime;
+
+        while (passiveOreBuffer >= 1f)
+        {
+            int addedOre = resourceSystem.AddProducedOre(1);
+
+            if (addedOre <= 0)
+            {
+                passiveOreBuffer = 0f;
+                break;
+            }
+
+            passiveOreBuffer -= 1f;
             resourcesAdded = true;
         }
 

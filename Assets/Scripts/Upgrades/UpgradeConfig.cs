@@ -100,6 +100,28 @@ public class UpgradeConfig : ScriptableObject
             },
             new UpgradeDefinition
             {
+                id = "loader_rails",
+                upgradeName = "Loader Rails",
+                description = "Speeds up ore transfer from the platform into the shuttle.",
+                category = UpgradeCategory.Platform,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Ore, 55),
+                    new ResourceAmount(ResourceType.Metal, 3)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.ShuttleLoadingTimeReduction,
+                        valuePerLevel = 0.25f
+                    }
+                },
+                costMultiplier = 1.75f,
+                maxLevel = 5
+            },
+            new UpgradeDefinition
+            {
                 id = "battery_matrix",
                 upgradeName = "Battery Matrix",
                 description = "Expands your total energy reserves.",

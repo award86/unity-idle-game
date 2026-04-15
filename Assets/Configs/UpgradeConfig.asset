@@ -63,6 +63,20 @@ MonoBehaviour:
       valuePerLevel: 50
     costMultiplier: 1.8
     maxLevel: 5
+  - id: loader_rails
+    upgradeName: Loader Rails
+    description: Speeds up ore transfer from the platform into the shuttle.
+    category: 4
+    baseCosts:
+    - resourceType: 0
+      amount: 55
+    - resourceType: 2
+      amount: 3
+    effects:
+    - effectType: 12
+      valuePerLevel: 0.5
+    costMultiplier: 1.75
+    maxLevel: 5
   - id: battery_matrix
     upgradeName: Battery Matrix
     description: Expands your total energy capacity.

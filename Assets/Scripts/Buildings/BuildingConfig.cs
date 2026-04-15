@@ -17,7 +17,7 @@ public class BuildingConfig : ScriptableObject
             {
                 id = "mining_platform",
                 buildingName = "Mining Platform",
-                description = "Expands platform storage and adds passive ore extraction on site.",
+                description = "Unlocks the platform and expands ore storage capacity.",
                 baseCosts = new List<ResourceAmount>
                 {
                     new ResourceAmount(ResourceType.Ore, 30)
@@ -28,11 +28,6 @@ public class BuildingConfig : ScriptableObject
                     {
                         effectType = UpgradeEffectType.PlatformCapacity,
                         valuePerLevel = 25f
-                    },
-                    new UpgradeEffectDefinition
-                    {
-                        effectType = UpgradeEffectType.OrePerSecond,
-                        valuePerLevel = 1f
                     }
                 },
                 costMultiplier = 1.65f,

@@ -5,10 +5,15 @@ using System.Collections.Generic;
 public class GameData
 {
     public List<ResourceState> resources = new List<ResourceState>();
+    public bool hasMiningPlatform = false;
     public int shuttleOre = ShuttleConfig.DefaultStartOre;
+    public int shuttleLoadingOre = 0;
+    public int shuttleLoadingTargetOre = 0;
     public int shuttleDeliveringOre = 0;
     public int platformCapacity = ShuttleConfig.DefaultPlatformCapacity;
     public int shuttleCapacity = ShuttleConfig.DefaultCapacity;
+    public float shuttleLoadingTimeSeconds = ShuttleConfig.DefaultLoadingTimeSeconds;
+    public float shuttleLoadingCooldownRemaining = 0f;
     public float shuttleTravelTimeSeconds = ShuttleConfig.DefaultTravelTimeSeconds;
     public float shuttleSendCooldownRemaining = 0f;
     public bool shuttleAutoSendEnabled = false;
@@ -96,10 +101,15 @@ public class GameData
             resources.Add(new ResourceState(sourceState.resourceType, sourceState.amount));
         }
 
+        hasMiningPlatform = source.hasMiningPlatform;
         shuttleOre = source.shuttleOre;
+        shuttleLoadingOre = source.shuttleLoadingOre;
+        shuttleLoadingTargetOre = source.shuttleLoadingTargetOre;
         shuttleDeliveringOre = source.shuttleDeliveringOre;
         platformCapacity = source.platformCapacity;
         shuttleCapacity = source.shuttleCapacity;
+        shuttleLoadingTimeSeconds = source.shuttleLoadingTimeSeconds;
+        shuttleLoadingCooldownRemaining = source.shuttleLoadingCooldownRemaining;
         shuttleTravelTimeSeconds = source.shuttleTravelTimeSeconds;
         shuttleSendCooldownRemaining = source.shuttleSendCooldownRemaining;
         shuttleAutoSendEnabled = source.shuttleAutoSendEnabled;

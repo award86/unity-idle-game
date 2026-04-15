@@ -15,15 +15,13 @@ MonoBehaviour:
   buildings:
   - id: mining_platform
     buildingName: Mining Platform
-    description: Expands platform storage and adds passive ore extraction on site.
+    description: Unlocks the platform and expands ore storage capacity.
     baseCosts:
     - resourceType: 0
       amount: 30
     effects:
     - effectType: 8
       valuePerLevel: 25
-    - effectType: 1
-      valuePerLevel: 1
     costMultiplier: 1.65
     maxLevel: 8
   - id: power_station

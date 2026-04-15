@@ -290,6 +290,9 @@ public class UpgradeManager
     {
         float orePerClick = GetBaseOrePerClick();
         float orePerSecond = GetBaseOrePerSecond();
+        bool hasMiningPlatform = HasUnlockedBuildingEffect(
+            UpgradeEffectType.PlatformCapacity,
+            UpgradeEffectType.OrePerSecond);
         bool hasPowerStation = HasUnlockedBuildingEffect(
             UpgradeEffectType.EnergyCapacity,
             UpgradeEffectType.EnergyRegenAmount,
@@ -306,16 +309,17 @@ public class UpgradeManager
         int metalEnergyCost = hasMetalFactory ? GetBaseMetalEnergyCost() : 0;
         int platformCapacity = GetBasePlatformCapacity();
         int shuttleCapacity = GetBaseShuttleCapacity();
+        float shuttleLoadingTimeSeconds = GetBaseShuttleLoadingTimeSeconds();
         float shuttleTravelTimeSeconds = GetBaseShuttleTravelTimeSeconds();
         bool shuttleAutoSendEnabled = false;
 
         ApplyEffects(buildingStates, ref orePerClick, ref orePerSecond, ref energyMax, ref energyRegenAmount,
             ref energyRegenInterval, ref metalPerCraft, ref metalOreCost, ref metalEnergyCost,
-            ref platformCapacity, ref shuttleCapacity, ref shuttleTravelTimeSeconds, ref shuttleAutoSendEnabled);
+            ref platformCapacity, ref shuttleCapacity, ref shuttleLoadingTimeSeconds, ref shuttleTravelTimeSeconds, ref shuttleAutoSendEnabled);
 
         ApplyEffects(upgradeStates, ref orePerClick, ref orePerSecond, ref energyMax, ref energyRegenAmount,
             ref energyRegenInterval, ref metalPerCraft, ref metalOreCost, ref metalEnergyCost,
-            ref platformCapacity, ref shuttleCapacity, ref shuttleTravelTimeSeconds, ref shuttleAutoSendEnabled);
+            ref platformCapacity, ref shuttleCapacity, ref shuttleLoadingTimeSeconds, ref shuttleTravelTimeSeconds, ref shuttleAutoSendEnabled);
 
         float orePerClickMultiplier = 1f;
         float orePerSecondMultiplier = 1f;
@@ -346,14 +350,25 @@ public class UpgradeManager
         gameData.metalPerCraft = hasMetalFactory ? Mathf.Max(1, metalPerCraft) : 0;
         gameData.metalOreCost = hasMetalFactory ? Mathf.Max(0, metalOreCost) : 0;
         gameData.metalEnergyCost = hasMetalFactory ? Mathf.Max(0, metalEnergyCost) : 0;
-        gameData.platformCapacity = Mathf.Max(1, platformCapacity);
+        gameData.hasMiningPlatform = hasMiningPlatform;
+        gameData.platformCapacity = hasMiningPlatform ? Mathf.Max(1, platformCapacity) : 0;
         gameData.shuttleCapacity = Mathf.Max(1, shuttleCapacity);
+        gameData.shuttleLoadingTimeSeconds = Mathf.Max(0f, shuttleLoadingTimeSeconds);
         gameData.shuttleTravelTimeSeconds = Mathf.Max(0f, shuttleTravelTimeSeconds);
         gameData.shuttleAutoSendEnabled = shuttleAutoSendEnabled;
-        gameData.shuttleOre = Mathf.Clamp(gameData.shuttleOre, 0, gameData.platformCapacity);
+        gameData.shuttleOre = hasMiningPlatform
+            ? Mathf.Clamp(gameData.shuttleOre, 0, gameData.platformCapacity)
+            : Mathf.Clamp(gameData.shuttleOre, 0, gameData.shuttleCapacity);
         gameData.energy = hasPowerStation
             ? Mathf.Min(gameData.energy, gameData.energyMax)
             : 0;
+
+        if (gameData.shuttleLoadingCooldownRemaining > 0f)
+        {
+            gameData.shuttleLoadingCooldownRemaining = Mathf.Min(
+                gameData.shuttleLoadingCooldownRemaining,
+                gameData.shuttleLoadingTimeSeconds);
+        }
 
         if (gameData.shuttleSendCooldownRemaining > 0f)
         {
@@ -636,6 +651,13 @@ public class UpgradeManager
             : ShuttleConfig.DefaultCapacity;
     }
 
+    private float GetBaseShuttleLoadingTimeSeconds()
+    {
+        return gameConfig != null
+            ? gameConfig.LoadingTimeSeconds
+            : ShuttleConfig.DefaultLoadingTimeSeconds;
+    }
+
     private float GetBaseShuttleTravelTimeSeconds()
     {
         return gameConfig != null
@@ -780,6 +802,7 @@ public class UpgradeManager
         ref int metalEnergyCost,
         ref int platformCapacity,
         ref int shuttleCapacity,
+        ref float shuttleLoadingTimeSeconds,
         ref float shuttleTravelTimeSeconds,
         ref bool shuttleAutoSendEnabled)
     {
@@ -805,6 +828,7 @@ public class UpgradeManager
                 ref metalEnergyCost,
                 ref platformCapacity,
                 ref shuttleCapacity,
+                ref shuttleLoadingTimeSeconds,
                 ref shuttleTravelTimeSeconds,
                 ref shuttleAutoSendEnabled);
         }
@@ -822,6 +846,7 @@ public class UpgradeManager
         ref int metalEnergyCost,
         ref int platformCapacity,
         ref int shuttleCapacity,
+        ref float shuttleLoadingTimeSeconds,
         ref float shuttleTravelTimeSeconds,
         ref bool shuttleAutoSendEnabled)
     {
@@ -847,6 +872,7 @@ public class UpgradeManager
                 ref metalEnergyCost,
                 ref platformCapacity,
                 ref shuttleCapacity,
+                ref shuttleLoadingTimeSeconds,
                 ref shuttleTravelTimeSeconds,
                 ref shuttleAutoSendEnabled);
         }
@@ -865,6 +891,7 @@ public class UpgradeManager
         ref int metalEnergyCost,
         ref int platformCapacity,
         ref int shuttleCapacity,
+        ref float shuttleLoadingTimeSeconds,
         ref float shuttleTravelTimeSeconds,
         ref bool shuttleAutoSendEnabled)
     {
@@ -913,6 +940,10 @@ public class UpgradeManager
 
                 case UpgradeEffectType.ShuttleCapacity:
                     shuttleCapacity += Mathf.RoundToInt(effectValue);
+                    break;
+
+                case UpgradeEffectType.ShuttleLoadingTimeReduction:
+                    shuttleLoadingTimeSeconds -= effectValue;
                     break;
 
                 case UpgradeEffectType.ShuttleTravelTimeReduction:

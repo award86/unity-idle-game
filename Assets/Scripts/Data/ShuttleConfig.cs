@@ -21,6 +21,7 @@ public class ShuttleConfig : ScriptableObject
     public const int DefaultMetalPerCrystal = 100;
     public const int DefaultPlatformCapacity = 30;
     public const int DefaultCapacity = 20;
+    public const float DefaultLoadingTimeSeconds = 2f;
     public const float DefaultTravelTimeSeconds = 10f;
     public const float DefaultBoostOfferAutoCloseSeconds = 5f;
 
@@ -51,6 +52,7 @@ public class ShuttleConfig : ScriptableObject
     [SerializeField] private int shuttleStartOre = DefaultStartOre;
     [FormerlySerializedAs("capacity")]
     [SerializeField] private int shuttleCapacity = DefaultCapacity;
+    [SerializeField] private float shuttleLoadingTimeSeconds = DefaultLoadingTimeSeconds;
     [FormerlySerializedAs("travelTimeSeconds")]
     [SerializeField] private float shuttleTravelTimeSeconds = DefaultTravelTimeSeconds;
 
@@ -79,6 +81,7 @@ public class ShuttleConfig : ScriptableObject
     public int StartPlatformCapacity => Mathf.Max(1, startPlatformCapacity);
     public int ShuttleStartOre => Mathf.Max(0, shuttleStartOre);
     public int Capacity => Mathf.Max(1, shuttleCapacity);
+    public float LoadingTimeSeconds => Mathf.Max(0f, shuttleLoadingTimeSeconds);
     public float TravelTimeSeconds => Mathf.Max(0f, shuttleTravelTimeSeconds);
     public float BoostOfferAutoCloseSeconds => Mathf.Max(0f, boostOfferAutoCloseSeconds);
 }

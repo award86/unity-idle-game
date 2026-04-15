@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     private const string OreKey = "ore";
     private const string ResourceKeyPrefix = "resource_";
     private const string ShuttleOreKey = "shuttleOre";
+    private const string ShuttleLoadingOreKey = "shuttleLoadingOre";
+    private const string ShuttleLoadingTargetOreKey = "shuttleLoadingTargetOre";
+    private const string ShuttleLoadingCooldownKey = "shuttleLoadingCooldown";
     private const string ShuttleDeliveringOreKey = "shuttleDeliveringOre";
     private const string PlatformCapacityKey = "platformCapacity";
     private const string ShuttleCapacityKey = "shuttleCapacity";
@@ -104,7 +107,7 @@ public class GameManager : MonoBehaviour
             UpdateBoostUI();
         }
 
-        if (shuttleSystem != null && shuttleSystem.UpdateCooldown(Time.deltaTime))
+        if (shuttleSystem != null && shuttleSystem.Update(Time.deltaTime))
         {
             shouldRefreshUi = true;
         }
@@ -333,6 +336,9 @@ public class GameManager : MonoBehaviour
         SaveResource(ResourceType.Crystal, gameData.crystal);
         PlayerPrefs.SetInt(OreKey, gameData.ore);
         PlayerPrefs.SetInt(ShuttleOreKey, gameData.shuttleOre);
+        PlayerPrefs.SetInt(ShuttleLoadingOreKey, gameData.shuttleLoadingOre);
+        PlayerPrefs.SetInt(ShuttleLoadingTargetOreKey, gameData.shuttleLoadingTargetOre);
+        PlayerPrefs.SetFloat(ShuttleLoadingCooldownKey, gameData.shuttleLoadingCooldownRemaining);
         PlayerPrefs.SetInt(ShuttleDeliveringOreKey, gameData.shuttleDeliveringOre);
         PlayerPrefs.SetInt(PlatformCapacityKey, gameData.platformCapacity);
         PlayerPrefs.SetInt(ShuttleCapacityKey, gameData.shuttleCapacity);
@@ -365,9 +371,18 @@ public class GameManager : MonoBehaviour
         int loadedShuttleOre = Mathf.Max(
             0,
             PlayerPrefs.GetInt(ShuttleOreKey, GetConfiguredStartShuttleOre()));
+        int loadedShuttleLoadingOre = Mathf.Max(
+            0,
+            PlayerPrefs.GetInt(ShuttleLoadingOreKey, 0));
+        int loadedShuttleLoadingTargetOre = Mathf.Max(
+            0,
+            PlayerPrefs.GetInt(ShuttleLoadingTargetOreKey, 0));
         int loadedShuttleDeliveringOre = Mathf.Max(
             0,
             PlayerPrefs.GetInt(ShuttleDeliveringOreKey, 0));
+        float savedShuttleLoadingCooldown = PlayerPrefs.HasKey(ShuttleLoadingCooldownKey)
+            ? PlayerPrefs.GetFloat(ShuttleLoadingCooldownKey, 0f)
+            : 0f;
         float savedShuttleCooldown = PlayerPrefs.HasKey(ShuttleSendCooldownKey)
             ? PlayerPrefs.GetFloat(ShuttleSendCooldownKey, 0f)
             : 0f;
@@ -377,9 +392,13 @@ public class GameManager : MonoBehaviour
         gameData.metal = GetSavedResourceAmount(ResourceType.Metal, GetConfiguredStartMetal());
         gameData.crystal = GetSavedResourceAmount(ResourceType.Crystal, GetConfiguredStartCrystal());
         gameData.shuttleOre = loadedShuttleOre;
+        gameData.shuttleLoadingOre = loadedShuttleLoadingOre;
+        gameData.shuttleLoadingTargetOre = Mathf.Max(gameData.shuttleLoadingOre, loadedShuttleLoadingTargetOre);
         gameData.shuttleDeliveringOre = loadedShuttleDeliveringOre;
         gameData.platformCapacity = loadedPlatformCapacity;
         gameData.shuttleCapacity = loadedShuttleCapacity;
+        gameData.shuttleLoadingTimeSeconds = GetConfiguredShuttleLoadingTimeSeconds();
+        gameData.shuttleLoadingCooldownRemaining = Mathf.Max(0f, savedShuttleLoadingCooldown);
         gameData.shuttleTravelTimeSeconds = GetConfiguredShuttleTravelTimeSeconds();
         gameData.shuttleSendCooldownRemaining = Mathf.Max(0f, savedShuttleCooldown);
         gameData.orePerClick = PlayerPrefs.GetInt(OrePerClickKey, GetConfiguredStartOrePerClick());
@@ -412,9 +431,13 @@ public class GameManager : MonoBehaviour
         gameData.metal = GetConfiguredStartMetal();
         gameData.crystal = GetConfiguredStartCrystal();
         gameData.shuttleOre = GetConfiguredStartShuttleOre();
+        gameData.shuttleLoadingOre = 0;
+        gameData.shuttleLoadingTargetOre = 0;
         gameData.shuttleDeliveringOre = 0;
         gameData.platformCapacity = GetConfiguredStartPlatformCapacity();
         gameData.shuttleCapacity = GetConfiguredShuttleCapacity();
+        gameData.shuttleLoadingTimeSeconds = GetConfiguredShuttleLoadingTimeSeconds();
+        gameData.shuttleLoadingCooldownRemaining = 0f;
         gameData.shuttleTravelTimeSeconds = GetConfiguredShuttleTravelTimeSeconds();
         gameData.shuttleSendCooldownRemaining = 0f;
         gameData.shuttleAutoSendEnabled = false;
@@ -436,6 +459,9 @@ public class GameManager : MonoBehaviour
         DeleteResourceKey(ResourceType.Metal);
         DeleteResourceKey(ResourceType.Crystal);
         PlayerPrefs.DeleteKey(ShuttleOreKey);
+        PlayerPrefs.DeleteKey(ShuttleLoadingOreKey);
+        PlayerPrefs.DeleteKey(ShuttleLoadingTargetOreKey);
+        PlayerPrefs.DeleteKey(ShuttleLoadingCooldownKey);
         PlayerPrefs.DeleteKey(ShuttleDeliveringOreKey);
         PlayerPrefs.DeleteKey(PlatformCapacityKey);
         PlayerPrefs.DeleteKey(ShuttleCapacityKey);
@@ -530,13 +556,20 @@ public class GameManager : MonoBehaviour
         }
 
         int orePerSecond = Mathf.Max(0, previewData.orePerSecond);
-        int platformCapacity = Mathf.Max(1, previewData.platformCapacity);
+        bool hasMiningPlatform = previewData.hasMiningPlatform;
+        int platformCapacity = hasMiningPlatform
+            ? Mathf.Max(1, previewData.platformCapacity)
+            : Mathf.Max(1, previewData.shuttleCapacity);
         int shuttleCapacity = Mathf.Max(1, previewData.shuttleCapacity);
         int storedPlatformOre = Mathf.Max(0, previewData.shuttleOre);
+        int shuttleLoadingOre = Mathf.Max(0, previewData.shuttleLoadingOre);
+        int shuttleLoadingTargetOre = Mathf.Max(shuttleLoadingOre, previewData.shuttleLoadingTargetOre);
+        float shuttleLoadingTime = Mathf.Max(0f, previewData.shuttleLoadingTimeSeconds);
+        float shuttleLoadingCooldown = Mathf.Max(0f, previewData.shuttleLoadingCooldownRemaining);
         int shuttleDeliveringOre = Mathf.Max(0, previewData.shuttleDeliveringOre);
         float shuttleTravelTime = Mathf.Max(0f, previewData.shuttleTravelTimeSeconds);
         float shuttleCooldown = Mathf.Max(0f, previewData.shuttleSendCooldownRemaining);
-        bool autoSendEnabled = previewData.shuttleAutoSendEnabled;
+        bool autoSendEnabled = hasMiningPlatform && previewData.shuttleAutoSendEnabled;
         int minedOre = 0;
         int warehouseOre = 0;
         long remainingSeconds = offlineSeconds;
@@ -544,6 +577,46 @@ public class GameManager : MonoBehaviour
 
         while (remainingSeconds > 0)
         {
+            if (shuttleLoadingCooldown > 0f && shuttleLoadingTargetOre > 0)
+            {
+                long loadingSeconds = Math.Min(remainingSeconds, (long)Math.Ceiling(shuttleLoadingCooldown));
+                shuttleLoadingCooldown = Mathf.Max(0f, shuttleLoadingCooldown - loadingSeconds);
+                remainingSeconds -= loadingSeconds;
+
+                int desiredLoadedOre = GetOfflineLoadedOre(
+                    shuttleLoadingTargetOre,
+                    shuttleLoadingTime,
+                    shuttleLoadingCooldown);
+                int deltaLoadedOre = Math.Max(0, desiredLoadedOre - shuttleLoadingOre);
+                int transferredOre = Math.Min(deltaLoadedOre, storedPlatformOre);
+                storedPlatformOre -= transferredOre;
+                shuttleLoadingOre += transferredOre;
+
+                if (shuttleLoadingCooldown <= 0f)
+                {
+                    int remainingLoadOre = Math.Min(
+                        Math.Max(0, shuttleLoadingTargetOre - shuttleLoadingOre),
+                        storedPlatformOre);
+                    storedPlatformOre -= remainingLoadOre;
+                    shuttleLoadingOre += remainingLoadOre;
+
+                    if (shuttleTravelTime <= 0f)
+                    {
+                        warehouseOre += shuttleLoadingOre;
+                    }
+                    else
+                    {
+                        shuttleDeliveringOre = shuttleLoadingOre;
+                        shuttleCooldown = shuttleTravelTime;
+                    }
+
+                    shuttleLoadingOre = 0;
+                    shuttleLoadingTargetOre = 0;
+                }
+
+                continue;
+            }
+
             if (shuttleCooldown > 0f)
             {
                 long travelSeconds = Math.Min(remainingSeconds, (long)Math.Ceiling(shuttleCooldown));
@@ -562,6 +635,15 @@ public class GameManager : MonoBehaviour
             if (autoSendEnabled && storedPlatformOre >= autoSendThreshold)
             {
                 int sentAmount = Mathf.Min(storedPlatformOre, shuttleCapacity);
+
+                if (shuttleLoadingTime > 0f)
+                {
+                    shuttleLoadingTargetOre = sentAmount;
+                    shuttleLoadingOre = 0;
+                    shuttleLoadingCooldown = shuttleLoadingTime;
+                    continue;
+                }
+
                 storedPlatformOre -= sentAmount;
 
                 if (shuttleTravelTime <= 0f)
@@ -607,7 +689,16 @@ public class GameManager : MonoBehaviour
         return new OfflineProgress
         {
             warehouseOre = warehouseOre,
-            previewData = BuildOfflinePreviewData(previewData, storedPlatformOre, shuttleDeliveringOre, shuttleCooldown, minedOre, warehouseOre),
+            previewData = BuildOfflinePreviewData(
+                previewData,
+                storedPlatformOre,
+                shuttleLoadingOre,
+                shuttleLoadingTargetOre,
+                shuttleLoadingCooldown,
+                shuttleDeliveringOre,
+                shuttleCooldown,
+                minedOre,
+                warehouseOre),
             shouldShowPopup = autoSendEnabled && warehouseOre > 0
         };
     }
@@ -649,6 +740,13 @@ public class GameManager : MonoBehaviour
         return gameConfig != null
             ? gameConfig.Capacity
             : ShuttleConfig.DefaultCapacity;
+    }
+
+    private float GetConfiguredShuttleLoadingTimeSeconds()
+    {
+        return gameConfig != null
+            ? gameConfig.LoadingTimeSeconds
+            : ShuttleConfig.DefaultLoadingTimeSeconds;
     }
 
     private float GetConfiguredShuttleTravelTimeSeconds()
@@ -965,8 +1063,11 @@ public class GameManager : MonoBehaviour
                pendingOfflinePreviewData.metal != gameData.metal ||
                pendingOfflinePreviewData.crystal != gameData.crystal ||
                pendingOfflinePreviewData.shuttleOre != gameData.shuttleOre ||
+               pendingOfflinePreviewData.shuttleLoadingOre != gameData.shuttleLoadingOre ||
+               pendingOfflinePreviewData.shuttleLoadingTargetOre != gameData.shuttleLoadingTargetOre ||
                pendingOfflinePreviewData.shuttleDeliveringOre != gameData.shuttleDeliveringOre ||
                pendingOfflinePreviewData.platformCapacity != gameData.platformCapacity ||
+               !Mathf.Approximately(pendingOfflinePreviewData.shuttleLoadingCooldownRemaining, gameData.shuttleLoadingCooldownRemaining) ||
                !Mathf.Approximately(pendingOfflinePreviewData.shuttleSendCooldownRemaining, gameData.shuttleSendCooldownRemaining) ||
                !Mathf.Approximately(pendingOfflinePreviewData.energyRegenTimer, gameData.energyRegenTimer) ||
                pendingOfflinePreviewData.totalOreEarned != gameData.totalOreEarned;
@@ -975,17 +1076,39 @@ public class GameManager : MonoBehaviour
     private GameData BuildOfflinePreviewData(
         GameData previewData,
         int shuttleOre,
+        int shuttleLoadingOre,
+        int shuttleLoadingTargetOre,
+        float shuttleLoadingCooldown,
         int shuttleDeliveringOre,
         float shuttleCooldown,
         int minedOre,
         int warehouseOre)
     {
         previewData.shuttleOre = Mathf.Max(0, shuttleOre);
+        previewData.shuttleLoadingOre = Mathf.Max(0, shuttleLoadingOre);
+        previewData.shuttleLoadingTargetOre = Mathf.Max(previewData.shuttleLoadingOre, shuttleLoadingTargetOre);
+        previewData.shuttleLoadingCooldownRemaining = Mathf.Max(0f, shuttleLoadingCooldown);
         previewData.shuttleDeliveringOre = Mathf.Max(0, shuttleDeliveringOre);
         previewData.shuttleSendCooldownRemaining = Mathf.Max(0f, shuttleCooldown);
         previewData.ore += warehouseOre;
         previewData.totalOreEarned += minedOre;
         return previewData;
+    }
+
+    private int GetOfflineLoadedOre(int targetOre, float loadingTimeSeconds, float loadingCooldownRemaining)
+    {
+        if (targetOre <= 0)
+        {
+            return 0;
+        }
+
+        if (loadingTimeSeconds <= 0f || loadingCooldownRemaining <= 0f)
+        {
+            return targetOre;
+        }
+
+        float progress = 1f - Mathf.Clamp01(loadingCooldownRemaining / loadingTimeSeconds);
+        return Mathf.Clamp(Mathf.FloorToInt(targetOre * progress), 0, targetOre);
     }
 
     private void SaveResource(ResourceType resourceType, int amount)

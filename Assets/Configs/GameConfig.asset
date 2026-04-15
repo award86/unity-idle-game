@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66dfafc2b6ce2d049b218752ef3272e9, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: Assembly-CSharp::ShuttleConfig
-  startOreAmount: 0
+  startOreAmount: 10000
   startEnergy: 0
-  startMetal: 0
+  startMetal: 1000
   startCrystal: 0
   startOrePerClick: 1
   startOrePerSecond: 0
@@ -30,5 +30,6 @@ MonoBehaviour:
   startPlatformCapacity: 30
   shuttleStartOre: 0
   shuttleCapacity: 20
+  shuttleLoadingTimeSeconds: 5
   shuttleTravelTimeSeconds: 10
   boostOfferAutoCloseSeconds: 5

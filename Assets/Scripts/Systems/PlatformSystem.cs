@@ -16,6 +16,11 @@ public class PlatformSystem
             return 0;
         }
 
+        if (IsLoadingToShuttle())
+        {
+            return 0;
+        }
+
         int freeCapacity = GetFreeCapacity();
 
         if (freeCapacity <= 0)
@@ -64,5 +69,11 @@ public class PlatformSystem
     public bool HasEnoughOreForAutoSend()
     {
         return GetStoredOre() >= GetAutoSendThreshold();
+    }
+
+    private bool IsLoadingToShuttle()
+    {
+        return gameData.shuttleLoadingCooldownRemaining > 0f ||
+               gameData.shuttleLoadingTargetOre > 0;
     }
 }

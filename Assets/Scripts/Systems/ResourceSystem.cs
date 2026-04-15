@@ -92,6 +92,16 @@ public class ResourceSystem
 
     public int AddProducedOre(int amount)
     {
+        if (amount <= 0)
+        {
+            return 0;
+        }
+
+        if (!gameData.hasMiningPlatform)
+        {
+            return AddOreDirectlyToShuttle(amount);
+        }
+
         if (platformSystem == null)
         {
             return 0;
@@ -108,6 +118,11 @@ public class ResourceSystem
     public void AddPassiveOre()
     {
         AddProducedOre(gameData.orePerSecond);
+    }
+
+    public int GetPassiveOrePerSecond()
+    {
+        return Mathf.Max(0, gameData.orePerSecond);
     }
 
     public bool TryProduceMetal()
@@ -143,5 +158,34 @@ public class ResourceSystem
         }
 
         return costs;
+    }
+
+    private int AddOreDirectlyToShuttle(int amount)
+    {
+        if (IsShuttleBusy())
+        {
+            return 0;
+        }
+
+        int freeCapacity = Mathf.Max(0, gameData.shuttleCapacity - gameData.shuttleOre);
+
+        if (freeCapacity <= 0)
+        {
+            return 0;
+        }
+
+        int addedAmount = Mathf.Min(amount, freeCapacity);
+        gameData.shuttleOre += addedAmount;
+        gameData.totalOreEarned += addedAmount;
+        return addedAmount;
+    }
+
+    private bool IsShuttleBusy()
+    {
+        return gameData.shuttleLoadingCooldownRemaining > 0f ||
+               gameData.shuttleLoadingTargetOre > 0 ||
+               gameData.shuttleLoadingOre > 0 ||
+               gameData.shuttleSendCooldownRemaining > 0f ||
+               gameData.shuttleDeliveringOre > 0;
     }
 }
