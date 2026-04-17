@@ -23,6 +23,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text platformBarText;
     [SerializeField] private Image shuttleFillImage;
     [SerializeField] private Text shuttleBarText;
+    [SerializeField] private float safeAreaExtraTopPadding = 24f;
+    [SerializeField] private float safeAreaExtraSidePadding = 12f;
+    [SerializeField] private float centeredPopupYOffsetFactor = 0.35f;
+    [SerializeField] private int upgradeContentTopPadding = 150;
+    [SerializeField] private int buildContentTopPadding = 20;
     [SerializeField] private Button sendShuttleButton;
     [SerializeField] private Text sendShuttleButtonText;
     [SerializeField] private Button sendShuttleButton2;
@@ -75,10 +80,18 @@ public class UIManager : MonoBehaviour
     private readonly List<MetaBonusItemUI> metaBonusItems = new List<MetaBonusItemUI>();
     private readonly List<Button> shuttleButtons = new List<Button>();
     private readonly List<Text> shuttleButtonTexts = new List<Text>();
+    private readonly Dictionary<RectTransform, Vector2> baseAnchoredPositions = new Dictionary<RectTransform, Vector2>();
+    private readonly Dictionary<RectTransform, Vector2> baseOffsetMins = new Dictionary<RectTransform, Vector2>();
+    private readonly Dictionary<RectTransform, Vector2> baseOffsetMaxes = new Dictionary<RectTransform, Vector2>();
+    private readonly Dictionary<VerticalLayoutGroup, RectOffset> baseLayoutPaddings = new Dictionary<VerticalLayoutGroup, RectOffset>();
     private GameData lastDisplayedGameData;
     private UpgradeCategory selectedUpgradeCategory = UpgradeCategory.Miner;
     private float displayedEnergyAmount;
     private bool hasDisplayedEnergyAmount;
+    private Canvas rootCanvas;
+    private Rect lastAppliedSafeArea;
+    private Vector2Int lastAppliedScreenSize;
+    private RectTransform cachedMenuButtonRect;
 
     public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
     public bool IsBoostOfferVisible => boostOfferPanel != null && boostOfferPanel.activeSelf;
@@ -97,6 +110,13 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        rootCanvas = GetComponentInParent<Canvas>();
+
+        if (rootCanvas == null)
+        {
+            rootCanvas = FindAnyObjectByType<Canvas>();
+        }
+
         HideLegacyTextsIfBarsConfigured();
         HideSharedOverlay();
         HideMenu();
@@ -112,8 +132,15 @@ public class UIManager : MonoBehaviour
         UpdateBoostUI(null);
     }
 
+    private void Start()
+    {
+        ApplyResponsiveLayout(true);
+    }
+
     private void Update()
     {
+        ApplyResponsiveLayoutIfNeeded();
+
         if (lastDisplayedGameData == null)
         {
             return;
@@ -239,6 +266,7 @@ public class UIManager : MonoBehaviour
         EnsureShuttleButtonSlot(0, sendShuttleButton, sendShuttleButtonText, onShuttleSendRequested);
         EnsureShuttleButtonSlot(1, sendShuttleButton2, sendShuttleButtonText2, onShuttleSendRequested);
         EnsureShuttleButtonSlot(2, sendShuttleButton3, sendShuttleButtonText3, onShuttleSendRequested);
+        ApplyResponsiveLayout(true);
     }
 
     public void RefreshUpgradeList(GameData gameData)
@@ -930,6 +958,295 @@ public class UIManager : MonoBehaviour
     private bool IsGraphicActive(Graphic graphic)
     {
         return graphic != null && graphic.gameObject.activeInHierarchy;
+    }
+
+    private void ApplyResponsiveLayoutIfNeeded()
+    {
+        if (rootCanvas == null)
+        {
+            rootCanvas = GetComponentInParent<Canvas>();
+
+            if (rootCanvas == null)
+            {
+                rootCanvas = FindAnyObjectByType<Canvas>();
+            }
+        }
+
+        Vector2Int currentScreenSize = new Vector2Int(Screen.width, Screen.height);
+
+        if (currentScreenSize == lastAppliedScreenSize &&
+            Screen.safeArea == lastAppliedSafeArea)
+        {
+            return;
+        }
+
+        ApplyResponsiveLayout(false);
+    }
+
+    private void ApplyResponsiveLayout(bool force)
+    {
+        if (rootCanvas == null)
+        {
+            rootCanvas = GetComponentInParent<Canvas>();
+
+            if (rootCanvas == null)
+            {
+                rootCanvas = FindAnyObjectByType<Canvas>();
+            }
+        }
+
+        RectTransform canvasRect = rootCanvas != null
+            ? rootCanvas.GetComponent<RectTransform>()
+            : null;
+
+        if (canvasRect == null || Screen.width <= 0 || Screen.height <= 0)
+        {
+            return;
+        }
+
+        Rect safeArea = Screen.safeArea;
+        Vector2Int currentScreenSize = new Vector2Int(Screen.width, Screen.height);
+
+        if (!force &&
+            currentScreenSize == lastAppliedScreenSize &&
+            safeArea == lastAppliedSafeArea)
+        {
+            return;
+        }
+
+        Canvas.ForceUpdateCanvases();
+
+        float widthScale = canvasRect.rect.width / Screen.width;
+        float heightScale = canvasRect.rect.height / Screen.height;
+        float topInset = ((Screen.height - safeArea.yMax) * heightScale) + safeAreaExtraTopPadding;
+        float leftInset = (safeArea.xMin * widthScale) + safeAreaExtraSidePadding;
+        float rightInset = ((Screen.width - safeArea.xMax) * widthScale) + safeAreaExtraSidePadding;
+        float bottomInset = safeArea.yMin * heightScale;
+
+        ApplyTopSafeArea(topInset, leftInset, rightInset);
+        ApplyStretchPanelSafeArea(upgradePanel, leftInset, rightInset, topInset, bottomInset);
+        ApplyStretchPanelSafeArea(buildPanel, leftInset, rightInset, topInset, bottomInset);
+        ApplyStretchPanelSafeArea(missionPanel, leftInset, rightInset, topInset, bottomInset);
+        ApplyCenteredPopupSafeArea(resetConfirmationPanel, topInset);
+        ApplyCenteredPopupSafeArea(offlineRewardPanel, topInset);
+        ApplyCenteredPopupSafeArea(boostOfferPanel, topInset);
+        ApplyLayoutPadding(upgradeListRoot, upgradeContentTopPadding);
+        ApplyLayoutPadding(buildListRoot, buildContentTopPadding);
+
+        lastAppliedSafeArea = safeArea;
+        lastAppliedScreenSize = currentScreenSize;
+    }
+
+    private void ApplyTopSafeArea(float topInset, float leftInset, float rightInset)
+    {
+        RectTransform energyBarRoot = GetBarRoot(energyFillImage, energyBarText);
+        RectTransform platformBarRoot = GetBarRoot(platformFillImage, platformBarText);
+        RectTransform shuttleBarRoot = GetBarRoot(shuttleFillImage, shuttleBarText);
+
+        ApplyTopAnchoredOffset(GetRectTransform(oreText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(orePerSecondText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(orePerClickText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(energyText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(metalText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(crystalText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(platformText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(shuttleText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(boostStatusText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(energyBarRoot, topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(platformBarRoot, topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(shuttleBarRoot, topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(produceMetalButton), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(sendShuttleButton), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(sendShuttleButton2), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(sendShuttleButton3), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(dropdownMenuPanel != null ? dropdownMenuPanel.GetComponent<RectTransform>() : null, topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetMenuButtonRect(), topInset, leftInset, rightInset);
+    }
+
+    private void ApplyTopAnchoredOffset(RectTransform rectTransform, float topInset, float leftInset, float rightInset)
+    {
+        if (rectTransform == null)
+        {
+            return;
+        }
+
+        CacheAnchoredPosition(rectTransform);
+
+        Vector2 basePosition = baseAnchoredPositions[rectTransform];
+        Vector2 adjustedPosition = basePosition;
+
+        if (rectTransform.anchorMin.y >= 0.5f && rectTransform.anchorMax.y >= 0.5f)
+        {
+            adjustedPosition.y = basePosition.y - topInset;
+        }
+
+        if (rectTransform.anchorMin.x >= 0.99f && rectTransform.anchorMax.x >= 0.99f)
+        {
+            adjustedPosition.x = basePosition.x - rightInset;
+        }
+        else if (rectTransform.anchorMin.x <= 0.01f && rectTransform.anchorMax.x <= 0.01f)
+        {
+            adjustedPosition.x = basePosition.x + leftInset;
+        }
+
+        rectTransform.anchoredPosition = adjustedPosition;
+    }
+
+    private void ApplyStretchPanelSafeArea(GameObject panelObject, float leftInset, float rightInset, float topInset, float bottomInset)
+    {
+        if (panelObject == null)
+        {
+            return;
+        }
+
+        RectTransform rectTransform = panelObject.GetComponent<RectTransform>();
+
+        if (rectTransform == null)
+        {
+            return;
+        }
+
+        CacheStretchOffsets(rectTransform);
+        rectTransform.offsetMin = baseOffsetMins[rectTransform] + new Vector2(leftInset, bottomInset);
+        rectTransform.offsetMax = baseOffsetMaxes[rectTransform] + new Vector2(-rightInset, -topInset);
+    }
+
+    private void ApplyCenteredPopupSafeArea(GameObject popupObject, float topInset)
+    {
+        if (popupObject == null)
+        {
+            return;
+        }
+
+        RectTransform rectTransform = popupObject.GetComponent<RectTransform>();
+
+        if (rectTransform == null)
+        {
+            return;
+        }
+
+        CacheAnchoredPosition(rectTransform);
+        Vector2 basePosition = baseAnchoredPositions[rectTransform];
+        rectTransform.anchoredPosition = new Vector2(
+            basePosition.x,
+            basePosition.y - (topInset * centeredPopupYOffsetFactor));
+    }
+
+    private void ApplyLayoutPadding(Transform listRoot, int extraTopPadding)
+    {
+        if (listRoot == null)
+        {
+            return;
+        }
+
+        VerticalLayoutGroup layoutGroup = listRoot.GetComponent<VerticalLayoutGroup>();
+
+        if (layoutGroup == null)
+        {
+            return;
+        }
+
+        CacheLayoutPadding(layoutGroup);
+        RectOffset basePadding = baseLayoutPaddings[layoutGroup];
+        layoutGroup.padding = new RectOffset(
+            basePadding.left,
+            basePadding.right,
+            basePadding.top + Math.Max(0, extraTopPadding),
+            basePadding.bottom);
+    }
+
+    private RectTransform GetRectTransform(Component component)
+    {
+        return component != null ? component.GetComponent<RectTransform>() : null;
+    }
+
+    private RectTransform GetBarRoot(Graphic fillGraphic, Graphic textGraphic)
+    {
+        RectTransform fillRect = GetRectTransform(fillGraphic);
+
+        if (fillRect != null && fillRect.parent is RectTransform fillParent)
+        {
+            return fillParent;
+        }
+
+        RectTransform textRect = GetRectTransform(textGraphic);
+
+        if (textRect != null && textRect.parent is RectTransform textParent)
+        {
+            return textParent;
+        }
+
+        return null;
+    }
+
+    private RectTransform GetMenuButtonRect()
+    {
+        if (cachedMenuButtonRect != null)
+        {
+            return cachedMenuButtonRect;
+        }
+
+        cachedMenuButtonRect = FindRectTransformByName("MenuButton");
+        return cachedMenuButtonRect;
+    }
+
+    private RectTransform FindRectTransformByName(string objectName)
+    {
+        if (rootCanvas == null)
+        {
+            return null;
+        }
+
+        Transform[] transforms = rootCanvas.GetComponentsInChildren<Transform>(true);
+
+        for (int i = 0; i < transforms.Length; i++)
+        {
+            if (transforms[i].name == objectName)
+            {
+                return transforms[i] as RectTransform;
+            }
+        }
+
+        return null;
+    }
+
+    private void CacheAnchoredPosition(RectTransform rectTransform)
+    {
+        if (rectTransform != null && !baseAnchoredPositions.ContainsKey(rectTransform))
+        {
+            baseAnchoredPositions.Add(rectTransform, rectTransform.anchoredPosition);
+        }
+    }
+
+    private void CacheStretchOffsets(RectTransform rectTransform)
+    {
+        if (rectTransform == null)
+        {
+            return;
+        }
+
+        if (!baseOffsetMins.ContainsKey(rectTransform))
+        {
+            baseOffsetMins.Add(rectTransform, rectTransform.offsetMin);
+        }
+
+        if (!baseOffsetMaxes.ContainsKey(rectTransform))
+        {
+            baseOffsetMaxes.Add(rectTransform, rectTransform.offsetMax);
+        }
+    }
+
+    private void CacheLayoutPadding(VerticalLayoutGroup layoutGroup)
+    {
+        if (layoutGroup == null || baseLayoutPaddings.ContainsKey(layoutGroup))
+        {
+            return;
+        }
+
+        RectOffset padding = layoutGroup.padding;
+        baseLayoutPaddings.Add(
+            layoutGroup,
+            new RectOffset(padding.left, padding.right, padding.top, padding.bottom));
     }
 
     private void RefreshEnergyVisuals(GameData gameData, bool snapToTarget)
