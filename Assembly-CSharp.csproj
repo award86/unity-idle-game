@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Upgrades\TemporaryBoostState.cs" />
     <Compile Include="Assets\Scripts\Missions\MissionObjectiveType.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingConfig.cs" />
+    <Compile Include="Assets\Scripts\Data\ShuttleState.cs" />
     <Compile Include="Assets\Scripts\Upgrades\TemporaryBoostConfig.cs" />
     <Compile Include="Assets\Scripts\Data\GameData.cs" />
     <Compile Include="Assets\Scripts\Data\GameSettings.cs" />

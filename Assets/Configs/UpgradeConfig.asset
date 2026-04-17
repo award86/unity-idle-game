@@ -171,6 +171,20 @@ MonoBehaviour:
       valuePerLevel: 1.5
     costMultiplier: 1.7
     maxLevel: 6
+  - id: fleet_hangar
+    upgradeName: Fleet Hangar
+    description: Deploys additional ore shuttles to the platform fleet.
+    category: 3
+    baseCosts:
+    - resourceType: 2
+      amount: 14
+    - resourceType: 0
+      amount: 90
+    effects:
+    - effectType: 13
+      valuePerLevel: 1
+    costMultiplier: 2
+    maxLevel: 2
   - id: cargo_capacity
     upgradeName: Cargo Capacity
     description: Increases how much ore the shuttle can haul per trip.
@@ -187,13 +201,15 @@ MonoBehaviour:
     maxLevel: 8
   - id: auto_shuttle_dispatch
     upgradeName: Auto Dispatch
-    description: Launches the shuttle automatically when it is full.
+    description: Unlocks auto dispatch for one more shuttle in your fleet.
     category: 3
     baseCosts:
     - resourceType: 2
       amount: 20
+    - resourceType: 0
+      amount: 60
     effects:
     - effectType: 11
       valuePerLevel: 1
-    costMultiplier: 1
-    maxLevel: 1
+    costMultiplier: 1.9
+    maxLevel: 3

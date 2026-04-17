@@ -12,5 +12,6 @@ public enum UpgradeEffectType
     ShuttleCapacity,
     ShuttleTravelTimeReduction,
     ShuttleAutoSend,
-    ShuttleLoadingTimeReduction
+    ShuttleLoadingTimeReduction,
+    ShuttleCount
 }

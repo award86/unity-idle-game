@@ -49,6 +49,7 @@ public class UpgradeDefinition
                 case UpgradeEffectType.ShuttleCapacity:
                 case UpgradeEffectType.ShuttleTravelTimeReduction:
                 case UpgradeEffectType.ShuttleAutoSend:
+                case UpgradeEffectType.ShuttleCount:
                     return UpgradeCategory.Shuttle;
             }
         }

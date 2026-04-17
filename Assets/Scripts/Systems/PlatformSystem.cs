@@ -63,7 +63,12 @@ public class PlatformSystem
 
     public int GetAutoSendThreshold()
     {
-        int remainingShuttleSpace = Mathf.Max(0, gameData.shuttleCapacity - gameData.shuttleDockedOre);
+        return GetAutoSendThreshold(gameData.shuttleDockedOre, gameData.shuttleCapacity);
+    }
+
+    public int GetAutoSendThreshold(int currentDockedOre, int currentShuttleCapacity)
+    {
+        int remainingShuttleSpace = Mathf.Max(0, currentShuttleCapacity - currentDockedOre);
 
         if (remainingShuttleSpace <= 0)
         {
@@ -79,9 +84,25 @@ public class PlatformSystem
         return autoSendThreshold > 0 && GetStoredOre() >= autoSendThreshold;
     }
 
+    public bool HasEnoughOreForAutoSend(int currentDockedOre, int currentShuttleCapacity)
+    {
+        int autoSendThreshold = GetAutoSendThreshold(currentDockedOre, currentShuttleCapacity);
+        return autoSendThreshold > 0 && GetStoredOre() >= autoSendThreshold;
+    }
+
     private bool IsLoadingToShuttle()
     {
-        return gameData.shuttleLoadingCooldownRemaining > 0f ||
-               gameData.shuttleLoadingTargetOre > 0;
+        for (int i = 0; i < gameData.ActiveShuttleCount; i++)
+        {
+            ShuttleState shuttleState = gameData.GetShuttleState(i);
+
+            if (shuttleState.loadingCooldownRemaining > 0f ||
+                shuttleState.loadingTargetOre > 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

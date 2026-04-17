@@ -4,21 +4,18 @@ using System.Collections.Generic;
 [Serializable]
 public class GameData
 {
+    public const int MaxShuttles = 3;
+
     public List<ResourceState> resources = new List<ResourceState>();
+    public List<ShuttleState> shuttleStates = new List<ShuttleState>();
     public bool hasMiningPlatform = false;
     public int shuttleOre = ShuttleConfig.DefaultStartOre;
-    public int shuttleDockedOre = 0;
-    public int shuttleLoadingOre = 0;
-    public int shuttleLoadingTargetOre = 0;
-    public bool shuttleSendAfterLoading = false;
-    public int shuttleDeliveringOre = 0;
+    public int shuttleCount = 1;
+    public int shuttleAutoSendCount = 0;
     public int platformCapacity = ShuttleConfig.DefaultPlatformCapacity;
     public int shuttleCapacity = ShuttleConfig.DefaultCapacity;
     public float shuttleLoadingTimeSeconds = ShuttleConfig.DefaultLoadingTimeSeconds;
-    public float shuttleLoadingCooldownRemaining = 0f;
     public float shuttleTravelTimeSeconds = ShuttleConfig.DefaultTravelTimeSeconds;
-    public float shuttleSendCooldownRemaining = 0f;
-    public bool shuttleAutoSendEnabled = false;
     public int orePerClick = ShuttleConfig.DefaultStartOrePerClick;
     public int orePerSecond = ShuttleConfig.DefaultStartOrePerSecond;
     public int energyMax = ShuttleConfig.DefaultStartEnergyMax;
@@ -33,7 +30,59 @@ public class GameData
     public GameData()
     {
         EnsureDefaultResources();
+        EnsureDefaultShuttles();
     }
+
+    public int shuttleDockedOre
+    {
+        get => GetShuttleState(0).dockedOre;
+        set => GetShuttleState(0).dockedOre = Math.Max(0, value);
+    }
+
+    public int shuttleLoadingOre
+    {
+        get => GetShuttleState(0).loadingOre;
+        set => GetShuttleState(0).loadingOre = Math.Max(0, value);
+    }
+
+    public int shuttleLoadingTargetOre
+    {
+        get => GetShuttleState(0).loadingTargetOre;
+        set => GetShuttleState(0).loadingTargetOre = Math.Max(shuttleLoadingOre, value);
+    }
+
+    public bool shuttleSendAfterLoading
+    {
+        get => GetShuttleState(0).sendAfterLoading;
+        set => GetShuttleState(0).sendAfterLoading = value;
+    }
+
+    public int shuttleDeliveringOre
+    {
+        get => GetShuttleState(0).deliveringOre;
+        set => GetShuttleState(0).deliveringOre = Math.Max(0, value);
+    }
+
+    public float shuttleLoadingCooldownRemaining
+    {
+        get => GetShuttleState(0).loadingCooldownRemaining;
+        set => GetShuttleState(0).loadingCooldownRemaining = Math.Max(0f, value);
+    }
+
+    public float shuttleSendCooldownRemaining
+    {
+        get => GetShuttleState(0).sendCooldownRemaining;
+        set => GetShuttleState(0).sendCooldownRemaining = Math.Max(0f, value);
+    }
+
+    public bool shuttleAutoSendEnabled
+    {
+        get => ActiveAutoSendShuttleCount > 0;
+        set => shuttleAutoSendCount = value ? Math.Max(1, shuttleAutoSendCount) : 0;
+    }
+
+    public int ActiveShuttleCount => ClampShuttleCount(shuttleCount);
+    public int ActiveAutoSendShuttleCount => Math.Min(ActiveShuttleCount, Math.Max(0, shuttleAutoSendCount));
 
     public int ore
     {
@@ -67,6 +116,41 @@ public class GameData
         EnsureResourceState(ResourceType.Crystal, ShuttleConfig.DefaultStartCrystal);
     }
 
+    public void EnsureDefaultShuttles()
+    {
+        while (shuttleStates.Count < MaxShuttles)
+        {
+            shuttleStates.Add(new ShuttleState());
+        }
+    }
+
+    public ShuttleState GetShuttleState(int index)
+    {
+        EnsureDefaultShuttles();
+
+        if (index < 0)
+        {
+            index = 0;
+        }
+
+        while (shuttleStates.Count <= index)
+        {
+            shuttleStates.Add(new ShuttleState());
+        }
+
+        return shuttleStates[index];
+    }
+
+    public void ResetUnusedShuttles()
+    {
+        EnsureDefaultShuttles();
+
+        for (int i = ActiveShuttleCount; i < shuttleStates.Count; i++)
+        {
+            shuttleStates[i].Reset();
+        }
+    }
+
     public int GetResourceAmount(ResourceType resourceType)
     {
         EnsureDefaultResources();
@@ -96,6 +180,7 @@ public class GameData
         }
 
         resources = new List<ResourceState>();
+        shuttleStates = new List<ShuttleState>();
 
         for (int i = 0; i < source.resources.Count; i++)
         {
@@ -103,20 +188,19 @@ public class GameData
             resources.Add(new ResourceState(sourceState.resourceType, sourceState.amount));
         }
 
+        for (int i = 0; i < source.shuttleStates.Count; i++)
+        {
+            shuttleStates.Add(source.shuttleStates[i].Clone());
+        }
+
         hasMiningPlatform = source.hasMiningPlatform;
         shuttleOre = source.shuttleOre;
-        shuttleDockedOre = source.shuttleDockedOre;
-        shuttleLoadingOre = source.shuttleLoadingOre;
-        shuttleLoadingTargetOre = source.shuttleLoadingTargetOre;
-        shuttleSendAfterLoading = source.shuttleSendAfterLoading;
-        shuttleDeliveringOre = source.shuttleDeliveringOre;
+        shuttleCount = source.shuttleCount;
+        shuttleAutoSendCount = source.shuttleAutoSendCount;
         platformCapacity = source.platformCapacity;
         shuttleCapacity = source.shuttleCapacity;
         shuttleLoadingTimeSeconds = source.shuttleLoadingTimeSeconds;
-        shuttleLoadingCooldownRemaining = source.shuttleLoadingCooldownRemaining;
         shuttleTravelTimeSeconds = source.shuttleTravelTimeSeconds;
-        shuttleSendCooldownRemaining = source.shuttleSendCooldownRemaining;
-        shuttleAutoSendEnabled = source.shuttleAutoSendEnabled;
         orePerClick = source.orePerClick;
         orePerSecond = source.orePerSecond;
         energyMax = source.energyMax;
@@ -129,6 +213,7 @@ public class GameData
         totalOreEarned = source.totalOreEarned;
 
         EnsureDefaultResources();
+        EnsureDefaultShuttles();
     }
 
     private ResourceState FindResourceState(ResourceType resourceType)
@@ -156,5 +241,10 @@ public class GameData
         ResourceState newState = new ResourceState(resourceType, defaultAmount);
         resources.Add(newState);
         return newState;
+    }
+
+    private int ClampShuttleCount(int count)
+    {
+        return Math.Max(1, Math.Min(MaxShuttles, count));
     }
 }

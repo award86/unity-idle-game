@@ -317,15 +317,17 @@ public class UpgradeManager
         int shuttleCapacity = GetBaseShuttleCapacity();
         float shuttleLoadingTimeSeconds = GetBaseShuttleLoadingTimeSeconds();
         float shuttleTravelTimeSeconds = GetBaseShuttleTravelTimeSeconds();
-        bool shuttleAutoSendEnabled = false;
+        int shuttleCount = 1;
+        int shuttleAutoSendCount = 0;
+        bool legacyMetaAutoSendEnabled = false;
 
         ApplyEffects(buildingStates, ref orePerClick, ref orePerSecond, ref energyMax, ref energyRegenAmount,
             ref energyRegenInterval, ref metalPerCraft, ref metalOreCost, ref metalEnergyCost,
-            ref platformCapacity, ref shuttleCapacity, ref shuttleLoadingTimeSeconds, ref shuttleTravelTimeSeconds, ref shuttleAutoSendEnabled);
+            ref platformCapacity, ref shuttleCapacity, ref shuttleLoadingTimeSeconds, ref shuttleTravelTimeSeconds, ref shuttleCount, ref shuttleAutoSendCount);
 
         ApplyEffects(upgradeStates, ref orePerClick, ref orePerSecond, ref energyMax, ref energyRegenAmount,
             ref energyRegenInterval, ref metalPerCraft, ref metalOreCost, ref metalEnergyCost,
-            ref platformCapacity, ref shuttleCapacity, ref shuttleLoadingTimeSeconds, ref shuttleTravelTimeSeconds, ref shuttleAutoSendEnabled);
+            ref platformCapacity, ref shuttleCapacity, ref shuttleLoadingTimeSeconds, ref shuttleTravelTimeSeconds, ref shuttleCount, ref shuttleAutoSendCount);
 
         if (missionManager != null)
         {
@@ -342,7 +344,12 @@ public class UpgradeManager
                 ref shuttleCapacity,
                 ref shuttleLoadingTimeSeconds,
                 ref shuttleTravelTimeSeconds,
-                ref shuttleAutoSendEnabled);
+                ref legacyMetaAutoSendEnabled);
+
+            if (legacyMetaAutoSendEnabled)
+            {
+                shuttleAutoSendCount = Mathf.Max(shuttleAutoSendCount, 1);
+            }
         }
 
         float orePerClickMultiplier = 1f;
@@ -379,16 +386,41 @@ public class UpgradeManager
         gameData.shuttleCapacity = Mathf.Max(1, shuttleCapacity);
         gameData.shuttleLoadingTimeSeconds = Mathf.Max(0f, shuttleLoadingTimeSeconds);
         gameData.shuttleTravelTimeSeconds = Mathf.Max(0f, shuttleTravelTimeSeconds);
-        gameData.shuttleAutoSendEnabled = shuttleAutoSendEnabled;
+        gameData.shuttleCount = Mathf.Clamp(shuttleCount, 1, GameData.MaxShuttles);
+        gameData.shuttleAutoSendCount = Mathf.Clamp(shuttleAutoSendCount, 0, gameData.shuttleCount);
         gameData.shuttleOre = hasMiningPlatform
             ? Mathf.Clamp(gameData.shuttleOre, 0, gameData.platformCapacity)
             : Mathf.Clamp(gameData.shuttleOre, 0, gameData.shuttleCapacity);
-        gameData.shuttleDockedOre = hasMiningPlatform
-            ? Mathf.Clamp(gameData.shuttleDockedOre, 0, gameData.shuttleCapacity)
-            : 0;
         gameData.energy = hasPowerStation
             ? Mathf.Min(gameData.energy, gameData.energyMax)
             : 0;
+
+        for (int i = 0; i < gameData.ActiveShuttleCount; i++)
+        {
+            ShuttleState shuttleState = gameData.GetShuttleState(i);
+            shuttleState.dockedOre = hasMiningPlatform
+                ? Mathf.Clamp(shuttleState.dockedOre, 0, gameData.shuttleCapacity)
+                : 0;
+            shuttleState.loadingOre = Mathf.Clamp(shuttleState.loadingOre, 0, gameData.shuttleCapacity);
+            shuttleState.loadingTargetOre = Mathf.Max(shuttleState.loadingOre, shuttleState.loadingTargetOre);
+            shuttleState.deliveringOre = Mathf.Clamp(shuttleState.deliveringOre, 0, gameData.shuttleCapacity);
+
+            if (shuttleState.loadingCooldownRemaining > 0f)
+            {
+                shuttleState.loadingCooldownRemaining = Mathf.Min(
+                    shuttleState.loadingCooldownRemaining,
+                    gameData.shuttleLoadingTimeSeconds);
+            }
+
+            if (shuttleState.sendCooldownRemaining > 0f)
+            {
+                shuttleState.sendCooldownRemaining = Mathf.Min(
+                    shuttleState.sendCooldownRemaining,
+                    gameData.shuttleTravelTimeSeconds);
+            }
+        }
+
+        gameData.ResetUnusedShuttles();
 
         if (gameData.shuttleLoadingCooldownRemaining > 0f)
         {
@@ -831,7 +863,8 @@ public class UpgradeManager
         ref int shuttleCapacity,
         ref float shuttleLoadingTimeSeconds,
         ref float shuttleTravelTimeSeconds,
-        ref bool shuttleAutoSendEnabled)
+        ref int shuttleCount,
+        ref int shuttleAutoSendCount)
     {
         for (int i = 0; i < states.Count; i++)
         {
@@ -857,7 +890,8 @@ public class UpgradeManager
                 ref shuttleCapacity,
                 ref shuttleLoadingTimeSeconds,
                 ref shuttleTravelTimeSeconds,
-                ref shuttleAutoSendEnabled);
+                ref shuttleCount,
+                ref shuttleAutoSendCount);
         }
     }
 
@@ -875,7 +909,8 @@ public class UpgradeManager
         ref int shuttleCapacity,
         ref float shuttleLoadingTimeSeconds,
         ref float shuttleTravelTimeSeconds,
-        ref bool shuttleAutoSendEnabled)
+        ref int shuttleCount,
+        ref int shuttleAutoSendCount)
     {
         for (int i = 0; i < states.Count; i++)
         {
@@ -901,7 +936,8 @@ public class UpgradeManager
                 ref shuttleCapacity,
                 ref shuttleLoadingTimeSeconds,
                 ref shuttleTravelTimeSeconds,
-                ref shuttleAutoSendEnabled);
+                ref shuttleCount,
+                ref shuttleAutoSendCount);
         }
     }
 
@@ -920,7 +956,8 @@ public class UpgradeManager
         ref int shuttleCapacity,
         ref float shuttleLoadingTimeSeconds,
         ref float shuttleTravelTimeSeconds,
-        ref bool shuttleAutoSendEnabled)
+        ref int shuttleCount,
+        ref int shuttleAutoSendCount)
     {
         for (int effectIndex = 0; effectIndex < effects.Count; effectIndex++)
         {
@@ -978,7 +1015,11 @@ public class UpgradeManager
                     break;
 
                 case UpgradeEffectType.ShuttleAutoSend:
-                    shuttleAutoSendEnabled = true;
+                    shuttleAutoSendCount += Mathf.Max(1, Mathf.RoundToInt(effectValue));
+                    break;
+
+                case UpgradeEffectType.ShuttleCount:
+                    shuttleCount += Mathf.RoundToInt(effectValue);
                     break;
             }
         }

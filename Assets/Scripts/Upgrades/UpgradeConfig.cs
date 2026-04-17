@@ -253,6 +253,28 @@ public class UpgradeConfig : ScriptableObject
             },
             new UpgradeDefinition
             {
+                id = "fleet_hangar",
+                upgradeName = "Fleet Hangar",
+                description = "Deploys additional ore shuttles to the platform fleet.",
+                category = UpgradeCategory.Shuttle,
+                baseCosts = new List<ResourceAmount>
+                {
+                    new ResourceAmount(ResourceType.Metal, 14),
+                    new ResourceAmount(ResourceType.Ore, 90)
+                },
+                effects = new List<UpgradeEffectDefinition>
+                {
+                    new UpgradeEffectDefinition
+                    {
+                        effectType = UpgradeEffectType.ShuttleCount,
+                        valuePerLevel = 1f
+                    }
+                },
+                costMultiplier = 2f,
+                maxLevel = 2
+            },
+            new UpgradeDefinition
+            {
                 id = "shuttle_engine",
                 upgradeName = "Shuttle Engine",
                 description = "Cuts travel time between the platform and the warehouse.",
@@ -298,11 +320,12 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "auto_shuttle_dispatch",
                 upgradeName = "Auto Dispatch",
-                description = "Launches the shuttle automatically when it is full.",
+                description = "Unlocks auto dispatch for one more shuttle in your fleet.",
                 category = UpgradeCategory.Shuttle,
                 baseCosts = new List<ResourceAmount>
                 {
-                    new ResourceAmount(ResourceType.Metal, 20)
+                    new ResourceAmount(ResourceType.Metal, 20),
+                    new ResourceAmount(ResourceType.Ore, 60)
                 },
                 effects = new List<UpgradeEffectDefinition>
                 {
@@ -312,8 +335,8 @@ public class UpgradeConfig : ScriptableObject
                         valuePerLevel = 1f
                     }
                 },
-                costMultiplier = 1f,
-                maxLevel = 1
+                costMultiplier = 1.9f,
+                maxLevel = 3
             }
         };
     }

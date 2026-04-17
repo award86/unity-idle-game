@@ -13,17 +13,111 @@ public class ShuttleSystem
 
     public int SendToWarehouse()
     {
-        return SendToWarehouseInternal(false);
+        return SendToWarehouse(0);
+    }
+
+    public int SendToWarehouse(int shuttleIndex)
+    {
+        return SendToWarehouseInternal(shuttleIndex, false);
     }
 
     public int AutoSendToWarehouse()
     {
-        return SendToWarehouseInternal(true);
+        return AutoSendToWarehouse(0);
     }
 
-    private int SendToWarehouseInternal(bool requireFullCargo)
+    public int AutoSendToWarehouse(int shuttleIndex)
     {
-        if (!CanSend())
+        return SendToWarehouseInternal(shuttleIndex, true);
+    }
+
+    public bool CanSend(int shuttleIndex = 0)
+    {
+        if (!IsShuttleIndexUnlocked(shuttleIndex))
+        {
+            return false;
+        }
+
+        if (IsShuttleBusy(shuttleIndex))
+        {
+            return false;
+        }
+
+        if (!gameData.hasMiningPlatform)
+        {
+            return shuttleIndex == 0 && gameData.shuttleOre > 0;
+        }
+
+        ShuttleState shuttleState = GetShuttleState(shuttleIndex);
+        return shuttleState.dockedOre > 0 || GetAvailablePlatformOreForLoading(shuttleIndex) > 0;
+    }
+
+    public bool IsReadyForAutoSend(int shuttleIndex = 0)
+    {
+        if (!IsShuttleIndexUnlocked(shuttleIndex) ||
+            shuttleIndex >= gameData.ActiveAutoSendShuttleCount ||
+            !CanSend(shuttleIndex))
+        {
+            return false;
+        }
+
+        if (!gameData.hasMiningPlatform)
+        {
+            return shuttleIndex == 0 && gameData.shuttleOre >= gameData.shuttleCapacity;
+        }
+
+        ShuttleState shuttleState = GetShuttleState(shuttleIndex);
+
+        if (shuttleState.dockedOre >= gameData.shuttleCapacity)
+        {
+            return true;
+        }
+
+        int autoSendThreshold = platformSystem != null
+            ? platformSystem.GetAutoSendThreshold(shuttleState.dockedOre, gameData.shuttleCapacity)
+            : 0;
+
+        return autoSendThreshold > 0 && GetAvailablePlatformOreForLoading(shuttleIndex) >= autoSendThreshold;
+    }
+
+    public bool Update(float deltaTime)
+    {
+        if (deltaTime <= 0f)
+        {
+            return false;
+        }
+
+        bool hasChanges = false;
+
+        for (int i = 0; i < gameData.ActiveShuttleCount; i++)
+        {
+            hasChanges = UpdateLoading(i, deltaTime) || hasChanges;
+        }
+
+        for (int i = 0; i < gameData.ActiveShuttleCount; i++)
+        {
+            hasChanges = UpdateTravel(i, deltaTime) || hasChanges;
+        }
+
+        return hasChanges;
+    }
+
+    public bool IsBusy()
+    {
+        for (int i = 0; i < gameData.ActiveShuttleCount; i++)
+        {
+            if (IsShuttleBusy(i))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private int SendToWarehouseInternal(int shuttleIndex, bool requireFullCargo)
+    {
+        if (!CanSend(shuttleIndex))
         {
             return 0;
         }
@@ -38,23 +132,22 @@ public class ShuttleSystem
             }
 
             gameData.shuttleOre -= directCargoAmount;
-            StartTravelOrDeliver(directCargoAmount);
+            StartTravelOrDeliver(GetShuttleState(0), directCargoAmount);
             return directCargoAmount;
         }
 
-        int currentDockedOre = Mathf.Clamp(gameData.shuttleDockedOre, 0, gameData.shuttleCapacity);
+        ShuttleState shuttleState = GetShuttleState(shuttleIndex);
+        int currentDockedOre = Mathf.Clamp(shuttleState.dockedOre, 0, gameData.shuttleCapacity);
         int remainingCapacity = Mathf.Max(0, gameData.shuttleCapacity - currentDockedOre);
 
         if (requireFullCargo && currentDockedOre >= gameData.shuttleCapacity)
         {
-            gameData.shuttleDockedOre = 0;
-            StartTravelOrDeliver(currentDockedOre);
+            shuttleState.dockedOre = 0;
+            StartTravelOrDeliver(shuttleState, currentDockedOre);
             return currentDockedOre;
         }
 
-        int transferAmount = platformSystem != null
-            ? Mathf.Min(platformSystem.GetStoredOre(), remainingCapacity)
-            : 0;
+        int transferAmount = Mathf.Min(GetAvailablePlatformOreForLoading(shuttleIndex), remainingCapacity);
 
         if (transferAmount <= 0)
         {
@@ -63,8 +156,8 @@ public class ShuttleSystem
                 return 0;
             }
 
-            gameData.shuttleDockedOre = 0;
-            StartTravelOrDeliver(currentDockedOre);
+            shuttleState.dockedOre = 0;
+            StartTravelOrDeliver(shuttleState, currentDockedOre);
             return currentDockedOre;
         }
 
@@ -83,190 +176,135 @@ public class ShuttleSystem
                 return 0;
             }
 
-            gameData.shuttleDockedOre = Mathf.Clamp(currentDockedOre + instantlyLoadedAmount, 0, gameData.shuttleCapacity);
+            shuttleState.dockedOre = Mathf.Clamp(currentDockedOre + instantlyLoadedAmount, 0, gameData.shuttleCapacity);
 
             if (shouldSendAfterLoading)
             {
-                int cargoToSend = gameData.shuttleDockedOre;
-                gameData.shuttleDockedOre = 0;
-                StartTravelOrDeliver(cargoToSend);
+                int cargoToSend = shuttleState.dockedOre;
+                shuttleState.dockedOre = 0;
+                StartTravelOrDeliver(shuttleState, cargoToSend);
                 return cargoToSend;
             }
 
             return instantlyLoadedAmount;
         }
 
-        gameData.shuttleLoadingOre = 0;
-        gameData.shuttleLoadingTargetOre = transferAmount;
-        gameData.shuttleLoadingCooldownRemaining = loadingTimeSeconds;
-        gameData.shuttleSendAfterLoading = shouldSendAfterLoading;
+        shuttleState.loadingOre = 0;
+        shuttleState.loadingTargetOre = transferAmount;
+        shuttleState.loadingCooldownRemaining = loadingTimeSeconds;
+        shuttleState.sendAfterLoading = shouldSendAfterLoading;
         return transferAmount;
     }
 
-    public bool CanSend()
+    private bool UpdateLoading(int shuttleIndex, float deltaTime)
     {
-        if (IsBusy())
+        ShuttleState shuttleState = GetShuttleState(shuttleIndex);
+
+        if (shuttleState.loadingCooldownRemaining <= 0f || shuttleState.loadingTargetOre <= 0)
         {
             return false;
         }
 
-        if (!gameData.hasMiningPlatform)
-        {
-            return gameData.shuttleOre > 0;
-        }
-
-        return gameData.shuttleDockedOre > 0 ||
-               (platformSystem != null && platformSystem.HasOre());
-    }
-
-    public bool IsReadyForAutoSend()
-    {
-        if (!CanSend())
-        {
-            return false;
-        }
-
-        if (!gameData.hasMiningPlatform)
-        {
-            return gameData.shuttleOre >= gameData.shuttleCapacity;
-        }
-
-        if (gameData.shuttleDockedOre >= gameData.shuttleCapacity)
-        {
-            return true;
-        }
-
-        return platformSystem != null && platformSystem.HasEnoughOreForAutoSend();
-    }
-
-    public bool Update(float deltaTime)
-    {
-        if (deltaTime <= 0f)
-        {
-            return false;
-        }
-
+        int previousLoadingOre = shuttleState.loadingOre;
         int previousPlatformOre = gameData.shuttleOre;
-        int previousLoadingOre = gameData.shuttleLoadingOre;
-        int previousDeliveringOre = gameData.shuttleDeliveringOre;
-        int previousLoadingDisplayedSeconds = Mathf.CeilToInt(gameData.shuttleLoadingCooldownRemaining);
-        int previousTravelDisplayedSeconds = Mathf.CeilToInt(gameData.shuttleSendCooldownRemaining);
-
-        float remainingDeltaTime = deltaTime;
-        remainingDeltaTime = UpdateLoading(remainingDeltaTime);
-        UpdateTravel(remainingDeltaTime);
-
-        int currentLoadingDisplayedSeconds = Mathf.CeilToInt(gameData.shuttleLoadingCooldownRemaining);
-        int currentTravelDisplayedSeconds = Mathf.CeilToInt(gameData.shuttleSendCooldownRemaining);
-
-        return previousPlatformOre != gameData.shuttleOre ||
-               previousLoadingOre != gameData.shuttleLoadingOre ||
-               previousDeliveringOre != gameData.shuttleDeliveringOre ||
-               previousLoadingDisplayedSeconds != currentLoadingDisplayedSeconds ||
-               previousTravelDisplayedSeconds != currentTravelDisplayedSeconds;
-    }
-
-    public bool IsBusy()
-    {
-        return gameData.shuttleLoadingCooldownRemaining > 0f ||
-               gameData.shuttleSendCooldownRemaining > 0f ||
-               gameData.shuttleLoadingTargetOre > 0 ||
-               gameData.shuttleLoadingOre > 0 ||
-               gameData.shuttleDeliveringOre > 0;
-    }
-
-    private float UpdateLoading(float deltaTime)
-    {
-        if (gameData.shuttleLoadingCooldownRemaining <= 0f || gameData.shuttleLoadingTargetOre <= 0)
-        {
-            return deltaTime;
-        }
-
+        int previousDisplayedSeconds = Mathf.CeilToInt(shuttleState.loadingCooldownRemaining);
         float loadingTimeSeconds = GetLoadingTimeSeconds();
 
         if (loadingTimeSeconds <= 0f)
         {
-            CompleteLoading();
-            return deltaTime;
+            CompleteLoading(shuttleState);
+            return true;
         }
 
-        float consumedDeltaTime = Mathf.Min(deltaTime, gameData.shuttleLoadingCooldownRemaining);
-        gameData.shuttleLoadingCooldownRemaining = Mathf.Max(0f, gameData.shuttleLoadingCooldownRemaining - consumedDeltaTime);
+        float consumedDeltaTime = Mathf.Min(deltaTime, shuttleState.loadingCooldownRemaining);
+        shuttleState.loadingCooldownRemaining = Mathf.Max(0f, shuttleState.loadingCooldownRemaining - consumedDeltaTime);
 
-        float currentProgress = 1f - Mathf.Clamp01(gameData.shuttleLoadingCooldownRemaining / loadingTimeSeconds);
-        int desiredLoadedOre = gameData.shuttleLoadingCooldownRemaining <= 0f
-            ? gameData.shuttleLoadingTargetOre
+        float currentProgress = 1f - Mathf.Clamp01(shuttleState.loadingCooldownRemaining / loadingTimeSeconds);
+        int desiredLoadedOre = shuttleState.loadingCooldownRemaining <= 0f
+            ? shuttleState.loadingTargetOre
             : Mathf.Clamp(
-                Mathf.FloorToInt(gameData.shuttleLoadingTargetOre * currentProgress),
+                Mathf.FloorToInt(shuttleState.loadingTargetOre * currentProgress),
                 0,
-                gameData.shuttleLoadingTargetOre);
-        int deltaOre = Mathf.Max(0, desiredLoadedOre - gameData.shuttleLoadingOre);
+                shuttleState.loadingTargetOre);
+        int deltaOre = Mathf.Max(0, desiredLoadedOre - shuttleState.loadingOre);
 
         if (deltaOre > 0 && platformSystem != null)
         {
             int transferredOre = platformSystem.TakeOre(deltaOre);
-            gameData.shuttleLoadingOre += transferredOre;
+            shuttleState.loadingOre += transferredOre;
         }
 
-        if (gameData.shuttleLoadingCooldownRemaining <= 0f)
+        if (shuttleState.loadingCooldownRemaining <= 0f)
         {
-            CompleteLoading();
+            CompleteLoading(shuttleState);
         }
 
-        return Mathf.Max(0f, deltaTime - consumedDeltaTime);
+        return previousLoadingOre != shuttleState.loadingOre ||
+               previousPlatformOre != gameData.shuttleOre ||
+               previousDisplayedSeconds != Mathf.CeilToInt(shuttleState.loadingCooldownRemaining);
     }
 
-    private void CompleteLoading()
+    private void CompleteLoading(ShuttleState shuttleState)
     {
-        int remainingOreToLoad = Mathf.Max(0, gameData.shuttleLoadingTargetOre - gameData.shuttleLoadingOre);
+        int remainingOreToLoad = Mathf.Max(0, shuttleState.loadingTargetOre - shuttleState.loadingOre);
 
         if (remainingOreToLoad > 0 && platformSystem != null)
         {
-            gameData.shuttleLoadingOre += platformSystem.TakeOre(remainingOreToLoad);
+            shuttleState.loadingOre += platformSystem.TakeOre(remainingOreToLoad);
         }
 
-        gameData.shuttleDockedOre = Mathf.Clamp(
-            gameData.shuttleDockedOre + gameData.shuttleLoadingOre,
+        shuttleState.dockedOre = Mathf.Clamp(
+            shuttleState.dockedOre + shuttleState.loadingOre,
             0,
             gameData.shuttleCapacity);
-        gameData.shuttleLoadingOre = 0;
-        gameData.shuttleLoadingTargetOre = 0;
-        gameData.shuttleLoadingCooldownRemaining = 0f;
-        
-        if (gameData.shuttleSendAfterLoading)
+        shuttleState.loadingOre = 0;
+        shuttleState.loadingTargetOre = 0;
+        shuttleState.loadingCooldownRemaining = 0f;
+
+        if (shuttleState.sendAfterLoading)
         {
-            int cargoToSend = gameData.shuttleDockedOre;
-            gameData.shuttleDockedOre = 0;
-            gameData.shuttleSendAfterLoading = false;
-            StartTravelOrDeliver(cargoToSend);
+            int cargoToSend = shuttleState.dockedOre;
+            shuttleState.dockedOre = 0;
+            shuttleState.sendAfterLoading = false;
+            StartTravelOrDeliver(shuttleState, cargoToSend);
             return;
         }
 
-        gameData.shuttleSendAfterLoading = false;
+        shuttleState.sendAfterLoading = false;
     }
 
-    private void UpdateTravel(float deltaTime)
+    private bool UpdateTravel(int shuttleIndex, float deltaTime)
     {
-        if (gameData.shuttleSendCooldownRemaining <= 0f)
+        ShuttleState shuttleState = GetShuttleState(shuttleIndex);
+
+        if (shuttleState.sendCooldownRemaining <= 0f)
         {
-            return;
+            return false;
         }
 
-        gameData.shuttleSendCooldownRemaining = Mathf.Max(0f, gameData.shuttleSendCooldownRemaining - deltaTime);
+        int previousDeliveringOre = shuttleState.deliveringOre;
+        int previousWarehouseOre = gameData.ore;
+        int previousDisplayedSeconds = Mathf.CeilToInt(shuttleState.sendCooldownRemaining);
 
-        if (gameData.shuttleSendCooldownRemaining <= 0f && gameData.shuttleDeliveringOre > 0)
+        shuttleState.sendCooldownRemaining = Mathf.Max(0f, shuttleState.sendCooldownRemaining - deltaTime);
+
+        if (shuttleState.sendCooldownRemaining <= 0f && shuttleState.deliveringOre > 0)
         {
-            gameData.ore += gameData.shuttleDeliveringOre;
-            gameData.shuttleDeliveringOre = 0;
+            gameData.ore += shuttleState.deliveringOre;
+            shuttleState.deliveringOre = 0;
         }
+
+        return previousDeliveringOre != shuttleState.deliveringOre ||
+               previousWarehouseOre != gameData.ore ||
+               previousDisplayedSeconds != Mathf.CeilToInt(shuttleState.sendCooldownRemaining);
     }
 
-    private void StartTravelOrDeliver(int cargoAmount)
+    private void StartTravelOrDeliver(ShuttleState shuttleState, int cargoAmount)
     {
         if (cargoAmount <= 0)
         {
-            gameData.shuttleDeliveringOre = 0;
-            gameData.shuttleSendCooldownRemaining = 0f;
+            shuttleState.deliveringOre = 0;
+            shuttleState.sendCooldownRemaining = 0f;
             return;
         }
 
@@ -275,13 +313,33 @@ public class ShuttleSystem
         if (travelTimeSeconds <= 0f)
         {
             gameData.ore += cargoAmount;
-            gameData.shuttleDeliveringOre = 0;
-            gameData.shuttleSendCooldownRemaining = 0f;
+            shuttleState.deliveringOre = 0;
+            shuttleState.sendCooldownRemaining = 0f;
             return;
         }
 
-        gameData.shuttleDeliveringOre = cargoAmount;
-        gameData.shuttleSendCooldownRemaining = travelTimeSeconds;
+        shuttleState.deliveringOre = cargoAmount;
+        shuttleState.sendCooldownRemaining = travelTimeSeconds;
+    }
+
+    private bool IsShuttleIndexUnlocked(int shuttleIndex)
+    {
+        return shuttleIndex >= 0 && shuttleIndex < gameData.ActiveShuttleCount;
+    }
+
+    private ShuttleState GetShuttleState(int shuttleIndex)
+    {
+        return gameData.GetShuttleState(shuttleIndex);
+    }
+
+    private bool IsShuttleBusy(int shuttleIndex)
+    {
+        ShuttleState shuttleState = GetShuttleState(shuttleIndex);
+        return shuttleState.loadingCooldownRemaining > 0f ||
+               shuttleState.loadingTargetOre > 0 ||
+               shuttleState.loadingOre > 0 ||
+               shuttleState.sendCooldownRemaining > 0f ||
+               shuttleState.deliveringOre > 0;
     }
 
     private float GetLoadingTimeSeconds()
@@ -292,5 +350,29 @@ public class ShuttleSystem
     private float GetTravelTimeSeconds()
     {
         return Mathf.Max(0f, gameData.shuttleTravelTimeSeconds);
+    }
+
+    private int GetAvailablePlatformOreForLoading(int shuttleIndex)
+    {
+        if (platformSystem == null)
+        {
+            return 0;
+        }
+
+        int storedPlatformOre = platformSystem.GetStoredOre();
+        int reservedOre = 0;
+
+        for (int i = 0; i < gameData.ActiveShuttleCount; i++)
+        {
+            if (i == shuttleIndex)
+            {
+                continue;
+            }
+
+            ShuttleState shuttleState = GetShuttleState(i);
+            reservedOre += Mathf.Max(0, shuttleState.loadingTargetOre - shuttleState.loadingOre);
+        }
+
+        return Mathf.Max(0, storedPlatformOre - reservedOre);
     }
 }

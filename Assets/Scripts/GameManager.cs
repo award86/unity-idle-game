@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private const string OreKey = "ore";
     private const string ResourceKeyPrefix = "resource_";
+    private const string ShuttleStateKeyPrefix = "shuttle_state_";
     private const string ShuttleOreKey = "shuttleOre";
     private const string ShuttleDockedOreKey = "shuttleDockedOre";
     private const string ShuttleLoadingOreKey = "shuttleLoadingOre";
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         if (uiManager != null)
         {
+            uiManager.InitializeShuttleButtons(HandleShuttleSendRequested);
             uiManager.InitializeUpgradeList(
                 upgradeManager.UpgradeStates,
                 HandleUpgradeBuyRequested);
@@ -241,12 +243,17 @@ public class GameManager : MonoBehaviour
 
     public void OnSendShuttleButtonClicked()
     {
+        OnSendShuttleButtonClicked(0);
+    }
+
+    public void OnSendShuttleButtonClicked(int shuttleIndex)
+    {
         if (shuttleSystem == null)
         {
             return;
         }
 
-        if (shuttleSystem.SendToWarehouse() <= 0)
+        if (shuttleSystem.SendToWarehouse(shuttleIndex) <= 0)
         {
             return;
         }
@@ -405,6 +412,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(TotalOreEarnedKey, gameData.totalOreEarned);
         PlayerPrefs.DeleteKey(LegacyUpgradeLevelKey);
 
+        for (int i = 0; i < GameData.MaxShuttles; i++)
+        {
+            SaveShuttleState(i, gameData.GetShuttleState(i));
+        }
+
         if (upgradeManager != null)
         {
             upgradeManager.SaveUpgradeLevels();
@@ -479,6 +491,12 @@ public class GameManager : MonoBehaviour
         gameData.metalEnergyCost = GetConfiguredMetalEnergyCost();
         gameData.totalOreEarned = Mathf.Max(0, PlayerPrefs.GetInt(TotalOreEarnedKey, 0));
         gameData.EnsureDefaultResources();
+        gameData.EnsureDefaultShuttles();
+
+        for (int i = 0; i < GameData.MaxShuttles; i++)
+        {
+            LoadShuttleState(i, gameData.GetShuttleState(i));
+        }
     }
 
     private void ResetGame()
@@ -503,6 +521,8 @@ public class GameManager : MonoBehaviour
         gameData.shuttleLoadingTargetOre = 0;
         gameData.shuttleSendAfterLoading = false;
         gameData.shuttleDeliveringOre = 0;
+        gameData.shuttleCount = 1;
+        gameData.shuttleAutoSendCount = 0;
         gameData.platformCapacity = GetConfiguredStartPlatformCapacity();
         gameData.shuttleCapacity = GetConfiguredShuttleCapacity();
         gameData.shuttleLoadingTimeSeconds = GetConfiguredShuttleLoadingTimeSeconds();
@@ -521,6 +541,7 @@ public class GameManager : MonoBehaviour
         gameData.metalEnergyCost = GetConfiguredMetalEnergyCost();
         gameData.totalOreEarned = 0;
         gameData.EnsureDefaultResources();
+        gameData.EnsureDefaultShuttles();
 
         PlayerPrefs.DeleteKey(OreKey);
         DeleteResourceKey(ResourceType.Ore);
@@ -543,6 +564,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteKey(TotalOreEarnedKey);
         PlayerPrefs.DeleteKey(LegacyUpgradeLevelKey);
         PlayerPrefs.DeleteKey(LastSaveTimeKey);
+
+        for (int i = 0; i < GameData.MaxShuttles; i++)
+        {
+            DeleteShuttleState(i);
+            gameData.GetShuttleState(i).Reset();
+        }
 
         if (upgradeManager != null)
         {
@@ -649,181 +676,131 @@ public class GameManager : MonoBehaviour
         int platformCapacity = hasMiningPlatform
             ? Mathf.Max(1, previewData.platformCapacity)
             : Mathf.Max(1, previewData.shuttleCapacity);
-        int shuttleCapacity = Mathf.Max(1, previewData.shuttleCapacity);
         int storedPlatformOre = Mathf.Max(0, previewData.shuttleOre);
-        int shuttleDockedOre = Mathf.Clamp(Mathf.Max(0, previewData.shuttleDockedOre), 0, shuttleCapacity);
-        int shuttleLoadingOre = Mathf.Max(0, previewData.shuttleLoadingOre);
-        int shuttleLoadingTargetOre = Mathf.Max(shuttleLoadingOre, previewData.shuttleLoadingTargetOre);
+        int shuttleCapacity = Mathf.Max(1, previewData.shuttleCapacity);
         float shuttleLoadingTime = Mathf.Max(0f, previewData.shuttleLoadingTimeSeconds);
-        float shuttleLoadingCooldown = Mathf.Max(0f, previewData.shuttleLoadingCooldownRemaining);
-        bool shuttleSendAfterLoading = previewData.shuttleSendAfterLoading;
-        int shuttleDeliveringOre = Mathf.Max(0, previewData.shuttleDeliveringOre);
         float shuttleTravelTime = Mathf.Max(0f, previewData.shuttleTravelTimeSeconds);
-        float shuttleCooldown = Mathf.Max(0f, previewData.shuttleSendCooldownRemaining);
-        bool autoSendEnabled = hasMiningPlatform && previewData.shuttleAutoSendEnabled;
+        int activeShuttleCount = previewData.ActiveShuttleCount;
+        int autoSendCount = hasMiningPlatform ? previewData.ActiveAutoSendShuttleCount : 0;
+        ShuttleState[] offlineShuttles = new ShuttleState[GameData.MaxShuttles];
+
+        for (int i = 0; i < GameData.MaxShuttles; i++)
+        {
+            offlineShuttles[i] = previewData.GetShuttleState(i).Clone();
+        }
+
         int minedOre = 0;
         int warehouseOre = 0;
         long remainingSeconds = offlineSeconds;
 
         while (remainingSeconds > 0)
         {
-            if (shuttleLoadingCooldown > 0f && shuttleLoadingTargetOre > 0)
-            {
-                long loadingSeconds = Math.Min(remainingSeconds, (long)Math.Ceiling(shuttleLoadingCooldown));
-                shuttleLoadingCooldown = Mathf.Max(0f, shuttleLoadingCooldown - loadingSeconds);
-                remainingSeconds -= loadingSeconds;
-
-                int desiredLoadedOre = GetOfflineLoadedOre(
-                    shuttleLoadingTargetOre,
+            if (hasMiningPlatform &&
+                TryStartOfflineAutoActions(
+                    offlineShuttles,
+                    activeShuttleCount,
+                    autoSendCount,
+                    ref storedPlatformOre,
+                    platformCapacity,
+                    shuttleCapacity,
                     shuttleLoadingTime,
-                    shuttleLoadingCooldown);
-                int deltaLoadedOre = Math.Max(0, desiredLoadedOre - shuttleLoadingOre);
-                int transferredOre = Math.Min(deltaLoadedOre, storedPlatformOre);
-                storedPlatformOre -= transferredOre;
-                shuttleLoadingOre += transferredOre;
-
-                if (shuttleLoadingCooldown <= 0f)
-                {
-                    int remainingLoadOre = Math.Min(
-                        Math.Max(0, shuttleLoadingTargetOre - shuttleLoadingOre),
-                        storedPlatformOre);
-                    storedPlatformOre -= remainingLoadOre;
-                    shuttleLoadingOre += remainingLoadOre;
-                    shuttleDockedOre = Math.Min(shuttleCapacity, shuttleDockedOre + shuttleLoadingOre);
-
-                    shuttleLoadingOre = 0;
-                    shuttleLoadingTargetOre = 0;
-
-                    if (shuttleSendAfterLoading)
-                    {
-                        int cargoToSend = shuttleDockedOre;
-                        shuttleDockedOre = 0;
-
-                        if (shuttleTravelTime <= 0f)
-                        {
-                            warehouseOre += cargoToSend;
-                        }
-                        else
-                        {
-                            shuttleDeliveringOre = cargoToSend;
-                            shuttleCooldown = shuttleTravelTime;
-                        }
-                    }
-
-                    shuttleSendAfterLoading = false;
-                }
-
+                    shuttleTravelTime,
+                    ref warehouseOre))
+            {
                 continue;
             }
 
-            if (shuttleCooldown > 0f)
+            long nextLoadingEventSeconds = GetNextOfflineLoadingEventSeconds(offlineShuttles, activeShuttleCount);
+
+            if (nextLoadingEventSeconds > 0)
             {
-                long travelSeconds = Math.Min(remainingSeconds, (long)Math.Ceiling(shuttleCooldown));
-                shuttleCooldown = Mathf.Max(0f, shuttleCooldown - travelSeconds);
-                remainingSeconds -= travelSeconds;
+                long nextTravelDuringLoadingSeconds = GetNextOfflineTravelEventSeconds(offlineShuttles, activeShuttleCount);
+                long nextLoadingStepSeconds = Math.Min(remainingSeconds, nextLoadingEventSeconds);
 
-                if (hasMiningPlatform && orePerSecond > 0 && storedPlatformOre < platformCapacity)
+                if (nextTravelDuringLoadingSeconds > 0)
                 {
-                    int availableCapacityWhileTravelling = Mathf.Max(0, platformCapacity - storedPlatformOre);
-                    int minedWhileTravelling = (int)Math.Min((long)availableCapacityWhileTravelling, travelSeconds * orePerSecond);
-                    storedPlatformOre += minedWhileTravelling;
-                    minedOre += minedWhileTravelling;
+                    nextLoadingStepSeconds = Math.Min(nextLoadingStepSeconds, nextTravelDuringLoadingSeconds);
                 }
 
-                if (shuttleCooldown <= 0f && shuttleDeliveringOre > 0)
+                if (nextLoadingStepSeconds <= 0)
                 {
-                    warehouseOre += shuttleDeliveringOre;
-                    shuttleDeliveringOre = 0;
+                    nextLoadingStepSeconds = 1;
                 }
 
+                AdvanceOfflineLoading(
+                    offlineShuttles,
+                    activeShuttleCount,
+                    nextLoadingStepSeconds,
+                    shuttleLoadingTime,
+                    shuttleCapacity,
+                    shuttleTravelTime,
+                    ref storedPlatformOre,
+                    ref warehouseOre);
+                AdvanceOfflineTravel(offlineShuttles, activeShuttleCount, nextLoadingStepSeconds, ref warehouseOre);
+                remainingSeconds -= nextLoadingStepSeconds;
                 continue;
             }
 
-            if (autoSendEnabled && shuttleDockedOre >= shuttleCapacity)
+            long nextTravelEventSeconds = GetNextOfflineTravelEventSeconds(offlineShuttles, activeShuttleCount);
+            long nextAutoReadySeconds = GetNextOfflineAutoReadySeconds(
+                offlineShuttles,
+                activeShuttleCount,
+                autoSendCount,
+                storedPlatformOre,
+                platformCapacity,
+                shuttleCapacity,
+                orePerSecond);
+
+            bool hasTimedEvent = false;
+            long nextEventSeconds = remainingSeconds;
+
+            if (nextTravelEventSeconds > 0)
             {
-                int cargoToSend = shuttleDockedOre;
-                shuttleDockedOre = 0;
-
-                if (shuttleTravelTime <= 0f)
-                {
-                    warehouseOre += cargoToSend;
-                }
-                else
-                {
-                    shuttleDeliveringOre = cargoToSend;
-                    shuttleCooldown = shuttleTravelTime;
-                }
-
-                continue;
+                nextEventSeconds = Math.Min(nextEventSeconds, nextTravelEventSeconds);
+                hasTimedEvent = true;
             }
 
-            int remainingShuttleCapacity = Math.Max(0, shuttleCapacity - shuttleDockedOre);
-            int autoSendThreshold = remainingShuttleCapacity <= 0
-                ? 0
-                : Math.Max(1, Math.Min(platformCapacity, remainingShuttleCapacity));
-
-            if (autoSendEnabled && autoSendThreshold > 0 && storedPlatformOre >= autoSendThreshold)
+            if (nextAutoReadySeconds > 0)
             {
-                int sentAmount = Math.Min(storedPlatformOre, remainingShuttleCapacity);
+                nextEventSeconds = Math.Min(nextEventSeconds, nextAutoReadySeconds);
+                hasTimedEvent = true;
+            }
 
-                if (shuttleLoadingTime > 0f)
+            if (!hasTimedEvent)
+            {
+                if (orePerSecond <= 0)
                 {
-                    shuttleLoadingTargetOre = sentAmount;
-                    shuttleLoadingOre = 0;
-                    shuttleLoadingCooldown = shuttleLoadingTime;
-                    shuttleSendAfterLoading = shuttleDockedOre + sentAmount >= shuttleCapacity;
-                    continue;
+                    break;
                 }
 
-                storedPlatformOre -= sentAmount;
-                shuttleDockedOre = Math.Min(shuttleCapacity, shuttleDockedOre + sentAmount);
+                int freeCapacity = Mathf.Max(0, platformCapacity - storedPlatformOre);
 
-                if (shuttleDockedOre >= shuttleCapacity)
+                if (freeCapacity <= 0)
                 {
-                    int cargoToSend = shuttleDockedOre;
-                    shuttleDockedOre = 0;
-
-                    if (shuttleTravelTime <= 0f)
-                    {
-                        warehouseOre += cargoToSend;
-                    }
-                    else
-                    {
-                        shuttleDeliveringOre = cargoToSend;
-                        shuttleCooldown = shuttleTravelTime;
-                    }
+                    break;
                 }
 
-                continue;
-            }
-
-            if (orePerSecond <= 0)
-            {
-                break;
-            }
-
-            int freeCapacity = Mathf.Max(0, platformCapacity - storedPlatformOre);
-
-            if (freeCapacity <= 0)
-            {
-                break;
-            }
-
-            if (!autoSendEnabled)
-            {
                 int minedAmount = (int)Math.Min((long)freeCapacity, remainingSeconds * orePerSecond);
                 storedPlatformOre += minedAmount;
                 minedOre += minedAmount;
                 break;
             }
 
-            int neededForAutoSend = Mathf.Max(0, autoSendThreshold - storedPlatformOre);
-            long secondsToReady = Math.Max(1L, (long)Math.Ceiling((double)neededForAutoSend / orePerSecond));
-            long miningSeconds = Math.Min(remainingSeconds, secondsToReady);
-            int minedAmountToShuttle = (int)Math.Min((long)freeCapacity, miningSeconds * orePerSecond);
-            storedPlatformOre += minedAmountToShuttle;
-            minedOre += minedAmountToShuttle;
-            remainingSeconds -= miningSeconds;
+            if (nextEventSeconds <= 0)
+            {
+                nextEventSeconds = 1;
+            }
+
+            if (hasMiningPlatform && orePerSecond > 0 && storedPlatformOre < platformCapacity)
+            {
+                int freeCapacity = Mathf.Max(0, platformCapacity - storedPlatformOre);
+                int minedAmount = (int)Math.Min((long)freeCapacity, nextEventSeconds * orePerSecond);
+                storedPlatformOre += minedAmount;
+                minedOre += minedAmount;
+            }
+
+            AdvanceOfflineTravel(offlineShuttles, activeShuttleCount, nextEventSeconds, ref warehouseOre);
+            remainingSeconds -= nextEventSeconds;
         }
 
         return new OfflineProgress
@@ -832,16 +809,10 @@ public class GameManager : MonoBehaviour
             previewData = BuildOfflinePreviewData(
                 previewData,
                 storedPlatformOre,
-                shuttleDockedOre,
-                shuttleLoadingOre,
-                shuttleLoadingTargetOre,
-                shuttleLoadingCooldown,
-                shuttleSendAfterLoading,
-                shuttleDeliveringOre,
-                shuttleCooldown,
+                offlineShuttles,
                 minedOre,
                 warehouseOre),
-            shouldShowPopup = autoSendEnabled && warehouseOre > 0
+            shouldShowPopup = autoSendCount > 0 && warehouseOre > 0
         };
     }
 
@@ -1048,6 +1019,11 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
+    private void HandleShuttleSendRequested(int shuttleIndex)
+    {
+        OnSendShuttleButtonClicked(shuttleIndex);
+    }
+
     private void HandleUpgradesChanged()
     {
         TryAutoSendShuttle();
@@ -1105,17 +1081,24 @@ public class GameManager : MonoBehaviour
 
     private bool TryAutoSendShuttle()
     {
-        if (shuttleSystem == null || !gameData.shuttleAutoSendEnabled)
+        if (shuttleSystem == null || gameData.ActiveAutoSendShuttleCount <= 0)
         {
             return false;
         }
 
-        if (!shuttleSystem.IsReadyForAutoSend())
+        bool hasChanges = false;
+
+        for (int i = 0; i < gameData.ActiveAutoSendShuttleCount; i++)
         {
-            return false;
+            if (!shuttleSystem.IsReadyForAutoSend(i))
+            {
+                continue;
+            }
+
+            hasChanges = shuttleSystem.AutoSendToWarehouse(i) > 0 || hasChanges;
         }
 
-        return shuttleSystem.AutoSendToWarehouse() > 0;
+        return hasChanges;
     }
 
     private bool SyncMissionProgress()
@@ -1258,33 +1241,468 @@ public class GameManager : MonoBehaviour
                !Mathf.Approximately(pendingOfflinePreviewData.shuttleLoadingCooldownRemaining, gameData.shuttleLoadingCooldownRemaining) ||
                !Mathf.Approximately(pendingOfflinePreviewData.shuttleSendCooldownRemaining, gameData.shuttleSendCooldownRemaining) ||
                !Mathf.Approximately(pendingOfflinePreviewData.energyRegenTimer, gameData.energyRegenTimer) ||
-               pendingOfflinePreviewData.totalOreEarned != gameData.totalOreEarned;
+               pendingOfflinePreviewData.totalOreEarned != gameData.totalOreEarned ||
+               HasPendingShuttleStateChanges();
     }
 
     private GameData BuildOfflinePreviewData(
         GameData previewData,
         int shuttleOre,
-        int shuttleDockedOre,
-        int shuttleLoadingOre,
-        int shuttleLoadingTargetOre,
-        float shuttleLoadingCooldown,
-        bool shuttleSendAfterLoading,
-        int shuttleDeliveringOre,
-        float shuttleCooldown,
+        ShuttleState[] shuttleStates,
         int minedOre,
         int warehouseOre)
     {
         previewData.shuttleOre = Mathf.Max(0, shuttleOre);
-        previewData.shuttleDockedOre = Mathf.Max(0, shuttleDockedOre);
-        previewData.shuttleLoadingOre = Mathf.Max(0, shuttleLoadingOre);
-        previewData.shuttleLoadingTargetOre = Mathf.Max(previewData.shuttleLoadingOre, shuttleLoadingTargetOre);
-        previewData.shuttleLoadingCooldownRemaining = Mathf.Max(0f, shuttleLoadingCooldown);
-        previewData.shuttleSendAfterLoading = shuttleSendAfterLoading;
-        previewData.shuttleDeliveringOre = Mathf.Max(0, shuttleDeliveringOre);
-        previewData.shuttleSendCooldownRemaining = Mathf.Max(0f, shuttleCooldown);
+
+        for (int i = 0; i < GameData.MaxShuttles; i++)
+        {
+            previewData.GetShuttleState(i).CopyFrom(shuttleStates[i]);
+        }
+
         previewData.ore += warehouseOre;
         previewData.totalOreEarned += minedOre;
         return previewData;
+    }
+
+    private bool IsOfflineShuttleBusy(ShuttleState shuttleState)
+    {
+        return shuttleState.loadingCooldownRemaining > 0f ||
+               shuttleState.loadingTargetOre > 0 ||
+               shuttleState.loadingOre > 0 ||
+               shuttleState.sendCooldownRemaining > 0f ||
+               shuttleState.deliveringOre > 0;
+    }
+
+    private long GetNextOfflineLoadingEventSeconds(ShuttleState[] shuttleStates, int activeShuttleCount)
+    {
+        long nextEventSeconds = 0;
+
+        for (int i = 0; i < activeShuttleCount; i++)
+        {
+            float loadingCooldown = shuttleStates[i].loadingCooldownRemaining;
+
+            if (loadingCooldown <= 0f)
+            {
+                continue;
+            }
+
+            long eventSeconds = (long)Math.Ceiling(loadingCooldown);
+
+            if (nextEventSeconds == 0 || eventSeconds < nextEventSeconds)
+            {
+                nextEventSeconds = eventSeconds;
+            }
+        }
+
+        return nextEventSeconds;
+    }
+
+    private void AdvanceOfflineLoading(
+        ShuttleState[] shuttleStates,
+        int activeShuttleCount,
+        long deltaSeconds,
+        float shuttleLoadingTime,
+        int shuttleCapacity,
+        float shuttleTravelTime,
+        ref int storedPlatformOre,
+        ref int warehouseOre)
+    {
+        if (deltaSeconds <= 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < activeShuttleCount; i++)
+        {
+            ShuttleState shuttleState = shuttleStates[i];
+
+            if (shuttleState.loadingCooldownRemaining <= 0f || shuttleState.loadingTargetOre <= 0)
+            {
+                continue;
+            }
+
+            shuttleState.loadingCooldownRemaining = Mathf.Max(0f, shuttleState.loadingCooldownRemaining - deltaSeconds);
+
+            int desiredLoadedOre = GetOfflineLoadedOre(
+                shuttleState.loadingTargetOre,
+                shuttleLoadingTime,
+                shuttleState.loadingCooldownRemaining);
+            int deltaLoadedOre = Math.Max(0, desiredLoadedOre - shuttleState.loadingOre);
+
+            if (deltaLoadedOre <= 0)
+            {
+                continue;
+            }
+
+            int transferredOre = Math.Min(deltaLoadedOre, storedPlatformOre);
+            storedPlatformOre -= transferredOre;
+            shuttleState.loadingOre += transferredOre;
+        }
+
+        for (int i = 0; i < activeShuttleCount; i++)
+        {
+            ShuttleState shuttleState = shuttleStates[i];
+
+            if (shuttleState.loadingCooldownRemaining > 0f || shuttleState.loadingTargetOre <= 0)
+            {
+                continue;
+            }
+
+            int remainingLoadOre = Math.Min(
+                Math.Max(0, shuttleState.loadingTargetOre - shuttleState.loadingOre),
+                storedPlatformOre);
+            storedPlatformOre -= remainingLoadOre;
+            shuttleState.loadingOre += remainingLoadOre;
+            shuttleState.dockedOre = Mathf.Min(shuttleCapacity, shuttleState.dockedOre + shuttleState.loadingOre);
+
+            shuttleState.loadingOre = 0;
+            shuttleState.loadingTargetOre = 0;
+            shuttleState.loadingCooldownRemaining = 0f;
+
+            if (!shuttleState.sendAfterLoading)
+            {
+                continue;
+            }
+
+            int cargoToSend = shuttleState.dockedOre;
+            shuttleState.dockedOre = 0;
+            shuttleState.sendAfterLoading = false;
+            StartOfflineTravel(shuttleState, cargoToSend, shuttleTravelTime, ref warehouseOre);
+        }
+    }
+
+    private bool TryStartOfflineAutoActions(
+        ShuttleState[] shuttleStates,
+        int activeShuttleCount,
+        int autoSendCount,
+        ref int storedPlatformOre,
+        int platformCapacity,
+        int shuttleCapacity,
+        float shuttleLoadingTime,
+        float shuttleTravelTime,
+        ref int warehouseOre)
+    {
+        bool startedAnyAction = false;
+        bool startedActionThisPass;
+
+        do
+        {
+            startedActionThisPass = false;
+
+            for (int i = 0; i < Mathf.Min(activeShuttleCount, autoSendCount); i++)
+            {
+                ShuttleState shuttleState = shuttleStates[i];
+
+                if (IsOfflineShuttleBusy(shuttleState))
+                {
+                    continue;
+                }
+
+                if (shuttleState.dockedOre >= shuttleCapacity)
+                {
+                    int cargoToSend = shuttleState.dockedOre;
+                    shuttleState.dockedOre = 0;
+                    StartOfflineTravel(shuttleState, cargoToSend, shuttleTravelTime, ref warehouseOre);
+                    startedAnyAction = true;
+                    startedActionThisPass = true;
+                    continue;
+                }
+
+                int autoSendThreshold = GetOfflineAutoSendThreshold(platformCapacity, shuttleCapacity, shuttleState.dockedOre);
+                int availablePlatformOre = GetOfflineAvailablePlatformOreForLoading(
+                    shuttleStates,
+                    activeShuttleCount,
+                    storedPlatformOre,
+                    i);
+
+                if (autoSendThreshold <= 0 || availablePlatformOre < autoSendThreshold)
+                {
+                    continue;
+                }
+
+                int transferAmount = Mathf.Min(
+                    availablePlatformOre,
+                    Mathf.Max(0, shuttleCapacity - shuttleState.dockedOre));
+
+                if (transferAmount <= 0)
+                {
+                    continue;
+                }
+
+                if (shuttleLoadingTime > 0f)
+                {
+                    shuttleState.loadingTargetOre = transferAmount;
+                    shuttleState.loadingOre = 0;
+                    shuttleState.loadingCooldownRemaining = shuttleLoadingTime;
+                    shuttleState.sendAfterLoading = shuttleState.dockedOre + transferAmount >= shuttleCapacity;
+                    startedAnyAction = true;
+                    startedActionThisPass = true;
+                    continue;
+                }
+
+                storedPlatformOre -= transferAmount;
+                shuttleState.dockedOre = Mathf.Min(shuttleCapacity, shuttleState.dockedOre + transferAmount);
+
+                if (shuttleState.dockedOre >= shuttleCapacity)
+                {
+                    int cargoToSend = shuttleState.dockedOre;
+                    shuttleState.dockedOre = 0;
+                    StartOfflineTravel(shuttleState, cargoToSend, shuttleTravelTime, ref warehouseOre);
+                }
+
+                startedAnyAction = true;
+                startedActionThisPass = true;
+            }
+        }
+        while (startedActionThisPass);
+
+        return startedAnyAction;
+    }
+
+    private int GetOfflineAvailablePlatformOreForLoading(
+        ShuttleState[] shuttleStates,
+        int activeShuttleCount,
+        int storedPlatformOre,
+        int shuttleIndex)
+    {
+        int reservedOre = 0;
+
+        for (int i = 0; i < activeShuttleCount; i++)
+        {
+            if (i == shuttleIndex)
+            {
+                continue;
+            }
+
+            reservedOre += Math.Max(0, shuttleStates[i].loadingTargetOre - shuttleStates[i].loadingOre);
+        }
+
+        return Math.Max(0, storedPlatformOre - reservedOre);
+    }
+
+    private int GetOfflineAutoSendThreshold(int platformCapacity, int shuttleCapacity, int currentDockedOre)
+    {
+        int remainingShuttleCapacity = Mathf.Max(0, shuttleCapacity - currentDockedOre);
+
+        if (remainingShuttleCapacity <= 0)
+        {
+            return 0;
+        }
+
+        return Mathf.Max(1, Mathf.Min(platformCapacity, remainingShuttleCapacity));
+    }
+
+    private void StartOfflineTravel(ShuttleState shuttleState, int cargoAmount, float shuttleTravelTime, ref int warehouseOre)
+    {
+        if (cargoAmount <= 0)
+        {
+            shuttleState.deliveringOre = 0;
+            shuttleState.sendCooldownRemaining = 0f;
+            return;
+        }
+
+        if (shuttleTravelTime <= 0f)
+        {
+            warehouseOre += cargoAmount;
+            shuttleState.deliveringOre = 0;
+            shuttleState.sendCooldownRemaining = 0f;
+            return;
+        }
+
+        shuttleState.deliveringOre = cargoAmount;
+        shuttleState.sendCooldownRemaining = shuttleTravelTime;
+    }
+
+    private long GetNextOfflineTravelEventSeconds(ShuttleState[] shuttleStates, int activeShuttleCount)
+    {
+        long nextEventSeconds = 0;
+
+        for (int i = 0; i < activeShuttleCount; i++)
+        {
+            float travelCooldown = shuttleStates[i].sendCooldownRemaining;
+
+            if (travelCooldown <= 0f)
+            {
+                continue;
+            }
+
+            long eventSeconds = (long)Math.Ceiling(travelCooldown);
+
+            if (nextEventSeconds == 0 || eventSeconds < nextEventSeconds)
+            {
+                nextEventSeconds = eventSeconds;
+            }
+        }
+
+        return nextEventSeconds;
+    }
+
+    private long GetNextOfflineAutoReadySeconds(
+        ShuttleState[] shuttleStates,
+        int activeShuttleCount,
+        int autoSendCount,
+        int storedPlatformOre,
+        int platformCapacity,
+        int shuttleCapacity,
+        int orePerSecond)
+    {
+        if (orePerSecond <= 0)
+        {
+            return 0;
+        }
+
+        long nextReadySeconds = 0;
+
+        for (int i = 0; i < Mathf.Min(activeShuttleCount, autoSendCount); i++)
+        {
+            ShuttleState shuttleState = shuttleStates[i];
+
+            if (IsOfflineShuttleBusy(shuttleState))
+            {
+                continue;
+            }
+
+            int autoSendThreshold = GetOfflineAutoSendThreshold(platformCapacity, shuttleCapacity, shuttleState.dockedOre);
+
+            if (autoSendThreshold <= 0 || storedPlatformOre >= autoSendThreshold)
+            {
+                continue;
+            }
+
+            int requiredOre = autoSendThreshold - storedPlatformOre;
+            long readySeconds = Math.Max(1L, Mathf.CeilToInt(requiredOre / (float)orePerSecond));
+
+            if (nextReadySeconds == 0 || readySeconds < nextReadySeconds)
+            {
+                nextReadySeconds = readySeconds;
+            }
+        }
+
+        return nextReadySeconds;
+    }
+
+    private void AdvanceOfflineTravel(ShuttleState[] shuttleStates, int activeShuttleCount, long deltaSeconds, ref int warehouseOre)
+    {
+        for (int i = 0; i < activeShuttleCount; i++)
+        {
+            ShuttleState shuttleState = shuttleStates[i];
+
+            if (shuttleState.sendCooldownRemaining <= 0f)
+            {
+                continue;
+            }
+
+            shuttleState.sendCooldownRemaining = Mathf.Max(0f, shuttleState.sendCooldownRemaining - deltaSeconds);
+
+            if (shuttleState.sendCooldownRemaining <= 0f && shuttleState.deliveringOre > 0)
+            {
+                warehouseOre += shuttleState.deliveringOre;
+                shuttleState.deliveringOre = 0;
+            }
+        }
+    }
+
+    private bool HasPendingShuttleStateChanges()
+    {
+        for (int i = 0; i < GameData.MaxShuttles; i++)
+        {
+            ShuttleState pendingState = pendingOfflinePreviewData.GetShuttleState(i);
+            ShuttleState currentState = gameData.GetShuttleState(i);
+
+            if (pendingState.dockedOre != currentState.dockedOre ||
+                pendingState.loadingOre != currentState.loadingOre ||
+                pendingState.loadingTargetOre != currentState.loadingTargetOre ||
+                pendingState.sendAfterLoading != currentState.sendAfterLoading ||
+                pendingState.deliveringOre != currentState.deliveringOre ||
+                !Mathf.Approximately(pendingState.loadingCooldownRemaining, currentState.loadingCooldownRemaining) ||
+                !Mathf.Approximately(pendingState.sendCooldownRemaining, currentState.sendCooldownRemaining))
+            {
+                return true;
+            }
+        }
+
+        return pendingOfflinePreviewData.shuttleCount != gameData.shuttleCount ||
+               pendingOfflinePreviewData.shuttleAutoSendCount != gameData.shuttleAutoSendCount;
+    }
+
+    private void SaveShuttleState(int shuttleIndex, ShuttleState shuttleState)
+    {
+        if (shuttleState == null)
+        {
+            return;
+        }
+
+        PlayerPrefs.SetInt(GetShuttleStateKey(shuttleIndex, "dockedOre"), Mathf.Max(0, shuttleState.dockedOre));
+        PlayerPrefs.SetInt(GetShuttleStateKey(shuttleIndex, "loadingOre"), Mathf.Max(0, shuttleState.loadingOre));
+        PlayerPrefs.SetInt(GetShuttleStateKey(shuttleIndex, "loadingTargetOre"), Mathf.Max(shuttleState.loadingOre, shuttleState.loadingTargetOre));
+        PlayerPrefs.SetInt(GetShuttleStateKey(shuttleIndex, "sendAfterLoading"), shuttleState.sendAfterLoading ? 1 : 0);
+        PlayerPrefs.SetInt(GetShuttleStateKey(shuttleIndex, "deliveringOre"), Mathf.Max(0, shuttleState.deliveringOre));
+        PlayerPrefs.SetFloat(GetShuttleStateKey(shuttleIndex, "loadingCooldown"), Mathf.Max(0f, shuttleState.loadingCooldownRemaining));
+        PlayerPrefs.SetFloat(GetShuttleStateKey(shuttleIndex, "travelCooldown"), Mathf.Max(0f, shuttleState.sendCooldownRemaining));
+    }
+
+    private void LoadShuttleState(int shuttleIndex, ShuttleState shuttleState)
+    {
+        if (shuttleState == null)
+        {
+            return;
+        }
+
+        if (shuttleIndex == 0)
+        {
+            shuttleState.dockedOre = Mathf.Clamp(
+                PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "dockedOre"), gameData.shuttleDockedOre),
+                0,
+                gameData.shuttleCapacity);
+            shuttleState.loadingOre = Mathf.Max(
+                0,
+                PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "loadingOre"), gameData.shuttleLoadingOre));
+            shuttleState.loadingTargetOre = Mathf.Max(
+                shuttleState.loadingOre,
+                PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "loadingTargetOre"), gameData.shuttleLoadingTargetOre));
+            shuttleState.sendAfterLoading = PlayerPrefs.GetInt(
+                GetShuttleStateKey(shuttleIndex, "sendAfterLoading"),
+                gameData.shuttleSendAfterLoading ? 1 : 0) == 1;
+            shuttleState.deliveringOre = Mathf.Max(
+                0,
+                PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "deliveringOre"), gameData.shuttleDeliveringOre));
+            shuttleState.loadingCooldownRemaining = Mathf.Max(
+                0f,
+                PlayerPrefs.GetFloat(GetShuttleStateKey(shuttleIndex, "loadingCooldown"), gameData.shuttleLoadingCooldownRemaining));
+            shuttleState.sendCooldownRemaining = Mathf.Max(
+                0f,
+                PlayerPrefs.GetFloat(GetShuttleStateKey(shuttleIndex, "travelCooldown"), gameData.shuttleSendCooldownRemaining));
+            return;
+        }
+
+        shuttleState.dockedOre = Mathf.Clamp(
+            PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "dockedOre"), 0),
+            0,
+            gameData.shuttleCapacity);
+        shuttleState.loadingOre = Mathf.Max(0, PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "loadingOre"), 0));
+        shuttleState.loadingTargetOre = Mathf.Max(
+            shuttleState.loadingOre,
+            PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "loadingTargetOre"), 0));
+        shuttleState.sendAfterLoading = PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "sendAfterLoading"), 0) == 1;
+        shuttleState.deliveringOre = Mathf.Max(0, PlayerPrefs.GetInt(GetShuttleStateKey(shuttleIndex, "deliveringOre"), 0));
+        shuttleState.loadingCooldownRemaining = Mathf.Max(0f, PlayerPrefs.GetFloat(GetShuttleStateKey(shuttleIndex, "loadingCooldown"), 0f));
+        shuttleState.sendCooldownRemaining = Mathf.Max(0f, PlayerPrefs.GetFloat(GetShuttleStateKey(shuttleIndex, "travelCooldown"), 0f));
+    }
+
+    private void DeleteShuttleState(int shuttleIndex)
+    {
+        PlayerPrefs.DeleteKey(GetShuttleStateKey(shuttleIndex, "dockedOre"));
+        PlayerPrefs.DeleteKey(GetShuttleStateKey(shuttleIndex, "loadingOre"));
+        PlayerPrefs.DeleteKey(GetShuttleStateKey(shuttleIndex, "loadingTargetOre"));
+        PlayerPrefs.DeleteKey(GetShuttleStateKey(shuttleIndex, "sendAfterLoading"));
+        PlayerPrefs.DeleteKey(GetShuttleStateKey(shuttleIndex, "deliveringOre"));
+        PlayerPrefs.DeleteKey(GetShuttleStateKey(shuttleIndex, "loadingCooldown"));
+        PlayerPrefs.DeleteKey(GetShuttleStateKey(shuttleIndex, "travelCooldown"));
+    }
+
+    private string GetShuttleStateKey(int shuttleIndex, string suffix)
+    {
+        return ShuttleStateKeyPrefix + shuttleIndex + "_" + suffix;
     }
 
     private int GetOfflineLoadedOre(int targetOre, float loadingTimeSeconds, float loadingCooldownRemaining)

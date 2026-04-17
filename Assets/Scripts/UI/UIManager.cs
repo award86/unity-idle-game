@@ -25,6 +25,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text shuttleBarText;
     [SerializeField] private Button sendShuttleButton;
     [SerializeField] private Text sendShuttleButtonText;
+    [SerializeField] private Button sendShuttleButton2;
+    [SerializeField] private Text sendShuttleButtonText2;
+    [SerializeField] private Button sendShuttleButton3;
+    [SerializeField] private Text sendShuttleButtonText3;
     [SerializeField] private Button produceMetalButton;
     [SerializeField] private Text produceMetalButtonText;
 
@@ -69,6 +73,8 @@ public class UIManager : MonoBehaviour
     private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
     private readonly List<BuildingItemUI> buildingItems = new List<BuildingItemUI>();
     private readonly List<MetaBonusItemUI> metaBonusItems = new List<MetaBonusItemUI>();
+    private readonly List<Button> shuttleButtons = new List<Button>();
+    private readonly List<Text> shuttleButtonTexts = new List<Text>();
     private GameData lastDisplayedGameData;
     private UpgradeCategory selectedUpgradeCategory = UpgradeCategory.Miner;
     private float displayedEnergyAmount;
@@ -167,7 +173,7 @@ public class UIManager : MonoBehaviour
                     "Shuttle: " +
                     NumberFormatter.FormatInt(GetDisplayedShuttleLoad(gameData)) +
                     " / " +
-                    NumberFormatter.FormatInt(gameData.shuttleCapacity);
+                    NumberFormatter.FormatInt(gameData.shuttleCapacity * gameData.ActiveShuttleCount);
             }
         }
 
@@ -186,32 +192,9 @@ public class UIManager : MonoBehaviour
         UpdatePlatformBar(gameData);
         UpdateShuttleBar(gameData);
 
-        if (sendShuttleButton != null)
+        for (int i = 0; i < GameData.MaxShuttles; i++)
         {
-            bool shuttleIsIdle =
-                gameData.shuttleLoadingTargetOre <= 0 &&
-                gameData.shuttleLoadingOre <= 0 &&
-                gameData.shuttleDeliveringOre <= 0 &&
-                gameData.shuttleLoadingCooldownRemaining <= 0f &&
-                gameData.shuttleSendCooldownRemaining <= 0f;
-
-            sendShuttleButton.interactable = gameData.hasMiningPlatform
-                ? shuttleIsIdle && (gameData.shuttleDockedOre > 0 || gameData.shuttleOre > 0)
-                : shuttleIsIdle && gameData.shuttleOre > 0;
-        }
-
-        if (sendShuttleButtonText != null)
-        {
-            if (gameData.shuttleLoadingCooldownRemaining > 0f)
-            {
-                sendShuttleButtonText.text = "Loading " + FormatTimer(gameData.shuttleLoadingCooldownRemaining);
-            }
-            else
-            {
-                sendShuttleButtonText.text = gameData.shuttleSendCooldownRemaining > 0f
-                    ? "Send " + FormatTimer(gameData.shuttleSendCooldownRemaining)
-                    : "Send";
-            }
+            UpdateSendButton(i, gameData);
         }
 
         if (produceMetalButton != null)
@@ -249,6 +232,13 @@ public class UIManager : MonoBehaviour
         }
 
         RefreshUpgradeList(GetDisplayDataOrDefault());
+    }
+
+    public void InitializeShuttleButtons(Action<int> onShuttleSendRequested)
+    {
+        EnsureShuttleButtonSlot(0, sendShuttleButton, sendShuttleButtonText, onShuttleSendRequested);
+        EnsureShuttleButtonSlot(1, sendShuttleButton2, sendShuttleButtonText2, onShuttleSendRequested);
+        EnsureShuttleButtonSlot(2, sendShuttleButton3, sendShuttleButtonText3, onShuttleSendRequested);
     }
 
     public void RefreshUpgradeList(GameData gameData)
@@ -1049,7 +1039,7 @@ public class UIManager : MonoBehaviour
         }
 
         int currentShuttleOre = GetDisplayedShuttleLoad(gameData);
-        int maxShuttleOre = gameData.shuttleCapacity;
+        int maxShuttleOre = gameData.shuttleCapacity * gameData.ActiveShuttleCount;
 
         if (shuttleFillImage != null)
         {
@@ -1089,17 +1079,233 @@ public class UIManager : MonoBehaviour
             return Mathf.Max(0, gameData.shuttleOre);
         }
 
-        if (gameData.shuttleLoadingCooldownRemaining > 0f || gameData.shuttleLoadingOre > 0)
+        int totalShuttleOre = 0;
+
+        for (int i = 0; i < gameData.ActiveShuttleCount; i++)
         {
-            return Mathf.Clamp(gameData.shuttleDockedOre + gameData.shuttleLoadingOre, 0, gameData.shuttleCapacity);
+            ShuttleState shuttleState = gameData.GetShuttleState(i);
+            int shuttleLoad;
+
+            if (shuttleState.loadingCooldownRemaining > 0f || shuttleState.loadingOre > 0)
+            {
+                shuttleLoad = Mathf.Clamp(shuttleState.dockedOre + shuttleState.loadingOre, 0, gameData.shuttleCapacity);
+            }
+            else if (shuttleState.dockedOre > 0)
+            {
+                shuttleLoad = Mathf.Max(0, shuttleState.dockedOre);
+            }
+            else
+            {
+                shuttleLoad = Mathf.Max(0, shuttleState.deliveringOre);
+            }
+
+            totalShuttleOre += shuttleLoad;
         }
 
-        if (gameData.shuttleDockedOre > 0)
+        return totalShuttleOre;
+    }
+
+    private void UpdateSendButton(int shuttleIndex, GameData gameData)
+    {
+        Button button = GetSendButton(shuttleIndex);
+        Text buttonText = GetSendButtonText(shuttleIndex);
+
+        if (button == null && buttonText == null)
         {
-            return Mathf.Max(0, gameData.shuttleDockedOre);
+            return;
         }
 
-        return Mathf.Max(0, gameData.shuttleDeliveringOre);
+        bool isVisible = shuttleIndex < gameData.ActiveShuttleCount;
+
+        if (button != null)
+        {
+            button.gameObject.SetActive(isVisible);
+        }
+        else if (buttonText != null)
+        {
+            buttonText.gameObject.SetActive(isVisible);
+        }
+
+        if (!isVisible)
+        {
+            return;
+        }
+
+        ShuttleState shuttleState = gameData.GetShuttleState(shuttleIndex);
+        bool shuttleIsIdle =
+            shuttleState.loadingTargetOre <= 0 &&
+            shuttleState.loadingOre <= 0 &&
+            shuttleState.deliveringOre <= 0 &&
+            shuttleState.loadingCooldownRemaining <= 0f &&
+            shuttleState.sendCooldownRemaining <= 0f;
+        int currentLoad = GetDisplayedShuttleLoadForSlot(gameData, shuttleIndex);
+
+        if (button != null)
+        {
+            button.interactable = gameData.hasMiningPlatform
+                ? shuttleIsIdle && (shuttleState.dockedOre > 0 || gameData.shuttleOre > 0)
+                : shuttleIndex == 0 && shuttleIsIdle && gameData.shuttleOre > 0;
+        }
+
+        if (buttonText == null)
+        {
+            return;
+        }
+
+        if (shuttleState.loadingCooldownRemaining > 0f)
+        {
+            buttonText.text = "Loading " + (shuttleIndex + 1) + " " + FormatTimer(shuttleState.loadingCooldownRemaining);
+            return;
+        }
+
+        if (shuttleState.sendCooldownRemaining > 0f)
+        {
+            buttonText.text = "Flying " + (shuttleIndex + 1) + " " + FormatTimer(shuttleState.sendCooldownRemaining);
+            return;
+        }
+
+        buttonText.text =
+            "Send " +
+            (shuttleIndex + 1) +
+            " " +
+            NumberFormatter.FormatInt(currentLoad) +
+            "/" +
+            NumberFormatter.FormatInt(gameData.shuttleCapacity);
+    }
+
+    private int GetDisplayedShuttleLoadForSlot(GameData gameData, int shuttleIndex)
+    {
+        if (gameData == null)
+        {
+            return 0;
+        }
+
+        if (!gameData.hasMiningPlatform)
+        {
+            return shuttleIndex == 0 ? Mathf.Max(0, gameData.shuttleOre) : 0;
+        }
+
+        ShuttleState shuttleState = gameData.GetShuttleState(shuttleIndex);
+
+        if (shuttleState.loadingCooldownRemaining > 0f || shuttleState.loadingOre > 0)
+        {
+            return Mathf.Clamp(shuttleState.dockedOre + shuttleState.loadingOre, 0, gameData.shuttleCapacity);
+        }
+
+        if (shuttleState.dockedOre > 0)
+        {
+            return Mathf.Max(0, shuttleState.dockedOre);
+        }
+
+        return Mathf.Max(0, shuttleState.deliveringOre);
+    }
+
+    private Button GetSendButton(int shuttleIndex)
+    {
+        if (shuttleIndex >= 0 && shuttleIndex < shuttleButtons.Count && shuttleButtons[shuttleIndex] != null)
+        {
+            return shuttleButtons[shuttleIndex];
+        }
+
+        switch (shuttleIndex)
+        {
+            case 0:
+                return sendShuttleButton;
+            case 1:
+                return sendShuttleButton2;
+            case 2:
+                return sendShuttleButton3;
+            default:
+                return null;
+        }
+    }
+
+    private Text GetSendButtonText(int shuttleIndex)
+    {
+        if (shuttleIndex >= 0 && shuttleIndex < shuttleButtonTexts.Count && shuttleButtonTexts[shuttleIndex] != null)
+        {
+            return shuttleButtonTexts[shuttleIndex];
+        }
+
+        switch (shuttleIndex)
+        {
+            case 0:
+                return sendShuttleButtonText;
+            case 1:
+                return sendShuttleButtonText2;
+            case 2:
+                return sendShuttleButtonText3;
+            default:
+                return null;
+        }
+    }
+
+    private void EnsureShuttleButtonSlot(
+        int shuttleIndex,
+        Button serializedButton,
+        Text serializedText,
+        Action<int> onShuttleSendRequested)
+    {
+        Button button = serializedButton;
+        Text buttonText = serializedText;
+
+        if (button == null && sendShuttleButton != null)
+        {
+            Button clonedButton = CreateRuntimeShuttleButton(shuttleIndex);
+            button = clonedButton;
+            buttonText = clonedButton != null ? clonedButton.GetComponentInChildren<Text>(true) : null;
+        }
+
+        RegisterShuttleButtonSlot(shuttleIndex, button, buttonText, onShuttleSendRequested);
+    }
+
+    private Button CreateRuntimeShuttleButton(int shuttleIndex)
+    {
+        if (sendShuttleButton == null)
+        {
+            return null;
+        }
+
+        GameObject clonedObject = Instantiate(sendShuttleButton.gameObject, sendShuttleButton.transform.parent);
+        clonedObject.name = "SendShuttleButton" + (shuttleIndex + 1);
+
+        RectTransform templateRect = sendShuttleButton.GetComponent<RectTransform>();
+        RectTransform clonedRect = clonedObject.GetComponent<RectTransform>();
+
+        if (templateRect != null && clonedRect != null)
+        {
+            clonedRect.anchorMin = templateRect.anchorMin;
+            clonedRect.anchorMax = templateRect.anchorMax;
+            clonedRect.pivot = templateRect.pivot;
+            clonedRect.sizeDelta = templateRect.sizeDelta;
+            clonedRect.anchoredPosition = templateRect.anchoredPosition + new Vector2(0f, -((shuttleIndex) * (templateRect.sizeDelta.y + 12f)));
+        }
+
+        return clonedObject.GetComponent<Button>();
+    }
+
+    private void RegisterShuttleButtonSlot(
+        int shuttleIndex,
+        Button button,
+        Text buttonText,
+        Action<int> onShuttleSendRequested)
+    {
+        while (shuttleButtons.Count <= shuttleIndex)
+        {
+            shuttleButtons.Add(null);
+            shuttleButtonTexts.Add(null);
+        }
+
+        shuttleButtons[shuttleIndex] = button;
+        shuttleButtonTexts[shuttleIndex] = buttonText;
+
+        if (button == null)
+        {
+            return;
+        }
+
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() => onShuttleSendRequested?.Invoke(shuttleIndex));
     }
 
     private string BuildMetalProductionText(GameData gameData)

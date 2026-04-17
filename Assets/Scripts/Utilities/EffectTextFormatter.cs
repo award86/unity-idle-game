@@ -43,7 +43,10 @@ public static class EffectTextFormatter
                 return "-" + NumberFormatter.FormatFloat(effectValue) + "s Shuttle travel";
 
             case UpgradeEffectType.ShuttleAutoSend:
-                return "Unlock auto dispatch";
+                return "+" + NumberFormatter.FormatFloat(effectValue) + " Auto-dispatch shuttle";
+
+            case UpgradeEffectType.ShuttleCount:
+                return "+" + NumberFormatter.FormatFloat(effectValue) + " Shuttle";
 
             default:
                 return "Unknown";
