@@ -43,6 +43,8 @@ public class UpgradeItemUI : MonoBehaviour
             return;
         }
 
+        GameUiTextConfig uiText = GameTextProvider.UIText;
+
         bool shouldShow = shouldDisplayUpgradeList && upgradeState.Definition.ResolvedCategory == selectedCategory;
         gameObject.SetActive(shouldShow);
 
@@ -64,15 +66,15 @@ public class UpgradeItemUI : MonoBehaviour
         if (levelText != null)
         {
             levelText.text = upgradeState.Definition.HasMaxLevel
-                ? "Level: " + upgradeState.Level + "/" + upgradeState.Definition.maxLevel
-                : "Level: " + upgradeState.Level;
+                ? uiText.LevelLabel + ": " + upgradeState.Level + "/" + upgradeState.Definition.maxLevel
+                : uiText.LevelLabel + ": " + upgradeState.Level;
         }
 
         if (costText != null)
         {
             costText.text = upgradeState.IsMaxLevel
-                ? "Cost: MAX"
-                : "Cost: " + EffectTextFormatter.BuildCostText(upgradeState.GetCurrentCosts());
+                ? uiText.CostLabel + ": " + uiText.MaxCostText
+                : uiText.CostLabel + ": " + EffectTextFormatter.BuildCostText(upgradeState.GetCurrentCosts());
         }
 
         if (effectText != null)
@@ -87,15 +89,17 @@ public class UpgradeItemUI : MonoBehaviour
 
         if (buyButtonText != null)
         {
-            buyButtonText.text = upgradeState.IsMaxLevel ? "Max" : "Buy";
+            buyButtonText.text = upgradeState.IsMaxLevel ? uiText.MaxButtonText : uiText.BuyButtonText;
         }
     }
 
     private string BuildUpgradeEffectText()
     {
+        GameUiTextConfig uiText = GameTextProvider.UIText;
+
         if (upgradeState.Definition.Effects.Count <= 0)
         {
-            return "Effect: None";
+            return uiText.EffectLabel + ": " + uiText.NoneText;
         }
 
         string[] effectLines = new string[upgradeState.Definition.Effects.Count];
@@ -105,7 +109,7 @@ public class UpgradeItemUI : MonoBehaviour
             effectLines[i] = BuildEffectLine(upgradeState.Definition.Effects[i]);
         }
 
-        return "Effect: " + string.Join("\n", effectLines);
+        return uiText.EffectLabel + ": " + string.Join("\n", effectLines);
     }
 
     private string BuildEffectLine(UpgradeEffectDefinition effect)

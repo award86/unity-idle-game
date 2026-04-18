@@ -29,6 +29,8 @@ public class MetaBonusItemUI : MonoBehaviour
             return;
         }
 
+        GameUiTextConfig uiText = GameTextProvider.UIText;
+
         gameObject.SetActive(shouldShow);
 
         if (!shouldShow)
@@ -49,15 +51,15 @@ public class MetaBonusItemUI : MonoBehaviour
         if (levelText != null)
         {
             levelText.text = metaBonusState.Definition.HasMaxLevel
-                ? "Bonus Level: " + metaBonusState.Level + "/" + metaBonusState.Definition.maxLevel
-                : "Bonus Level: " + metaBonusState.Level;
+                ? uiText.BonusLevelLabel + ": " + metaBonusState.Level + "/" + metaBonusState.Definition.maxLevel
+                : uiText.BonusLevelLabel + ": " + metaBonusState.Level;
         }
 
         if (costText != null)
         {
             costText.text = metaBonusState.IsMaxLevel
-                ? "Cost: MAX"
-                : "Cost: " + NumberFormatter.FormatInt(metaBonusState.GetCurrentCrystalCost()) + " Crystal";
+                ? uiText.CostLabel + ": " + uiText.MaxCostText
+                : uiText.CostLabel + ": " + NumberFormatter.FormatInt(metaBonusState.GetCurrentCrystalCost()) + " " + uiText.CrystalLabel;
         }
 
         if (effectText != null)
@@ -72,7 +74,7 @@ public class MetaBonusItemUI : MonoBehaviour
 
         if (buyButtonText != null)
         {
-            buyButtonText.text = metaBonusState.IsMaxLevel ? "Max" : "Buy";
+            buyButtonText.text = metaBonusState.IsMaxLevel ? uiText.MaxButtonText : uiText.BuyButtonText;
         }
     }
 
@@ -87,9 +89,11 @@ public class MetaBonusItemUI : MonoBehaviour
 
     private string BuildEffectText()
     {
+        GameUiTextConfig uiText = GameTextProvider.UIText;
+
         if (metaBonusState.Definition.Effects.Count <= 0)
         {
-            return "Effect: None";
+            return uiText.EffectLabel + ": " + uiText.NoneText;
         }
 
         string[] lines = new string[metaBonusState.Definition.Effects.Count];
@@ -103,7 +107,7 @@ public class MetaBonusItemUI : MonoBehaviour
             lines[i] = EffectTextFormatter.BuildEffectLine(effect.effectType, effectValue);
         }
 
-        return "Effect: " + string.Join("\n", lines);
+        return uiText.EffectLabel + ": " + string.Join("\n", lines);
     }
 
     private void HandleBuyClicked()

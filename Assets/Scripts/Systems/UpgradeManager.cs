@@ -229,6 +229,72 @@ public class UpgradeManager
         return false;
     }
 
+    public bool HasAffordableBuilding()
+    {
+        for (int i = 0; i < buildingStates.Count; i++)
+        {
+            BuildingState state = buildingStates[i];
+
+            if (state.IsMaxLevel)
+            {
+                continue;
+            }
+
+            if (state.CanAfford(gameData))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public UpgradeCategory GetPreferredAffordableUpgradeCategory()
+    {
+        for (int i = 0; i < upgradeStates.Count; i++)
+        {
+            UpgradeState state = upgradeStates[i];
+            UpgradeCategory category = state.Definition.ResolvedCategory;
+
+            if (state.IsMaxLevel || !IsUpgradeCategoryUnlocked(category))
+            {
+                continue;
+            }
+
+            if (state.CanAfford(gameData))
+            {
+                return category;
+            }
+        }
+
+        if (IsUpgradeCategoryUnlocked(UpgradeCategory.Miner))
+        {
+            return UpgradeCategory.Miner;
+        }
+
+        if (IsUpgradeCategoryUnlocked(UpgradeCategory.Platform))
+        {
+            return UpgradeCategory.Platform;
+        }
+
+        if (IsUpgradeCategoryUnlocked(UpgradeCategory.PowerStation))
+        {
+            return UpgradeCategory.PowerStation;
+        }
+
+        if (IsUpgradeCategoryUnlocked(UpgradeCategory.Factory))
+        {
+            return UpgradeCategory.Factory;
+        }
+
+        if (IsUpgradeCategoryUnlocked(UpgradeCategory.Shuttle))
+        {
+            return UpgradeCategory.Shuttle;
+        }
+
+        return UpgradeCategory.Miner;
+    }
+
     public bool HasAnyUnlockedUpgradeCategory()
     {
         return IsUpgradeCategoryUnlocked(UpgradeCategory.Miner) ||

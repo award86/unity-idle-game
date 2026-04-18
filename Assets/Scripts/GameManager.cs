@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        GameTextProvider.Configure(gameConfig);
         LoadGame();
 
         MissionConfig resolvedMissionConfig = missionConfig != null
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour
             uiManager.InitializeShuttleButtons(HandleShuttleSendRequested);
             uiManager.InitializeShuttleDisplays();
             uiManager.InitializeMenuButtons(HandleExitRequested);
+            uiManager.InitializeMainScreenActionButtons(OnUpgradeButtonClicked, OnBuildButtonClicked);
             uiManager.InitializeBoostOfferButton(HandleBoostOfferAccepted);
             uiManager.InitializeUpgradeList(
                 upgradeManager.UpgradeStates,
@@ -215,6 +217,7 @@ public class GameManager : MonoBehaviour
         }
 
         PrepareMainPanelOpen();
+        uiManager.SetUpgradeCategory(upgradeManager.GetPreferredAffordableUpgradeCategory());
         uiManager.OpenUpgradePanel();
     }
 
@@ -675,7 +678,7 @@ public class GameManager : MonoBehaviour
         uiManager.SetMainScreenUpgradeButtonVisible(
             upgradeManager.HasAnyUnlockedUpgradeCategory() &&
             upgradeManager.HasAffordableUpgrade());
-        uiManager.SetMainScreenBuildButtonVisible(upgradeManager.BuildingStates.Count > 0);
+        uiManager.SetMainScreenBuildButtonVisible(upgradeManager.HasAffordableBuilding());
         uiManager.SetMainScreenMissionButtonVisible(missionManager != null);
         uiManager.UpdateMissionInfo(
             missionManager != null

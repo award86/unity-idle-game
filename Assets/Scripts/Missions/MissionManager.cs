@@ -300,31 +300,31 @@ public class MissionManager
         switch (mission.objectiveType)
         {
             case MissionObjectiveType.ReachOreAmount:
-                progressData.progressLabel = "Ore";
+                progressData.progressLabel = GameTextProvider.UIText.OreLabel;
                 progressData.currentValue = Mathf.Max(0, gameData.ore);
                 progressData.targetValue = Mathf.Max(1, mission.targetValue);
                 break;
 
             case MissionObjectiveType.ReachMetalAmount:
-                progressData.progressLabel = "Metal";
+                progressData.progressLabel = GameTextProvider.UIText.MetalLabel;
                 progressData.currentValue = Mathf.Max(0, gameData.metal);
                 progressData.targetValue = Mathf.Max(1, mission.targetValue);
                 break;
 
             case MissionObjectiveType.UnlockAllUpgradeCategories:
-                progressData.progressLabel = "Unlocked tabs";
+                progressData.progressLabel = GameTextProvider.UIText.UnlockedTabsProgressLabel;
                 progressData.currentValue = CountUnlockedUpgradeCategories(upgradeManager);
                 progressData.targetValue = 5;
                 break;
 
             case MissionObjectiveType.ResearchEverythingPossible:
-                progressData.progressLabel = "Maxed research";
+                progressData.progressLabel = GameTextProvider.UIText.MaxedResearchProgressLabel;
                 progressData.currentValue = CountMaxedResearch(upgradeManager);
                 progressData.targetValue = CountAllResearch(upgradeManager);
                 break;
 
             default:
-                progressData.progressLabel = "Progress";
+                progressData.progressLabel = GameTextProvider.UIText.ProgressLabel;
                 progressData.currentValue = 0;
                 progressData.targetValue = 1;
                 break;

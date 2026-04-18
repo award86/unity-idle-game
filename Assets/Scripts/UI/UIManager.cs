@@ -88,6 +88,8 @@ public class UIManager : MonoBehaviour
     private readonly List<Text> shuttleButtonTexts = new List<Text>();
     private readonly List<Button> boostOfferButtons = new List<Button>();
     private readonly List<Text> boostOfferButtonTexts = new List<Text>();
+    private readonly List<Button> mainScreenActionButtons = new List<Button>();
+    private readonly List<Text> mainScreenActionButtonTexts = new List<Text>();
     private readonly List<RectTransform> shuttleBarRoots = new List<RectTransform>();
     private readonly List<Image> shuttleFillImages = new List<Image>();
     private readonly List<Text> shuttleBarTexts = new List<Text>();
@@ -104,6 +106,11 @@ public class UIManager : MonoBehaviour
     private Vector2Int lastAppliedScreenSize;
     private RectTransform cachedMenuButtonRect;
     private Action<TemporaryBoostState> boostOfferAcceptHandler;
+    private Action mainScreenUpgradeAction;
+    private Action mainScreenBuildAction;
+    private bool mainScreenActionButtonsInitialized;
+    private bool mainScreenUpgradeVisible;
+    private bool mainScreenBuildVisible;
 
     public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
     public bool IsBoostOfferVisible => HasVisibleBoostOfferButtons();
@@ -164,15 +171,16 @@ public class UIManager : MonoBehaviour
     public void UpdateUI(GameData gameData)
     {
         lastDisplayedGameData = gameData;
+        GameUiTextConfig uiText = GameTextProvider.UIText;
 
         if (oreText != null)
         {
-            oreText.text = "Warehouse Ore: " + NumberFormatter.FormatInt(gameData.ore);
+            oreText.text = uiText.OreLabel + ": " + NumberFormatter.FormatInt(gameData.ore);
         }
 
         if (metalText != null)
         {
-            metalText.text = "Metal: " + NumberFormatter.FormatInt(gameData.metal);
+            metalText.text = uiText.MetalLabel + ": " + NumberFormatter.FormatInt(gameData.metal);
         }
 
         if (energyText != null)
@@ -183,7 +191,7 @@ public class UIManager : MonoBehaviour
 
         if (crystalText != null)
         {
-            crystalText.text = "Crystal: " + NumberFormatter.FormatInt(gameData.crystal);
+            crystalText.text = uiText.CrystalLabel + ": " + NumberFormatter.FormatInt(gameData.crystal);
         }
 
         if (platformText != null)
@@ -194,7 +202,7 @@ public class UIManager : MonoBehaviour
             if (shouldUseLegacyPlatformText && gameData.hasMiningPlatform)
             {
                 platformText.text =
-                    "Platform: " +
+                    uiText.PlatformLabel + ": " +
                     NumberFormatter.FormatInt(gameData.shuttleOre) +
                     " / " +
                     NumberFormatter.FormatInt(gameData.platformCapacity);
@@ -221,7 +229,7 @@ public class UIManager : MonoBehaviour
             }
 
             legacyShuttleText.text =
-                "Shuttle " +
+                uiText.ShuttleLabel + " " +
                 (shuttleIndex + 1) +
                 ": " +
                 NumberFormatter.FormatInt(GetDisplayedShuttleLoadForSlot(gameData, shuttleIndex)) +
@@ -231,12 +239,12 @@ public class UIManager : MonoBehaviour
 
         if (orePerSecondText != null)
         {
-            orePerSecondText.text = "Ore / sec: " + NumberFormatter.FormatInt(gameData.orePerSecond);
+            orePerSecondText.text = uiText.OrePerSecondLabel + ": " + NumberFormatter.FormatInt(gameData.orePerSecond);
         }
 
         if (orePerClickText != null)
         {
-            orePerClickText.text = "Ore / click: " + NumberFormatter.FormatInt(gameData.orePerClick);
+            orePerClickText.text = uiText.OrePerClickLabel + ": " + NumberFormatter.FormatInt(gameData.orePerClick);
         }
 
         RefreshEnergyVisuals(gameData, !hasDisplayedEnergyAmount);
@@ -330,7 +338,7 @@ public class UIManager : MonoBehaviour
 
         if (exitMenuButtonText != null)
         {
-            exitMenuButtonText.text = "Exit";
+            exitMenuButtonText.text = GameTextProvider.UIText.ExitButtonText;
         }
 
         exitMenuButton.onClick.RemoveAllListeners();
@@ -341,6 +349,23 @@ public class UIManager : MonoBehaviour
     {
         boostOfferAcceptHandler = onAcceptRequested;
         EnsureBoostOfferButtonSlot(0, boostOfferButton, boostOfferButtonText);
+    }
+
+    public void InitializeMainScreenActionButtons(Action onUpgradeRequested, Action onBuildRequested)
+    {
+        mainScreenUpgradeAction = onUpgradeRequested;
+        mainScreenBuildAction = onBuildRequested;
+        mainScreenActionButtonsInitialized = true;
+
+        EnsureMainScreenActionButtonSlot(0);
+
+        if (mainScreenBuildButton != null && mainScreenBuildButton != mainScreenUpgradeButton)
+        {
+            mainScreenBuildButton.SetActive(false);
+        }
+
+        RefreshMainScreenActionButtons();
+        ApplyResponsiveLayout(true);
     }
 
     public void ShowBoostOffers(IReadOnlyList<TemporaryBoostState> boostStates)
@@ -470,10 +495,112 @@ public class UIManager : MonoBehaviour
 
         if (buttonText != null)
         {
-            buttonText.text = "Accept";
+            buttonText.text = GameTextProvider.UIText.AcceptButtonText;
         }
 
         button.onClick = new Button.ButtonClickedEvent();
+    }
+
+    private void EnsureMainScreenActionButtonSlot(int slotIndex)
+    {
+        while (mainScreenActionButtons.Count <= slotIndex)
+        {
+            mainScreenActionButtons.Add(null);
+            mainScreenActionButtonTexts.Add(null);
+        }
+
+        if (mainScreenActionButtons[slotIndex] != null)
+        {
+            return;
+        }
+
+        if (mainScreenUpgradeButton == null)
+        {
+            Button templateButton = FindButtonByName("MainScreenUpgradeButton");
+            mainScreenUpgradeButton = templateButton != null ? templateButton.gameObject : null;
+        }
+
+        if (mainScreenUpgradeButton == null)
+        {
+            return;
+        }
+
+        GameObject buttonObject = slotIndex == 0
+            ? mainScreenUpgradeButton
+            : CreateRuntimeMainScreenActionButton(slotIndex);
+
+        if (buttonObject == null)
+        {
+            return;
+        }
+
+        mainScreenActionButtons[slotIndex] = buttonObject.GetComponent<Button>();
+        mainScreenActionButtonTexts[slotIndex] = buttonObject.GetComponentInChildren<Text>(true);
+    }
+
+    private void RefreshMainScreenActionButtons()
+    {
+        if (!mainScreenActionButtonsInitialized)
+        {
+            return;
+        }
+
+        List<(string label, Action action)> visibleActions = new List<(string label, Action action)>();
+        bool shouldShowOnMainScreenOnly =
+            !IsUpgradePanelVisible &&
+            !IsBuildPanelVisible &&
+            !IsMissionPanelVisible &&
+            !IsMenuVisible &&
+            !IsResetConfirmationVisible &&
+            !IsOfflineRewardVisible;
+
+        if (shouldShowOnMainScreenOnly && mainScreenUpgradeVisible)
+        {
+            visibleActions.Add((GameTextProvider.UIText.UpgradeAvailableButtonText, mainScreenUpgradeAction));
+        }
+
+        if (shouldShowOnMainScreenOnly && mainScreenBuildVisible)
+        {
+            visibleActions.Add((GameTextProvider.UIText.BuildAvailableButtonText, mainScreenBuildAction));
+        }
+
+        for (int i = 0; i < visibleActions.Count; i++)
+        {
+            EnsureMainScreenActionButtonSlot(i);
+
+            Button button = mainScreenActionButtons[i];
+            Text buttonText = mainScreenActionButtonTexts[i];
+
+            if (button == null)
+            {
+                continue;
+            }
+
+            button.gameObject.SetActive(true);
+            button.onClick = new Button.ButtonClickedEvent();
+            Action action = visibleActions[i].action;
+            button.onClick.AddListener(() => action?.Invoke());
+
+            if (buttonText != null)
+            {
+                buttonText.text = visibleActions[i].label;
+            }
+        }
+
+        for (int i = visibleActions.Count; i < mainScreenActionButtons.Count; i++)
+        {
+            if (mainScreenActionButtons[i] != null)
+            {
+                mainScreenActionButtons[i].gameObject.SetActive(false);
+            }
+        }
+
+        if (visibleActions.Count <= 0 && mainScreenBuildButton != null && mainScreenBuildButton != mainScreenUpgradeButton)
+        {
+            mainScreenBuildButton.SetActive(false);
+        }
+
+        ApplyResponsiveLayout(true);
     }
 
     public void RefreshUpgradeList(GameData gameData)
@@ -605,6 +732,8 @@ public class UIManager : MonoBehaviour
         {
             HideResetConfirmation();
         }
+
+        RefreshMainScreenActionButtons();
     }
 
     public void HideMenu()
@@ -615,6 +744,7 @@ public class UIManager : MonoBehaviour
         }
 
         HideSharedOverlay();
+        RefreshMainScreenActionButtons();
     }
 
     public void OpenUpgradePanel()
@@ -638,6 +768,7 @@ public class UIManager : MonoBehaviour
         HideBoostOffer();
         upgradePanel.SetActive(true);
         RefreshPanelLists();
+        RefreshMainScreenActionButtons();
     }
 
     public void OpenBuildingPanel()
@@ -661,6 +792,7 @@ public class UIManager : MonoBehaviour
         HideBoostOffer();
         buildPanel.SetActive(true);
         RefreshPanelLists();
+        RefreshMainScreenActionButtons();
     }
 
     public void OpenMissionPanel()
@@ -684,6 +816,7 @@ public class UIManager : MonoBehaviour
         HideBoostOffer();
         missionPanel.SetActive(true);
         RefreshPanelLists();
+        RefreshMainScreenActionButtons();
     }
 
     public void HideUpgradePanel()
@@ -694,6 +827,7 @@ public class UIManager : MonoBehaviour
         }
 
         RefreshPanelLists();
+        RefreshMainScreenActionButtons();
     }
 
     public void HideBuildPanel()
@@ -704,6 +838,7 @@ public class UIManager : MonoBehaviour
         }
 
         RefreshPanelLists();
+        RefreshMainScreenActionButtons();
     }
 
     public void HideMissionPanel()
@@ -714,10 +849,19 @@ public class UIManager : MonoBehaviour
         }
 
         RefreshPanelLists();
+        RefreshMainScreenActionButtons();
     }
 
     public void SetMainScreenUpgradeButtonVisible(bool isVisible)
     {
+        mainScreenUpgradeVisible = isVisible;
+
+        if (mainScreenActionButtonsInitialized)
+        {
+            RefreshMainScreenActionButtons();
+            return;
+        }
+
         if (mainScreenUpgradeButton != null)
         {
             mainScreenUpgradeButton.SetActive(isVisible);
@@ -726,6 +870,14 @@ public class UIManager : MonoBehaviour
 
     public void SetMainScreenBuildButtonVisible(bool isVisible)
     {
+        mainScreenBuildVisible = isVisible;
+
+        if (mainScreenActionButtonsInitialized)
+        {
+            RefreshMainScreenActionButtons();
+            return;
+        }
+
         if (mainScreenBuildButton != null)
         {
             mainScreenBuildButton.SetActive(isVisible);
@@ -743,11 +895,12 @@ public class UIManager : MonoBehaviour
     public void UpdateMissionInfo(MissionProgressData progressData, string noMissionsText)
     {
         bool hasMission = progressData.hasMission;
+        GameUiTextConfig uiText = GameTextProvider.UIText;
 
         if (metaBonusHeaderText != null)
         {
             metaBonusHeaderText.gameObject.SetActive(true);
-            metaBonusHeaderText.text = "Meta Bonuses";
+            metaBonusHeaderText.text = uiText.MetaBonusesHeaderText;
         }
 
         if (metaBonusListRoot != null)
@@ -768,11 +921,11 @@ public class UIManager : MonoBehaviour
             else
             {
                 missionStatusText.text =
-                    "Mission " +
+                    uiText.MissionLabel + " " +
                     progressData.missionNumber +
                     "/" +
                     progressData.missionCount +
-                    (progressData.canClaimReward ? " Complete" : string.Empty);
+                    (progressData.canClaimReward ? " " + uiText.MissionCompleteSuffix : string.Empty);
             }
         }
 
@@ -823,9 +976,9 @@ public class UIManager : MonoBehaviour
             else
             {
                 missionRewardText.text =
-                    (progressData.canClaimReward ? "Reward ready: " : "Reward: ") +
+                    (progressData.canClaimReward ? uiText.RewardReadyLabel + ": " : uiText.RewardLabel + ": ") +
                     NumberFormatter.FormatInt(progressData.crystalReward) +
-                    " Crystal";
+                    " " + uiText.CrystalLabel;
             }
         }
 
@@ -837,7 +990,7 @@ public class UIManager : MonoBehaviour
 
         if (missionClaimButtonText != null)
         {
-            missionClaimButtonText.text = "Claim Reward";
+            missionClaimButtonText.text = uiText.ClaimRewardButtonText;
         }
     }
 
@@ -849,6 +1002,8 @@ public class UIManager : MonoBehaviour
         {
             resetConfirmationPanel.SetActive(true);
         }
+
+        RefreshMainScreenActionButtons();
     }
 
     public void HideResetConfirmation()
@@ -857,6 +1012,8 @@ public class UIManager : MonoBehaviour
         {
             resetConfirmationPanel.SetActive(false);
         }
+
+        RefreshMainScreenActionButtons();
     }
 
     public void ShowOfflineReward(int warehouseAmount)
@@ -864,18 +1021,21 @@ public class UIManager : MonoBehaviour
         HideMenu();
         HideAllContentPanels();
         HideResetConfirmation();
+        HideBoostOffer();
 
         if (offlineRewardText != null)
         {
-            offlineRewardText.text = "Sent to warehouse while offline: " +
+            offlineRewardText.text = GameTextProvider.UIText.OfflineWarehouseRewardPrefix + ": " +
                                      NumberFormatter.FormatInt(warehouseAmount) +
-                                     " Ore.";
+                                     " " + GameTextProvider.UIText.OfflineWarehouseRewardResourceSuffix + ".";
         }
 
         if (offlineRewardPanel != null)
         {
             offlineRewardPanel.SetActive(true);
         }
+
+        RefreshMainScreenActionButtons();
     }
 
     public void HideOfflineReward()
@@ -884,6 +1044,8 @@ public class UIManager : MonoBehaviour
         {
             offlineRewardPanel.SetActive(false);
         }
+
+        RefreshMainScreenActionButtons();
     }
 
     public void ShowBoostOffer(TemporaryBoostState boostState)
@@ -936,8 +1098,8 @@ public class UIManager : MonoBehaviour
             TemporaryBoostState boostState = activeBoostStates[i];
             lines.Add(
                 boostState.Definition.boostName +
-                " x" + NumberFormatter.FormatFloat(boostState.GetMultiplier()) +
-                " - " + Mathf.CeilToInt(boostState.ActiveRemainingTime) + "s");
+                " " + GameTextProvider.UIText.MultiplierPrefixText + NumberFormatter.FormatFloat(boostState.GetMultiplier()) +
+                " - " + Mathf.CeilToInt(boostState.ActiveRemainingTime) + GameTextProvider.UIText.SecondsSuffixText);
         }
 
         boostStatusText.text = string.Join("\n", lines);
@@ -1105,36 +1267,9 @@ public class UIManager : MonoBehaviour
 
     private string BuildBoostOfferText(TemporaryBoostState boostState)
     {
-        string targetText;
-
-        switch (boostState.Definition.targetType)
-        {
-            case TemporaryBoostTargetType.OrePerClick:
-                targetText = "Ore / click";
-                break;
-
-            case TemporaryBoostTargetType.ShuttleTravelSpeed:
-                targetText = "Shuttle speed";
-                break;
-
-            default:
-                targetText = "Ore / sec";
-                break;
-        }
-
-        string description = string.IsNullOrWhiteSpace(boostState.Definition.description)
+        return boostState == null || boostState.Definition == null
             ? string.Empty
-            : boostState.Definition.description + "\n";
-
-        return boostState.Definition.boostName + "\n" +
-               description +
-               "x" +
-               NumberFormatter.FormatFloat(boostState.GetMultiplier()) +
-               " " +
-               targetText +
-               " for " +
-               Mathf.RoundToInt(boostState.Definition.durationSeconds) +
-               "s";
+            : boostState.Definition.boostName;
     }
 
     private bool CanProduceMetal(GameData gameData)
@@ -1562,7 +1697,7 @@ public class UIManager : MonoBehaviour
 
         if (energyText != null && energyText.gameObject.activeSelf)
         {
-            energyText.text = "Energy: " + displayedEnergyText + " / " + energyMaxText;
+            energyText.text = GameTextProvider.UIText.EnergyLabel + ": " + displayedEnergyText + " / " + energyMaxText;
         }
     }
 
@@ -1779,20 +1914,22 @@ public class UIManager : MonoBehaviour
             return;
         }
 
+        GameUiTextConfig uiText = GameTextProvider.UIText;
+
         if (shuttleState.loadingCooldownRemaining > 0f)
         {
-            buttonText.text = "Loading " + (shuttleIndex + 1) + " " + FormatTimer(shuttleState.loadingCooldownRemaining);
+            buttonText.text = uiText.LoadingButtonText + " " + (shuttleIndex + 1) + " " + FormatTimer(shuttleState.loadingCooldownRemaining);
             return;
         }
 
         if (shuttleState.sendCooldownRemaining > 0f)
         {
-            buttonText.text = "Flying " + (shuttleIndex + 1) + " " + FormatTimer(shuttleState.sendCooldownRemaining);
+            buttonText.text = uiText.FlyingButtonText + " " + (shuttleIndex + 1) + " " + FormatTimer(shuttleState.sendCooldownRemaining);
             return;
         }
 
         buttonText.text =
-            "Send " +
+            uiText.SendButtonText + " " +
             (shuttleIndex + 1) +
             " " +
             NumberFormatter.FormatInt(currentLoad) +
@@ -1955,6 +2092,32 @@ public class UIManager : MonoBehaviour
         }
 
         return clonedObject.GetComponent<Button>();
+    }
+
+    private GameObject CreateRuntimeMainScreenActionButton(int slotIndex)
+    {
+        if (mainScreenUpgradeButton == null)
+        {
+            return null;
+        }
+
+        GameObject clonedObject = Instantiate(mainScreenUpgradeButton, mainScreenUpgradeButton.transform.parent);
+        clonedObject.name = "MainScreenActionButton" + (slotIndex + 1);
+
+        RectTransform templateRect = mainScreenUpgradeButton.GetComponent<RectTransform>();
+        RectTransform clonedRect = clonedObject.GetComponent<RectTransform>();
+
+        if (templateRect != null && clonedRect != null)
+        {
+            clonedRect.anchorMin = templateRect.anchorMin;
+            clonedRect.anchorMax = templateRect.anchorMax;
+            clonedRect.pivot = templateRect.pivot;
+            clonedRect.sizeDelta = templateRect.sizeDelta;
+            clonedRect.localScale = templateRect.localScale;
+            clonedRect.anchoredPosition = templateRect.anchoredPosition + new Vector2(0f, -((slotIndex) * (templateRect.sizeDelta.y + 12f)));
+        }
+
+        return clonedObject;
     }
 
     private RectTransform CreateRuntimeShuttleBar(int shuttleIndex)
@@ -2247,25 +2410,27 @@ public class UIManager : MonoBehaviour
 
     private string BuildMetalProductionText(GameData gameData)
     {
+        GameUiTextConfig uiText = GameTextProvider.UIText;
+
         if (gameData == null)
         {
-            return "Produce Metal";
+            return uiText.ProduceMetalButtonText + " " + uiText.MetalLabel;
         }
 
         List<string> costParts = new List<string>();
 
         if (gameData.metalOreCost > 0)
         {
-            costParts.Add(NumberFormatter.FormatInt(gameData.metalOreCost) + " Ore");
+            costParts.Add(NumberFormatter.FormatInt(gameData.metalOreCost) + " " + uiText.OreLabel);
         }
 
         if (gameData.metalEnergyCost > 0)
         {
-            costParts.Add(NumberFormatter.FormatInt(gameData.metalEnergyCost) + " Energy");
+            costParts.Add(NumberFormatter.FormatInt(gameData.metalEnergyCost) + " " + uiText.EnergyLabel);
         }
 
-        string costLine = costParts.Count > 0 ? string.Join(" + ", costParts) : "Free";
-        return "Produce " + NumberFormatter.FormatInt(gameData.metalPerCraft) + " Metal\n" + costLine;
+        string costLine = costParts.Count > 0 ? string.Join(" + ", costParts) : uiText.FreeText;
+        return uiText.ProduceMetalButtonText + " " + NumberFormatter.FormatInt(gameData.metalPerCraft) + " " + uiText.MetalLabel + "\n" + costLine;
     }
 
     private string FormatTimer(float seconds)

@@ -30,6 +30,8 @@ public class BuildingItemUI : MonoBehaviour
             return;
         }
 
+        GameUiTextConfig uiText = GameTextProvider.UIText;
+
         gameObject.SetActive(shouldShow);
 
         if (!shouldShow)
@@ -50,15 +52,15 @@ public class BuildingItemUI : MonoBehaviour
         if (levelText != null)
         {
             levelText.text = buildingState.Definition.HasMaxLevel
-                ? "Level: " + buildingState.Level + "/" + buildingState.Definition.maxLevel
-                : "Level: " + buildingState.Level;
+                ? uiText.LevelLabel + ": " + buildingState.Level + "/" + buildingState.Definition.maxLevel
+                : uiText.LevelLabel + ": " + buildingState.Level;
         }
 
         if (costText != null)
         {
             costText.text = buildingState.IsMaxLevel
-                ? "Cost: MAX"
-                : "Cost: " + EffectTextFormatter.BuildCostText(buildingState.GetCurrentCosts());
+                ? uiText.CostLabel + ": " + uiText.MaxCostText
+                : uiText.CostLabel + ": " + EffectTextFormatter.BuildCostText(buildingState.GetCurrentCosts());
         }
 
         if (effectText != null)
@@ -73,7 +75,7 @@ public class BuildingItemUI : MonoBehaviour
 
         if (buyButtonText != null)
         {
-            buyButtonText.text = buildingState.IsMaxLevel ? "Max" : "Build";
+            buyButtonText.text = buildingState.IsMaxLevel ? uiText.MaxButtonText : uiText.BuildButtonText;
         }
     }
 
@@ -88,9 +90,11 @@ public class BuildingItemUI : MonoBehaviour
 
     private string BuildBuildingEffectText()
     {
+        GameUiTextConfig uiText = GameTextProvider.UIText;
+
         if (buildingState.Definition.Effects.Count <= 0)
         {
-            return "Effect: None";
+            return uiText.EffectLabel + ": " + uiText.NoneText;
         }
 
         string[] effectLines = new string[buildingState.Definition.Effects.Count];
@@ -100,7 +104,7 @@ public class BuildingItemUI : MonoBehaviour
             effectLines[i] = BuildEffectLine(buildingState.Definition.Effects[i]);
         }
 
-        return "Effect: " + string.Join("\n", effectLines);
+        return uiText.EffectLabel + ": " + string.Join("\n", effectLines);
     }
 
     private string BuildEffectLine(UpgradeEffectDefinition effect)
