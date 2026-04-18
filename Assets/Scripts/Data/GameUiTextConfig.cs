@@ -23,6 +23,7 @@ public class GameUiTextConfig
     public const string DefaultProduceMetalButtonText = "Produce";
     public const string DefaultUpgradeAvailableButtonText = "Upgrade Available!";
     public const string DefaultBuildAvailableButtonText = "Build Available!";
+    public const string DefaultLanguageToggleButtonText = "Русский";
     public const string DefaultMissionLabel = "Mission";
     public const string DefaultMissionCompleteSuffix = "Complete";
     public const string DefaultRewardLabel = "Reward";
@@ -81,6 +82,7 @@ public class GameUiTextConfig
     [SerializeField] private string produceMetalButtonText = DefaultProduceMetalButtonText;
     [SerializeField] private string upgradeAvailableButtonText = DefaultUpgradeAvailableButtonText;
     [SerializeField] private string buildAvailableButtonText = DefaultBuildAvailableButtonText;
+    [SerializeField] private string languageToggleButtonText = DefaultLanguageToggleButtonText;
 
     [Header("Mission")]
     [SerializeField] private string missionLabel = DefaultMissionLabel;
@@ -144,6 +146,7 @@ public class GameUiTextConfig
     public string ProduceMetalButtonText => GetValue(produceMetalButtonText, DefaultProduceMetalButtonText);
     public string UpgradeAvailableButtonText => GetValue(upgradeAvailableButtonText, DefaultUpgradeAvailableButtonText);
     public string BuildAvailableButtonText => GetValue(buildAvailableButtonText, DefaultBuildAvailableButtonText);
+    public string LanguageToggleButtonText => GetValue(languageToggleButtonText, DefaultLanguageToggleButtonText);
     public string MissionLabel => GetValue(missionLabel, DefaultMissionLabel);
     public string MissionCompleteSuffix => GetValue(missionCompleteSuffix, DefaultMissionCompleteSuffix);
     public string RewardLabel => GetValue(rewardLabel, DefaultRewardLabel);
@@ -182,5 +185,67 @@ public class GameUiTextConfig
     private static string GetValue(string value, string fallback)
     {
         return string.IsNullOrWhiteSpace(value) ? fallback : value;
+    }
+
+    public static GameUiTextConfig CreateRussianDefaults()
+    {
+        return new GameUiTextConfig
+        {
+            oreLabel = "Руда",
+            energyLabel = "Энергия",
+            metalLabel = "Металл",
+            crystalLabel = "Кристалл",
+            platformLabel = "Платформа",
+            shuttleLabel = "Шаттл",
+            orePerSecondLabel = "Руда / сек",
+            orePerClickLabel = "Руда / клик",
+            acceptButtonText = "Принять",
+            exitButtonText = "Выход",
+            claimRewardButtonText = "Забрать награду",
+            buyButtonText = "Купить",
+            buildButtonText = "Построить",
+            maxButtonText = "Макс",
+            sendButtonText = "Отправить",
+            loadingButtonText = "Загрузка",
+            flyingButtonText = "Полет",
+            produceMetalButtonText = "Произвести",
+            upgradeAvailableButtonText = "Доступно улучшение!",
+            buildAvailableButtonText = "Доступна постройка!",
+            languageToggleButtonText = "English",
+            missionLabel = "Миссия",
+            missionCompleteSuffix = "Завершена",
+            rewardLabel = "Награда",
+            rewardReadyLabel = "Награда готова",
+            metaBonusesHeaderText = "Мета-бонусы",
+            unlockedTabsProgressLabel = "Открыто вкладок",
+            maxedResearchProgressLabel = "Исследовано",
+            progressLabel = "Прогресс",
+            levelLabel = "Уровень",
+            bonusLevelLabel = "Уровень бонуса",
+            costLabel = "Стоимость",
+            effectLabel = "Эффект",
+            noneText = "Нет",
+            maxCostText = "МАКС",
+            freeText = "Бесплатно",
+            offlineWarehouseRewardPrefix = "Доставлено на склад офлайн",
+            offlineWarehouseRewardResourceSuffix = "руды",
+            orePerClickEffectText = "Руда / клик",
+            orePerSecondEffectText = "Руда / сек",
+            energyCapacityEffectText = "Лимит энергии",
+            energyRegenEffectText = "Реген энергии",
+            energyIntervalEffectText = "Интервал энергии",
+            metalPerCraftEffectText = "Металл / крафт",
+            oreCraftCostEffectText = "Стоимость крафта в руде",
+            energyCraftCostEffectText = "Стоимость крафта в энергии",
+            platformCapacityEffectText = "Вместимость платформы",
+            shuttleCapacityEffectText = "Вместимость шаттла",
+            shuttleLoadingEffectText = "Загрузка шаттла",
+            shuttleTravelEffectText = "Полет шаттла",
+            autoDispatchShuttleEffectText = "Автоотправка шаттла",
+            shuttleCountEffectText = "Шаттл",
+            unknownText = "Неизвестно",
+            multiplierPrefixText = "x",
+            secondsSuffixText = "с"
+        };
     }
 }

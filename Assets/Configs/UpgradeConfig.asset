@@ -15,7 +15,9 @@ MonoBehaviour:
   upgrades:
   - id: drill_gloves
     upgradeName: Drill Gloves
+    upgradeNameRu: Перчатки бурильщика
     description: Improves manual ore extraction on every tap.
+    descriptionRu: Улучшает ручную добычу руды при каждом нажатии.
     category: 0
     baseCosts:
     - resourceType: 0
@@ -27,7 +29,9 @@ MonoBehaviour:
     maxLevel: 8
   - id: mining_drones
     upgradeName: Mining Drones
+    upgradeNameRu: Дроны-добытчики
     description: Adds passive ore extraction every second.
+    descriptionRu: Добавляет пассивную добычу руды каждую секунду.
     category: 0
     baseCosts:
     - resourceType: 0
@@ -39,7 +43,9 @@ MonoBehaviour:
     maxLevel: 10
   - id: storage_crates
     upgradeName: Storage Crates
+    upgradeNameRu: Складские ящики
     description: Adds extra ore storage to the mining platform.
+    descriptionRu: Добавляет дополнительное место для хранения руды на платформе.
     category: 4
     baseCosts:
     - resourceType: 0
@@ -51,7 +57,9 @@ MonoBehaviour:
     maxLevel: 6
   - id: ore_silos
     upgradeName: Ore Silos
+    upgradeNameRu: Рудные силосы
     description: Massively expands long-term storage on the platform.
+    descriptionRu: Сильно увеличивает долгосрочное хранение руды на платформе.
     category: 4
     baseCosts:
     - resourceType: 0
@@ -65,7 +73,9 @@ MonoBehaviour:
     maxLevel: 5
   - id: loader_rails
     upgradeName: Loader Rails
+    upgradeNameRu: Погрузочные рельсы
     description: Speeds up ore transfer from the platform into the shuttle.
+    descriptionRu: Ускоряет перегрузку руды с платформы в шаттл.
     category: 4
     baseCosts:
     - resourceType: 0
@@ -79,7 +89,9 @@ MonoBehaviour:
     maxLevel: 5
   - id: battery_matrix
     upgradeName: Battery Matrix
+    upgradeNameRu: Батарейная матрица
     description: Expands your total energy capacity.
+    descriptionRu: Увеличивает общий запас энергии.
     category: 1
     baseCosts:
     - resourceType: 0
@@ -91,7 +103,9 @@ MonoBehaviour:
     maxLevel: 14
   - id: solar_core
     upgradeName: Solar Core
+    upgradeNameRu: Солнечное ядро
     description: Improves energy regeneration output.
+    descriptionRu: Улучшает восстановление энергии.
     category: 1
     baseCosts:
     - resourceType: 0
@@ -105,7 +119,9 @@ MonoBehaviour:
     maxLevel: 6
   - id: coolant_loop
     upgradeName: Coolant Loop
+    upgradeNameRu: Контур охлаждения
     description: Reduces the delay between energy regeneration ticks.
+    descriptionRu: Сокращает задержку между тиками восстановления энергии.
     category: 1
     baseCosts:
     - resourceType: 0
@@ -119,7 +135,9 @@ MonoBehaviour:
     maxLevel: 5
   - id: smelter_output
     upgradeName: Smelter Output
+    upgradeNameRu: Выход плавильни
     description: Produces more metal from every refining action.
+    descriptionRu: Даёт больше металла за каждое действие переработки.
     category: 2
     baseCosts:
     - resourceType: 0
@@ -133,7 +151,9 @@ MonoBehaviour:
     maxLevel: 6
   - id: efficient_smelting
     upgradeName: Efficient Smelting
+    upgradeNameRu: Эффективная плавка
     description: Reduces ore needed for each metal craft.
+    descriptionRu: Снижает расход руды на каждый крафт металла.
     category: 2
     baseCosts:
     - resourceType: 0
@@ -147,7 +167,9 @@ MonoBehaviour:
     maxLevel: 6
   - id: power_routing
     upgradeName: Power Routing
+    upgradeNameRu: Энергомаршрутизация
     description: Cuts the energy required for each metal craft.
+    descriptionRu: Снижает затраты энергии на каждый крафт металла.
     category: 2
     baseCosts:
     - resourceType: 0
@@ -161,7 +183,9 @@ MonoBehaviour:
     maxLevel: 4
   - id: shuttle_engine
     upgradeName: Shuttle Engine
+    upgradeNameRu: Двигатель шаттла
     description: Cuts travel time between the platform and the warehouse.
+    descriptionRu: Сокращает время полёта между платформой и складом.
     category: 3
     baseCosts:
     - resourceType: 2
@@ -173,7 +197,9 @@ MonoBehaviour:
     maxLevel: 6
   - id: fleet_hangar
     upgradeName: Fleet Hangar
+    upgradeNameRu: Ангар флота
     description: Deploys additional ore shuttles to the platform fleet.
+    descriptionRu: Добавляет дополнительные шаттлы к платформенному флоту.
     category: 3
     baseCosts:
     - resourceType: 2
@@ -187,7 +213,9 @@ MonoBehaviour:
     maxLevel: 2
   - id: cargo_capacity
     upgradeName: Cargo Capacity
+    upgradeNameRu: Грузовая вместимость
     description: Increases how much ore the shuttle can haul per trip.
+    descriptionRu: Увеличивает, сколько руды шаттл может перевозить за рейс.
     category: 3
     baseCosts:
     - resourceType: 2
@@ -201,7 +229,9 @@ MonoBehaviour:
     maxLevel: 8
   - id: auto_shuttle_dispatch
     upgradeName: Auto Dispatch
+    upgradeNameRu: Автоотправка
     description: Unlocks auto dispatch for one more shuttle in your fleet.
+    descriptionRu: Открывает автоотправку ещё для одного шаттла во флоте.
     category: 3
     baseCosts:
     - resourceType: 2

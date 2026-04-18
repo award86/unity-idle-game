@@ -53,6 +53,7 @@
     <Compile Include="Assets\Scripts\Systems\TimeSystem.cs" />
     <Compile Include="Assets\Scripts\Buildings\BuildingDefinition.cs" />
     <Compile Include="Assets\Scripts\Upgrades\UpgradeDefinition.cs" />
+    <Compile Include="Assets\Scripts\Data\GameLanguage.cs" />
     <Compile Include="Assets\Scripts\Upgrades\UpgradeCategory.cs" />
     <Compile Include="Assets\Scripts\Upgrades\UpgradeEffectType.cs" />
     <Compile Include="Assets\Scripts\Missions\MetaBonusDefinition.cs" />

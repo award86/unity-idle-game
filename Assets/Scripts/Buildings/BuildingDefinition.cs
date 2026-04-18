@@ -7,9 +7,12 @@ public class BuildingDefinition
 {
     public string id = "new_building";
     public string buildingName = "New Building";
+    public string buildingNameRu = "";
 
     [TextArea]
     public string description = "Building description";
+    [TextArea]
+    public string descriptionRu = "";
 
     public List<ResourceAmount> baseCosts = new List<ResourceAmount>();
     public List<UpgradeEffectDefinition> effects = new List<UpgradeEffectDefinition>();
@@ -19,4 +22,6 @@ public class BuildingDefinition
     public IReadOnlyList<ResourceAmount> BaseCosts => baseCosts;
     public IReadOnlyList<UpgradeEffectDefinition> Effects => effects;
     public bool HasMaxLevel => maxLevel > 0;
+    public string DisplayName => GameTextProvider.GetText(buildingName, buildingNameRu);
+    public string Description => GameTextProvider.GetText(description, descriptionRu);
 }

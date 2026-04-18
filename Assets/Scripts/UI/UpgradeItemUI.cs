@@ -55,12 +55,12 @@ public class UpgradeItemUI : MonoBehaviour
 
         if (nameText != null)
         {
-            nameText.text = upgradeState.Definition.upgradeName;
+            nameText.text = upgradeState.Definition.DisplayName;
         }
 
         if (descriptionText != null)
         {
-            descriptionText.text = upgradeState.Definition.description;
+            descriptionText.text = upgradeState.Definition.Description;
         }
 
         if (levelText != null)

@@ -29,7 +29,9 @@ public class MissionConfig : ScriptableObject
             {
                 id = "ore_stockpile",
                 missionName = "Ore Stockpile",
+                missionNameRu = "Запас руды",
                 description = "Accumulate a solid first warehouse reserve.",
+                descriptionRu = "Накопите первый серьёзный запас руды на складе.",
                 objectiveType = MissionObjectiveType.ReachOreAmount,
                 targetValue = 150,
                 crystalReward = 3
@@ -38,7 +40,9 @@ public class MissionConfig : ScriptableObject
             {
                 id = "metal_chain",
                 missionName = "Metal Chain",
+                missionNameRu = "Металлическая цепочка",
                 description = "Establish metal processing and collect enough refined metal.",
+                descriptionRu = "Наладьте переработку металла и соберите достаточно очищенного металла.",
                 objectiveType = MissionObjectiveType.ReachMetalAmount,
                 targetValue = 20,
                 crystalReward = 4
@@ -47,7 +51,9 @@ public class MissionConfig : ScriptableObject
             {
                 id = "open_all_tabs",
                 missionName = "Full Research Grid",
+                missionNameRu = "Полная сетка исследований",
                 description = "Unlock every upgrade branch in the colony.",
+                descriptionRu = "Откройте каждую ветку улучшений в колонии.",
                 objectiveType = MissionObjectiveType.UnlockAllUpgradeCategories,
                 targetValue = 0,
                 crystalReward = 5
@@ -56,7 +62,9 @@ public class MissionConfig : ScriptableObject
             {
                 id = "max_everything",
                 missionName = "Research Complete",
+                missionNameRu = "Исследования завершены",
                 description = "Finish every building and every permanent upgrade.",
+                descriptionRu = "Завершите все постройки и все постоянные улучшения.",
                 objectiveType = MissionObjectiveType.ResearchEverythingPossible,
                 targetValue = 0,
                 crystalReward = 8

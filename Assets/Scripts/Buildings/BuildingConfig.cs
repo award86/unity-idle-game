@@ -17,7 +17,9 @@ public class BuildingConfig : ScriptableObject
             {
                 id = "mining_platform",
                 buildingName = "Mining Platform",
+                buildingNameRu = "Добывающая платформа",
                 description = "Unlocks the platform and expands ore storage capacity.",
+                descriptionRu = "Открывает платформу и увеличивает вместимость хранения руды.",
                 baseCosts = new List<ResourceAmount>
                 {
                     new ResourceAmount(ResourceType.Ore, 30)
@@ -37,7 +39,9 @@ public class BuildingConfig : ScriptableObject
             {
                 id = "power_station",
                 buildingName = "Power Station",
+                buildingNameRu = "Электростанция",
                 description = "Activates the energy grid and improves battery output.",
+                descriptionRu = "Активирует энергосеть и улучшает работу батарей.",
                 baseCosts = new List<ResourceAmount>
                 {
                     new ResourceAmount(ResourceType.Ore, 55)
@@ -62,7 +66,9 @@ public class BuildingConfig : ScriptableObject
             {
                 id = "metal_factory",
                 buildingName = "Metal Factory",
+                buildingNameRu = "Металлургический завод",
                 description = "Unlocks metal production and improves each refining batch.",
+                descriptionRu = "Открывает производство металла и улучшает каждую партию переработки.",
                 baseCosts = new List<ResourceAmount>
                 {
                     new ResourceAmount(ResourceType.Ore, 90),

@@ -7,9 +7,12 @@ public class UpgradeDefinition
 {
     public string id = "new_upgrade";
     public string upgradeName = "New Upgrade";
+    public string upgradeNameRu = "";
 
     [TextArea]
     public string description = "Upgrade description";
+    [TextArea]
+    public string descriptionRu = "";
 
     public UpgradeCategory category = UpgradeCategory.Miner;
     public List<ResourceAmount> baseCosts = new List<ResourceAmount>();
@@ -21,6 +24,8 @@ public class UpgradeDefinition
     public IReadOnlyList<UpgradeEffectDefinition> Effects => effects;
     public bool HasMaxLevel => maxLevel > 0;
     public UpgradeCategory ResolvedCategory => ResolveCategory();
+    public string DisplayName => GameTextProvider.GetText(upgradeName, upgradeNameRu);
+    public string Description => GameTextProvider.GetText(description, descriptionRu);
 
     private UpgradeCategory ResolveCategory()
     {

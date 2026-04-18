@@ -41,12 +41,12 @@ public class BuildingItemUI : MonoBehaviour
 
         if (nameText != null)
         {
-            nameText.text = buildingState.Definition.buildingName;
+            nameText.text = buildingState.Definition.DisplayName;
         }
 
         if (descriptionText != null)
         {
-            descriptionText.text = buildingState.Definition.description;
+            descriptionText.text = buildingState.Definition.Description;
         }
 
         if (levelText != null)

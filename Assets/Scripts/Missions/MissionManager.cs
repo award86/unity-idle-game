@@ -290,8 +290,8 @@ public class MissionManager
             hasMission = true,
             isCompleted = IsActiveMissionReadyToClaim,
             canClaimReward = IsActiveMissionReadyToClaim,
-            missionName = mission.missionName,
-            description = mission.description,
+            missionName = mission.DisplayName,
+            description = mission.Description,
             crystalReward = Mathf.Max(0, mission.crystalReward),
             missionNumber = CurrentMissionIndex + 1,
             missionCount = missions.Count

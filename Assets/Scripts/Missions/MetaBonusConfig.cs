@@ -29,7 +29,9 @@ public class MetaBonusConfig : ScriptableObject
             {
                 id = "legacy_drills",
                 bonusName = "Legacy Drills",
+                bonusNameRu = "Наследные буры",
                 description = "Permanent bonus to manual ore mining in all future missions.",
+                descriptionRu = "Постоянный бонус к ручной добыче руды во всех следующих миссиях.",
                 crystalCost = 3,
                 costMultiplier = 1.8f,
                 maxLevel = 5,
@@ -46,7 +48,9 @@ public class MetaBonusConfig : ScriptableObject
             {
                 id = "relay_archive",
                 bonusName = "Relay Archive",
+                bonusNameRu = "Архив ретранслятора",
                 description = "Permanent bonus to passive ore production.",
+                descriptionRu = "Постоянный бонус к пассивной добыче руды.",
                 crystalCost = 4,
                 costMultiplier = 1.85f,
                 maxLevel = 5,
@@ -63,7 +67,9 @@ public class MetaBonusConfig : ScriptableObject
             {
                 id = "battery_blueprints",
                 bonusName = "Battery Blueprints",
+                bonusNameRu = "Чертежи батарей",
                 description = "Start each mission with more total energy capacity.",
+                descriptionRu = "Начинайте каждую миссию с большим общим запасом энергии.",
                 crystalCost = 5,
                 costMultiplier = 1.9f,
                 maxLevel = 4,

@@ -17,7 +17,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "drill_gloves",
                 upgradeName = "Drill Gloves",
+                upgradeNameRu = "Перчатки бурильщика",
                 description = "Improves manual ore extraction on every tap.",
+                descriptionRu = "Улучшает ручную добычу руды при каждом нажатии.",
                 category = UpgradeCategory.Miner,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -38,7 +40,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "mining_drones",
                 upgradeName = "Mining Drones",
+                upgradeNameRu = "Дроны-добытчики",
                 description = "Adds passive ore extraction every second.",
+                descriptionRu = "Добавляет пассивную добычу руды каждую секунду.",
                 category = UpgradeCategory.Miner,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -59,7 +63,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "storage_crates",
                 upgradeName = "Storage Crates",
+                upgradeNameRu = "Складские ящики",
                 description = "Adds extra ore storage to the mining platform.",
+                descriptionRu = "Добавляет дополнительное место для хранения руды на платформе.",
                 category = UpgradeCategory.Platform,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -80,7 +86,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "ore_silos",
                 upgradeName = "Ore Silos",
+                upgradeNameRu = "Рудные силосы",
                 description = "Massively expands long-term storage on the platform.",
+                descriptionRu = "Сильно увеличивает долгосрочное хранение руды на платформе.",
                 category = UpgradeCategory.Platform,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -102,7 +110,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "loader_rails",
                 upgradeName = "Loader Rails",
+                upgradeNameRu = "Погрузочные рельсы",
                 description = "Speeds up ore transfer from the platform into the shuttle.",
+                descriptionRu = "Ускоряет перегрузку руды с платформы в шаттл.",
                 category = UpgradeCategory.Platform,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -124,7 +134,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "battery_matrix",
                 upgradeName = "Battery Matrix",
+                upgradeNameRu = "Батарейная матрица",
                 description = "Expands your total energy reserves.",
+                descriptionRu = "Увеличивает общий запас энергии.",
                 category = UpgradeCategory.PowerStation,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -145,7 +157,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "solar_core",
                 upgradeName = "Solar Core",
+                upgradeNameRu = "Солнечное ядро",
                 description = "Improves energy regeneration output.",
+                descriptionRu = "Улучшает восстановление энергии.",
                 category = UpgradeCategory.PowerStation,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -167,7 +181,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "coolant_loop",
                 upgradeName = "Coolant Loop",
+                upgradeNameRu = "Контур охлаждения",
                 description = "Reduces the delay between energy regeneration ticks.",
+                descriptionRu = "Сокращает задержку между тиками восстановления энергии.",
                 category = UpgradeCategory.PowerStation,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -189,7 +205,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "smelter_output",
                 upgradeName = "Smelter Output",
+                upgradeNameRu = "Выход плавильни",
                 description = "Produces more metal from every refining action.",
+                descriptionRu = "Даёт больше металла за каждое действие переработки.",
                 category = UpgradeCategory.Factory,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -211,7 +229,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "efficient_smelting",
                 upgradeName = "Efficient Smelting",
+                upgradeNameRu = "Эффективная плавка",
                 description = "Reduces ore needed for each metal craft.",
+                descriptionRu = "Снижает расход руды на каждый крафт металла.",
                 category = UpgradeCategory.Factory,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -233,7 +253,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "power_routing",
                 upgradeName = "Power Routing",
+                upgradeNameRu = "Энергомаршрутизация",
                 description = "Cuts the energy required for each metal craft.",
+                descriptionRu = "Снижает затраты энергии на каждый крафт металла.",
                 category = UpgradeCategory.Factory,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -255,7 +277,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "fleet_hangar",
                 upgradeName = "Fleet Hangar",
+                upgradeNameRu = "Ангар флота",
                 description = "Deploys additional ore shuttles to the platform fleet.",
+                descriptionRu = "Добавляет дополнительные шаттлы к платформенному флоту.",
                 category = UpgradeCategory.Shuttle,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -277,7 +301,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "shuttle_engine",
                 upgradeName = "Shuttle Engine",
+                upgradeNameRu = "Двигатель шаттла",
                 description = "Cuts travel time between the platform and the warehouse.",
+                descriptionRu = "Сокращает время полёта между платформой и складом.",
                 category = UpgradeCategory.Shuttle,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -298,7 +324,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "cargo_capacity",
                 upgradeName = "Cargo Capacity",
+                upgradeNameRu = "Грузовая вместимость",
                 description = "Increases how much ore the shuttle can haul per trip.",
+                descriptionRu = "Увеличивает, сколько руды шаттл может перевозить за рейс.",
                 category = UpgradeCategory.Shuttle,
                 baseCosts = new List<ResourceAmount>
                 {
@@ -320,7 +348,9 @@ public class UpgradeConfig : ScriptableObject
             {
                 id = "auto_shuttle_dispatch",
                 upgradeName = "Auto Dispatch",
+                upgradeNameRu = "Автоотправка",
                 description = "Unlocks auto dispatch for one more shuttle in your fleet.",
+                descriptionRu = "Открывает автоотправку ещё для одного шаттла во флоте.",
                 category = UpgradeCategory.Shuttle,
                 baseCosts = new List<ResourceAmount>
                 {

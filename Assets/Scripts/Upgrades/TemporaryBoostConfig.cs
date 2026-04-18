@@ -17,7 +17,9 @@ public class TemporaryBoostConfig : ScriptableObject
             {
                 id = "quantum_rush",
                 boostName = "Quantum Rush",
+                boostNameRu = "Квантовый рывок",
                 description = "Temporary x2 Ore / sec boost that appears after enough ore is earned.",
+                descriptionRu = "Временный x2 к руде в секунду, появляется после накопления руды.",
                 multiplier = 2f,
                 targetType = TemporaryBoostTargetType.OrePerSecond,
                 durationSeconds = 90f,
@@ -29,7 +31,9 @@ public class TemporaryBoostConfig : ScriptableObject
             {
                 id = "plasma_hands",
                 boostName = "Plasma Hands",
+                boostNameRu = "Плазменные руки",
                 description = "Temporary x3 Ore / click boost that appears over time.",
+                descriptionRu = "Временный x3 к руде за клик, появляется со временем.",
                 multiplier = 3f,
                 targetType = TemporaryBoostTargetType.OrePerClick,
                 durationSeconds = 60f,
@@ -41,7 +45,9 @@ public class TemporaryBoostConfig : ScriptableObject
             {
                 id = "cargo_overclock",
                 boostName = "Cargo Overclock",
+                boostNameRu = "Грузовой оверклок",
                 description = "Temporary x1.5 Ore / sec boost that appears after more ore is earned.",
+                descriptionRu = "Временный x1.5 к руде в секунду, появляется после добычи большего количества руды.",
                 multiplier = 1.5f,
                 targetType = TemporaryBoostTargetType.OrePerSecond,
                 durationSeconds = 120f,
@@ -53,7 +59,9 @@ public class TemporaryBoostConfig : ScriptableObject
             {
                 id = "warp_corridor",
                 boostName = "Warp Corridor",
+                boostNameRu = "Варп-коридор",
                 description = "Cuts shuttle travel time in half for a short window.",
+                descriptionRu = "На короткое время сокращает длительность полёта шаттла вдвое.",
                 multiplier = 2f,
                 targetType = TemporaryBoostTargetType.ShuttleTravelSpeed,
                 durationSeconds = 300f,

@@ -15,7 +15,9 @@ MonoBehaviour:
   temporaryBoosts:
   - id: x2_click_minute
     boostName: X2 click
+    boostNameRu: X2 клик
     description: 'x2 click boost '
+    descriptionRu: Временный x2 к добыче за клик.
     multiplier: 2
     targetType: 0
     durationSeconds: 30
@@ -24,7 +26,9 @@ MonoBehaviour:
     oreRequiredForAppearance: 250
   - id: x3_income_two_minutes
     boostName: X3 income
+    boostNameRu: X3 доход
     description: x3 income boost
+    descriptionRu: Временный x3 к добыче в секунду.
     multiplier: 3
     targetType: 1
     durationSeconds: 30
@@ -33,7 +37,9 @@ MonoBehaviour:
     oreRequiredForAppearance: 250
   - id: warp_corridor
     boostName: Warp Corridor
+    boostNameRu: Варп-коридор
     description: Cuts shuttle travel time in half.
+    descriptionRu: Сокращает время полёта шаттла вдвое.
     multiplier: 3
     targetType: 2
     durationSeconds: 300

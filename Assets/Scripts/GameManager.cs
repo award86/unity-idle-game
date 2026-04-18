@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     private const string TotalOreEarnedKey = "totalOreEarned";
     private const string LastSaveTimeKey = "lastSaveTime";
     private const string LegacyUpgradeLevelKey = "upgradeLevel";
+    private const string LanguageKey = "uiLanguage";
 
     [SerializeField] private UIManager uiManager;
     [FormerlySerializedAs("shuttleConfig")]
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameTextProvider.Configure(gameConfig);
+        GameTextProvider.SetLanguage((GameLanguage)PlayerPrefs.GetInt(LanguageKey, (int)GameLanguage.English));
         LoadGame();
 
         MissionConfig resolvedMissionConfig = missionConfig != null
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager.InitializeShuttleButtons(HandleShuttleSendRequested);
             uiManager.InitializeShuttleDisplays();
-            uiManager.InitializeMenuButtons(HandleExitRequested);
+            uiManager.InitializeMenuButtons(HandleExitRequested, HandleLanguageToggleRequested);
             uiManager.InitializeMainScreenActionButtons(OnUpgradeButtonClicked, OnBuildButtonClicked);
             uiManager.InitializeBoostOfferButton(HandleBoostOfferAccepted);
             uiManager.InitializeUpgradeList(
@@ -686,6 +688,7 @@ public class GameManager : MonoBehaviour
                 : default,
             GetConfiguredNoMissionsText());
         UpdateBoostUI();
+        uiManager.RefreshBoostOfferTexts(pendingBoostOfferStates);
     }
 
     private OfflineProgress CalculateOfflineProgress()
@@ -1123,9 +1126,7 @@ public class GameManager : MonoBehaviour
 
     private string GetConfiguredNoMissionsText()
     {
-        return gameConfig != null
-            ? gameConfig.NoMissionsText
-            : ShuttleConfig.DefaultNoMissionsText;
+        return GameTextProvider.NoMissionsText;
     }
 
     private void ShowOfflineRewardIfNeeded()
@@ -1188,6 +1189,15 @@ public class GameManager : MonoBehaviour
     private void HandleExitRequested()
     {
         OnExitGameButtonClicked();
+    }
+
+    private void HandleLanguageToggleRequested()
+    {
+        GameLanguage nextLanguage = GameTextProvider.ToggleLanguage();
+        PlayerPrefs.SetInt(LanguageKey, (int)nextLanguage);
+        PlayerPrefs.Save();
+        RefreshUI();
+        TryShowNextBoostOffer();
     }
 
     private void HandleUpgradesChanged()

@@ -1,21 +1,52 @@
 public static class GameTextProvider
 {
     private static readonly GameUiTextConfig DefaultUiText = new GameUiTextConfig();
+    private static readonly GameUiTextConfig DefaultRussianUiText = GameUiTextConfig.CreateRussianDefaults();
     private static ShuttleConfig configuredGameConfig;
+    private static GameLanguage currentLanguage = GameLanguage.English;
+
+    public static GameLanguage CurrentLanguage => currentLanguage;
 
     public static GameUiTextConfig UIText =>
-        configuredGameConfig != null && configuredGameConfig.UIText != null
-            ? configuredGameConfig.UIText
-            : DefaultUiText;
+        CurrentLanguage == GameLanguage.Russian
+            ? (configuredGameConfig != null && configuredGameConfig.RussianUIText != null
+                ? configuredGameConfig.RussianUIText
+                : DefaultRussianUiText)
+            : (configuredGameConfig != null && configuredGameConfig.UIText != null
+                ? configuredGameConfig.UIText
+                : DefaultUiText);
 
     public static string NoMissionsText =>
-        configuredGameConfig != null
-            ? configuredGameConfig.NoMissionsText
-            : ShuttleConfig.DefaultNoMissionsText;
+        CurrentLanguage == GameLanguage.Russian
+            ? (configuredGameConfig != null ? configuredGameConfig.RussianNoMissionsText : "Нет миссий")
+            : (configuredGameConfig != null ? configuredGameConfig.NoMissionsText : ShuttleConfig.DefaultNoMissionsText);
 
     public static void Configure(ShuttleConfig gameConfig)
     {
         configuredGameConfig = gameConfig;
+    }
+
+    public static void SetLanguage(GameLanguage language)
+    {
+        currentLanguage = language;
+    }
+
+    public static GameLanguage ToggleLanguage()
+    {
+        currentLanguage = currentLanguage == GameLanguage.English
+            ? GameLanguage.Russian
+            : GameLanguage.English;
+        return currentLanguage;
+    }
+
+    public static string GetText(string englishText, string russianText)
+    {
+        if (CurrentLanguage == GameLanguage.Russian)
+        {
+            return string.IsNullOrWhiteSpace(russianText) ? englishText : russianText;
+        }
+
+        return string.IsNullOrWhiteSpace(englishText) ? russianText : englishText;
     }
 
     public static string GetResourceLabel(ResourceType resourceType)

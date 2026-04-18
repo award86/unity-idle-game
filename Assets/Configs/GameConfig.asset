@@ -34,3 +34,116 @@ MonoBehaviour:
   shuttleTravelTimeSeconds: 60
   boostOfferAutoCloseSeconds: 120
   noMissionsText: No missions
+  russianNoMissionsText: Нет миссий
+  uiText:
+    oreLabel: Ore
+    energyLabel: Energy
+    metalLabel: Metal
+    crystalLabel: Crystal
+    platformLabel: Platform
+    shuttleLabel: Shuttle
+    orePerSecondLabel: Ore / sec
+    orePerClickLabel: Ore / click
+    acceptButtonText: Accept
+    exitButtonText: Exit
+    claimRewardButtonText: Claim Reward
+    buyButtonText: Buy
+    buildButtonText: Build
+    maxButtonText: Max
+    sendButtonText: Send
+    loadingButtonText: Loading
+    flyingButtonText: Flying
+    produceMetalButtonText: Produce
+    upgradeAvailableButtonText: Upgrade Available!
+    buildAvailableButtonText: Build Available!
+    languageToggleButtonText: Русский
+    missionLabel: Mission
+    missionCompleteSuffix: Complete
+    rewardLabel: Reward
+    rewardReadyLabel: Reward ready
+    metaBonusesHeaderText: Meta Bonuses
+    unlockedTabsProgressLabel: Unlocked tabs
+    maxedResearchProgressLabel: Maxed research
+    progressLabel: Progress
+    levelLabel: Level
+    bonusLevelLabel: Bonus Level
+    costLabel: Cost
+    effectLabel: Effect
+    noneText: None
+    maxCostText: MAX
+    freeText: Free
+    offlineWarehouseRewardPrefix: Sent to warehouse while offline
+    offlineWarehouseRewardResourceSuffix: Ore
+    orePerClickEffectText: Ore / click
+    orePerSecondEffectText: Ore / sec
+    energyCapacityEffectText: Energy cap
+    energyRegenEffectText: Energy regen
+    energyIntervalEffectText: Energy interval
+    metalPerCraftEffectText: Metal / craft
+    oreCraftCostEffectText: Ore craft cost
+    energyCraftCostEffectText: Energy craft cost
+    platformCapacityEffectText: Platform capacity
+    shuttleCapacityEffectText: Shuttle capacity
+    shuttleLoadingEffectText: Shuttle loading
+    shuttleTravelEffectText: Shuttle travel
+    autoDispatchShuttleEffectText: Auto-dispatch shuttle
+    shuttleCountEffectText: Shuttle
+    unknownText: Unknown
+    multiplierPrefixText: x
+    secondsSuffixText: s
+  russianUiText:
+    oreLabel: Руда
+    energyLabel: Энергия
+    metalLabel: Металл
+    crystalLabel: Кристалл
+    platformLabel: Платформа
+    shuttleLabel: Шаттл
+    orePerSecondLabel: Руда / сек
+    orePerClickLabel: Руда / клик
+    acceptButtonText: Принять
+    exitButtonText: Выход
+    claimRewardButtonText: Забрать награду
+    buyButtonText: Купить
+    buildButtonText: Построить
+    maxButtonText: Макс
+    sendButtonText: Отправить
+    loadingButtonText: Загрузка
+    flyingButtonText: Полет
+    produceMetalButtonText: Произвести
+    upgradeAvailableButtonText: Доступно улучшение!
+    buildAvailableButtonText: Доступна постройка!
+    languageToggleButtonText: English
+    missionLabel: Миссия
+    missionCompleteSuffix: Завершена
+    rewardLabel: Награда
+    rewardReadyLabel: Награда готова
+    metaBonusesHeaderText: Мета-бонусы
+    unlockedTabsProgressLabel: Открыто вкладок
+    maxedResearchProgressLabel: Исследовано
+    progressLabel: Прогресс
+    levelLabel: Уровень
+    bonusLevelLabel: Уровень бонуса
+    costLabel: Стоимость
+    effectLabel: Эффект
+    noneText: Нет
+    maxCostText: МАКС
+    freeText: Бесплатно
+    offlineWarehouseRewardPrefix: Доставлено на склад офлайн
+    offlineWarehouseRewardResourceSuffix: руды
+    orePerClickEffectText: Руда / клик
+    orePerSecondEffectText: Руда / сек
+    energyCapacityEffectText: Лимит энергии
+    energyRegenEffectText: Реген энергии
+    energyIntervalEffectText: Интервал энергии
+    metalPerCraftEffectText: Металл / крафт
+    oreCraftCostEffectText: Стоимость крафта в руде
+    energyCraftCostEffectText: Стоимость крафта в энергии
+    platformCapacityEffectText: Вместимость платформы
+    shuttleCapacityEffectText: Вместимость шаттла
+    shuttleLoadingEffectText: Загрузка шаттла
+    shuttleTravelEffectText: Полет шаттла
+    autoDispatchShuttleEffectText: Автоотправка шаттла
+    shuttleCountEffectText: Шаттл
+    unknownText: Неизвестно
+    multiplierPrefixText: x
+    secondsSuffixText: с

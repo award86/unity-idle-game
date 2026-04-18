@@ -40,12 +40,12 @@ public class MetaBonusItemUI : MonoBehaviour
 
         if (nameText != null)
         {
-            nameText.text = metaBonusState.Definition.bonusName;
+            nameText.text = metaBonusState.Definition.DisplayName;
         }
 
         if (descriptionText != null)
         {
-            descriptionText.text = metaBonusState.Definition.description;
+            descriptionText.text = metaBonusState.Definition.Description;
         }
 
         if (levelText != null)

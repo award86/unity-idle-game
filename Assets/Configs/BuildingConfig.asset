@@ -15,7 +15,9 @@ MonoBehaviour:
   buildings:
   - id: mining_platform
     buildingName: Mining Platform
+    buildingNameRu: Добывающая платформа
     description: Unlocks the platform and expands ore storage capacity.
+    descriptionRu: Открывает платформу и увеличивает вместимость хранения руды.
     baseCosts:
     - resourceType: 0
       amount: 30
@@ -26,7 +28,9 @@ MonoBehaviour:
     maxLevel: 8
   - id: power_station
     buildingName: Power Station
+    buildingNameRu: Электростанция
     description: Activates the energy grid and improves battery output.
+    descriptionRu: Активирует энергосеть и улучшает работу батарей.
     baseCosts:
     - resourceType: 0
       amount: 55
@@ -39,7 +43,9 @@ MonoBehaviour:
     maxLevel: 8
   - id: metal_factory
     buildingName: Metal Factory
+    buildingNameRu: Металлургический завод
     description: Unlocks metal production and improves each refining batch.
+    descriptionRu: Открывает производство металла и улучшает каждую партию переработки.
     baseCosts:
     - resourceType: 0
       amount: 90

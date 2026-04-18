@@ -62,7 +62,9 @@ public class ShuttleConfig : ScriptableObject
 
     [Header("UI")]
     [SerializeField] private string noMissionsText = DefaultNoMissionsText;
+    [SerializeField] private string russianNoMissionsText = "Нет миссий";
     [SerializeField] private GameUiTextConfig uiText = new GameUiTextConfig();
+    [SerializeField] private GameUiTextConfig russianUiText = null;
 
     public int StartOre => Mathf.Max(0, startOreAmount);
     public int StartEnergy => Mathf.Max(0, startEnergy);
@@ -89,5 +91,7 @@ public class ShuttleConfig : ScriptableObject
     public float TravelTimeSeconds => Mathf.Max(0f, shuttleTravelTimeSeconds);
     public float BoostOfferAutoCloseSeconds => Mathf.Max(0f, boostOfferAutoCloseSeconds);
     public string NoMissionsText => string.IsNullOrWhiteSpace(noMissionsText) ? DefaultNoMissionsText : noMissionsText;
+    public string RussianNoMissionsText => string.IsNullOrWhiteSpace(russianNoMissionsText) ? "Нет миссий" : russianNoMissionsText;
     public GameUiTextConfig UIText => uiText ?? (uiText = new GameUiTextConfig());
+    public GameUiTextConfig RussianUIText => russianUiText ?? (russianUiText = GameUiTextConfig.CreateRussianDefaults());
 }

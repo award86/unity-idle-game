@@ -49,6 +49,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dropdownMenuPanel;
     [SerializeField] private Button exitMenuButton;
     [SerializeField] private Text exitMenuButtonText;
+    [SerializeField] private Button languageMenuButton;
+    [SerializeField] private Text languageMenuButtonText;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject buildPanel;
     [SerializeField] private GameObject missionPanel;
@@ -268,6 +270,11 @@ public class UIManager : MonoBehaviour
         {
             produceMetalButtonText.text = BuildMetalProductionText(gameData);
         }
+
+        if (languageMenuButtonText != null)
+        {
+            languageMenuButtonText.text = uiText.LanguageToggleButtonText;
+        }
     }
 
     public void InitializeUpgradeList(
@@ -310,7 +317,7 @@ public class UIManager : MonoBehaviour
         ApplyResponsiveLayout(true);
     }
 
-    public void InitializeMenuButtons(Action onExitRequested)
+    public void InitializeMenuButtons(Action onExitRequested, Action onLanguageToggleRequested)
     {
         if (dropdownMenuPanel == null)
         {
@@ -343,6 +350,35 @@ public class UIManager : MonoBehaviour
 
         exitMenuButton.onClick.RemoveAllListeners();
         exitMenuButton.onClick.AddListener(() => onExitRequested?.Invoke());
+
+        Button localizedLanguageButton = languageMenuButton != null
+            ? languageMenuButton
+            : FindMenuButtonByName("LanguageButton");
+
+        if (localizedLanguageButton == null)
+        {
+            localizedLanguageButton = CreateRuntimeMenuButton("LanguageButton");
+        }
+
+        if (localizedLanguageButton == null)
+        {
+            return;
+        }
+
+        Text localizedLanguageText = languageMenuButtonText != null
+            ? languageMenuButtonText
+            : localizedLanguageButton.GetComponentInChildren<Text>(true);
+
+        languageMenuButton = localizedLanguageButton;
+        languageMenuButtonText = localizedLanguageText;
+
+        if (languageMenuButtonText != null)
+        {
+            languageMenuButtonText.text = GameTextProvider.UIText.LanguageToggleButtonText;
+        }
+
+        languageMenuButton.onClick.RemoveAllListeners();
+        languageMenuButton.onClick.AddListener(() => onLanguageToggleRequested?.Invoke());
     }
 
     public void InitializeBoostOfferButton(Action<TemporaryBoostState> onAcceptRequested)
@@ -1097,7 +1133,7 @@ public class UIManager : MonoBehaviour
         {
             TemporaryBoostState boostState = activeBoostStates[i];
             lines.Add(
-                boostState.Definition.boostName +
+                boostState.Definition.DisplayName +
                 " " + GameTextProvider.UIText.MultiplierPrefixText + NumberFormatter.FormatFloat(boostState.GetMultiplier()) +
                 " - " + Mathf.CeilToInt(boostState.ActiveRemainingTime) + GameTextProvider.UIText.SecondsSuffixText);
         }
@@ -1269,7 +1305,7 @@ public class UIManager : MonoBehaviour
     {
         return boostState == null || boostState.Definition == null
             ? string.Empty
-            : boostState.Definition.boostName;
+            : boostState.Definition.DisplayName;
     }
 
     private bool CanProduceMetal(GameData gameData)
