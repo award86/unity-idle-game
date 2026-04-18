@@ -9,14 +9,14 @@ public class PlatformSystem
         this.gameData = gameData;
     }
 
-    public int AddOre(int amount)
+    public int AddOre(int amount, bool allowDuringShuttleLoading = false)
     {
         if (amount <= 0)
         {
             return 0;
         }
 
-        if (IsLoadingToShuttle())
+        if (!allowDuringShuttleLoading && IsLoadingToShuttle())
         {
             return 0;
         }

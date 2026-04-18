@@ -48,6 +48,18 @@ public class TemporaryBoostConfig : ScriptableObject
                 availabilityType = TemporaryBoostAvailabilityType.ByAccumulatedOre,
                 oreRequiredForAppearance = 600,
                 appearanceIntervalSeconds = 120f
+            },
+            new TemporaryBoostDefinition
+            {
+                id = "warp_corridor",
+                boostName = "Warp Corridor",
+                description = "Cuts shuttle travel time in half for a short window.",
+                multiplier = 2f,
+                targetType = TemporaryBoostTargetType.ShuttleTravelSpeed,
+                durationSeconds = 300f,
+                availabilityType = TemporaryBoostAvailabilityType.ByTime,
+                oreRequiredForAppearance = 0,
+                appearanceIntervalSeconds = 240f
             }
         };
     }

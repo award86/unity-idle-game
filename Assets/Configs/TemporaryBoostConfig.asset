@@ -20,7 +20,7 @@ MonoBehaviour:
     targetType: 0
     durationSeconds: 30
     availabilityType: 0
-    appearanceIntervalSeconds: 60
+    appearanceIntervalSeconds: 10
     oreRequiredForAppearance: 250
   - id: x3_income_two_minutes
     boostName: X3 income
@@ -29,5 +29,14 @@ MonoBehaviour:
     targetType: 1
     durationSeconds: 30
     availabilityType: 0
-    appearanceIntervalSeconds: 120
+    appearanceIntervalSeconds: 20
     oreRequiredForAppearance: 250
+  - id: warp_corridor
+    boostName: Warp Corridor
+    description: Cuts shuttle travel time in half.
+    multiplier: 3
+    targetType: 2
+    durationSeconds: 300
+    availabilityType: 0
+    appearanceIntervalSeconds: 30
+    oreRequiredForAppearance: 0

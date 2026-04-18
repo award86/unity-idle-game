@@ -9,6 +9,7 @@ public class UpgradeManager
     private const string TemporaryBoostAvailableKeyPrefix = "temporary_boost_available_";
     private const string TemporaryBoostTimeKeyPrefix = "temporary_boost_time_";
     private const string TemporaryBoostOreThresholdKeyPrefix = "temporary_boost_ore_threshold_";
+    private const string TemporaryBoostActiveTimeKeyPrefix = "temporary_boost_active_time_";
 
     private readonly GameData gameData;
     private readonly ResourceSystem resourceSystem;
@@ -49,6 +50,8 @@ public class UpgradeManager
 
     public void LoadUpgradeLevels()
     {
+        activeTemporaryBoostStates.Clear();
+
         for (int i = 0; i < upgradeStates.Count; i++)
         {
             UpgradeState state = upgradeStates[i];
@@ -65,10 +68,15 @@ public class UpgradeManager
 
         for (int i = 0; i < temporaryBoostStates.Count; i++)
         {
-            LoadTemporaryBoostState(temporaryBoostStates[i]);
+            TemporaryBoostState state = temporaryBoostStates[i];
+            LoadTemporaryBoostState(state);
+
+            if (state.IsActive)
+            {
+                activeTemporaryBoostStates.Add(state);
+            }
         }
 
-        activeTemporaryBoostStates.Clear();
         RecalculateIncome();
         UpgradesChanged?.Invoke();
     }
@@ -279,12 +287,63 @@ public class UpgradeManager
         return null;
     }
 
+    public IReadOnlyList<TemporaryBoostState> GetAvailableTemporaryBoosts()
+    {
+        List<TemporaryBoostState> availableBoostStates = new List<TemporaryBoostState>();
+
+        for (int i = 0; i < temporaryBoostStates.Count; i++)
+        {
+            TemporaryBoostState state = temporaryBoostStates[i];
+
+            if (state.IsAvailable && !state.IsActive && IsTemporaryBoostTargetUnlocked(state))
+            {
+                availableBoostStates.Add(state);
+            }
+        }
+
+        return availableBoostStates;
+    }
+
     public void Update(float deltaTime)
     {
-        bool hasChanges = false;
+        AdvanceTime(deltaTime);
+    }
 
-        hasChanges = UpdateTemporaryBoostAvailability(deltaTime) || hasChanges;
-        hasChanges = UpdateActiveBoosts(deltaTime) || hasChanges;
+    public void AdvanceTime(float deltaTime)
+    {
+        if (deltaTime <= 0f)
+        {
+            return;
+        }
+
+        bool hasChanges = false;
+        float remainingTime = deltaTime;
+
+        while (remainingTime > 0f)
+        {
+            float stepTime = remainingTime;
+            float nextActiveExpiration = GetNextActiveBoostExpirationSeconds();
+            float nextAvailabilityTrigger = GetNextAvailabilityTriggerSeconds();
+
+            if (nextActiveExpiration > 0f)
+            {
+                stepTime = Mathf.Min(stepTime, nextActiveExpiration);
+            }
+
+            if (nextAvailabilityTrigger > 0f)
+            {
+                stepTime = Mathf.Min(stepTime, nextAvailabilityTrigger);
+            }
+
+            if (stepTime <= 0f)
+            {
+                stepTime = remainingTime;
+            }
+
+            hasChanges = UpdateTemporaryBoostAvailability(stepTime) || hasChanges;
+            hasChanges = UpdateActiveBoosts(stepTime) || hasChanges;
+            remainingTime -= stepTime;
+        }
 
         if (hasChanges)
         {
@@ -354,6 +413,7 @@ public class UpgradeManager
 
         float orePerClickMultiplier = 1f;
         float orePerSecondMultiplier = 1f;
+        float shuttleTravelSpeedMultiplier = 1f;
 
         for (int i = 0; i < activeTemporaryBoostStates.Count; i++)
         {
@@ -367,6 +427,10 @@ public class UpgradeManager
 
                 case TemporaryBoostTargetType.OrePerSecond:
                     orePerSecondMultiplier *= activeBoostState.GetMultiplier();
+                    break;
+
+                case TemporaryBoostTargetType.ShuttleTravelSpeed:
+                    shuttleTravelSpeedMultiplier *= activeBoostState.GetMultiplier();
                     break;
             }
         }
@@ -385,7 +449,7 @@ public class UpgradeManager
         gameData.platformCapacity = hasMiningPlatform ? Mathf.Max(1, platformCapacity) : 0;
         gameData.shuttleCapacity = Mathf.Max(1, shuttleCapacity);
         gameData.shuttleLoadingTimeSeconds = Mathf.Max(0f, shuttleLoadingTimeSeconds);
-        gameData.shuttleTravelTimeSeconds = Mathf.Max(0f, shuttleTravelTimeSeconds);
+        gameData.shuttleTravelTimeSeconds = Mathf.Max(0f, shuttleTravelTimeSeconds / Mathf.Max(1f, shuttleTravelSpeedMultiplier));
         gameData.shuttleCount = Mathf.Clamp(shuttleCount, 1, GameData.MaxShuttles);
         gameData.shuttleAutoSendCount = Mathf.Clamp(shuttleAutoSendCount, 0, gameData.shuttleCount);
         gameData.shuttleOre = hasMiningPlatform
@@ -542,11 +606,13 @@ public class UpgradeManager
         string availableKey = GetTemporaryBoostAvailableKey(state.Definition.id);
         string timeKey = GetTemporaryBoostTimeKey(state.Definition.id);
         string oreThresholdKey = GetTemporaryBoostOreThresholdKey(state.Definition.id);
+        string activeTimeKey = GetTemporaryBoostActiveTimeKey(state.Definition.id);
 
         bool hasSavedState =
             PlayerPrefs.HasKey(availableKey) ||
             PlayerPrefs.HasKey(timeKey) ||
-            PlayerPrefs.HasKey(oreThresholdKey);
+            PlayerPrefs.HasKey(oreThresholdKey) ||
+            PlayerPrefs.HasKey(activeTimeKey);
 
         if (!hasSavedState)
         {
@@ -558,6 +624,14 @@ public class UpgradeManager
         state.SetTimeUntilAvailable(PlayerPrefs.GetFloat(timeKey, state.Definition.appearanceIntervalSeconds));
         state.SetNextOreThreshold(PlayerPrefs.GetInt(oreThresholdKey, state.Definition.oreRequiredForAppearance));
         state.Deactivate();
+        float savedActiveRemainingTime = Mathf.Max(0f, PlayerPrefs.GetFloat(activeTimeKey, 0f));
+
+        if (savedActiveRemainingTime > 0f)
+        {
+            state.Activate(savedActiveRemainingTime);
+            state.SetAvailable(false);
+            return;
+        }
 
         if (state.IsAvailable && !IsTemporaryBoostTargetUnlocked(state))
         {
@@ -590,6 +664,7 @@ public class UpgradeManager
         PlayerPrefs.SetInt(GetTemporaryBoostAvailableKey(state.Definition.id), state.IsAvailable ? 1 : 0);
         PlayerPrefs.SetFloat(GetTemporaryBoostTimeKey(state.Definition.id), state.TimeUntilAvailable);
         PlayerPrefs.SetInt(GetTemporaryBoostOreThresholdKey(state.Definition.id), state.NextOreThreshold);
+        PlayerPrefs.SetFloat(GetTemporaryBoostActiveTimeKey(state.Definition.id), state.ActiveRemainingTime);
     }
 
     private void ResetTemporaryBoostAvailability(TemporaryBoostState state)
@@ -610,6 +685,7 @@ public class UpgradeManager
         PlayerPrefs.DeleteKey(GetTemporaryBoostAvailableKey(state.Definition.id));
         PlayerPrefs.DeleteKey(GetTemporaryBoostTimeKey(state.Definition.id));
         PlayerPrefs.DeleteKey(GetTemporaryBoostOreThresholdKey(state.Definition.id));
+        PlayerPrefs.DeleteKey(GetTemporaryBoostActiveTimeKey(state.Definition.id));
     }
 
     private bool UpdateTemporaryBoostAvailability(float deltaTime)
@@ -701,6 +777,11 @@ public class UpgradeManager
     private string GetTemporaryBoostOreThresholdKey(string boostId)
     {
         return TemporaryBoostOreThresholdKeyPrefix + boostId;
+    }
+
+    private string GetTemporaryBoostActiveTimeKey(string boostId)
+    {
+        return TemporaryBoostActiveTimeKeyPrefix + boostId;
     }
 
     private int GetBaseShuttleCapacity()
@@ -844,9 +925,59 @@ public class UpgradeManager
             case TemporaryBoostTargetType.OrePerSecond:
                 return gameData.orePerSecond > 0;
 
+            case TemporaryBoostTargetType.ShuttleTravelSpeed:
+                return gameData.shuttleTravelTimeSeconds > 0f;
+
             default:
                 return true;
         }
+    }
+
+    private float GetNextActiveBoostExpirationSeconds()
+    {
+        float nextExpirationSeconds = 0f;
+
+        for (int i = 0; i < activeTemporaryBoostStates.Count; i++)
+        {
+            float remainingTime = activeTemporaryBoostStates[i].ActiveRemainingTime;
+
+            if (remainingTime <= 0f)
+            {
+                continue;
+            }
+
+            if (nextExpirationSeconds <= 0f || remainingTime < nextExpirationSeconds)
+            {
+                nextExpirationSeconds = remainingTime;
+            }
+        }
+
+        return nextExpirationSeconds;
+    }
+
+    private float GetNextAvailabilityTriggerSeconds()
+    {
+        float nextAvailabilitySeconds = 0f;
+
+        for (int i = 0; i < temporaryBoostStates.Count; i++)
+        {
+            TemporaryBoostState state = temporaryBoostStates[i];
+
+            if (state.IsAvailable ||
+                state.IsActive ||
+                state.Definition.availabilityType != TemporaryBoostAvailabilityType.ByTime ||
+                state.TimeUntilAvailable <= 0f)
+            {
+                continue;
+            }
+
+            if (nextAvailabilitySeconds <= 0f || state.TimeUntilAvailable < nextAvailabilitySeconds)
+            {
+                nextAvailabilitySeconds = state.TimeUntilAvailable;
+            }
+        }
+
+        return nextAvailabilitySeconds;
     }
 
     private void ApplyEffects(

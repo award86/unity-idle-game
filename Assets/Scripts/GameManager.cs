@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -45,9 +46,10 @@ public class GameManager : MonoBehaviour
     private int pendingOfflineWarehouseOre;
     private bool pendingOfflineShowRewardPopup;
     private GameData pendingOfflinePreviewData;
-    private TemporaryBoostState pendingBoostOfferState;
+    private readonly List<TemporaryBoostState> pendingBoostOfferStates = new List<TemporaryBoostState>();
+    private readonly Dictionary<TemporaryBoostState, float> boostOfferAutoCloseTimers = new Dictionary<TemporaryBoostState, float>();
     private bool suppressBoostOfferPopup;
-    private float boostOfferAutoCloseTimer;
+    private bool isApplicationInBackground;
 
     private void Awake()
     {
@@ -72,6 +74,8 @@ public class GameManager : MonoBehaviour
         energySystem = new EnergySystem(gameData, resourceSystem);
         SyncMissionProgress();
         CacheOfflineProgress(CalculateOfflineProgress());
+        AdvanceTemporaryBoostTimersForInactiveTime();
+        SyncPendingOfflinePreviewWithCurrentDynamicStats();
     }
 
     private void Start()
@@ -79,6 +83,9 @@ public class GameManager : MonoBehaviour
         if (uiManager != null)
         {
             uiManager.InitializeShuttleButtons(HandleShuttleSendRequested);
+            uiManager.InitializeShuttleDisplays();
+            uiManager.InitializeMenuButtons(HandleExitRequested);
+            uiManager.InitializeBoostOfferButton(HandleBoostOfferAccepted);
             uiManager.InitializeUpgradeList(
                 upgradeManager.UpgradeStates,
                 HandleUpgradeBuyRequested);
@@ -90,9 +97,13 @@ public class GameManager : MonoBehaviour
                 HandleMetaBonusBuyRequested);
         }
 
-        if (!ShouldShowOfflineRewardPopup() && HasPendingOfflineStateChanges())
+        if (!ShouldShowOfflineRewardPopup())
         {
-            ApplyPendingOfflineProgress();
+            if (HasPendingOfflineStateChanges())
+            {
+                ApplyPendingOfflineProgress();
+            }
+
             SyncMissionProgress();
             SaveGame();
         }
@@ -312,6 +323,19 @@ public class GameManager : MonoBehaviour
         uiManager.HideResetConfirmation();
     }
 
+    public void OnExitGameButtonClicked()
+    {
+        suppressBoostOfferPopup = true;
+        uiManager?.HideBoostOffer();
+        SaveGame();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     public void OnClaimOfflineRewardButtonClicked()
     {
         ApplyPendingOfflineProgress();
@@ -354,18 +378,19 @@ public class GameManager : MonoBehaviour
 
     public void OnAcceptBoostButtonClicked()
     {
-        if (upgradeManager == null)
+        if (pendingBoostOfferStates.Count <= 0)
         {
             return;
         }
 
-        TemporaryBoostState boostState = pendingBoostOfferState;
-        pendingBoostOfferState = null;
-        boostOfferAutoCloseTimer = 0f;
+        HandleBoostOfferAccepted(pendingBoostOfferStates[0]);
+    }
 
-        if (uiManager != null)
+    private void HandleBoostOfferAccepted(TemporaryBoostState boostState)
+    {
+        if (upgradeManager == null || boostState == null)
         {
-            uiManager.HideBoostOffer();
+            return;
         }
 
         if (!upgradeManager.TryActivateTemporaryBoost(boostState))
@@ -374,6 +399,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        RemovePendingBoostOffer(boostState);
         RefreshUI();
         SaveGame();
         TryShowNextBoostOffer();
@@ -381,7 +407,9 @@ public class GameManager : MonoBehaviour
 
     public void OnBoostOfferOverlayClicked()
     {
-        DismissBoostOfferAndRefresh();
+        // Shared overlay is now used by the dropdown menu, not by boost offers.
+        // Keep this method as a no-op for old scene bindings so overlay clicks
+        // do not accidentally dismiss active boost offer buttons.
     }
 
     private void SaveGame()
@@ -504,7 +532,8 @@ public class GameManager : MonoBehaviour
         pendingOfflineWarehouseOre = 0;
         pendingOfflineShowRewardPopup = false;
         pendingOfflinePreviewData = null;
-        pendingBoostOfferState = null;
+        pendingBoostOfferStates.Clear();
+        boostOfferAutoCloseTimers.Clear();
 
         if (gameData == null)
         {
@@ -600,20 +629,28 @@ public class GameManager : MonoBehaviour
     {
         if (pauseStatus)
         {
-            suppressBoostOfferPopup = true;
-            DismissPendingBoostOffer();
-            SaveGame();
+            HandleApplicationSentToBackground();
             return;
         }
 
-        suppressBoostOfferPopup = false;
-        TryShowNextBoostOffer();
+        HandleApplicationReturnedToForeground();
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            HandleApplicationSentToBackground();
+            return;
+        }
+
+        HandleApplicationReturnedToForeground();
     }
 
     private void OnApplicationQuit()
     {
         suppressBoostOfferPopup = true;
-        DismissPendingBoostOffer();
+        uiManager?.HideBoostOffer();
         SaveGame();
     }
 
@@ -652,6 +689,14 @@ public class GameManager : MonoBehaviour
     {
         long offlineSeconds = GetOfflineSeconds();
         GameData previewData = gameData.Clone();
+        List<OfflineBoostSnapshot> offlineBoosts = CreateOfflineBoostSnapshots();
+        int baseOrePerSecond = RemoveTemporaryBoostMultiplier(
+            previewData.orePerSecond,
+            GetOfflineBoostMultiplier(offlineBoosts, TemporaryBoostTargetType.OrePerSecond));
+        float baseShuttleTravelTime = RemoveTemporaryTravelSpeedMultiplier(
+            previewData.shuttleTravelTimeSeconds,
+            GetOfflineBoostMultiplier(offlineBoosts, TemporaryBoostTargetType.ShuttleTravelSpeed));
+        bool shouldShowPopupForDuration = offlineSeconds >= GameSettings.MinInactiveSecondsForOffline;
 
         if (offlineSeconds <= 0)
         {
@@ -671,7 +716,6 @@ public class GameManager : MonoBehaviour
             previewData.energyRegenTimer = energyProgress.regenTimer;
         }
 
-        int orePerSecond = Mathf.Max(0, previewData.orePerSecond);
         bool hasMiningPlatform = previewData.hasMiningPlatform;
         int platformCapacity = hasMiningPlatform
             ? Mathf.Max(1, previewData.platformCapacity)
@@ -679,7 +723,6 @@ public class GameManager : MonoBehaviour
         int storedPlatformOre = Mathf.Max(0, previewData.shuttleOre);
         int shuttleCapacity = Mathf.Max(1, previewData.shuttleCapacity);
         float shuttleLoadingTime = Mathf.Max(0f, previewData.shuttleLoadingTimeSeconds);
-        float shuttleTravelTime = Mathf.Max(0f, previewData.shuttleTravelTimeSeconds);
         int activeShuttleCount = previewData.ActiveShuttleCount;
         int autoSendCount = hasMiningPlatform ? previewData.ActiveAutoSendShuttleCount : 0;
         ShuttleState[] offlineShuttles = new ShuttleState[GameData.MaxShuttles];
@@ -695,6 +738,10 @@ public class GameManager : MonoBehaviour
 
         while (remainingSeconds > 0)
         {
+            int currentOrePerSecond = GetOfflineBoostedOrePerSecond(baseOrePerSecond, offlineBoosts);
+            float currentShuttleTravelTime = GetOfflineBoostedTravelTime(baseShuttleTravelTime, offlineBoosts);
+            long nextBoostExpirationSeconds = GetNextOfflineBoostExpirationSeconds(offlineBoosts);
+
             if (hasMiningPlatform &&
                 TryStartOfflineAutoActions(
                     offlineShuttles,
@@ -704,7 +751,7 @@ public class GameManager : MonoBehaviour
                     platformCapacity,
                     shuttleCapacity,
                     shuttleLoadingTime,
-                    shuttleTravelTime,
+                    currentShuttleTravelTime,
                     ref warehouseOre))
             {
                 continue;
@@ -722,6 +769,11 @@ public class GameManager : MonoBehaviour
                     nextLoadingStepSeconds = Math.Min(nextLoadingStepSeconds, nextTravelDuringLoadingSeconds);
                 }
 
+                if (nextBoostExpirationSeconds > 0)
+                {
+                    nextLoadingStepSeconds = Math.Min(nextLoadingStepSeconds, nextBoostExpirationSeconds);
+                }
+
                 if (nextLoadingStepSeconds <= 0)
                 {
                     nextLoadingStepSeconds = 1;
@@ -733,10 +785,11 @@ public class GameManager : MonoBehaviour
                     nextLoadingStepSeconds,
                     shuttleLoadingTime,
                     shuttleCapacity,
-                    shuttleTravelTime,
+                    currentShuttleTravelTime,
                     ref storedPlatformOre,
                     ref warehouseOre);
                 AdvanceOfflineTravel(offlineShuttles, activeShuttleCount, nextLoadingStepSeconds, ref warehouseOre);
+                AdvanceOfflineBoosts(offlineBoosts, nextLoadingStepSeconds);
                 remainingSeconds -= nextLoadingStepSeconds;
                 continue;
             }
@@ -749,7 +802,7 @@ public class GameManager : MonoBehaviour
                 storedPlatformOre,
                 platformCapacity,
                 shuttleCapacity,
-                orePerSecond);
+                currentOrePerSecond);
 
             bool hasTimedEvent = false;
             long nextEventSeconds = remainingSeconds;
@@ -766,9 +819,15 @@ public class GameManager : MonoBehaviour
                 hasTimedEvent = true;
             }
 
+            if (nextBoostExpirationSeconds > 0)
+            {
+                nextEventSeconds = Math.Min(nextEventSeconds, nextBoostExpirationSeconds);
+                hasTimedEvent = true;
+            }
+
             if (!hasTimedEvent)
             {
-                if (orePerSecond <= 0)
+                if (currentOrePerSecond <= 0)
                 {
                     break;
                 }
@@ -780,9 +839,10 @@ public class GameManager : MonoBehaviour
                     break;
                 }
 
-                int minedAmount = (int)Math.Min((long)freeCapacity, remainingSeconds * orePerSecond);
+                int minedAmount = (int)Math.Min((long)freeCapacity, remainingSeconds * currentOrePerSecond);
                 storedPlatformOre += minedAmount;
                 minedOre += minedAmount;
+                AdvanceOfflineBoosts(offlineBoosts, remainingSeconds);
                 break;
             }
 
@@ -791,15 +851,16 @@ public class GameManager : MonoBehaviour
                 nextEventSeconds = 1;
             }
 
-            if (hasMiningPlatform && orePerSecond > 0 && storedPlatformOre < platformCapacity)
+            if (hasMiningPlatform && currentOrePerSecond > 0 && storedPlatformOre < platformCapacity)
             {
                 int freeCapacity = Mathf.Max(0, platformCapacity - storedPlatformOre);
-                int minedAmount = (int)Math.Min((long)freeCapacity, nextEventSeconds * orePerSecond);
+                int minedAmount = (int)Math.Min((long)freeCapacity, nextEventSeconds * currentOrePerSecond);
                 storedPlatformOre += minedAmount;
                 minedOre += minedAmount;
             }
 
             AdvanceOfflineTravel(offlineShuttles, activeShuttleCount, nextEventSeconds, ref warehouseOre);
+            AdvanceOfflineBoosts(offlineBoosts, nextEventSeconds);
             remainingSeconds -= nextEventSeconds;
         }
 
@@ -812,7 +873,7 @@ public class GameManager : MonoBehaviour
                 offlineShuttles,
                 minedOre,
                 warehouseOre),
-            shouldShowPopup = autoSendCount > 0 && warehouseOre > 0
+            shouldShowPopup = shouldShowPopupForDuration && autoSendCount > 0 && warehouseOre > 0
         };
     }
 
@@ -832,6 +893,103 @@ public class GameManager : MonoBehaviour
 
         long currentTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         return Math.Max(0, currentTime - lastSaveTime);
+    }
+
+    private void AdvanceTemporaryBoostTimersForInactiveTime()
+    {
+        if (upgradeManager == null)
+        {
+            return;
+        }
+
+        long inactiveSeconds = GetOfflineSeconds();
+
+        if (inactiveSeconds <= 0)
+        {
+            return;
+        }
+
+        upgradeManager.AdvanceTime(inactiveSeconds);
+    }
+
+    private void AdvanceBoostOfferAutoCloseForInactiveTime()
+    {
+        if (upgradeManager == null || pendingBoostOfferStates.Count <= 0)
+        {
+            return;
+        }
+
+        long inactiveSeconds = GetOfflineSeconds();
+
+        if (inactiveSeconds <= 0)
+        {
+            return;
+        }
+
+        for (int i = pendingBoostOfferStates.Count - 1; i >= 0; i--)
+        {
+            TemporaryBoostState boostState = pendingBoostOfferStates[i];
+
+            if (boostState == null || !boostOfferAutoCloseTimers.ContainsKey(boostState))
+            {
+                continue;
+            }
+
+            boostOfferAutoCloseTimers[boostState] -= inactiveSeconds;
+
+            if (boostOfferAutoCloseTimers[boostState] > 0f)
+            {
+                continue;
+            }
+
+            upgradeManager.TryDeclineTemporaryBoost(boostState);
+            pendingBoostOfferStates.RemoveAt(i);
+            boostOfferAutoCloseTimers.Remove(boostState);
+        }
+    }
+
+    private void HandleApplicationSentToBackground()
+    {
+        if (isApplicationInBackground)
+        {
+            return;
+        }
+
+        isApplicationInBackground = true;
+        suppressBoostOfferPopup = true;
+        uiManager?.HideBoostOffer();
+        SaveGame();
+    }
+
+    private void HandleApplicationReturnedToForeground()
+    {
+        if (!isApplicationInBackground)
+        {
+            return;
+        }
+
+        isApplicationInBackground = false;
+        suppressBoostOfferPopup = false;
+
+        CacheOfflineProgress(CalculateOfflineProgress());
+        AdvanceTemporaryBoostTimersForInactiveTime();
+        AdvanceBoostOfferAutoCloseForInactiveTime();
+        SyncPendingOfflinePreviewWithCurrentDynamicStats();
+
+        if (!ShouldShowOfflineRewardPopup())
+        {
+            if (HasPendingOfflineStateChanges())
+            {
+                ApplyPendingOfflineProgress();
+            }
+
+            SyncMissionProgress();
+            SaveGame();
+        }
+
+        RefreshUI();
+        ShowOfflineRewardIfNeeded();
+        TryShowNextBoostOffer();
     }
 
     private int GetConfiguredStartShuttleOre()
@@ -1024,6 +1182,11 @@ public class GameManager : MonoBehaviour
         OnSendShuttleButtonClicked(shuttleIndex);
     }
 
+    private void HandleExitRequested()
+    {
+        OnExitGameButtonClicked();
+    }
+
     private void HandleUpgradesChanged()
     {
         TryAutoSendShuttle();
@@ -1044,19 +1207,41 @@ public class GameManager : MonoBehaviour
 
     private bool UpdateBoostOfferAutoClose(float deltaTime)
     {
-        if (uiManager == null || !uiManager.IsBoostOfferVisible || pendingBoostOfferState == null)
+        if (upgradeManager == null || pendingBoostOfferStates.Count <= 0)
         {
             return false;
         }
 
-        boostOfferAutoCloseTimer -= deltaTime;
+        bool hasChanges = false;
 
-        if (boostOfferAutoCloseTimer > 0f)
+        for (int i = pendingBoostOfferStates.Count - 1; i >= 0; i--)
+        {
+            TemporaryBoostState boostState = pendingBoostOfferStates[i];
+
+            if (boostState == null || !boostOfferAutoCloseTimers.ContainsKey(boostState))
+            {
+                continue;
+            }
+
+            boostOfferAutoCloseTimers[boostState] -= deltaTime;
+
+            if (boostOfferAutoCloseTimers[boostState] > 0f)
+            {
+                continue;
+            }
+
+            upgradeManager.TryDeclineTemporaryBoost(boostState);
+            pendingBoostOfferStates.RemoveAt(i);
+            boostOfferAutoCloseTimers.Remove(boostState);
+            hasChanges = true;
+        }
+
+        if (!hasChanges)
         {
             return false;
         }
 
-        DismissPendingBoostOffer();
+        RefreshBoostOfferButtons();
         return true;
     }
 
@@ -1115,45 +1300,110 @@ public class GameManager : MonoBehaviour
         pendingOfflineShowRewardPopup = offlineProgress.shouldShowPopup;
     }
 
+    private void SyncPendingOfflinePreviewWithCurrentDynamicStats()
+    {
+        if (pendingOfflinePreviewData == null || gameData == null)
+        {
+            return;
+        }
+
+        pendingOfflinePreviewData.orePerClick = gameData.orePerClick;
+        pendingOfflinePreviewData.orePerSecond = gameData.orePerSecond;
+        pendingOfflinePreviewData.shuttleTravelTimeSeconds = gameData.shuttleTravelTimeSeconds;
+    }
+
+    private void SyncPendingBoostOffers()
+    {
+        if (upgradeManager == null)
+        {
+            pendingBoostOfferStates.Clear();
+            boostOfferAutoCloseTimers.Clear();
+            return;
+        }
+
+        IReadOnlyList<TemporaryBoostState> availableBoostStates = upgradeManager.GetAvailableTemporaryBoosts();
+
+        for (int i = pendingBoostOfferStates.Count - 1; i >= 0; i--)
+        {
+            TemporaryBoostState boostState = pendingBoostOfferStates[i];
+            bool isStillAvailable = false;
+
+            for (int availableIndex = 0; availableIndex < availableBoostStates.Count; availableIndex++)
+            {
+                if (availableBoostStates[availableIndex] == boostState)
+                {
+                    isStillAvailable = true;
+                    break;
+                }
+            }
+
+            if (isStillAvailable)
+            {
+                continue;
+            }
+
+            pendingBoostOfferStates.RemoveAt(i);
+            boostOfferAutoCloseTimers.Remove(boostState);
+        }
+
+        for (int i = 0; i < availableBoostStates.Count; i++)
+        {
+            TemporaryBoostState boostState = availableBoostStates[i];
+
+            if (pendingBoostOfferStates.Contains(boostState))
+            {
+                continue;
+            }
+
+            pendingBoostOfferStates.Add(boostState);
+            boostOfferAutoCloseTimers[boostState] = GetConfiguredBoostOfferAutoCloseSeconds();
+        }
+    }
+
+    private void RefreshBoostOfferButtons()
+    {
+        if (uiManager == null)
+        {
+            return;
+        }
+
+        if (pendingBoostOfferStates.Count <= 0)
+        {
+            uiManager.HideBoostOffer();
+            return;
+        }
+
+        uiManager.ShowBoostOffers(pendingBoostOfferStates);
+    }
+
+    private void RemovePendingBoostOffer(TemporaryBoostState boostState)
+    {
+        if (boostState == null)
+        {
+            return;
+        }
+
+        pendingBoostOfferStates.Remove(boostState);
+        boostOfferAutoCloseTimers.Remove(boostState);
+
+        if (pendingBoostOfferStates.Count <= 0)
+        {
+            uiManager?.HideBoostOffer();
+        }
+    }
+
     private void TryShowNextBoostOffer()
     {
         if (uiManager == null ||
             upgradeManager == null ||
             suppressBoostOfferPopup ||
-            uiManager.IsBusyWithOtherWindow ||
-            upgradeManager.ActiveTemporaryBoostStates.Count >= GameSettings.MaxActiveTemporaryBoosts)
+            uiManager.IsBusyWithOtherWindow)
         {
             return;
         }
 
-        if (pendingBoostOfferState != null &&
-            (!pendingBoostOfferState.IsAvailable || pendingBoostOfferState.IsActive))
-        {
-            pendingBoostOfferState = null;
-
-            if (uiManager.IsBoostOfferVisible)
-            {
-                uiManager.HideBoostOffer();
-            }
-        }
-
-        if (uiManager.IsBoostOfferVisible)
-        {
-            return;
-        }
-
-        if (pendingBoostOfferState == null)
-        {
-            pendingBoostOfferState = upgradeManager.GetNextAvailableTemporaryBoost();
-        }
-
-        if (pendingBoostOfferState == null)
-        {
-            return;
-        }
-
-        boostOfferAutoCloseTimer = GetConfiguredBoostOfferAutoCloseSeconds();
-        uiManager.ShowBoostOffer(pendingBoostOfferState);
+        SyncPendingBoostOffers();
+        RefreshBoostOfferButtons();
     }
 
     private void DismissPendingBoostOffer()
@@ -1163,21 +1413,25 @@ public class GameManager : MonoBehaviour
             uiManager.HideBoostOffer();
         }
 
-        if (upgradeManager == null || pendingBoostOfferState == null)
+        if (upgradeManager == null || pendingBoostOfferStates.Count <= 0)
         {
-            pendingBoostOfferState = null;
+            pendingBoostOfferStates.Clear();
+            boostOfferAutoCloseTimers.Clear();
             return;
         }
 
-        TemporaryBoostState boostState = pendingBoostOfferState;
-        pendingBoostOfferState = null;
-        boostOfferAutoCloseTimer = 0f;
-        upgradeManager.TryDeclineTemporaryBoost(boostState);
+        for (int i = 0; i < pendingBoostOfferStates.Count; i++)
+        {
+            upgradeManager.TryDeclineTemporaryBoost(pendingBoostOfferStates[i]);
+        }
+
+        pendingBoostOfferStates.Clear();
+        boostOfferAutoCloseTimers.Clear();
     }
 
     private void DismissBoostOfferAndRefresh()
     {
-        if (pendingBoostOfferState == null && (uiManager == null || !uiManager.IsBoostOfferVisible))
+        if (pendingBoostOfferStates.Count <= 0 && (uiManager == null || !uiManager.IsBoostOfferVisible))
         {
             return;
         }
@@ -1625,6 +1879,146 @@ public class GameManager : MonoBehaviour
                pendingOfflinePreviewData.shuttleAutoSendCount != gameData.shuttleAutoSendCount;
     }
 
+    private List<OfflineBoostSnapshot> CreateOfflineBoostSnapshots()
+    {
+        List<OfflineBoostSnapshot> snapshots = new List<OfflineBoostSnapshot>();
+
+        if (upgradeManager == null)
+        {
+            return snapshots;
+        }
+
+        IReadOnlyList<TemporaryBoostState> activeBoostStates = upgradeManager.ActiveTemporaryBoostStates;
+
+        for (int i = 0; i < activeBoostStates.Count; i++)
+        {
+            TemporaryBoostState boostState = activeBoostStates[i];
+
+            if (!boostState.IsActive || boostState.ActiveRemainingTime <= 0f)
+            {
+                continue;
+            }
+
+            snapshots.Add(new OfflineBoostSnapshot
+            {
+                targetType = boostState.Definition.targetType,
+                multiplier = boostState.GetMultiplier(),
+                remainingTime = boostState.ActiveRemainingTime
+            });
+        }
+
+        return snapshots;
+    }
+
+    private float GetOfflineBoostMultiplier(
+        List<OfflineBoostSnapshot> boostSnapshots,
+        TemporaryBoostTargetType targetType)
+    {
+        float multiplier = 1f;
+
+        if (boostSnapshots == null)
+        {
+            return multiplier;
+        }
+
+        for (int i = 0; i < boostSnapshots.Count; i++)
+        {
+            OfflineBoostSnapshot boostSnapshot = boostSnapshots[i];
+
+            if (boostSnapshot.targetType != targetType || boostSnapshot.remainingTime <= 0f)
+            {
+                continue;
+            }
+
+            multiplier *= Mathf.Max(1f, boostSnapshot.multiplier);
+        }
+
+        return multiplier;
+    }
+
+    private long GetNextOfflineBoostExpirationSeconds(List<OfflineBoostSnapshot> boostSnapshots)
+    {
+        if (boostSnapshots == null || boostSnapshots.Count <= 0)
+        {
+            return 0;
+        }
+
+        long nextExpirationSeconds = 0;
+
+        for (int i = 0; i < boostSnapshots.Count; i++)
+        {
+            float remainingTime = boostSnapshots[i].remainingTime;
+
+            if (remainingTime <= 0f)
+            {
+                continue;
+            }
+
+            long expirationSeconds = Math.Max(1L, (long)Math.Ceiling(remainingTime));
+
+            if (nextExpirationSeconds == 0 || expirationSeconds < nextExpirationSeconds)
+            {
+                nextExpirationSeconds = expirationSeconds;
+            }
+        }
+
+        return nextExpirationSeconds;
+    }
+
+    private void AdvanceOfflineBoosts(List<OfflineBoostSnapshot> boostSnapshots, long deltaSeconds)
+    {
+        if (boostSnapshots == null || deltaSeconds <= 0)
+        {
+            return;
+        }
+
+        for (int i = boostSnapshots.Count - 1; i >= 0; i--)
+        {
+            OfflineBoostSnapshot boostSnapshot = boostSnapshots[i];
+            boostSnapshot.remainingTime = Mathf.Max(0f, boostSnapshot.remainingTime - deltaSeconds);
+
+            if (boostSnapshot.remainingTime <= 0f)
+            {
+                boostSnapshots.RemoveAt(i);
+                continue;
+            }
+
+            boostSnapshots[i] = boostSnapshot;
+        }
+    }
+
+    private int GetOfflineBoostedOrePerSecond(int baseOrePerSecond, List<OfflineBoostSnapshot> boostSnapshots)
+    {
+        float multiplier = GetOfflineBoostMultiplier(boostSnapshots, TemporaryBoostTargetType.OrePerSecond);
+        return Mathf.Max(0, Mathf.RoundToInt(baseOrePerSecond * multiplier));
+    }
+
+    private float GetOfflineBoostedTravelTime(float baseTravelTime, List<OfflineBoostSnapshot> boostSnapshots)
+    {
+        float speedMultiplier = GetOfflineBoostMultiplier(boostSnapshots, TemporaryBoostTargetType.ShuttleTravelSpeed);
+        return Mathf.Max(0f, baseTravelTime / Mathf.Max(1f, speedMultiplier));
+    }
+
+    private int RemoveTemporaryBoostMultiplier(int boostedValue, float multiplier)
+    {
+        if (multiplier <= 1f)
+        {
+            return Mathf.Max(0, boostedValue);
+        }
+
+        return Mathf.Max(0, Mathf.RoundToInt(boostedValue / multiplier));
+    }
+
+    private float RemoveTemporaryTravelSpeedMultiplier(float boostedTravelTime, float speedMultiplier)
+    {
+        if (speedMultiplier <= 1f)
+        {
+            return Mathf.Max(0f, boostedTravelTime);
+        }
+
+        return Mathf.Max(0f, boostedTravelTime * speedMultiplier);
+    }
+
     private void SaveShuttleState(int shuttleIndex, ShuttleState shuttleState)
     {
         if (shuttleState == null)
@@ -1758,5 +2152,12 @@ public class GameManager : MonoBehaviour
         public int warehouseOre;
         public GameData previewData;
         public bool shouldShowPopup;
+    }
+
+    private struct OfflineBoostSnapshot
+    {
+        public TemporaryBoostTargetType targetType;
+        public float multiplier;
+        public float remainingTime;
     }
 }

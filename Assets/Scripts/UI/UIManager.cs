@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text crystalText;
     [SerializeField] private Text platformText;
     [SerializeField] private Text shuttleText;
+    [SerializeField] private Text shuttleText2;
+    [SerializeField] private Text shuttleText3;
     [SerializeField] private Text orePerSecondText;
 
     [FormerlySerializedAs("upgradeCostText")]
@@ -23,6 +25,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text platformBarText;
     [SerializeField] private Image shuttleFillImage;
     [SerializeField] private Text shuttleBarText;
+    [SerializeField] private Image shuttleFillImage2;
+    [SerializeField] private Text shuttleBarText2;
+    [SerializeField] private Image shuttleFillImage3;
+    [SerializeField] private Text shuttleBarText3;
     [SerializeField] private float safeAreaExtraTopPadding = 24f;
     [SerializeField] private float safeAreaExtraSidePadding = 12f;
     [SerializeField] private float centeredPopupYOffsetFactor = 0.35f;
@@ -41,6 +47,8 @@ public class UIManager : MonoBehaviour
     [FormerlySerializedAs("boostOfferOverlayPanel")]
     [SerializeField] private GameObject sharedOverlayPanel;
     [SerializeField] private GameObject dropdownMenuPanel;
+    [SerializeField] private Button exitMenuButton;
+    [SerializeField] private Text exitMenuButtonText;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject buildPanel;
     [SerializeField] private GameObject missionPanel;
@@ -70,16 +78,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject resetConfirmationPanel;
     [SerializeField] private GameObject offlineRewardPanel;
     [SerializeField] private Text offlineRewardText;
-    [SerializeField] private GameObject boostOfferPanel;
-    [SerializeField] private Text boostOfferNameText;
-    [SerializeField] private Text boostOfferDescriptionText;
-    [SerializeField] private Text boostOfferEffectText;
+    [SerializeField] private Button boostOfferButton;
+    [SerializeField] private Text boostOfferButtonText;
 
     private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
     private readonly List<BuildingItemUI> buildingItems = new List<BuildingItemUI>();
     private readonly List<MetaBonusItemUI> metaBonusItems = new List<MetaBonusItemUI>();
     private readonly List<Button> shuttleButtons = new List<Button>();
     private readonly List<Text> shuttleButtonTexts = new List<Text>();
+    private readonly List<Button> boostOfferButtons = new List<Button>();
+    private readonly List<Text> boostOfferButtonTexts = new List<Text>();
+    private readonly List<RectTransform> shuttleBarRoots = new List<RectTransform>();
+    private readonly List<Image> shuttleFillImages = new List<Image>();
+    private readonly List<Text> shuttleBarTexts = new List<Text>();
     private readonly Dictionary<RectTransform, Vector2> baseAnchoredPositions = new Dictionary<RectTransform, Vector2>();
     private readonly Dictionary<RectTransform, Vector2> baseOffsetMins = new Dictionary<RectTransform, Vector2>();
     private readonly Dictionary<RectTransform, Vector2> baseOffsetMaxes = new Dictionary<RectTransform, Vector2>();
@@ -92,9 +103,10 @@ public class UIManager : MonoBehaviour
     private Rect lastAppliedSafeArea;
     private Vector2Int lastAppliedScreenSize;
     private RectTransform cachedMenuButtonRect;
+    private Action<TemporaryBoostState> boostOfferAcceptHandler;
 
     public bool IsOfflineRewardVisible => offlineRewardPanel != null && offlineRewardPanel.activeSelf;
-    public bool IsBoostOfferVisible => boostOfferPanel != null && boostOfferPanel.activeSelf;
+    public bool IsBoostOfferVisible => HasVisibleBoostOfferButtons();
     public bool IsUpgradePanelVisible => upgradePanel != null && upgradePanel.activeSelf;
     public bool IsBuildPanelVisible => buildPanel != null && buildPanel.activeSelf;
     public bool IsMissionPanelVisible => missionPanel != null && missionPanel.activeSelf;
@@ -189,19 +201,32 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (shuttleText != null)
-        {
-            bool shouldUseLegacyShuttleText = !IsShuttleBarActive();
-            shuttleText.gameObject.SetActive(shouldUseLegacyShuttleText);
+        bool shouldUseLegacyShuttleText = !IsShuttleBarActive();
 
-            if (shouldUseLegacyShuttleText)
+        for (int shuttleIndex = 0; shuttleIndex < GameData.MaxShuttles; shuttleIndex++)
+        {
+            Text legacyShuttleText = GetLegacyShuttleText(shuttleIndex);
+
+            if (legacyShuttleText == null)
             {
-                shuttleText.text =
-                    "Shuttle: " +
-                    NumberFormatter.FormatInt(GetDisplayedShuttleLoad(gameData)) +
-                    " / " +
-                    NumberFormatter.FormatInt(gameData.shuttleCapacity * gameData.ActiveShuttleCount);
+                continue;
             }
+
+            bool isVisible = shouldUseLegacyShuttleText && shuttleIndex < gameData.ActiveShuttleCount;
+            legacyShuttleText.gameObject.SetActive(isVisible);
+
+            if (!isVisible)
+            {
+                continue;
+            }
+
+            legacyShuttleText.text =
+                "Shuttle " +
+                (shuttleIndex + 1) +
+                ": " +
+                NumberFormatter.FormatInt(GetDisplayedShuttleLoadForSlot(gameData, shuttleIndex)) +
+                " / " +
+                NumberFormatter.FormatInt(gameData.shuttleCapacity);
         }
 
         if (orePerSecondText != null)
@@ -217,7 +242,7 @@ public class UIManager : MonoBehaviour
         RefreshEnergyVisuals(gameData, !hasDisplayedEnergyAmount);
 
         UpdatePlatformBar(gameData);
-        UpdateShuttleBar(gameData);
+        UpdateShuttleBars(gameData);
 
         for (int i = 0; i < GameData.MaxShuttles; i++)
         {
@@ -267,6 +292,188 @@ public class UIManager : MonoBehaviour
         EnsureShuttleButtonSlot(1, sendShuttleButton2, sendShuttleButtonText2, onShuttleSendRequested);
         EnsureShuttleButtonSlot(2, sendShuttleButton3, sendShuttleButtonText3, onShuttleSendRequested);
         ApplyResponsiveLayout(true);
+    }
+
+    public void InitializeShuttleDisplays()
+    {
+        EnsureShuttleBarSlot(0, shuttleFillImage, shuttleBarText);
+        EnsureShuttleBarSlot(1, shuttleFillImage2, shuttleBarText2);
+        EnsureShuttleBarSlot(2, shuttleFillImage3, shuttleBarText3);
+        ApplyResponsiveLayout(true);
+    }
+
+    public void InitializeMenuButtons(Action onExitRequested)
+    {
+        if (dropdownMenuPanel == null)
+        {
+            return;
+        }
+
+        Button button = exitMenuButton != null ? exitMenuButton : FindMenuButtonByName("ExitButton");
+
+        if (button == null)
+        {
+            button = CreateRuntimeMenuButton("ExitButton");
+        }
+
+        if (button == null)
+        {
+            return;
+        }
+
+        Text buttonText = exitMenuButtonText != null
+            ? exitMenuButtonText
+            : button.GetComponentInChildren<Text>(true);
+
+        exitMenuButton = button;
+        exitMenuButtonText = buttonText;
+
+        if (exitMenuButtonText != null)
+        {
+            exitMenuButtonText.text = "Exit";
+        }
+
+        exitMenuButton.onClick.RemoveAllListeners();
+        exitMenuButton.onClick.AddListener(() => onExitRequested?.Invoke());
+    }
+
+    public void InitializeBoostOfferButton(Action<TemporaryBoostState> onAcceptRequested)
+    {
+        boostOfferAcceptHandler = onAcceptRequested;
+        EnsureBoostOfferButtonSlot(0, boostOfferButton, boostOfferButtonText);
+    }
+
+    public void ShowBoostOffers(IReadOnlyList<TemporaryBoostState> boostStates)
+    {
+        if (boostStates == null || boostStates.Count <= 0)
+        {
+            HideBoostOffer();
+            return;
+        }
+
+        for (int i = 0; i < boostStates.Count; i++)
+        {
+            EnsureBoostOfferButtonSlot(i, i == 0 ? boostOfferButton : null, i == 0 ? boostOfferButtonText : null);
+            Button button = GetBoostOfferButton(i);
+            Text buttonText = GetBoostOfferButtonText(i);
+
+            if (button == null)
+            {
+                continue;
+            }
+
+            TemporaryBoostState boostState = boostStates[i];
+
+            if (buttonText != null)
+            {
+                buttonText.text = BuildBoostOfferText(boostState);
+            }
+
+            button.onClick = new Button.ButtonClickedEvent();
+            button.onClick.AddListener(() => boostOfferAcceptHandler?.Invoke(boostState));
+            button.gameObject.SetActive(true);
+        }
+
+        for (int i = boostStates.Count; i < boostOfferButtons.Count; i++)
+        {
+            if (boostOfferButtons[i] != null)
+            {
+                boostOfferButtons[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void RefreshBoostOfferTexts(IReadOnlyList<TemporaryBoostState> boostStates)
+    {
+        if (boostStates == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < boostStates.Count; i++)
+        {
+            Text buttonText = GetBoostOfferButtonText(i);
+
+            if (buttonText != null)
+            {
+                buttonText.text = BuildBoostOfferText(boostStates[i]);
+            }
+        }
+    }
+
+    private void EnsureBoostOfferButtonSlot(int boostIndex, Button serializedButton, Text serializedText)
+    {
+        Button button = serializedButton;
+        Text buttonText = serializedText;
+
+        if (boostIndex >= 0 && boostIndex < boostOfferButtons.Count && boostOfferButtons[boostIndex] != null)
+        {
+            button = boostOfferButtons[boostIndex];
+            buttonText = boostOfferButtonTexts[boostIndex];
+        }
+
+        if (boostOfferButton == null)
+        {
+            boostOfferButton = FindButtonByName("BoostOfferButton");
+        }
+
+        if (boostOfferButton == null)
+        {
+            boostOfferButton = FindButtonByName("Accept");
+        }
+
+        if (button == null)
+        {
+            if (boostIndex > 0)
+            {
+                button = FindButtonByName("BoostOfferButton" + (boostIndex + 1));
+            }
+
+            if (button == null)
+            {
+                button = boostIndex == 0 ? boostOfferButton : CreateRuntimeBoostOfferButton(boostIndex);
+            }
+
+            buttonText = button != null ? button.GetComponentInChildren<Text>(true) : null;
+        }
+
+        while (boostOfferButtons.Count <= boostIndex)
+        {
+            boostOfferButtons.Add(null);
+            boostOfferButtonTexts.Add(null);
+        }
+
+        boostOfferButtons[boostIndex] = button;
+        boostOfferButtonTexts[boostIndex] = buttonText;
+
+        if (boostIndex == 0)
+        {
+            boostOfferButton = button;
+            boostOfferButtonText = buttonText;
+        }
+
+        if (button == null)
+        {
+            return;
+        }
+
+        if (buttonText == null)
+        {
+            buttonText = button.GetComponentInChildren<Text>(true);
+            boostOfferButtonTexts[boostIndex] = buttonText;
+
+            if (boostIndex == 0)
+            {
+                boostOfferButtonText = buttonText;
+            }
+        }
+
+        if (buttonText != null)
+        {
+            buttonText.text = "Accept";
+        }
+
+        button.onClick = new Button.ButtonClickedEvent();
     }
 
     public void RefreshUpgradeList(GameData gameData)
@@ -428,6 +635,7 @@ public class UIManager : MonoBehaviour
 
         HideBuildPanel();
         HideMissionPanel();
+        HideBoostOffer();
         upgradePanel.SetActive(true);
         RefreshPanelLists();
     }
@@ -450,6 +658,7 @@ public class UIManager : MonoBehaviour
 
         HideUpgradePanel();
         HideMissionPanel();
+        HideBoostOffer();
         buildPanel.SetActive(true);
         RefreshPanelLists();
     }
@@ -472,6 +681,7 @@ public class UIManager : MonoBehaviour
 
         HideUpgradePanel();
         HideBuildPanel();
+        HideBoostOffer();
         missionPanel.SetActive(true);
         RefreshPanelLists();
     }
@@ -680,44 +890,27 @@ public class UIManager : MonoBehaviour
     {
         if (boostState == null)
         {
+            HideBoostOffer();
             return;
         }
 
-        HideMenu();
-        HideAllContentPanels();
-        HideResetConfirmation();
-
-        if (boostOfferNameText != null)
-        {
-            boostOfferNameText.text = boostState.Definition.boostName;
-        }
-
-        if (boostOfferDescriptionText != null)
-        {
-            boostOfferDescriptionText.text = boostState.Definition.description;
-        }
-
-        if (boostOfferEffectText != null)
-        {
-            boostOfferEffectText.text = BuildBoostOfferEffectText(boostState);
-        }
-
-        if (boostOfferPanel != null)
-        {
-            boostOfferPanel.SetActive(true);
-        }
-
-        SetSharedOverlayVisible(true);
+        ShowBoostOffers(new[] { boostState });
     }
 
     public void HideBoostOffer()
     {
-        if (boostOfferPanel != null)
+        for (int i = 0; i < boostOfferButtons.Count; i++)
         {
-            boostOfferPanel.SetActive(false);
+            if (boostOfferButtons[i] != null)
+            {
+                boostOfferButtons[i].gameObject.SetActive(false);
+            }
         }
 
-        SetSharedOverlayVisible(false);
+        if (boostOfferButtons.Count <= 0 && boostOfferButton != null)
+        {
+            boostOfferButton.gameObject.SetActive(false);
+        }
     }
 
     public void UpdateBoostUI(IReadOnlyList<TemporaryBoostState> activeBoostStates)
@@ -775,10 +968,7 @@ public class UIManager : MonoBehaviour
             platformText.gameObject.SetActive(!IsPlatformBarActive());
         }
 
-        if (shuttleText != null)
-        {
-            shuttleText.gameObject.SetActive(!IsShuttleBarActive());
-        }
+        SetLegacyShuttleTextsVisible(!IsShuttleBarActive());
     }
 
     private void ClearUpgradeList()
@@ -913,13 +1103,32 @@ public class UIManager : MonoBehaviour
         return UpgradeCategory.Miner;
     }
 
-    private string BuildBoostOfferEffectText(TemporaryBoostState boostState)
+    private string BuildBoostOfferText(TemporaryBoostState boostState)
     {
-        string targetText = boostState.Definition.targetType == TemporaryBoostTargetType.OrePerClick
-            ? "Ore / click"
-            : "Ore / sec";
+        string targetText;
 
-        return "Effect: x" +
+        switch (boostState.Definition.targetType)
+        {
+            case TemporaryBoostTargetType.OrePerClick:
+                targetText = "Ore / click";
+                break;
+
+            case TemporaryBoostTargetType.ShuttleTravelSpeed:
+                targetText = "Shuttle speed";
+                break;
+
+            default:
+                targetText = "Ore / sec";
+                break;
+        }
+
+        string description = string.IsNullOrWhiteSpace(boostState.Definition.description)
+            ? string.Empty
+            : boostState.Definition.description + "\n";
+
+        return boostState.Definition.boostName + "\n" +
+               description +
+               "x" +
                NumberFormatter.FormatFloat(boostState.GetMultiplier()) +
                " " +
                targetText +
@@ -947,12 +1156,69 @@ public class UIManager : MonoBehaviour
 
     private bool IsShuttleBarActive()
     {
-        return IsBarActive(shuttleFillImage, shuttleBarText);
+        if (IsBarActive(shuttleFillImage, shuttleBarText) ||
+            IsBarActive(shuttleFillImage2, shuttleBarText2) ||
+            IsBarActive(shuttleFillImage3, shuttleBarText3))
+        {
+            return true;
+        }
+
+        int slotCount = Math.Max(shuttleFillImages.Count, shuttleBarTexts.Count);
+
+        for (int i = 0; i < slotCount; i++)
+        {
+            Image fillImage = i < shuttleFillImages.Count ? shuttleFillImages[i] : null;
+            Text barText = i < shuttleBarTexts.Count ? shuttleBarTexts[i] : null;
+
+            if (IsBarActive(fillImage, barText))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private bool IsBarActive(Graphic fillGraphic, Graphic textGraphic)
     {
         return IsGraphicActive(fillGraphic) || IsGraphicActive(textGraphic);
+    }
+
+    private void SetLegacyShuttleTextsVisible(bool isVisible)
+    {
+        Text legacyShuttleText1 = GetLegacyShuttleText(0);
+        Text legacyShuttleText2 = GetLegacyShuttleText(1);
+        Text legacyShuttleText3 = GetLegacyShuttleText(2);
+
+        if (legacyShuttleText1 != null)
+        {
+            legacyShuttleText1.gameObject.SetActive(isVisible);
+        }
+
+        if (legacyShuttleText2 != null)
+        {
+            legacyShuttleText2.gameObject.SetActive(isVisible);
+        }
+
+        if (legacyShuttleText3 != null)
+        {
+            legacyShuttleText3.gameObject.SetActive(isVisible);
+        }
+    }
+
+    private Text GetLegacyShuttleText(int shuttleIndex)
+    {
+        switch (shuttleIndex)
+        {
+            case 0:
+                return shuttleText;
+            case 1:
+                return shuttleText2;
+            case 2:
+                return shuttleText3;
+            default:
+                return null;
+        }
     }
 
     private bool IsGraphicActive(Graphic graphic)
@@ -1029,7 +1295,6 @@ public class UIManager : MonoBehaviour
         ApplyStretchPanelSafeArea(missionPanel, leftInset, rightInset, topInset, bottomInset);
         ApplyCenteredPopupSafeArea(resetConfirmationPanel, topInset);
         ApplyCenteredPopupSafeArea(offlineRewardPanel, topInset);
-        ApplyCenteredPopupSafeArea(boostOfferPanel, topInset);
         ApplyLayoutPadding(upgradeListRoot, upgradeContentTopPadding);
         ApplyLayoutPadding(buildListRoot, buildContentTopPadding);
 
@@ -1041,7 +1306,6 @@ public class UIManager : MonoBehaviour
     {
         RectTransform energyBarRoot = GetBarRoot(energyFillImage, energyBarText);
         RectTransform platformBarRoot = GetBarRoot(platformFillImage, platformBarText);
-        RectTransform shuttleBarRoot = GetBarRoot(shuttleFillImage, shuttleBarText);
 
         ApplyTopAnchoredOffset(GetRectTransform(oreText), topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(GetRectTransform(orePerSecondText), topInset, leftInset, rightInset);
@@ -1051,10 +1315,14 @@ public class UIManager : MonoBehaviour
         ApplyTopAnchoredOffset(GetRectTransform(crystalText), topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(GetRectTransform(platformText), topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(GetRectTransform(shuttleText), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(shuttleText2), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetRectTransform(shuttleText3), topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(GetRectTransform(boostStatusText), topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(energyBarRoot, topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(platformBarRoot, topInset, leftInset, rightInset);
-        ApplyTopAnchoredOffset(shuttleBarRoot, topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetShuttleBarRoot(0), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetShuttleBarRoot(1), topInset, leftInset, rightInset);
+        ApplyTopAnchoredOffset(GetShuttleBarRoot(2), topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(GetRectTransform(produceMetalButton), topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(GetRectTransform(sendShuttleButton), topInset, leftInset, rightInset);
         ApplyTopAnchoredOffset(GetRectTransform(sendShuttleButton2), topInset, leftInset, rightInset);
@@ -1210,6 +1478,12 @@ public class UIManager : MonoBehaviour
         return null;
     }
 
+    private Button FindButtonByName(string objectName)
+    {
+        RectTransform rectTransform = FindRectTransformByName(objectName);
+        return rectTransform != null ? rectTransform.GetComponent<Button>() : null;
+    }
+
     private void CacheAnchoredPosition(RectTransform rectTransform)
     {
         if (rectTransform != null && !baseAnchoredPositions.ContainsKey(rectTransform))
@@ -1348,29 +1622,65 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void UpdateShuttleBar(GameData gameData)
+    private void UpdateShuttleBars(GameData gameData)
     {
         if (gameData == null)
         {
             return;
         }
 
-        int currentShuttleOre = GetDisplayedShuttleLoad(gameData);
-        int maxShuttleOre = gameData.shuttleCapacity * gameData.ActiveShuttleCount;
-
-        if (shuttleFillImage != null)
+        for (int shuttleIndex = 0; shuttleIndex < GameData.MaxShuttles; shuttleIndex++)
         {
-            shuttleFillImage.fillAmount = maxShuttleOre > 0
-                ? Mathf.Clamp01(currentShuttleOre / (float)maxShuttleOre)
-                : 0f;
-        }
+            RectTransform barRoot = GetShuttleBarRoot(shuttleIndex);
+            Image fillImage = GetShuttleFillImage(shuttleIndex);
+            Text barText = GetShuttleBarText(shuttleIndex);
 
-        if (shuttleBarText != null)
-        {
-            shuttleBarText.text =
-                NumberFormatter.FormatInt(currentShuttleOre) +
-                " / " +
-                NumberFormatter.FormatInt(maxShuttleOre);
+            if (barRoot == null && fillImage == null && barText == null)
+            {
+                continue;
+            }
+
+            bool isVisible = shuttleIndex < gameData.ActiveShuttleCount;
+
+            if (barRoot != null && shuttleIndex > 0)
+            {
+                barRoot.gameObject.SetActive(isVisible);
+            }
+            else
+            {
+                if (fillImage != null && shuttleIndex > 0)
+                {
+                    fillImage.gameObject.SetActive(isVisible);
+                }
+
+                if (barText != null && shuttleIndex > 0)
+                {
+                    barText.gameObject.SetActive(isVisible);
+                }
+            }
+
+            if (!isVisible)
+            {
+                continue;
+            }
+
+            int currentShuttleOre = GetDisplayedShuttleLoadForSlot(gameData, shuttleIndex);
+            int maxShuttleOre = gameData.shuttleCapacity;
+
+            if (fillImage != null)
+            {
+                fillImage.fillAmount = maxShuttleOre > 0
+                    ? Mathf.Clamp01(currentShuttleOre / (float)maxShuttleOre)
+                    : 0f;
+            }
+
+            if (barText != null)
+            {
+                barText.text =
+                    NumberFormatter.FormatInt(currentShuttleOre) +
+                    " / " +
+                    NumberFormatter.FormatInt(maxShuttleOre);
+            }
         }
     }
 
@@ -1576,6 +1886,26 @@ public class UIManager : MonoBehaviour
         RegisterShuttleButtonSlot(shuttleIndex, button, buttonText, onShuttleSendRequested);
     }
 
+    private void EnsureShuttleBarSlot(
+        int shuttleIndex,
+        Image serializedFillImage,
+        Text serializedBarText)
+    {
+        Image fillImage = serializedFillImage;
+        Text barText = serializedBarText;
+        RectTransform barRoot = GetBarRoot(fillImage, barText);
+
+        if (barRoot == null && shuttleFillImage != null && shuttleIndex > 0)
+        {
+            RectTransform clonedBarRoot = CreateRuntimeShuttleBar(shuttleIndex);
+            fillImage = FindBarFillImage(clonedBarRoot);
+            barText = clonedBarRoot != null ? clonedBarRoot.GetComponentInChildren<Text>(true) : null;
+            barRoot = clonedBarRoot;
+        }
+
+        RegisterShuttleBarSlot(shuttleIndex, barRoot, fillImage, barText);
+    }
+
     private Button CreateRuntimeShuttleButton(int shuttleIndex)
     {
         if (sendShuttleButton == null)
@@ -1601,6 +1931,106 @@ public class UIManager : MonoBehaviour
         return clonedObject.GetComponent<Button>();
     }
 
+    private Button CreateRuntimeBoostOfferButton(int boostIndex)
+    {
+        if (boostOfferButton == null)
+        {
+            return null;
+        }
+
+        GameObject clonedObject = Instantiate(boostOfferButton.gameObject, boostOfferButton.transform.parent);
+        clonedObject.name = "BoostOfferButton" + (boostIndex + 1);
+
+        RectTransform templateRect = boostOfferButton.GetComponent<RectTransform>();
+        RectTransform clonedRect = clonedObject.GetComponent<RectTransform>();
+
+        if (templateRect != null && clonedRect != null)
+        {
+            clonedRect.anchorMin = templateRect.anchorMin;
+            clonedRect.anchorMax = templateRect.anchorMax;
+            clonedRect.pivot = templateRect.pivot;
+            clonedRect.sizeDelta = templateRect.sizeDelta;
+            clonedRect.localScale = templateRect.localScale;
+            clonedRect.anchoredPosition = templateRect.anchoredPosition + new Vector2(0f, -((boostIndex) * (templateRect.sizeDelta.y + 12f)));
+        }
+
+        return clonedObject.GetComponent<Button>();
+    }
+
+    private RectTransform CreateRuntimeShuttleBar(int shuttleIndex)
+    {
+        RectTransform templateRoot = GetBarRoot(shuttleFillImage, shuttleBarText);
+
+        if (templateRoot == null)
+        {
+            return null;
+        }
+
+        GameObject clonedObject = Instantiate(templateRoot.gameObject, templateRoot.parent);
+        clonedObject.name = "ShuttleBarRoot" + (shuttleIndex + 1);
+
+        RectTransform clonedRect = clonedObject.GetComponent<RectTransform>();
+
+        if (clonedRect == null)
+        {
+            return null;
+        }
+
+        clonedRect.anchorMin = templateRoot.anchorMin;
+        clonedRect.anchorMax = templateRoot.anchorMax;
+        clonedRect.pivot = templateRoot.pivot;
+        clonedRect.sizeDelta = templateRoot.sizeDelta;
+        clonedRect.localScale = templateRoot.localScale;
+
+        RectTransform templateButtonRect = GetRectTransform(sendShuttleButton);
+        RectTransform targetButtonRect = GetRectTransform(GetSendButton(shuttleIndex));
+
+        if (templateButtonRect != null && targetButtonRect != null)
+        {
+            Vector2 buttonDelta = targetButtonRect.anchoredPosition - templateButtonRect.anchoredPosition;
+            clonedRect.anchoredPosition = templateRoot.anchoredPosition + buttonDelta;
+        }
+        else
+        {
+            clonedRect.anchoredPosition = templateRoot.anchoredPosition + new Vector2(0f, -(shuttleIndex * (templateRoot.sizeDelta.y + 12f)));
+        }
+
+        return clonedRect;
+    }
+
+    private Button GetBoostOfferButton(int boostIndex)
+    {
+        if (boostIndex >= 0 && boostIndex < boostOfferButtons.Count)
+        {
+            return boostOfferButtons[boostIndex];
+        }
+
+        return null;
+    }
+
+    private Text GetBoostOfferButtonText(int boostIndex)
+    {
+        if (boostIndex >= 0 && boostIndex < boostOfferButtonTexts.Count)
+        {
+            return boostOfferButtonTexts[boostIndex];
+        }
+
+        return null;
+    }
+
+    private bool HasVisibleBoostOfferButtons()
+    {
+        for (int i = 0; i < boostOfferButtons.Count; i++)
+        {
+            if (boostOfferButtons[i] != null && boostOfferButtons[i].gameObject.activeSelf)
+            {
+                return true;
+            }
+        }
+
+        return boostOfferButton != null && boostOfferButton.gameObject.activeSelf;
+    }
+
     private void RegisterShuttleButtonSlot(
         int shuttleIndex,
         Button button,
@@ -1623,6 +2053,196 @@ public class UIManager : MonoBehaviour
 
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => onShuttleSendRequested?.Invoke(shuttleIndex));
+    }
+
+    private void RegisterShuttleBarSlot(
+        int shuttleIndex,
+        RectTransform barRoot,
+        Image fillImage,
+        Text barText)
+    {
+        while (shuttleBarRoots.Count <= shuttleIndex)
+        {
+            shuttleBarRoots.Add(null);
+            shuttleFillImages.Add(null);
+            shuttleBarTexts.Add(null);
+        }
+
+        shuttleBarRoots[shuttleIndex] = barRoot;
+        shuttleFillImages[shuttleIndex] = fillImage;
+        shuttleBarTexts[shuttleIndex] = barText;
+    }
+
+    private RectTransform GetShuttleBarRoot(int shuttleIndex)
+    {
+        if (shuttleIndex >= 0 && shuttleIndex < shuttleBarRoots.Count && shuttleBarRoots[shuttleIndex] != null)
+        {
+            return shuttleBarRoots[shuttleIndex];
+        }
+
+        switch (shuttleIndex)
+        {
+            case 0:
+                return GetBarRoot(shuttleFillImage, shuttleBarText);
+            case 1:
+                return GetBarRoot(shuttleFillImage2, shuttleBarText2);
+            case 2:
+                return GetBarRoot(shuttleFillImage3, shuttleBarText3);
+            default:
+                return null;
+        }
+    }
+
+    private Image GetShuttleFillImage(int shuttleIndex)
+    {
+        if (shuttleIndex >= 0 && shuttleIndex < shuttleFillImages.Count && shuttleFillImages[shuttleIndex] != null)
+        {
+            return shuttleFillImages[shuttleIndex];
+        }
+
+        switch (shuttleIndex)
+        {
+            case 0:
+                return shuttleFillImage;
+            case 1:
+                return shuttleFillImage2;
+            case 2:
+                return shuttleFillImage3;
+            default:
+                return null;
+        }
+    }
+
+    private Text GetShuttleBarText(int shuttleIndex)
+    {
+        if (shuttleIndex >= 0 && shuttleIndex < shuttleBarTexts.Count && shuttleBarTexts[shuttleIndex] != null)
+        {
+            return shuttleBarTexts[shuttleIndex];
+        }
+
+        switch (shuttleIndex)
+        {
+            case 0:
+                return shuttleBarText;
+            case 1:
+                return shuttleBarText2;
+            case 2:
+                return shuttleBarText3;
+            default:
+                return null;
+        }
+    }
+
+    private Image FindBarFillImage(RectTransform barRoot)
+    {
+        if (barRoot == null)
+        {
+            return null;
+        }
+
+        Image[] images = barRoot.GetComponentsInChildren<Image>(true);
+
+        for (int i = 0; i < images.Length; i++)
+        {
+            if (images[i] == null || images[i].transform == barRoot)
+            {
+                continue;
+            }
+
+            if (images[i].name.IndexOf("Fill", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                return images[i];
+            }
+        }
+
+        for (int i = 0; i < images.Length; i++)
+        {
+            if (images[i] != null && images[i].transform != barRoot)
+            {
+                return images[i];
+            }
+        }
+
+        return null;
+    }
+
+    private Button FindMenuButtonByName(string objectName)
+    {
+        if (dropdownMenuPanel == null)
+        {
+            return null;
+        }
+
+        Button[] buttons = dropdownMenuPanel.GetComponentsInChildren<Button>(true);
+
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (buttons[i] != null && buttons[i].name.Equals(objectName, StringComparison.OrdinalIgnoreCase))
+            {
+                return buttons[i];
+            }
+        }
+
+        return null;
+    }
+
+    private Button CreateRuntimeMenuButton(string objectName)
+    {
+        if (dropdownMenuPanel == null)
+        {
+            return null;
+        }
+
+        Button[] menuButtons = dropdownMenuPanel.GetComponentsInChildren<Button>(true);
+        Button templateButton = null;
+        RectTransform lowestButtonRect = null;
+
+        for (int i = 0; i < menuButtons.Length; i++)
+        {
+            if (menuButtons[i] == null || menuButtons[i].transform.parent != dropdownMenuPanel.transform)
+            {
+                continue;
+            }
+
+            RectTransform buttonRect = menuButtons[i].GetComponent<RectTransform>();
+
+            if (buttonRect == null)
+            {
+                continue;
+            }
+
+            templateButton = menuButtons[i];
+
+            if (lowestButtonRect == null || buttonRect.anchoredPosition.y < lowestButtonRect.anchoredPosition.y)
+            {
+                lowestButtonRect = buttonRect;
+            }
+        }
+
+        if (templateButton == null || lowestButtonRect == null)
+        {
+            return null;
+        }
+
+        GameObject clonedObject = Instantiate(templateButton.gameObject, dropdownMenuPanel.transform);
+        clonedObject.name = objectName;
+        clonedObject.transform.SetAsLastSibling();
+
+        RectTransform templateRect = templateButton.GetComponent<RectTransform>();
+        RectTransform clonedRect = clonedObject.GetComponent<RectTransform>();
+
+        if (templateRect != null && clonedRect != null)
+        {
+            clonedRect.anchorMin = templateRect.anchorMin;
+            clonedRect.anchorMax = templateRect.anchorMax;
+            clonedRect.pivot = templateRect.pivot;
+            clonedRect.sizeDelta = templateRect.sizeDelta;
+            clonedRect.anchoredPosition = new Vector2(
+                lowestButtonRect.anchoredPosition.x,
+                lowestButtonRect.anchoredPosition.y - (lowestButtonRect.sizeDelta.y + 8f));
+        }
+
+        return clonedObject.GetComponent<Button>();
     }
 
     private string BuildMetalProductionText(GameData gameData)

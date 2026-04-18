@@ -23,7 +23,7 @@ public class ShuttleConfig : ScriptableObject
     public const int DefaultCapacity = 20;
     public const float DefaultLoadingTimeSeconds = 2f;
     public const float DefaultTravelTimeSeconds = 10f;
-    public const float DefaultBoostOfferAutoCloseSeconds = 5f;
+    public const float DefaultBoostOfferAutoCloseSeconds = 120f;
     public const string DefaultNoMissionsText = "No missions";
 
     [Header("Resources")]

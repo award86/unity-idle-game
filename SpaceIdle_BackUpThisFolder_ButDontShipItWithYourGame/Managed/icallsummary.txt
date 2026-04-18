@@ -310,6 +310,7 @@ UnityEngine.Application::get_runInBackground
 UnityEngine.Application::get_unityVersionMaj
 UnityEngine.Application::get_unityVersionVer
 UnityEngine.Application::OpenURL_Injected
+UnityEngine.Application::Quit
 UnityEngine.Application::get_streamingAssetsPath_Injected
 UnityEngine.Application::get_platform
 UnityEngine.AssetBundle::LoadAsset_Internal_Injected
@@ -1738,6 +1739,7 @@ UnityEngine.Transform::GetChild_Injected
 UnityEngine.Transform::GetParent_Injected
 UnityEngine.Transform::InverseTransformPoint_Injected
 UnityEngine.Transform::SetAsFirstSibling_Injected
+UnityEngine.Transform::SetAsLastSibling_Injected
 UnityEngine.Transform::SetLocalPositionAndRotation_Injected
 UnityEngine.Transform::SetParent_Injected
 UnityEngine.Transform::SetPositionAndRotation_Injected

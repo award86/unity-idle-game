@@ -90,7 +90,7 @@ public class ResourceSystem
         return true;
     }
 
-    public int AddProducedOre(int amount)
+    public int AddProducedOre(int amount, bool allowDuringShuttleLoading = false)
     {
         if (amount <= 0)
         {
@@ -107,12 +107,12 @@ public class ResourceSystem
             return 0;
         }
 
-        return platformSystem.AddOre(amount);
+        return platformSystem.AddOre(amount, allowDuringShuttleLoading);
     }
 
     public void MineOre()
     {
-        AddProducedOre(gameData.orePerClick);
+        AddProducedOre(gameData.orePerClick, true);
     }
 
     public void AddPassiveOre()

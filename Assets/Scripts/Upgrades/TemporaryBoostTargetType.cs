@@ -1,5 +1,6 @@
 public enum TemporaryBoostTargetType
 {
     OrePerClick,
-    OrePerSecond
+    OrePerSecond,
+    ShuttleTravelSpeed
 }
