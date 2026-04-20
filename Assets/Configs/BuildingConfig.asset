@@ -16,8 +16,24 @@ MonoBehaviour:
   - id: mining_platform
     buildingName: Mining Platform
     buildingNameRu: Добывающая платформа
+    buildingNameEs: Plataforma minera
+    buildingNameFr: Plateforme minière
+    buildingNameDe: Bergbauplattform
+    buildingNameIt: Piattaforma mineraria
+    buildingNameZh: 采矿平台
+    buildingNameJa: 採掘プラットフォーム
+    buildingNameAr: منصة التعدين
+    buildingNameHe: פלטפורמת כרייה
     description: Unlocks the platform and expands ore storage capacity.
     descriptionRu: Открывает платформу и увеличивает вместимость хранения руды.
+    descriptionEs: Desbloquea la plataforma y aumenta la capacidad de almacenamiento de mineral.
+    descriptionFr: Débloque la plateforme et augmente la capacité de stockage du minerai.
+    descriptionDe: Schaltet die Plattform frei und erhöht die Lagerkapazität für Erz.
+    descriptionIt: Sblocca la piattaforma e aumenta la capacità di stoccaggio del minerale.
+    descriptionZh: 解锁平台并提升矿石储存容量。
+    descriptionJa: プラットフォームを解放し、鉱石の保管容量を増やします。
+    descriptionAr: يفتح المنصة ويزيد سعة تخزين الخام.
+    descriptionHe: פותח את הפלטפורמה ומגדיל את קיבולת אחסון העפרה.
     baseCosts:
     - resourceType: 0
       amount: 30
@@ -29,8 +45,24 @@ MonoBehaviour:
   - id: power_station
     buildingName: Power Station
     buildingNameRu: Электростанция
+    buildingNameEs: Central eléctrica
+    buildingNameFr: Centrale électrique
+    buildingNameDe: Kraftwerk
+    buildingNameIt: Centrale elettrica
+    buildingNameZh: 发电站
+    buildingNameJa: 発電所
+    buildingNameAr: محطة طاقة
+    buildingNameHe: תחנת כוח
     description: Activates the energy grid and improves battery output.
     descriptionRu: Активирует энергосеть и улучшает работу батарей.
+    descriptionEs: Activa la red de energía y mejora la producción de las baterías.
+    descriptionFr: Active le réseau énergétique et améliore la production des batteries.
+    descriptionDe: Aktiviert das Energienetz und verbessert die Batterieleistung.
+    descriptionIt: Attiva la rete energetica e migliora la resa delle batterie.
+    descriptionZh: 激活能源网络并提升电池输出。
+    descriptionJa: エネルギー網を起動し、バッテリー出力を向上させます。
+    descriptionAr: ينشط شبكة الطاقة ويحسن إنتاج البطاريات.
+    descriptionHe: מפעיל את רשת האנרגיה ומשפר את תפוקת הסוללות.
     baseCosts:
     - resourceType: 0
       amount: 55
@@ -44,8 +76,24 @@ MonoBehaviour:
   - id: metal_factory
     buildingName: Metal Factory
     buildingNameRu: Металлургический завод
+    buildingNameEs: Fábrica de metal
+    buildingNameFr: Usine de métal
+    buildingNameDe: Metallfabrik
+    buildingNameIt: Fabbrica di metallo
+    buildingNameZh: 金属工厂
+    buildingNameJa: 金属工場
+    buildingNameAr: مصنع المعادن
+    buildingNameHe: מפעל מתכת
     description: Unlocks metal production and improves each refining batch.
     descriptionRu: Открывает производство металла и улучшает каждую партию переработки.
+    descriptionEs: Desbloquea la producción de metal y mejora cada lote de refinado.
+    descriptionFr: Débloque la production de métal et améliore chaque lot de raffinage.
+    descriptionDe: Schaltet die Metallproduktion frei und verbessert jede Raffineriecharge.
+    descriptionIt: Sblocca la produzione di metallo e migliora ogni lotto di raffinazione.
+    descriptionZh: 解锁金属生产并提升每批精炼效率。
+    descriptionJa: 金属生産を解放し、各精錬バッチを強化します。
+    descriptionAr: يفتح إنتاج المعادن ويحسن كل دفعة تكرير.
+    descriptionHe: פותח ייצור מתכת ומשפר כל אצוות זיקוק.
     baseCosts:
     - resourceType: 0
       amount: 90

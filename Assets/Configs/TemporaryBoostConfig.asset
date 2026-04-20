@@ -16,8 +16,24 @@ MonoBehaviour:
   - id: x2_click_minute
     boostName: X2 click
     boostNameRu: X2 клик
+    boostNameEs: X2 clic
+    boostNameFr: X2 clic
+    boostNameDe: X2 Klick
+    boostNameIt: X2 clic
+    boostNameZh: X2 点击
+    boostNameJa: X2 クリック
+    boostNameAr: نقرة X2
+    boostNameHe: לחיצה X2
     description: 'x2 click boost '
     descriptionRu: Временный x2 к добыче за клик.
+    descriptionEs: Bonificación temporal x2 a la extracción por clic.
+    descriptionFr: Bonus temporaire x2 à l'extraction par clic.
+    descriptionDe: Temporärer x2-Bonus auf Erz pro Klick.
+    descriptionIt: Bonus temporaneo x2 all'estrazione per clic.
+    descriptionZh: 临时 x2 点击采矿加成。
+    descriptionJa: クリック採掘量を一時的に x2 にします。
+    descriptionAr: تعزيز مؤقت x2 للتعدين بالنقرة.
+    descriptionHe: בונוס זמני x2 לכרייה בלחיצה.
     multiplier: 2
     targetType: 0
     durationSeconds: 30
@@ -27,8 +43,24 @@ MonoBehaviour:
   - id: x3_income_two_minutes
     boostName: X3 income
     boostNameRu: X3 доход
+    boostNameEs: X3 ingresos
+    boostNameFr: X3 revenu
+    boostNameDe: X3 Einkommen
+    boostNameIt: X3 entrate
+    boostNameZh: X3 收入
+    boostNameJa: X3 収入
+    boostNameAr: دخل X3
+    boostNameHe: הכנסה X3
     description: x3 income boost
     descriptionRu: Временный x3 к добыче в секунду.
+    descriptionEs: Bonificación temporal x3 a la producción por segundo.
+    descriptionFr: Bonus temporaire x3 à la production par seconde.
+    descriptionDe: Temporärer x3-Bonus auf Produktion pro Sekunde.
+    descriptionIt: Bonus temporaneo x3 alla produzione al secondo.
+    descriptionZh: 临时 x3 每秒产量加成。
+    descriptionJa: 秒間生産量を一時的に x3 にします。
+    descriptionAr: تعزيز مؤقت x3 للإنتاج في الثانية.
+    descriptionHe: בונוס זמני x3 לתפוקה בשנייה.
     multiplier: 3
     targetType: 1
     durationSeconds: 30
@@ -38,8 +70,24 @@ MonoBehaviour:
   - id: warp_corridor
     boostName: Warp Corridor
     boostNameRu: Варп-коридор
+    boostNameEs: Corredor warp
+    boostNameFr: Couloir warp
+    boostNameDe: Warp-Korridor
+    boostNameIt: Corridoio warp
+    boostNameZh: 曲速走廊
+    boostNameJa: ワープ回廊
+    boostNameAr: ممر الالتواء
+    boostNameHe: מסדרון וורפ
     description: Cuts shuttle travel time in half.
     descriptionRu: Сокращает время полёта шаттла вдвое.
+    descriptionEs: Reduce a la mitad el tiempo de vuelo del transbordador.
+    descriptionFr: Réduit de moitié le temps de trajet de la navette.
+    descriptionDe: Halbiert die Flugzeit des Shuttles.
+    descriptionIt: Dimezza il tempo di viaggio della navetta.
+    descriptionZh: 将穿梭机飞行时间减半。
+    descriptionJa: シャトルの移動時間を半分にします。
+    descriptionAr: يخفض زمن رحلة المكوك إلى النصف.
+    descriptionHe: מקצר את זמן טיסת המעבורת בחצי.
     multiplier: 3
     targetType: 2
     durationSeconds: 300

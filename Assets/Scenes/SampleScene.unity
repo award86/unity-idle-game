@@ -7837,8 +7837,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -182.42, y: -297.732}
-  m_SizeDelta: {x: 327.84, y: 383.314}
+  m_AnchoredPosition: {x: -182.42, y: -354.48}
+  m_SizeDelta: {x: 327.84, y: 496.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1334570561
 MonoBehaviour:
@@ -10445,23 +10445,47 @@ MonoBehaviour:
   sendShuttleButtonText2: {fileID: 2079708696}
   sendShuttleButton3: {fileID: 2009030107}
   sendShuttleButtonText3: {fileID: 1318786018}
+  mineButton: {fileID: 0}
+  mineButtonText: {fileID: 0}
   produceMetalButton: {fileID: 1024901156}
   produceMetalButtonText: {fileID: 1444347888}
   sharedOverlayPanel: {fileID: 809280913}
   dropdownMenuPanel: {fileID: 1334570559}
+  newGameMenuButton: {fileID: 0}
+  newGameMenuButtonText: {fileID: 0}
+  upgradeMenuButton: {fileID: 0}
+  upgradeMenuButtonText: {fileID: 0}
+  buildMenuButton: {fileID: 0}
+  buildMenuButtonText: {fileID: 0}
+  missionMenuButton: {fileID: 0}
+  missionMenuButtonText: {fileID: 0}
   exitMenuButton: {fileID: 69581136}
   exitMenuButtonText: {fileID: 1633119048}
+  languageMenuButton: {fileID: 0}
+  languageMenuButtonText: {fileID: 0}
+  languagePanel: {fileID: 0}
+  englishLanguageButton: {fileID: 0}
+  englishLanguageButtonText: {fileID: 0}
+  russianLanguageButton: {fileID: 0}
+  russianLanguageButtonText: {fileID: 0}
   upgradePanel: {fileID: 702156007}
   buildPanel: {fileID: 1180629355}
   missionPanel: {fileID: 1371471774}
+  upgradePanelTitleText: {fileID: 0}
+  buildPanelTitleText: {fileID: 0}
   mainScreenUpgradeButton: {fileID: 1828832197}
   mainScreenBuildButton: {fileID: 0}
   mainScreenMissionButton: {fileID: 1755678713}
   minerTabButton: {fileID: 820612471}
+  minerTabButtonText: {fileID: 0}
   platformTabButton: {fileID: 1080913974}
+  platformTabButtonText: {fileID: 0}
   powerTabButton: {fileID: 2038989540}
+  powerTabButtonText: {fileID: 0}
   factoryTabButton: {fileID: 1775950191}
+  factoryTabButtonText: {fileID: 0}
   shuttleTabButton: {fileID: 7258751}
+  shuttleTabButtonText: {fileID: 0}
   upgradeListRoot: {fileID: 1007709343}
   buildListRoot: {fileID: 527871058}
   metaBonusListRoot: {fileID: 2013426159}
@@ -10478,8 +10502,17 @@ MonoBehaviour:
   missionClaimButton: {fileID: 848990459}
   missionClaimButtonText: {fileID: 1301219480}
   resetConfirmationPanel: {fileID: 142408201}
+  resetConfirmationText: {fileID: 0}
+  confirmResetButton: {fileID: 0}
+  confirmResetButtonText: {fileID: 0}
+  cancelResetButton: {fileID: 0}
+  cancelResetButtonText: {fileID: 0}
   offlineRewardPanel: {fileID: 733271603}
   offlineRewardText: {fileID: 453665608}
+  offlineClaimButton: {fileID: 0}
+  offlineClaimButtonText: {fileID: 0}
+  offlineClaimX2Button: {fileID: 0}
+  offlineClaimX2ButtonText: {fileID: 0}
   boostOfferButton: {fileID: 848493475}
   boostOfferButtonText: {fileID: 468449285}
 --- !u!4 &1866733273

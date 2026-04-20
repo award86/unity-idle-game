@@ -16,32 +16,96 @@ MonoBehaviour:
   - id: ore_stockpile
     missionName: Ore Stockpile
     missionNameRu: Запас руды
+    missionNameEs: Reserva de mineral
+    missionNameFr: Réserve de minerai
+    missionNameDe: Erzvorrat
+    missionNameIt: Scorta di minerale
+    missionNameZh: 矿石储备
+    missionNameJa: 鉱石備蓄
+    missionNameAr: مخزون الخام
+    missionNameHe: מאגר עפרה
     description: Accumulate a solid first warehouse reserve.
     descriptionRu: Накопите первый серьёзный запас руды на складе.
+    descriptionEs: Acumula una primera reserva sólida en el almacén.
+    descriptionFr: Constituez une première réserve solide dans l'entrepôt.
+    descriptionDe: Sammle einen soliden ersten Vorrat im Lager.
+    descriptionIt: Accumula una prima riserva solida nel magazzino.
+    descriptionZh: 在仓库中积累第一批稳定储备。
+    descriptionJa: 倉庫に最初の十分な備蓄を作ります。
+    descriptionAr: اجمع أول احتياطي قوي في المستودع.
+    descriptionHe: צבור עתודת מחסן ראשונה ומשמעותית.
     objectiveType: 0
     targetValue: 150
     crystalReward: 3
   - id: metal_chain
     missionName: Metal Chain
     missionNameRu: Металлическая цепочка
+    missionNameEs: Cadena de metal
+    missionNameFr: Chaîne du métal
+    missionNameDe: Metallkette
+    missionNameIt: Catena del metallo
+    missionNameZh: 金属链
+    missionNameJa: 金属チェーン
+    missionNameAr: سلسلة المعادن
+    missionNameHe: שרשרת מתכת
     description: Establish metal processing and collect enough refined metal.
     descriptionRu: Наладьте переработку металла и соберите достаточно очищенного металла.
+    descriptionEs: Establece el procesamiento de metal y reúne suficiente metal refinado.
+    descriptionFr: Mettez en place le traitement du métal et collectez assez de métal raffiné.
+    descriptionDe: Richte die Metallverarbeitung ein und sammle genug raffiniertes Metall.
+    descriptionIt: Avvia la lavorazione del metallo e raccogli abbastanza metallo raffinato.
+    descriptionZh: 建立金属加工并收集足够的精炼金属。
+    descriptionJa: 金属加工を確立し、十分な精製金属を集めます。
+    descriptionAr: أنشئ معالجة المعادن واجمع ما يكفي من المعدن المكرر.
+    descriptionHe: הקם עיבוד מתכת ואסוף מספיק מתכת מזוקקת.
     objectiveType: 1
     targetValue: 20
     crystalReward: 4
   - id: open_all_tabs
     missionName: Full Research Grid
     missionNameRu: Полная сетка исследований
+    missionNameEs: Red de investigación completa
+    missionNameFr: Grille de recherche complète
+    missionNameDe: Vollständiges Forschungsnetz
+    missionNameIt: Griglia ricerca completa
+    missionNameZh: 完整研究网络
+    missionNameJa: 完全な研究グリッド
+    missionNameAr: شبكة بحث كاملة
+    missionNameHe: רשת מחקר מלאה
     description: Unlock every upgrade branch in the colony.
     descriptionRu: Откройте каждую ветку улучшений в колонии.
+    descriptionEs: Desbloquea cada rama de mejoras de la colonia.
+    descriptionFr: Débloquez chaque branche d'amélioration de la colonie.
+    descriptionDe: Schalte jeden Upgrade-Zweig der Kolonie frei.
+    descriptionIt: Sblocca ogni ramo di potenziamenti della colonia.
+    descriptionZh: 解锁殖民地中的每条升级分支。
+    descriptionJa: コロニー内のすべてのアップグレード分岐を解放します。
+    descriptionAr: افتح كل فرع ترقيات في المستعمرة.
+    descriptionHe: פתח כל ענף שדרוג במושבה.
     objectiveType: 2
     targetValue: 0
     crystalReward: 5
   - id: max_everything
     missionName: Research Complete
     missionNameRu: Исследования завершены
+    missionNameEs: Investigación completa
+    missionNameFr: Recherche terminée
+    missionNameDe: Forschung abgeschlossen
+    missionNameIt: Ricerca completata
+    missionNameZh: 研究完成
+    missionNameJa: 研究完了
+    missionNameAr: اكتمل البحث
+    missionNameHe: המחקר הושלם
     description: Finish every building and every permanent upgrade.
     descriptionRu: Завершите все постройки и все постоянные улучшения.
+    descriptionEs: Completa todos los edificios y todas las mejoras permanentes.
+    descriptionFr: Terminez chaque bâtiment et chaque amélioration permanente.
+    descriptionDe: Schließe jedes Gebäude und jedes permanente Upgrade ab.
+    descriptionIt: Completa ogni edificio e ogni potenziamento permanente.
+    descriptionZh: 完成所有建筑和所有永久升级。
+    descriptionJa: すべての建物と永続アップグレードを完了します。
+    descriptionAr: أكمل كل مبنى وكل ترقية دائمة.
+    descriptionHe: השלם כל מבנה וכל שדרוג קבוע.
     objectiveType: 3
     targetValue: 0
     crystalReward: 8

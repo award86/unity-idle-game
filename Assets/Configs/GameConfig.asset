@@ -35,6 +35,14 @@ MonoBehaviour:
   boostOfferAutoCloseSeconds: 120
   noMissionsText: No missions
   russianNoMissionsText: Нет миссий
+  spanishNoMissionsText: Sin misiones
+  frenchNoMissionsText: Aucune mission
+  germanNoMissionsText: Keine Missionen
+  italianNoMissionsText: Nessuna missione
+  chineseNoMissionsText: 没有任务
+  japaneseNoMissionsText: ミッションなし
+  arabicNoMissionsText: لا توجد مهام
+  hebrewNoMissionsText: אין משימות
   uiText:
     oreLabel: Ore
     energyLabel: Energy
@@ -47,16 +55,35 @@ MonoBehaviour:
     acceptButtonText: Accept
     exitButtonText: Exit
     claimRewardButtonText: Claim Reward
+    claimOfflineButtonText: Claim
+    claimOfflineX2ButtonText: Claim X2
     buyButtonText: Buy
     buildButtonText: Build
     maxButtonText: Max
     sendButtonText: Send
     loadingButtonText: Loading
     flyingButtonText: Flying
+    mineButtonText: Mine
+    newGameButtonText: New Game
+    upgradeButtonText: Upgrade
+    buildMenuButtonText: Build
+    missionButtonText: Mission
     produceMetalButtonText: Produce
     upgradeAvailableButtonText: Upgrade Available!
     buildAvailableButtonText: Build Available!
-    languageToggleButtonText: Русский
+    languagesButtonText: Languages
+    englishLanguageButtonText: English
+    russianLanguageButtonText: Russian
+    yesButtonText: Yes
+    noButtonText: No
+    areYouSureText: Are you sure?
+    upgradesPanelTitleText: Upgrades
+    buildingsPanelTitleText: Buildings
+    minerTabText: Miner
+    powerTabText: Power
+    factoryTabText: Factory
+    platformTabText: Platform
+    shuttleTabText: Shuttle
     missionLabel: Mission
     missionCompleteSuffix: Complete
     rewardLabel: Reward
@@ -103,16 +130,35 @@ MonoBehaviour:
     acceptButtonText: Принять
     exitButtonText: Выход
     claimRewardButtonText: Забрать награду
+    claimOfflineButtonText: Забрать
+    claimOfflineX2ButtonText: Забрать X2
     buyButtonText: Купить
     buildButtonText: Построить
     maxButtonText: Макс
     sendButtonText: Отправить
     loadingButtonText: Загрузка
     flyingButtonText: Полет
+    mineButtonText: Добывать
+    newGameButtonText: Новая игра
+    upgradeButtonText: Улучшения
+    buildMenuButtonText: Постройки
+    missionButtonText: Миссии
     produceMetalButtonText: Произвести
     upgradeAvailableButtonText: Доступно улучшение!
     buildAvailableButtonText: Доступна постройка!
-    languageToggleButtonText: English
+    languagesButtonText: Язык
+    englishLanguageButtonText: English
+    russianLanguageButtonText: Русский
+    yesButtonText: Да
+    noButtonText: Нет
+    areYouSureText: Вы уверены?
+    upgradesPanelTitleText: Улучшения
+    buildingsPanelTitleText: Постройки
+    minerTabText: Добыча
+    powerTabText: Энергия
+    factoryTabText: Завод
+    platformTabText: Платформа
+    shuttleTabText: Шаттл
     missionLabel: Миссия
     missionCompleteSuffix: Завершена
     rewardLabel: Награда

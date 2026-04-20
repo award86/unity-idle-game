@@ -16,8 +16,24 @@ MonoBehaviour:
   - id: legacy_drills
     bonusName: Legacy Drills
     bonusNameRu: Наследные буры
+    bonusNameEs: Taladros heredados
+    bonusNameFr: Foreuses héritées
+    bonusNameDe: Vermächtnisbohrer
+    bonusNameIt: Trivelle ereditate
+    bonusNameZh: 传承钻机
+    bonusNameJa: レガシードリル
+    bonusNameAr: مثاقب الإرث
+    bonusNameHe: מקדחי מורשת
     description: Permanent bonus to manual ore mining in all future missions.
     descriptionRu: Постоянный бонус к ручной добыче руды во всех следующих миссиях.
+    descriptionEs: Bonificación permanente a la minería manual de mineral en todas las futuras misiones.
+    descriptionFr: Bonus permanent à l'extraction manuelle de minerai dans toutes les futures missions.
+    descriptionDe: Permanenter Bonus auf manuellen Erzabbau in allen zukünftigen Missionen.
+    descriptionIt: Bonus permanente all'estrazione manuale di minerale in tutte le missioni future.
+    descriptionZh: 在所有未来任务中永久提升手动矿石开采。
+    descriptionJa: 今後すべてのミッションで手動鉱石採掘に永続ボーナスを与えます。
+    descriptionAr: مكافأة دائمة لتعدين الخام اليدوي في كل المهام المستقبلية.
+    descriptionHe: בונוס קבוע לכריית עפרה ידנית בכל המשימות הבאות.
     crystalCost: 3
     costMultiplier: 1.8
     maxLevel: 5
@@ -27,8 +43,24 @@ MonoBehaviour:
   - id: relay_archive
     bonusName: Relay Archive
     bonusNameRu: Архив ретранслятора
+    bonusNameEs: Archivo de relés
+    bonusNameFr: Archive de relais
+    bonusNameDe: Relaisarchiv
+    bonusNameIt: Archivio relè
+    bonusNameZh: 中继档案
+    bonusNameJa: リレーアーカイブ
+    bonusNameAr: أرشيف المرحل
+    bonusNameHe: ארכיון ממסר
     description: Permanent bonus to passive ore production.
     descriptionRu: Постоянный бонус к пассивной добыче руды.
+    descriptionEs: Bonificación permanente a la producción pasiva de mineral.
+    descriptionFr: Bonus permanent à la production passive de minerai.
+    descriptionDe: Permanenter Bonus auf passive Erzproduktion.
+    descriptionIt: Bonus permanente alla produzione passiva di minerale.
+    descriptionZh: 永久提升被动矿石产量。
+    descriptionJa: パッシブ鉱石生産に永続ボーナスを与えます。
+    descriptionAr: مكافأة دائمة لإنتاج الخام السلبي.
+    descriptionHe: בונוס קבוע לייצור עפרה פסיבי.
     crystalCost: 4
     costMultiplier: 1.85
     maxLevel: 5
@@ -38,8 +70,24 @@ MonoBehaviour:
   - id: battery_blueprints
     bonusName: Battery Blueprints
     bonusNameRu: Чертежи батарей
+    bonusNameEs: Planos de baterías
+    bonusNameFr: Plans de batteries
+    bonusNameDe: Batteriepläne
+    bonusNameIt: Progetti batterie
+    bonusNameZh: 电池蓝图
+    bonusNameJa: バッテリー設計図
+    bonusNameAr: مخططات البطاريات
+    bonusNameHe: שרטוטי סוללות
     description: Start each mission with more total energy capacity.
     descriptionRu: Начинайте каждую миссию с большим общим запасом энергии.
+    descriptionEs: Empieza cada misión con más capacidad total de energía.
+    descriptionFr: Commencez chaque mission avec une capacité d'énergie totale plus élevée.
+    descriptionDe: Starte jede Mission mit mehr gesamter Energiekapazität.
+    descriptionIt: Inizia ogni missione con una maggiore capacità energetica totale.
+    descriptionZh: 每个任务开始时拥有更高的总能量容量。
+    descriptionJa: 各ミッション開始時の総エネルギー容量を増やします。
+    descriptionAr: ابدأ كل مهمة بسعة طاقة إجمالية أكبر.
+    descriptionHe: התחל כל משימה עם קיבולת אנרגיה כוללת גבוהה יותר.
     crystalCost: 5
     costMultiplier: 1.9
     maxLevel: 4

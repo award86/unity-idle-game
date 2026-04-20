@@ -16,8 +16,24 @@ MonoBehaviour:
   - id: drill_gloves
     upgradeName: Drill Gloves
     upgradeNameRu: Перчатки бурильщика
+    upgradeNameEs: Guantes perforadores
+    upgradeNameFr: Gants de forage
+    upgradeNameDe: Bohrhandschuhe
+    upgradeNameIt: Guanti da trivella
+    upgradeNameZh: 钻探手套
+    upgradeNameJa: ドリルグローブ
+    upgradeNameAr: قفازات الحفر
+    upgradeNameHe: כפפות קידוח
     description: Improves manual ore extraction on every tap.
     descriptionRu: Улучшает ручную добычу руды при каждом нажатии.
+    descriptionEs: Mejora la extracción manual de mineral con cada toque.
+    descriptionFr: Améliore l'extraction manuelle de minerai à chaque toucher.
+    descriptionDe: Verbessert den manuellen Erzabbau bei jedem Tippen.
+    descriptionIt: Migliora l'estrazione manuale di minerale a ogni tocco.
+    descriptionZh: 提升每次点击的手动矿石开采量。
+    descriptionJa: タップごとの手動鉱石採掘量を増やします。
+    descriptionAr: يحسن استخراج الخام اليدوي مع كل نقرة.
+    descriptionHe: משפר כריית עפרה ידנית בכל לחיצה.
     category: 0
     baseCosts:
     - resourceType: 0
@@ -30,8 +46,24 @@ MonoBehaviour:
   - id: mining_drones
     upgradeName: Mining Drones
     upgradeNameRu: Дроны-добытчики
+    upgradeNameEs: Drones mineros
+    upgradeNameFr: Drones miniers
+    upgradeNameDe: Bergbaudrohnen
+    upgradeNameIt: Droni minerari
+    upgradeNameZh: 采矿无人机
+    upgradeNameJa: 採掘ドローン
+    upgradeNameAr: طائرات تعدين
+    upgradeNameHe: רחפני כרייה
     description: Adds passive ore extraction every second.
     descriptionRu: Добавляет пассивную добычу руды каждую секунду.
+    descriptionEs: Añade extracción pasiva de mineral cada segundo.
+    descriptionFr: Ajoute une extraction passive de minerai chaque seconde.
+    descriptionDe: Fügt jede Sekunde passiven Erzabbau hinzu.
+    descriptionIt: Aggiunge estrazione passiva di minerale ogni secondo.
+    descriptionZh: 每秒增加被动矿石开采。
+    descriptionJa: 毎秒のパッシブ鉱石採掘を追加します。
+    descriptionAr: يضيف استخراج خام سلبيًا كل ثانية.
+    descriptionHe: מוסיף כריית עפרה פסיבית בכל שנייה.
     category: 0
     baseCosts:
     - resourceType: 0
@@ -44,8 +76,24 @@ MonoBehaviour:
   - id: storage_crates
     upgradeName: Storage Crates
     upgradeNameRu: Складские ящики
+    upgradeNameEs: Cajas de almacenamiento
+    upgradeNameFr: Caisses de stockage
+    upgradeNameDe: Lagerkisten
+    upgradeNameIt: Casse di stoccaggio
+    upgradeNameZh: 储物箱
+    upgradeNameJa: 保管箱
+    upgradeNameAr: صناديق التخزين
+    upgradeNameHe: ארגזי אחסון
     description: Adds extra ore storage to the mining platform.
     descriptionRu: Добавляет дополнительное место для хранения руды на платформе.
+    descriptionEs: Añade almacenamiento extra de mineral a la plataforma minera.
+    descriptionFr: Ajoute du stockage de minerai supplémentaire à la plateforme minière.
+    descriptionDe: Fügt der Bergbauplattform zusätzlichen Erzspeicher hinzu.
+    descriptionIt: Aggiunge spazio extra per il minerale alla piattaforma mineraria.
+    descriptionZh: 为采矿平台增加额外矿石储存空间。
+    descriptionJa: 採掘プラットフォームに追加の鉱石保管容量を加えます。
+    descriptionAr: يضيف تخزين خام إضافيًا إلى منصة التعدين.
+    descriptionHe: מוסיף אחסון עפרה נוסף לפלטפורמת הכרייה.
     category: 4
     baseCosts:
     - resourceType: 0
@@ -58,8 +106,24 @@ MonoBehaviour:
   - id: ore_silos
     upgradeName: Ore Silos
     upgradeNameRu: Рудные силосы
+    upgradeNameEs: Silos de mineral
+    upgradeNameFr: Silos à minerai
+    upgradeNameDe: Erzsilos
+    upgradeNameIt: Silos di minerale
+    upgradeNameZh: 矿石筒仓
+    upgradeNameJa: 鉱石サイロ
+    upgradeNameAr: صوامع الخام
+    upgradeNameHe: ממגורות עפרה
     description: Massively expands long-term storage on the platform.
     descriptionRu: Сильно увеличивает долгосрочное хранение руды на платформе.
+    descriptionEs: Aumenta mucho el almacenamiento a largo plazo de la plataforma.
+    descriptionFr: Augmente fortement le stockage à long terme sur la plateforme.
+    descriptionDe: Erweitert den langfristigen Speicher auf der Plattform deutlich.
+    descriptionIt: Espande notevolmente lo stoccaggio a lungo termine sulla piattaforma.
+    descriptionZh: 大幅扩展平台的长期储存容量。
+    descriptionJa: プラットフォームの長期保管容量を大幅に拡張します。
+    descriptionAr: يوسع التخزين طويل الأمد على المنصة بشكل كبير.
+    descriptionHe: מרחיב מאוד את האחסון לטווח ארוך בפלטפורמה.
     category: 4
     baseCosts:
     - resourceType: 0
@@ -74,8 +138,24 @@ MonoBehaviour:
   - id: loader_rails
     upgradeName: Loader Rails
     upgradeNameRu: Погрузочные рельсы
+    upgradeNameEs: Rieles de carga
+    upgradeNameFr: Rails de chargement
+    upgradeNameDe: Ladeschienen
+    upgradeNameIt: Binari di carico
+    upgradeNameZh: 装载轨道
+    upgradeNameJa: 積み込みレール
+    upgradeNameAr: قضبان التحميل
+    upgradeNameHe: מסילות טעינה
     description: Speeds up ore transfer from the platform into the shuttle.
     descriptionRu: Ускоряет перегрузку руды с платформы в шаттл.
+    descriptionEs: Acelera la transferencia de mineral desde la plataforma al transbordador.
+    descriptionFr: Accélère le transfert du minerai de la plateforme vers la navette.
+    descriptionDe: Beschleunigt den Erztransfer von der Plattform in das Shuttle.
+    descriptionIt: Velocizza il trasferimento del minerale dalla piattaforma alla navetta.
+    descriptionZh: 加快矿石从平台转移到穿梭机的速度。
+    descriptionJa: プラットフォームからシャトルへの鉱石移送を高速化します。
+    descriptionAr: يسرع نقل الخام من المنصة إلى المكوك.
+    descriptionHe: מאיץ העברת עפרה מהפלטפורמה אל המעבורת.
     category: 4
     baseCosts:
     - resourceType: 0
@@ -90,8 +170,24 @@ MonoBehaviour:
   - id: battery_matrix
     upgradeName: Battery Matrix
     upgradeNameRu: Батарейная матрица
+    upgradeNameEs: Matriz de baterías
+    upgradeNameFr: Matrice de batteries
+    upgradeNameDe: Batterie-Matrix
+    upgradeNameIt: Matrice batterie
+    upgradeNameZh: 电池矩阵
+    upgradeNameJa: バッテリーマトリックス
+    upgradeNameAr: مصفوفة البطاريات
+    upgradeNameHe: מטריצת סוללות
     description: Expands your total energy capacity.
     descriptionRu: Увеличивает общий запас энергии.
+    descriptionEs: Aumenta tu capacidad total de energía.
+    descriptionFr: Augmente votre capacité d'énergie totale.
+    descriptionDe: Erhöht deine gesamte Energiekapazität.
+    descriptionIt: Aumenta la capacità energetica totale.
+    descriptionZh: 提升你的总能量容量。
+    descriptionJa: 総エネルギー容量を増やします。
+    descriptionAr: يزيد سعة الطاقة الإجمالية لديك.
+    descriptionHe: מגדיל את קיבולת האנרגיה הכוללת שלך.
     category: 1
     baseCosts:
     - resourceType: 0
@@ -104,8 +200,24 @@ MonoBehaviour:
   - id: solar_core
     upgradeName: Solar Core
     upgradeNameRu: Солнечное ядро
+    upgradeNameEs: Núcleo solar
+    upgradeNameFr: Noyau solaire
+    upgradeNameDe: Solarkern
+    upgradeNameIt: Nucleo solare
+    upgradeNameZh: 太阳核心
+    upgradeNameJa: ソーラーコア
+    upgradeNameAr: النواة الشمسية
+    upgradeNameHe: ליבה סולארית
     description: Improves energy regeneration output.
     descriptionRu: Улучшает восстановление энергии.
+    descriptionEs: Mejora la producción de regeneración de energía.
+    descriptionFr: Améliore la production de régénération d'énergie.
+    descriptionDe: Verbessert die Leistung der Energieregeneration.
+    descriptionIt: Migliora la resa della rigenerazione energetica.
+    descriptionZh: 提升能量恢复产出。
+    descriptionJa: エネルギー回復量を向上させます。
+    descriptionAr: يحسن إنتاج تجدد الطاقة.
+    descriptionHe: משפר את תפוקת התחדשות האנרגיה.
     category: 1
     baseCosts:
     - resourceType: 0
@@ -120,8 +232,24 @@ MonoBehaviour:
   - id: coolant_loop
     upgradeName: Coolant Loop
     upgradeNameRu: Контур охлаждения
+    upgradeNameEs: Circuito refrigerante
+    upgradeNameFr: Boucle de refroidissement
+    upgradeNameDe: Kühlkreislauf
+    upgradeNameIt: Circuito refrigerante
+    upgradeNameZh: 冷却回路
+    upgradeNameJa: 冷却ループ
+    upgradeNameAr: دائرة التبريد
+    upgradeNameHe: לולאת קירור
     description: Reduces the delay between energy regeneration ticks.
     descriptionRu: Сокращает задержку между тиками восстановления энергии.
+    descriptionEs: Reduce la pausa entre pulsos de regeneración de energía.
+    descriptionFr: Réduit le délai entre les ticks de régénération d'énergie.
+    descriptionDe: Verkürzt die Verzögerung zwischen Energieregenerationsticks.
+    descriptionIt: Riduce l'intervallo tra i tick di rigenerazione energetica.
+    descriptionZh: 缩短能量恢复跳动之间的延迟。
+    descriptionJa: エネルギー回復ティック間の待ち時間を短縮します。
+    descriptionAr: يقلل التأخير بين نبضات تجدد الطاقة.
+    descriptionHe: מקצר את ההשהיה בין פעימות התחדשות האנרגיה.
     category: 1
     baseCosts:
     - resourceType: 0
@@ -136,8 +264,24 @@ MonoBehaviour:
   - id: smelter_output
     upgradeName: Smelter Output
     upgradeNameRu: Выход плавильни
+    upgradeNameEs: Producción de fundición
+    upgradeNameFr: Rendement de fonderie
+    upgradeNameDe: Schmelzertrag
+    upgradeNameIt: Produzione della fonderia
+    upgradeNameZh: 冶炼产量
+    upgradeNameJa: 溶鉱炉出力
+    upgradeNameAr: إنتاج المصهر
+    upgradeNameHe: תפוקת הכור
     description: Produces more metal from every refining action.
     descriptionRu: Даёт больше металла за каждое действие переработки.
+    descriptionEs: Produce más metal con cada acción de refinado.
+    descriptionFr: Produit plus de métal à chaque action de raffinage.
+    descriptionDe: Erzeugt mehr Metall bei jeder Raffinerieaktion.
+    descriptionIt: Produce più metallo da ogni azione di raffinazione.
+    descriptionZh: 每次精炼操作产出更多金属。
+    descriptionJa: 精錬アクションごとにより多くの金属を生産します。
+    descriptionAr: ينتج المزيد من المعدن من كل عملية تكرير.
+    descriptionHe: מייצר יותר מתכת מכל פעולת זיקוק.
     category: 2
     baseCosts:
     - resourceType: 0
@@ -152,8 +296,24 @@ MonoBehaviour:
   - id: efficient_smelting
     upgradeName: Efficient Smelting
     upgradeNameRu: Эффективная плавка
+    upgradeNameEs: Fundición eficiente
+    upgradeNameFr: Fusion efficace
+    upgradeNameDe: Effizientes Schmelzen
+    upgradeNameIt: Fusione efficiente
+    upgradeNameZh: 高效冶炼
+    upgradeNameJa: 効率的な製錬
+    upgradeNameAr: صهر فعال
+    upgradeNameHe: התכה יעילה
     description: Reduces ore needed for each metal craft.
     descriptionRu: Снижает расход руды на каждый крафт металла.
+    descriptionEs: Reduce el mineral necesario para cada producción de metal.
+    descriptionFr: Réduit le minerai nécessaire pour chaque fabrication de métal.
+    descriptionDe: Verringert das Erz, das für jede Metallherstellung benötigt wird.
+    descriptionIt: Riduce il minerale necessario per ogni produzione di metallo.
+    descriptionZh: 减少每次制造金属所需的矿石。
+    descriptionJa: 金属クラフトごとに必要な鉱石を減らします。
+    descriptionAr: يقلل الخام المطلوب لكل تصنيع معدن.
+    descriptionHe: מפחית את כמות העפרה הנדרשת לכל יצירת מתכת.
     category: 2
     baseCosts:
     - resourceType: 0
@@ -168,8 +328,24 @@ MonoBehaviour:
   - id: power_routing
     upgradeName: Power Routing
     upgradeNameRu: Энергомаршрутизация
+    upgradeNameEs: Enrutamiento de energía
+    upgradeNameFr: Routage d'énergie
+    upgradeNameDe: Energieleitung
+    upgradeNameIt: Instradamento energia
+    upgradeNameZh: 能源布线
+    upgradeNameJa: 電力ルーティング
+    upgradeNameAr: توجيه الطاقة
+    upgradeNameHe: ניתוב אנרגיה
     description: Cuts the energy required for each metal craft.
     descriptionRu: Снижает затраты энергии на каждый крафт металла.
+    descriptionEs: Reduce la energía necesaria para cada producción de metal.
+    descriptionFr: Réduit l'énergie requise pour chaque fabrication de métal.
+    descriptionDe: Senkt die Energie, die für jede Metallherstellung benötigt wird.
+    descriptionIt: Riduce l'energia richiesta per ogni produzione di metallo.
+    descriptionZh: 降低每次制造金属所需的能量。
+    descriptionJa: 金属クラフトごとに必要なエネルギーを減らします。
+    descriptionAr: يخفض الطاقة المطلوبة لكل تصنيع معدن.
+    descriptionHe: מפחית את האנרגיה הנדרשת לכל יצירת מתכת.
     category: 2
     baseCosts:
     - resourceType: 0
@@ -184,8 +360,24 @@ MonoBehaviour:
   - id: shuttle_engine
     upgradeName: Shuttle Engine
     upgradeNameRu: Двигатель шаттла
+    upgradeNameEs: Motor del transbordador
+    upgradeNameFr: Moteur de navette
+    upgradeNameDe: Shuttle-Triebwerk
+    upgradeNameIt: Motore navetta
+    upgradeNameZh: 穿梭机引擎
+    upgradeNameJa: シャトルエンジン
+    upgradeNameAr: محرك المكوك
+    upgradeNameHe: מנוע המעבורת
     description: Cuts travel time between the platform and the warehouse.
     descriptionRu: Сокращает время полёта между платформой и складом.
+    descriptionEs: Reduce el tiempo de viaje entre la plataforma y el almacén.
+    descriptionFr: Réduit le temps de trajet entre la plateforme et l'entrepôt.
+    descriptionDe: Verkürzt die Reisezeit zwischen Plattform und Lager.
+    descriptionIt: Riduce il tempo di viaggio tra la piattaforma e il magazzino.
+    descriptionZh: 缩短平台与仓库之间的运输时间。
+    descriptionJa: プラットフォームと倉庫の間の移動時間を短縮します。
+    descriptionAr: يقلل زمن الرحلة بين المنصة والمستودع.
+    descriptionHe: מקצר את זמן הנסיעה בין הפלטפורמה למחסן.
     category: 3
     baseCosts:
     - resourceType: 2
@@ -198,8 +390,24 @@ MonoBehaviour:
   - id: fleet_hangar
     upgradeName: Fleet Hangar
     upgradeNameRu: Ангар флота
+    upgradeNameEs: Hangar de flota
+    upgradeNameFr: Hangar de flotte
+    upgradeNameDe: Flottenhangar
+    upgradeNameIt: Hangar della flotta
+    upgradeNameZh: 舰队机库
+    upgradeNameJa: 艦隊格納庫
+    upgradeNameAr: حظيرة الأسطول
+    upgradeNameHe: האנגר צי
     description: Deploys additional ore shuttles to the platform fleet.
     descriptionRu: Добавляет дополнительные шаттлы к платформенному флоту.
+    descriptionEs: Despliega transbordadores de mineral adicionales para la flota de la plataforma.
+    descriptionFr: Déploie des navettes de minerai supplémentaires dans la flotte de la plateforme.
+    descriptionDe: Setzt zusätzliche Erz-Shuttles für die Plattformflotte ein.
+    descriptionIt: Schiera navette di minerale aggiuntive nella flotta della piattaforma.
+    descriptionZh: 为平台舰队部署额外的矿石穿梭机。
+    descriptionJa: プラットフォーム艦隊に追加の鉱石シャトルを配備します。
+    descriptionAr: ينشر مكوكات خام إضافية في أسطول المنصة.
+    descriptionHe: פורס מעבורות עפרה נוספות לצי הפלטפורמה.
     category: 3
     baseCosts:
     - resourceType: 2
@@ -214,8 +422,24 @@ MonoBehaviour:
   - id: cargo_capacity
     upgradeName: Cargo Capacity
     upgradeNameRu: Грузовая вместимость
+    upgradeNameEs: Capacidad de carga
+    upgradeNameFr: Capacité de cargaison
+    upgradeNameDe: Frachtkapazität
+    upgradeNameIt: Capacità di carico
+    upgradeNameZh: 货舱容量
+    upgradeNameJa: 貨物容量
+    upgradeNameAr: سعة الحمولة
+    upgradeNameHe: קיבולת מטען
     description: Increases how much ore the shuttle can haul per trip.
     descriptionRu: Увеличивает, сколько руды шаттл может перевозить за рейс.
+    descriptionEs: Aumenta la cantidad de mineral que el transbordador puede transportar por viaje.
+    descriptionFr: Augmente la quantité de minerai que la navette peut transporter par trajet.
+    descriptionDe: Erhöht die Erzmenge, die das Shuttle pro Fahrt transportieren kann.
+    descriptionIt: Aumenta la quantità di minerale che la navetta può trasportare per viaggio.
+    descriptionZh: 提高穿梭机每次运输可携带的矿石数量。
+    descriptionJa: シャトルが1回の移動で運べる鉱石量を増やします。
+    descriptionAr: يزيد كمية الخام التي يستطيع المكوك نقلها في كل رحلة.
+    descriptionHe: מגדיל את כמות העפרה שהמעבורת יכולה לשאת בכל נסיעה.
     category: 3
     baseCosts:
     - resourceType: 2
@@ -230,8 +454,24 @@ MonoBehaviour:
   - id: auto_shuttle_dispatch
     upgradeName: Auto Dispatch
     upgradeNameRu: Автоотправка
+    upgradeNameEs: Envío automático
+    upgradeNameFr: Envoi automatique
+    upgradeNameDe: Automatischer Versand
+    upgradeNameIt: Invio automatico
+    upgradeNameZh: 自动派送
+    upgradeNameJa: 自動出発
+    upgradeNameAr: إرسال تلقائي
+    upgradeNameHe: שילוח אוטומטי
     description: Unlocks auto dispatch for one more shuttle in your fleet.
     descriptionRu: Открывает автоотправку ещё для одного шаттла во флоте.
+    descriptionEs: Desbloquea el envío automático para un transbordador más de tu flota.
+    descriptionFr: Débloque l'envoi automatique pour une navette supplémentaire de votre flotte.
+    descriptionDe: Schaltet automatische Entsendung für ein weiteres Shuttle deiner Flotte frei.
+    descriptionIt: Sblocca l'invio automatico per un'altra navetta della tua flotta.
+    descriptionZh: 为你的舰队再解锁一艘穿梭机的自动派送。
+    descriptionJa: 艦隊内のさらに1機のシャトルに自動出発を解放します。
+    descriptionAr: يفتح الإرسال التلقائي لمكوك إضافي في أسطولك.
+    descriptionHe: פותח שילוח אוטומטי למעבורת נוספת בצי שלך.
     category: 3
     baseCosts:
     - resourceType: 2

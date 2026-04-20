@@ -40,6 +40,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text sendShuttleButtonText2;
     [SerializeField] private Button sendShuttleButton3;
     [SerializeField] private Text sendShuttleButtonText3;
+    [SerializeField] private Button mineButton;
+    [SerializeField] private Text mineButtonText;
     [SerializeField] private Button produceMetalButton;
     [SerializeField] private Text produceMetalButtonText;
 
@@ -47,21 +49,41 @@ public class UIManager : MonoBehaviour
     [FormerlySerializedAs("boostOfferOverlayPanel")]
     [SerializeField] private GameObject sharedOverlayPanel;
     [SerializeField] private GameObject dropdownMenuPanel;
+    [SerializeField] private Button newGameMenuButton;
+    [SerializeField] private Text newGameMenuButtonText;
+    [SerializeField] private Button upgradeMenuButton;
+    [SerializeField] private Text upgradeMenuButtonText;
+    [SerializeField] private Button buildMenuButton;
+    [SerializeField] private Text buildMenuButtonText;
+    [SerializeField] private Button missionMenuButton;
+    [SerializeField] private Text missionMenuButtonText;
     [SerializeField] private Button exitMenuButton;
     [SerializeField] private Text exitMenuButtonText;
     [SerializeField] private Button languageMenuButton;
     [SerializeField] private Text languageMenuButtonText;
+    [SerializeField] private GameObject languagePanel;
+    [SerializeField] private Button englishLanguageButton;
+    [SerializeField] private Text englishLanguageButtonText;
+    [SerializeField] private Button russianLanguageButton;
+    [SerializeField] private Text russianLanguageButtonText;
     [SerializeField] private GameObject upgradePanel;
     [SerializeField] private GameObject buildPanel;
     [SerializeField] private GameObject missionPanel;
+    [SerializeField] private Text upgradePanelTitleText;
+    [SerializeField] private Text buildPanelTitleText;
     [SerializeField] private GameObject mainScreenUpgradeButton;
     [SerializeField] private GameObject mainScreenBuildButton;
     [SerializeField] private GameObject mainScreenMissionButton;
     [SerializeField] private Button minerTabButton;
+    [SerializeField] private Text minerTabButtonText;
     [SerializeField] private Button platformTabButton;
+    [SerializeField] private Text platformTabButtonText;
     [SerializeField] private Button powerTabButton;
+    [SerializeField] private Text powerTabButtonText;
     [SerializeField] private Button factoryTabButton;
+    [SerializeField] private Text factoryTabButtonText;
     [SerializeField] private Button shuttleTabButton;
+    [SerializeField] private Text shuttleTabButtonText;
     [SerializeField] private Transform upgradeListRoot;
     [SerializeField] private Transform buildListRoot;
     [SerializeField] private Transform metaBonusListRoot;
@@ -78,8 +100,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button missionClaimButton;
     [SerializeField] private Text missionClaimButtonText;
     [SerializeField] private GameObject resetConfirmationPanel;
+    [SerializeField] private Text resetConfirmationText;
+    [SerializeField] private Button confirmResetButton;
+    [SerializeField] private Text confirmResetButtonText;
+    [SerializeField] private Button cancelResetButton;
+    [SerializeField] private Text cancelResetButtonText;
     [SerializeField] private GameObject offlineRewardPanel;
     [SerializeField] private Text offlineRewardText;
+    [SerializeField] private Button offlineClaimButton;
+    [SerializeField] private Text offlineClaimButtonText;
+    [SerializeField] private Button offlineClaimX2Button;
+    [SerializeField] private Text offlineClaimX2ButtonText;
     [SerializeField] private Button boostOfferButton;
     [SerializeField] private Text boostOfferButtonText;
 
@@ -92,6 +123,8 @@ public class UIManager : MonoBehaviour
     private readonly List<Text> boostOfferButtonTexts = new List<Text>();
     private readonly List<Button> mainScreenActionButtons = new List<Button>();
     private readonly List<Text> mainScreenActionButtonTexts = new List<Text>();
+    private readonly List<Button> languageOptionButtons = new List<Button>();
+    private readonly List<Text> languageOptionButtonTexts = new List<Text>();
     private readonly List<RectTransform> shuttleBarRoots = new List<RectTransform>();
     private readonly List<Image> shuttleFillImages = new List<Image>();
     private readonly List<Text> shuttleBarTexts = new List<Text>();
@@ -119,6 +152,7 @@ public class UIManager : MonoBehaviour
     public bool IsUpgradePanelVisible => upgradePanel != null && upgradePanel.activeSelf;
     public bool IsBuildPanelVisible => buildPanel != null && buildPanel.activeSelf;
     public bool IsMissionPanelVisible => missionPanel != null && missionPanel.activeSelf;
+    public bool IsLanguagePanelVisible => languagePanel != null && languagePanel.activeSelf;
     public bool IsMenuVisible => dropdownMenuPanel != null && dropdownMenuPanel.activeSelf;
     public bool IsResetConfirmationVisible => resetConfirmationPanel != null && resetConfirmationPanel.activeSelf;
     public bool IsBusyWithOtherWindow =>
@@ -126,8 +160,13 @@ public class UIManager : MonoBehaviour
         IsUpgradePanelVisible ||
         IsBuildPanelVisible ||
         IsMissionPanelVisible ||
+        IsLanguagePanelVisible ||
         IsMenuVisible ||
         IsResetConfirmationVisible;
+    public bool IsBlockingBoostOfferWindow =>
+        IsUpgradePanelVisible ||
+        IsBuildPanelVisible ||
+        IsMissionPanelVisible;
 
     private void Awake()
     {
@@ -144,6 +183,7 @@ public class UIManager : MonoBehaviour
         HideUpgradePanel();
         HideBuildPanel();
         HideMissionPanel();
+        HideLanguagePanel();
         HideResetConfirmation();
         HideOfflineReward();
         HideBoostOffer();
@@ -174,6 +214,7 @@ public class UIManager : MonoBehaviour
     {
         lastDisplayedGameData = gameData;
         GameUiTextConfig uiText = GameTextProvider.UIText;
+        RefreshStaticTextLabels(uiText);
 
         if (oreText != null)
         {
@@ -273,7 +314,289 @@ public class UIManager : MonoBehaviour
 
         if (languageMenuButtonText != null)
         {
-            languageMenuButtonText.text = uiText.LanguageToggleButtonText;
+            languageMenuButtonText.text = uiText.LanguagesButtonText;
+        }
+
+        if (englishLanguageButtonText != null)
+        {
+            englishLanguageButtonText.text = GameTextProvider.GetLanguageDisplayName(GameLanguage.English);
+        }
+
+        if (russianLanguageButtonText != null)
+        {
+            russianLanguageButtonText.text = GameTextProvider.GetLanguageDisplayName(GameLanguage.Russian);
+        }
+
+        RefreshLanguageOptionTexts();
+    }
+
+    private void RefreshStaticTextLabels(GameUiTextConfig uiText)
+    {
+        EnsureStaticTextReferences();
+
+        SetText(mineButtonText, uiText.MineButtonText);
+        SetText(newGameMenuButtonText, uiText.NewGameButtonText);
+        SetText(upgradeMenuButtonText, uiText.UpgradeButtonText);
+        SetText(buildMenuButtonText, uiText.BuildMenuButtonText);
+        SetText(missionMenuButtonText, uiText.MissionButtonText);
+        SetText(exitMenuButtonText, uiText.ExitButtonText);
+        SetText(resetConfirmationText, uiText.AreYouSureText);
+        SetText(confirmResetButtonText, uiText.YesButtonText);
+        SetText(cancelResetButtonText, uiText.NoButtonText);
+        SetText(offlineClaimButtonText, uiText.ClaimOfflineButtonText);
+        SetText(offlineClaimX2ButtonText, uiText.ClaimOfflineX2ButtonText);
+        SetText(upgradePanelTitleText, uiText.UpgradesPanelTitleText);
+        SetText(buildPanelTitleText, uiText.BuildingsPanelTitleText);
+        SetText(minerTabButtonText, uiText.MinerTabText);
+        SetText(powerTabButtonText, uiText.PowerTabText);
+        SetText(factoryTabButtonText, uiText.FactoryTabText);
+        SetText(shuttleTabButtonText, uiText.ShuttleTabText);
+        SetText(platformTabButtonText, uiText.PlatformTabText);
+
+        if (languageMenuButtonText != null)
+        {
+            languageMenuButtonText.text = uiText.LanguagesButtonText;
+        }
+
+        if (englishLanguageButtonText != null)
+        {
+            englishLanguageButtonText.text = GameTextProvider.GetLanguageDisplayName(GameLanguage.English);
+        }
+
+        if (russianLanguageButtonText != null)
+        {
+            russianLanguageButtonText.text = GameTextProvider.GetLanguageDisplayName(GameLanguage.Russian);
+        }
+
+        RefreshLanguageOptionTexts();
+    }
+
+    private void RefreshLanguageOptionTexts()
+    {
+        GameLanguage[] languages = GameTextProvider.AvailableLanguages;
+
+        for (int i = 0; i < languages.Length && i < languageOptionButtonTexts.Count; i++)
+        {
+            if (languageOptionButtonTexts[i] != null)
+            {
+                languageOptionButtonTexts[i].text = GameTextProvider.GetLanguageDisplayName(languages[i]);
+            }
+        }
+    }
+
+    private void EnsureStaticTextReferences()
+    {
+        EnsureMainButtonTexts();
+        EnsureMenuButtonTexts();
+        EnsureResetConfirmationTexts();
+        EnsureOfflineRewardTexts();
+        EnsurePanelTitleTexts();
+        EnsureTabButtonTexts();
+    }
+
+    private void EnsureMainButtonTexts()
+    {
+        if (mineButton == null)
+        {
+            mineButton = FindButtonByName("MineButton");
+        }
+
+        if (mineButtonText == null)
+        {
+            mineButtonText = GetButtonText(mineButton);
+        }
+    }
+
+    private void EnsureMenuButtonTexts()
+    {
+        if (newGameMenuButton == null)
+        {
+            newGameMenuButton = FindMenuButtonByName("ResetProgressButton");
+        }
+
+        if (upgradeMenuButton == null)
+        {
+            upgradeMenuButton = FindMenuButtonByName("UpgradeButton");
+        }
+
+        if (buildMenuButton == null)
+        {
+            buildMenuButton = FindMenuButtonByName("BuildButton");
+        }
+
+        if (missionMenuButton == null)
+        {
+            missionMenuButton = FindMenuButtonByName("MissionButton");
+        }
+
+        if (exitMenuButton == null)
+        {
+            exitMenuButton = FindMenuButtonByName("ExitButton");
+        }
+
+        if (newGameMenuButtonText == null)
+        {
+            newGameMenuButtonText = GetButtonText(newGameMenuButton);
+        }
+
+        if (upgradeMenuButtonText == null)
+        {
+            upgradeMenuButtonText = GetButtonText(upgradeMenuButton);
+        }
+
+        if (buildMenuButtonText == null)
+        {
+            buildMenuButtonText = GetButtonText(buildMenuButton);
+        }
+
+        if (missionMenuButtonText == null)
+        {
+            missionMenuButtonText = GetButtonText(missionMenuButton);
+        }
+
+        if (exitMenuButtonText == null)
+        {
+            exitMenuButtonText = GetButtonText(exitMenuButton);
+        }
+    }
+
+    private void EnsureResetConfirmationTexts()
+    {
+        if (resetConfirmationPanel == null)
+        {
+            resetConfirmationPanel = FindCanvasObjectByName("ResetConfirmationPanel");
+        }
+
+        if (resetConfirmationPanel == null)
+        {
+            return;
+        }
+
+        if (confirmResetButton == null)
+        {
+            confirmResetButton = FindButtonInObject(resetConfirmationPanel, "ConfirmResetButton");
+        }
+
+        if (cancelResetButton == null)
+        {
+            cancelResetButton = FindButtonInObject(resetConfirmationPanel, "CancelResetButton");
+        }
+
+        if (resetConfirmationText == null)
+        {
+            resetConfirmationText = FindTextByKnownValue(resetConfirmationPanel, "Are you sure?", "Вы уверены?");
+        }
+
+        if (confirmResetButtonText == null)
+        {
+            confirmResetButtonText = GetButtonText(confirmResetButton);
+        }
+
+        if (cancelResetButtonText == null)
+        {
+            cancelResetButtonText = GetButtonText(cancelResetButton);
+        }
+    }
+
+    private void EnsureOfflineRewardTexts()
+    {
+        if (offlineRewardPanel == null)
+        {
+            offlineRewardPanel = FindCanvasObjectByName("OfflineRewardPanel");
+        }
+
+        if (offlineClaimButton == null)
+        {
+            offlineClaimButton = FindButtonByName("ClaimOfflineButton");
+        }
+
+        if (offlineClaimX2Button == null)
+        {
+            offlineClaimX2Button = FindButtonByName("ClaimOfflineX2Button");
+        }
+
+        if (offlineClaimButtonText == null)
+        {
+            offlineClaimButtonText = GetButtonText(offlineClaimButton);
+        }
+
+        if (offlineClaimX2ButtonText == null)
+        {
+            offlineClaimX2ButtonText = GetButtonText(offlineClaimX2Button);
+        }
+    }
+
+    private void EnsurePanelTitleTexts()
+    {
+        if (upgradePanelTitleText == null)
+        {
+            upgradePanelTitleText = FindTextByKnownValue(upgradePanel, "Upgrades", "Улучшения");
+        }
+
+        if (buildPanelTitleText == null)
+        {
+            buildPanelTitleText = FindTextByKnownValue(buildPanel, "Buildings", "Постройки");
+        }
+    }
+
+    private void EnsureTabButtonTexts()
+    {
+        if (minerTabButton == null)
+        {
+            minerTabButton = FindButtonByName("MinerTabButton");
+        }
+
+        if (platformTabButton == null)
+        {
+            platformTabButton = FindButtonByName("PlatformTabButton");
+        }
+
+        if (powerTabButton == null)
+        {
+            powerTabButton = FindButtonByName("PowerStationTabButton");
+        }
+
+        if (factoryTabButton == null)
+        {
+            factoryTabButton = FindButtonByName("FactoryTabButton");
+        }
+
+        if (shuttleTabButton == null)
+        {
+            shuttleTabButton = FindButtonByName("ShuttleTabButton");
+        }
+
+        if (minerTabButtonText == null)
+        {
+            minerTabButtonText = GetButtonText(minerTabButton);
+        }
+
+        if (platformTabButtonText == null)
+        {
+            platformTabButtonText = GetButtonText(platformTabButton);
+        }
+
+        if (powerTabButtonText == null)
+        {
+            powerTabButtonText = GetButtonText(powerTabButton);
+        }
+
+        if (factoryTabButtonText == null)
+        {
+            factoryTabButtonText = GetButtonText(factoryTabButton);
+        }
+
+        if (shuttleTabButtonText == null)
+        {
+            shuttleTabButtonText = GetButtonText(shuttleTabButton);
+        }
+    }
+
+    private void SetText(Text text, string value)
+    {
+        if (text != null)
+        {
+            text.text = value;
         }
     }
 
@@ -317,7 +640,7 @@ public class UIManager : MonoBehaviour
         ApplyResponsiveLayout(true);
     }
 
-    public void InitializeMenuButtons(Action onExitRequested, Action onLanguageToggleRequested)
+    public void InitializeMenuButtons(Action onExitRequested, Action<GameLanguage> onLanguageSelected)
     {
         if (dropdownMenuPanel == null)
         {
@@ -348,7 +671,7 @@ public class UIManager : MonoBehaviour
             exitMenuButtonText.text = GameTextProvider.UIText.ExitButtonText;
         }
 
-        exitMenuButton.onClick.RemoveAllListeners();
+        exitMenuButton.onClick = new Button.ButtonClickedEvent();
         exitMenuButton.onClick.AddListener(() => onExitRequested?.Invoke());
 
         Button localizedLanguageButton = languageMenuButton != null
@@ -374,11 +697,289 @@ public class UIManager : MonoBehaviour
 
         if (languageMenuButtonText != null)
         {
-            languageMenuButtonText.text = GameTextProvider.UIText.LanguageToggleButtonText;
+            languageMenuButtonText.text = GameTextProvider.UIText.LanguagesButtonText;
         }
 
-        languageMenuButton.onClick.RemoveAllListeners();
-        languageMenuButton.onClick.AddListener(() => onLanguageToggleRequested?.Invoke());
+        languageMenuButton.onClick = new Button.ButtonClickedEvent();
+        languageMenuButton.onClick.AddListener(ShowLanguagePanel);
+        InitializeLanguagePanel(onLanguageSelected);
+    }
+
+    private void InitializeLanguagePanel(Action<GameLanguage> onLanguageSelected)
+    {
+        EnsureLanguagePanel();
+
+        if (languagePanel == null)
+        {
+            return;
+        }
+
+        GameLanguage[] languages = GameTextProvider.AvailableLanguages;
+
+        for (int i = 0; i < languages.Length; i++)
+        {
+            EnsureLanguageButtonSlot(i, languages[i]);
+            BindLanguageButton(
+                languageOptionButtons[i],
+                languageOptionButtonTexts[i],
+                GameTextProvider.GetLanguageDisplayName(languages[i]),
+                languages[i],
+                onLanguageSelected);
+        }
+
+        for (int i = languages.Length; i < languageOptionButtons.Count; i++)
+        {
+            if (languageOptionButtons[i] != null)
+            {
+                languageOptionButtons[i].gameObject.SetActive(false);
+            }
+        }
+
+        LayoutLanguageButtons();
+        HideLanguagePanel();
+    }
+
+    private void BindLanguageButton(
+        Button button,
+        Text buttonText,
+        string label,
+        GameLanguage language,
+        Action<GameLanguage> onLanguageSelected)
+    {
+        if (button == null)
+        {
+            return;
+        }
+
+        if (buttonText != null)
+        {
+            buttonText.text = label;
+        }
+
+        button.onClick = new Button.ButtonClickedEvent();
+        button.onClick.AddListener(() =>
+        {
+            onLanguageSelected?.Invoke(language);
+            HideLanguagePanel();
+        });
+    }
+
+    private void EnsureLanguagePanel()
+    {
+        if (languagePanel == null)
+        {
+            languagePanel = FindCanvasObjectByName("LanguagePanel");
+        }
+
+        if (languagePanel == null)
+        {
+            CreateRuntimeLanguagePanel();
+        }
+
+        if (languagePanel == null)
+        {
+            return;
+        }
+
+        if (englishLanguageButton == null)
+        {
+            englishLanguageButton = FindButtonInObject(languagePanel, "EnglishLanguageButton");
+        }
+
+        if (russianLanguageButton == null)
+        {
+            russianLanguageButton = FindButtonInObject(languagePanel, "RussianLanguageButton");
+        }
+
+        if (englishLanguageButtonText == null && englishLanguageButton != null)
+        {
+            englishLanguageButtonText = englishLanguageButton.GetComponentInChildren<Text>(true);
+        }
+
+        if (russianLanguageButtonText == null && russianLanguageButton != null)
+        {
+            russianLanguageButtonText = russianLanguageButton.GetComponentInChildren<Text>(true);
+        }
+    }
+
+    private void EnsureLanguageButtonSlot(int slotIndex, GameLanguage language)
+    {
+        while (languageOptionButtons.Count <= slotIndex)
+        {
+            languageOptionButtons.Add(null);
+            languageOptionButtonTexts.Add(null);
+        }
+
+        Button button = languageOptionButtons[slotIndex];
+
+        if (button == null)
+        {
+            if (language == GameLanguage.English)
+            {
+                button = englishLanguageButton;
+            }
+            else if (language == GameLanguage.Russian)
+            {
+                button = russianLanguageButton;
+            }
+        }
+
+        if (button == null)
+        {
+            button = FindButtonInObject(languagePanel, GetLanguageButtonObjectName(language));
+        }
+
+        if (button == null)
+        {
+            button = CreateRuntimeLanguageButton(languagePanel.transform, GetLanguageButtonObjectName(language), Vector2.zero);
+        }
+
+        Text buttonText = button != null ? button.GetComponentInChildren<Text>(true) : null;
+
+        languageOptionButtons[slotIndex] = button;
+        languageOptionButtonTexts[slotIndex] = buttonText;
+
+        if (language == GameLanguage.English)
+        {
+            englishLanguageButton = button;
+            englishLanguageButtonText = buttonText;
+        }
+        else if (language == GameLanguage.Russian)
+        {
+            russianLanguageButton = button;
+            russianLanguageButtonText = buttonText;
+        }
+    }
+
+    private string GetLanguageButtonObjectName(GameLanguage language)
+    {
+        return language + "LanguageButton";
+    }
+
+    private void LayoutLanguageButtons()
+    {
+        if (languagePanel == null)
+        {
+            return;
+        }
+
+        RectTransform panelRect = languagePanel.GetComponent<RectTransform>();
+        int buttonCount = GameTextProvider.AvailableLanguages.Length;
+        float buttonHeight = 58f;
+        float spacing = 10f;
+        float panelHeight = Mathf.Max(300f, 40f + buttonCount * buttonHeight + (buttonCount - 1) * spacing);
+
+        if (panelRect != null)
+        {
+            panelRect.sizeDelta = new Vector2(Mathf.Max(panelRect.sizeDelta.x, 520f), panelHeight);
+        }
+
+        float startY = (panelHeight - buttonHeight) * 0.5f - 20f;
+
+        for (int i = 0; i < buttonCount && i < languageOptionButtons.Count; i++)
+        {
+            Button button = languageOptionButtons[i];
+
+            if (button == null)
+            {
+                continue;
+            }
+
+            RectTransform buttonRect = button.GetComponent<RectTransform>();
+
+            if (buttonRect != null)
+            {
+                buttonRect.anchorMin = new Vector2(0.5f, 0.5f);
+                buttonRect.anchorMax = new Vector2(0.5f, 0.5f);
+                buttonRect.pivot = new Vector2(0.5f, 0.5f);
+                buttonRect.sizeDelta = new Vector2(360f, buttonHeight);
+                buttonRect.anchoredPosition = new Vector2(0f, startY - i * (buttonHeight + spacing));
+            }
+
+            button.gameObject.SetActive(true);
+        }
+    }
+
+    private void CreateRuntimeLanguagePanel()
+    {
+        Canvas canvas = rootCanvas != null ? rootCanvas : GetComponentInParent<Canvas>();
+
+        if (canvas == null)
+        {
+            canvas = FindAnyObjectByType<Canvas>();
+        }
+
+        if (canvas == null)
+        {
+            return;
+        }
+
+        GameObject panelObject = new GameObject("LanguagePanel", typeof(RectTransform), typeof(Image));
+        panelObject.transform.SetParent(canvas.transform, false);
+
+        RectTransform panelRect = panelObject.GetComponent<RectTransform>();
+        panelRect.anchorMin = new Vector2(0.5f, 0.5f);
+        panelRect.anchorMax = new Vector2(0.5f, 0.5f);
+        panelRect.pivot = new Vector2(0.5f, 0.5f);
+        panelRect.sizeDelta = new Vector2(520f, 300f);
+        panelRect.anchoredPosition = Vector2.zero;
+
+        Image panelImage = panelObject.GetComponent<Image>();
+        panelImage.color = new Color(0.78f, 0.78f, 0.78f, 0.96f);
+
+        languagePanel = panelObject;
+        englishLanguageButton = CreateRuntimeLanguageButton(panelObject.transform, "EnglishLanguageButton", new Vector2(0f, 55f));
+        russianLanguageButton = CreateRuntimeLanguageButton(panelObject.transform, "RussianLanguageButton", new Vector2(0f, -55f));
+        englishLanguageButtonText = englishLanguageButton != null ? englishLanguageButton.GetComponentInChildren<Text>(true) : null;
+        russianLanguageButtonText = russianLanguageButton != null ? russianLanguageButton.GetComponentInChildren<Text>(true) : null;
+    }
+
+    private Button CreateRuntimeLanguageButton(Transform parent, string objectName, Vector2 anchoredPosition)
+    {
+        GameObject buttonObject = new GameObject(objectName, typeof(RectTransform), typeof(Image), typeof(Button));
+        buttonObject.transform.SetParent(parent, false);
+
+        RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
+        buttonRect.anchorMin = new Vector2(0.5f, 0.5f);
+        buttonRect.anchorMax = new Vector2(0.5f, 0.5f);
+        buttonRect.pivot = new Vector2(0.5f, 0.5f);
+        buttonRect.sizeDelta = new Vector2(360f, 70f);
+        buttonRect.anchoredPosition = anchoredPosition;
+
+        Image buttonImage = buttonObject.GetComponent<Image>();
+        buttonImage.color = Color.white;
+
+        GameObject textObject = new GameObject("Text", typeof(RectTransform), typeof(Text));
+        textObject.transform.SetParent(buttonObject.transform, false);
+
+        RectTransform textRect = textObject.GetComponent<RectTransform>();
+        textRect.anchorMin = Vector2.zero;
+        textRect.anchorMax = Vector2.one;
+        textRect.offsetMin = Vector2.zero;
+        textRect.offsetMax = Vector2.zero;
+
+        Text text = textObject.GetComponent<Text>();
+        text.alignment = TextAnchor.MiddleCenter;
+        text.color = Color.black;
+        text.fontSize = 32;
+        text.font = ResolveRuntimeFont();
+
+        return buttonObject.GetComponent<Button>();
+    }
+
+    private Font ResolveRuntimeFont()
+    {
+        if (languageMenuButtonText != null && languageMenuButtonText.font != null)
+        {
+            return languageMenuButtonText.font;
+        }
+
+        if (exitMenuButtonText != null && exitMenuButtonText.font != null)
+        {
+            return exitMenuButtonText.font;
+        }
+
+        return Resources.GetBuiltinResource<Font>("Arial.ttf");
     }
 
     public void InitializeBoostOfferButton(Action<TemporaryBoostState> onAcceptRequested)
@@ -442,6 +1043,9 @@ public class UIManager : MonoBehaviour
                 boostOfferButtons[i].gameObject.SetActive(false);
             }
         }
+
+        BringBoostOffersAboveSharedOverlay();
+        KeepOfflineRewardAboveBoostOffers();
     }
 
     public void RefreshBoostOfferTexts(IReadOnlyList<TemporaryBoostState> boostStates)
@@ -585,10 +1189,7 @@ public class UIManager : MonoBehaviour
         bool shouldShowOnMainScreenOnly =
             !IsUpgradePanelVisible &&
             !IsBuildPanelVisible &&
-            !IsMissionPanelVisible &&
-            !IsMenuVisible &&
-            !IsResetConfirmationVisible &&
-            !IsOfflineRewardVisible;
+            !IsMissionPanelVisible;
 
         if (shouldShowOnMainScreenOnly && mainScreenUpgradeVisible)
         {
@@ -801,6 +1402,7 @@ public class UIManager : MonoBehaviour
 
         HideBuildPanel();
         HideMissionPanel();
+        HideLanguagePanel();
         HideBoostOffer();
         upgradePanel.SetActive(true);
         RefreshPanelLists();
@@ -825,6 +1427,7 @@ public class UIManager : MonoBehaviour
 
         HideUpgradePanel();
         HideMissionPanel();
+        HideLanguagePanel();
         HideBoostOffer();
         buildPanel.SetActive(true);
         RefreshPanelLists();
@@ -849,6 +1452,7 @@ public class UIManager : MonoBehaviour
 
         HideUpgradePanel();
         HideBuildPanel();
+        HideLanguagePanel();
         HideBoostOffer();
         missionPanel.SetActive(true);
         RefreshPanelLists();
@@ -885,6 +1489,34 @@ public class UIManager : MonoBehaviour
         }
 
         RefreshPanelLists();
+        RefreshMainScreenActionButtons();
+    }
+
+    public void ShowLanguagePanel()
+    {
+        EnsureLanguagePanel();
+        HideMenu();
+        HideUpgradePanel();
+        HideBuildPanel();
+        HideMissionPanel();
+        HideResetConfirmation();
+
+        if (languagePanel != null)
+        {
+            languagePanel.transform.SetAsLastSibling();
+            languagePanel.SetActive(true);
+        }
+
+        RefreshMainScreenActionButtons();
+    }
+
+    public void HideLanguagePanel()
+    {
+        if (languagePanel != null)
+        {
+            languagePanel.SetActive(false);
+        }
+
         RefreshMainScreenActionButtons();
     }
 
@@ -1036,6 +1668,7 @@ public class UIManager : MonoBehaviour
 
         if (resetConfirmationPanel != null)
         {
+            resetConfirmationPanel.transform.SetAsLastSibling();
             resetConfirmationPanel.SetActive(true);
         }
 
@@ -1057,7 +1690,7 @@ public class UIManager : MonoBehaviour
         HideMenu();
         HideAllContentPanels();
         HideResetConfirmation();
-        HideBoostOffer();
+        HideLanguagePanel();
 
         if (offlineRewardText != null)
         {
@@ -1068,6 +1701,7 @@ public class UIManager : MonoBehaviour
 
         if (offlineRewardPanel != null)
         {
+            offlineRewardPanel.transform.SetAsLastSibling();
             offlineRewardPanel.SetActive(true);
         }
 
@@ -1154,6 +1788,37 @@ public class UIManager : MonoBehaviour
         SetSharedOverlayVisible(false);
     }
 
+    private void BringBoostOffersAboveSharedOverlay()
+    {
+        if (sharedOverlayPanel == null || !sharedOverlayPanel.activeSelf)
+        {
+            return;
+        }
+
+        sharedOverlayPanel.transform.SetAsLastSibling();
+
+        for (int i = 0; i < boostOfferButtons.Count; i++)
+        {
+            if (boostOfferButtons[i] != null && boostOfferButtons[i].gameObject.activeSelf)
+            {
+                boostOfferButtons[i].transform.SetAsLastSibling();
+            }
+        }
+
+        if (dropdownMenuPanel != null && dropdownMenuPanel.activeSelf)
+        {
+            dropdownMenuPanel.transform.SetAsLastSibling();
+        }
+    }
+
+    private void KeepOfflineRewardAboveBoostOffers()
+    {
+        if (offlineRewardPanel != null && offlineRewardPanel.activeSelf)
+        {
+            offlineRewardPanel.transform.SetAsLastSibling();
+        }
+    }
+
     private void HideLegacyTextsIfBarsConfigured()
     {
         if (energyText != null)
@@ -1226,6 +1891,7 @@ public class UIManager : MonoBehaviour
         HideUpgradePanel();
         HideBuildPanel();
         HideMissionPanel();
+        HideLanguagePanel();
     }
 
     private void SetTabInteractable(Button button, bool isInteractable)
@@ -1653,6 +2319,39 @@ public class UIManager : MonoBehaviour
     {
         RectTransform rectTransform = FindRectTransformByName(objectName);
         return rectTransform != null ? rectTransform.GetComponent<Button>() : null;
+    }
+
+    private Text GetButtonText(Button button)
+    {
+        return button != null ? button.GetComponentInChildren<Text>(true) : null;
+    }
+
+    private Text FindTextByKnownValue(GameObject rootObject, params string[] knownValues)
+    {
+        if (rootObject == null)
+        {
+            return null;
+        }
+
+        Text[] texts = rootObject.GetComponentsInChildren<Text>(true);
+
+        for (int i = 0; i < texts.Length; i++)
+        {
+            if (texts[i] == null)
+            {
+                continue;
+            }
+
+            for (int j = 0; j < knownValues.Length; j++)
+            {
+                if (texts[i].text == knownValues[j])
+                {
+                    return texts[i];
+                }
+            }
+        }
+
+        return null;
     }
 
     private void CacheAnchoredPosition(RectTransform rectTransform)
@@ -2373,6 +3072,53 @@ public class UIManager : MonoBehaviour
         }
 
         Button[] buttons = dropdownMenuPanel.GetComponentsInChildren<Button>(true);
+
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (buttons[i] != null && buttons[i].name.Equals(objectName, StringComparison.OrdinalIgnoreCase))
+            {
+                return buttons[i];
+            }
+        }
+
+        return null;
+    }
+
+    private GameObject FindCanvasObjectByName(string objectName)
+    {
+        Canvas canvas = rootCanvas != null ? rootCanvas : GetComponentInParent<Canvas>();
+
+        if (canvas == null)
+        {
+            canvas = FindAnyObjectByType<Canvas>();
+        }
+
+        if (canvas == null)
+        {
+            return null;
+        }
+
+        Transform[] transforms = canvas.GetComponentsInChildren<Transform>(true);
+
+        for (int i = 0; i < transforms.Length; i++)
+        {
+            if (transforms[i] != null && transforms[i].name.Equals(objectName, StringComparison.OrdinalIgnoreCase))
+            {
+                return transforms[i].gameObject;
+            }
+        }
+
+        return null;
+    }
+
+    private Button FindButtonInObject(GameObject rootObject, string objectName)
+    {
+        if (rootObject == null)
+        {
+            return null;
+        }
+
+        Button[] buttons = rootObject.GetComponentsInChildren<Button>(true);
 
         for (int i = 0; i < buttons.Length; i++)
         {

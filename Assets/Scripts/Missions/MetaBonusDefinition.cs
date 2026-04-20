@@ -8,11 +8,35 @@ public class MetaBonusDefinition
     public string id = "new_meta_bonus";
     public string bonusName = "New Meta Bonus";
     public string bonusNameRu = "";
+    public string bonusNameEs = "";
+    public string bonusNameFr = "";
+    public string bonusNameDe = "";
+    public string bonusNameIt = "";
+    public string bonusNameZh = "";
+    public string bonusNameJa = "";
+    public string bonusNameAr = "";
+    public string bonusNameHe = "";
 
     [TextArea]
     public string description = "Meta bonus description";
     [TextArea]
     public string descriptionRu = "";
+    [TextArea]
+    public string descriptionEs = "";
+    [TextArea]
+    public string descriptionFr = "";
+    [TextArea]
+    public string descriptionDe = "";
+    [TextArea]
+    public string descriptionIt = "";
+    [TextArea]
+    public string descriptionZh = "";
+    [TextArea]
+    public string descriptionJa = "";
+    [TextArea]
+    public string descriptionAr = "";
+    [TextArea]
+    public string descriptionHe = "";
 
     public int crystalCost = 1;
     public float costMultiplier = 1.6f;
@@ -21,6 +45,6 @@ public class MetaBonusDefinition
 
     public IReadOnlyList<UpgradeEffectDefinition> Effects => effects;
     public bool HasMaxLevel => maxLevel > 0;
-    public string DisplayName => GameTextProvider.GetText(bonusName, bonusNameRu);
-    public string Description => GameTextProvider.GetText(description, descriptionRu);
+    public string DisplayName => GameTextProvider.GetText(bonusName, bonusNameRu, bonusNameEs, bonusNameFr, bonusNameDe, bonusNameIt, bonusNameZh, bonusNameJa, bonusNameAr, bonusNameHe);
+    public string Description => GameTextProvider.GetText(description, descriptionRu, descriptionEs, descriptionFr, descriptionDe, descriptionIt, descriptionZh, descriptionJa, descriptionAr, descriptionHe);
 }

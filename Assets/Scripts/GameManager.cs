@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager.InitializeShuttleButtons(HandleShuttleSendRequested);
             uiManager.InitializeShuttleDisplays();
-            uiManager.InitializeMenuButtons(HandleExitRequested, HandleLanguageToggleRequested);
+            uiManager.InitializeMenuButtons(HandleExitRequested, HandleLanguageSelected);
             uiManager.InitializeMainScreenActionButtons(OnUpgradeButtonClicked, OnBuildButtonClicked);
             uiManager.InitializeBoostOfferButton(HandleBoostOfferAccepted);
             uiManager.InitializeUpgradeList(
@@ -288,6 +288,7 @@ public class GameManager : MonoBehaviour
         uiManager.HideUpgradePanel();
         uiManager.HideBuildPanel();
         uiManager.HideMissionPanel();
+        uiManager.HideLanguagePanel();
         uiManager.HideResetConfirmation();
         uiManager.ToggleMenu();
     }
@@ -1191,10 +1192,10 @@ public class GameManager : MonoBehaviour
         OnExitGameButtonClicked();
     }
 
-    private void HandleLanguageToggleRequested()
+    private void HandleLanguageSelected(GameLanguage language)
     {
-        GameLanguage nextLanguage = GameTextProvider.ToggleLanguage();
-        PlayerPrefs.SetInt(LanguageKey, (int)nextLanguage);
+        GameTextProvider.SetLanguage(language);
+        PlayerPrefs.SetInt(LanguageKey, (int)language);
         PlayerPrefs.Save();
         RefreshUI();
         TryShowNextBoostOffer();
@@ -1409,9 +1410,14 @@ public class GameManager : MonoBehaviour
     {
         if (uiManager == null ||
             upgradeManager == null ||
-            suppressBoostOfferPopup ||
-            uiManager.IsBusyWithOtherWindow)
+            suppressBoostOfferPopup)
         {
+            return;
+        }
+
+        if (uiManager.IsBlockingBoostOfferWindow)
+        {
+            uiManager.HideBoostOffer();
             return;
         }
 

@@ -8,11 +8,35 @@ public class UpgradeDefinition
     public string id = "new_upgrade";
     public string upgradeName = "New Upgrade";
     public string upgradeNameRu = "";
+    public string upgradeNameEs = "";
+    public string upgradeNameFr = "";
+    public string upgradeNameDe = "";
+    public string upgradeNameIt = "";
+    public string upgradeNameZh = "";
+    public string upgradeNameJa = "";
+    public string upgradeNameAr = "";
+    public string upgradeNameHe = "";
 
     [TextArea]
     public string description = "Upgrade description";
     [TextArea]
     public string descriptionRu = "";
+    [TextArea]
+    public string descriptionEs = "";
+    [TextArea]
+    public string descriptionFr = "";
+    [TextArea]
+    public string descriptionDe = "";
+    [TextArea]
+    public string descriptionIt = "";
+    [TextArea]
+    public string descriptionZh = "";
+    [TextArea]
+    public string descriptionJa = "";
+    [TextArea]
+    public string descriptionAr = "";
+    [TextArea]
+    public string descriptionHe = "";
 
     public UpgradeCategory category = UpgradeCategory.Miner;
     public List<ResourceAmount> baseCosts = new List<ResourceAmount>();
@@ -24,8 +48,8 @@ public class UpgradeDefinition
     public IReadOnlyList<UpgradeEffectDefinition> Effects => effects;
     public bool HasMaxLevel => maxLevel > 0;
     public UpgradeCategory ResolvedCategory => ResolveCategory();
-    public string DisplayName => GameTextProvider.GetText(upgradeName, upgradeNameRu);
-    public string Description => GameTextProvider.GetText(description, descriptionRu);
+    public string DisplayName => GameTextProvider.GetText(upgradeName, upgradeNameRu, upgradeNameEs, upgradeNameFr, upgradeNameDe, upgradeNameIt, upgradeNameZh, upgradeNameJa, upgradeNameAr, upgradeNameHe);
+    public string Description => GameTextProvider.GetText(description, descriptionRu, descriptionEs, descriptionFr, descriptionDe, descriptionIt, descriptionZh, descriptionJa, descriptionAr, descriptionHe);
 
     private UpgradeCategory ResolveCategory()
     {

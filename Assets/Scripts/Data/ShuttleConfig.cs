@@ -63,8 +63,24 @@ public class ShuttleConfig : ScriptableObject
     [Header("UI")]
     [SerializeField] private string noMissionsText = DefaultNoMissionsText;
     [SerializeField] private string russianNoMissionsText = "Нет миссий";
+    [SerializeField] private string spanishNoMissionsText = "Sin misiones";
+    [SerializeField] private string frenchNoMissionsText = "Aucune mission";
+    [SerializeField] private string germanNoMissionsText = "Keine Missionen";
+    [SerializeField] private string italianNoMissionsText = "Nessuna missione";
+    [SerializeField] private string chineseNoMissionsText = "没有任务";
+    [SerializeField] private string japaneseNoMissionsText = "ミッションなし";
+    [SerializeField] private string arabicNoMissionsText = "لا توجد مهام";
+    [SerializeField] private string hebrewNoMissionsText = "אין משימות";
     [SerializeField] private GameUiTextConfig uiText = new GameUiTextConfig();
-    [SerializeField] private GameUiTextConfig russianUiText = null;
+    [SerializeField] private GameUiTextConfig russianUiText = GameUiTextConfig.CreateDefaults(GameLanguage.Russian);
+    [SerializeField] private GameUiTextConfig spanishUiText = GameUiTextConfig.CreateDefaults(GameLanguage.Spanish);
+    [SerializeField] private GameUiTextConfig frenchUiText = GameUiTextConfig.CreateDefaults(GameLanguage.French);
+    [SerializeField] private GameUiTextConfig germanUiText = GameUiTextConfig.CreateDefaults(GameLanguage.German);
+    [SerializeField] private GameUiTextConfig italianUiText = GameUiTextConfig.CreateDefaults(GameLanguage.Italian);
+    [SerializeField] private GameUiTextConfig chineseUiText = GameUiTextConfig.CreateDefaults(GameLanguage.Chinese);
+    [SerializeField] private GameUiTextConfig japaneseUiText = GameUiTextConfig.CreateDefaults(GameLanguage.Japanese);
+    [SerializeField] private GameUiTextConfig arabicUiText = GameUiTextConfig.CreateDefaults(GameLanguage.Arabic);
+    [SerializeField] private GameUiTextConfig hebrewUiText = GameUiTextConfig.CreateDefaults(GameLanguage.Hebrew);
 
     public int StartOre => Mathf.Max(0, startOreAmount);
     public int StartEnergy => Mathf.Max(0, startEnergy);
@@ -91,7 +107,84 @@ public class ShuttleConfig : ScriptableObject
     public float TravelTimeSeconds => Mathf.Max(0f, shuttleTravelTimeSeconds);
     public float BoostOfferAutoCloseSeconds => Mathf.Max(0f, boostOfferAutoCloseSeconds);
     public string NoMissionsText => string.IsNullOrWhiteSpace(noMissionsText) ? DefaultNoMissionsText : noMissionsText;
-    public string RussianNoMissionsText => string.IsNullOrWhiteSpace(russianNoMissionsText) ? "Нет миссий" : russianNoMissionsText;
+    public string RussianNoMissionsText => GetNoMissionsText(GameLanguage.Russian);
     public GameUiTextConfig UIText => uiText ?? (uiText = new GameUiTextConfig());
-    public GameUiTextConfig RussianUIText => russianUiText ?? (russianUiText = GameUiTextConfig.CreateRussianDefaults());
+    public GameUiTextConfig RussianUIText => GetUIText(GameLanguage.Russian);
+
+    public string GetNoMissionsText(GameLanguage language)
+    {
+        switch (language)
+        {
+            case GameLanguage.Russian:
+                return GetTextOrDefault(russianNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            case GameLanguage.Spanish:
+                return GetTextOrDefault(spanishNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            case GameLanguage.French:
+                return GetTextOrDefault(frenchNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            case GameLanguage.German:
+                return GetTextOrDefault(germanNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            case GameLanguage.Italian:
+                return GetTextOrDefault(italianNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            case GameLanguage.Chinese:
+                return GetTextOrDefault(chineseNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            case GameLanguage.Japanese:
+                return GetTextOrDefault(japaneseNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            case GameLanguage.Arabic:
+                return GetTextOrDefault(arabicNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            case GameLanguage.Hebrew:
+                return GetTextOrDefault(hebrewNoMissionsText, GameTextProvider.GetDefaultNoMissionsText(language));
+
+            default:
+                return NoMissionsText;
+        }
+    }
+
+    public GameUiTextConfig GetUIText(GameLanguage language)
+    {
+        switch (language)
+        {
+            case GameLanguage.Russian:
+                return russianUiText ?? (russianUiText = GameUiTextConfig.CreateDefaults(language));
+
+            case GameLanguage.Spanish:
+                return spanishUiText ?? (spanishUiText = GameUiTextConfig.CreateDefaults(language));
+
+            case GameLanguage.French:
+                return frenchUiText ?? (frenchUiText = GameUiTextConfig.CreateDefaults(language));
+
+            case GameLanguage.German:
+                return germanUiText ?? (germanUiText = GameUiTextConfig.CreateDefaults(language));
+
+            case GameLanguage.Italian:
+                return italianUiText ?? (italianUiText = GameUiTextConfig.CreateDefaults(language));
+
+            case GameLanguage.Chinese:
+                return chineseUiText ?? (chineseUiText = GameUiTextConfig.CreateDefaults(language));
+
+            case GameLanguage.Japanese:
+                return japaneseUiText ?? (japaneseUiText = GameUiTextConfig.CreateDefaults(language));
+
+            case GameLanguage.Arabic:
+                return arabicUiText ?? (arabicUiText = GameUiTextConfig.CreateDefaults(language));
+
+            case GameLanguage.Hebrew:
+                return hebrewUiText ?? (hebrewUiText = GameUiTextConfig.CreateDefaults(language));
+
+            default:
+                return UIText;
+        }
+    }
+
+    private static string GetTextOrDefault(string value, string fallback)
+    {
+        return string.IsNullOrWhiteSpace(value) ? fallback : value;
+    }
 }
