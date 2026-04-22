@@ -113,6 +113,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text offlineClaimX2ButtonText;
     [SerializeField] private Button boostOfferButton;
     [SerializeField] private Text boostOfferButtonText;
+    [FormerlySerializedAs("startupNetworkErrorPanel")]
+    [SerializeField] private GameObject startupBlockingPanel;
+    [FormerlySerializedAs("startupNetworkErrorText")]
+    [SerializeField] private Text startupBlockingText;
 
     private readonly List<UpgradeItemUI> upgradeItems = new List<UpgradeItemUI>();
     private readonly List<BuildingItemUI> buildingItems = new List<BuildingItemUI>();
@@ -187,6 +191,7 @@ public class UIManager : MonoBehaviour
         HideResetConfirmation();
         HideOfflineReward();
         HideBoostOffer();
+        HideStartupBlockingOverlay();
         SetMainScreenUpgradeButtonVisible(false);
         SetMainScreenBuildButtonVisible(false);
         SetMainScreenMissionButtonVisible(false);
@@ -1745,6 +1750,60 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowStartupNetworkError(string message)
+    {
+        ShowStartupBlockingOverlay(message, GameUiTextConfig.DefaultNetworkErrorText);
+    }
+
+    public void ShowStartupLoading(string message)
+    {
+        ShowStartupBlockingOverlay(message, GameUiTextConfig.DefaultStartupLoadingText);
+    }
+
+    public void HideStartupLoading()
+    {
+        HideStartupBlockingOverlay();
+    }
+
+    public void HideStartupNetworkError()
+    {
+        HideStartupBlockingOverlay();
+    }
+
+    private void ShowStartupBlockingOverlay(string message, string fallbackMessage)
+    {
+        EnsureStartupBlockingPanel();
+        HideMenu();
+        HideAllContentPanels();
+        HideResetConfirmation();
+        HideOfflineReward();
+        HideBoostOffer();
+        SetMainScreenUpgradeButtonVisible(false);
+        SetMainScreenBuildButtonVisible(false);
+        SetMainScreenMissionButtonVisible(false);
+
+        if (startupBlockingText != null)
+        {
+            startupBlockingText.text = string.IsNullOrWhiteSpace(message)
+                ? fallbackMessage
+                : message;
+        }
+
+        if (startupBlockingPanel != null)
+        {
+            startupBlockingPanel.transform.SetAsLastSibling();
+            startupBlockingPanel.SetActive(true);
+        }
+    }
+
+    private void HideStartupBlockingOverlay()
+    {
+        if (startupBlockingPanel != null)
+        {
+            startupBlockingPanel.SetActive(false);
+        }
+    }
+
     public void UpdateBoostUI(IReadOnlyList<TemporaryBoostState> activeBoostStates)
     {
         if (boostStatusText == null)
@@ -2827,6 +2886,90 @@ public class UIManager : MonoBehaviour
         }
 
         return clonedObject.GetComponent<Button>();
+    }
+
+    private void EnsureStartupBlockingPanel()
+    {
+        if (startupBlockingPanel == null)
+        {
+            startupBlockingPanel = FindCanvasObjectByName("StartupBlockingPanel");
+        }
+
+        if (startupBlockingPanel == null)
+        {
+            startupBlockingPanel = FindCanvasObjectByName("StartupNetworkErrorPanel");
+        }
+
+        if (startupBlockingPanel != null)
+        {
+            if (startupBlockingText == null)
+            {
+                startupBlockingText = startupBlockingPanel.GetComponentInChildren<Text>(true);
+            }
+
+            return;
+        }
+
+        Canvas canvas = rootCanvas != null ? rootCanvas : GetComponentInParent<Canvas>();
+
+        if (canvas == null)
+        {
+            canvas = FindAnyObjectByType<Canvas>();
+        }
+
+        if (canvas == null)
+        {
+            return;
+        }
+
+        rootCanvas = canvas;
+
+        GameObject panelObject = new GameObject(
+            "StartupBlockingPanel",
+            typeof(RectTransform),
+            typeof(CanvasRenderer),
+            typeof(Image));
+        panelObject.transform.SetParent(canvas.transform, false);
+
+        RectTransform panelRect = panelObject.GetComponent<RectTransform>();
+        panelRect.anchorMin = Vector2.zero;
+        panelRect.anchorMax = Vector2.one;
+        panelRect.offsetMin = Vector2.zero;
+        panelRect.offsetMax = Vector2.zero;
+
+        Image panelImage = panelObject.GetComponent<Image>();
+        panelImage.color = new Color(0f, 0f, 0f, 0.78f);
+        panelImage.raycastTarget = true;
+
+        GameObject textObject = new GameObject(
+            "StartupBlockingText",
+            typeof(RectTransform),
+            typeof(CanvasRenderer),
+            typeof(Text));
+        textObject.transform.SetParent(panelObject.transform, false);
+
+        RectTransform textRect = textObject.GetComponent<RectTransform>();
+        textRect.anchorMin = new Vector2(0.5f, 0.5f);
+        textRect.anchorMax = new Vector2(0.5f, 0.5f);
+        textRect.pivot = new Vector2(0.5f, 0.5f);
+        textRect.sizeDelta = new Vector2(620f, 180f);
+        textRect.anchoredPosition = Vector2.zero;
+
+        startupBlockingText = textObject.GetComponent<Text>();
+        startupBlockingText.alignment = TextAnchor.MiddleCenter;
+        startupBlockingText.color = Color.white;
+        startupBlockingText.font = ResolveRuntimeFont();
+        startupBlockingText.fontSize = 56;
+        startupBlockingText.resizeTextForBestFit = true;
+        startupBlockingText.resizeTextMinSize = 24;
+        startupBlockingText.resizeTextMaxSize = 64;
+        startupBlockingText.horizontalOverflow = HorizontalWrapMode.Wrap;
+        startupBlockingText.verticalOverflow = VerticalWrapMode.Overflow;
+        startupBlockingText.raycastTarget = false;
+        startupBlockingText.text = GameUiTextConfig.DefaultStartupLoadingText;
+
+        startupBlockingPanel = panelObject;
+        startupBlockingPanel.SetActive(false);
     }
 
     private GameObject CreateRuntimeMainScreenActionButton(int slotIndex)

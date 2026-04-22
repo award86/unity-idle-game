@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
+    private const long MaxCloudUploadDelayCompensationSeconds = 120;
     private const string OreKey = "ore";
     private const string ResourceKeyPrefix = "resource_";
     private const string ShuttleStateKeyPrefix = "shuttle_state_";
@@ -34,6 +36,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TemporaryBoostConfig temporaryBoostConfig;
     [SerializeField] private MissionConfig missionConfig;
     [SerializeField] private MetaBonusConfig metaBonusConfig;
+    [SerializeField] private CloudProgressBridge cloudProgressBridge;
+    [SerializeField] private bool requireInternetOnStartup = true;
 
     private GameData gameData;
     private PlatformSystem platformSystem;
@@ -51,11 +55,66 @@ public class GameManager : MonoBehaviour
     private readonly Dictionary<TemporaryBoostState, float> boostOfferAutoCloseTimers = new Dictionary<TemporaryBoostState, float>();
     private bool suppressBoostOfferPopup;
     private bool isApplicationInBackground;
+    private bool isApplyingCloudProgress;
+    private bool cloudSaveInProgress;
+    private bool cloudSaveQueued;
+    private long queuedCloudSaveUnixTime;
+    private bool isStartupBlockedByNetwork;
+    private bool isStartupLoading;
+    private long startupOfflineCalculationUnixTime;
+    private long offlineCalculationNowUnixTime;
 
     private void Awake()
     {
+        startupOfflineCalculationUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         GameTextProvider.Configure(gameConfig);
         GameTextProvider.SetLanguage((GameLanguage)PlayerPrefs.GetInt(LanguageKey, (int)GameLanguage.English));
+
+        if (ShouldBlockStartupForNetwork())
+        {
+            isStartupBlockedByNetwork = true;
+            Debug.LogWarning(GetNetworkErrorText());
+            return;
+        }
+
+        isStartupLoading = true;
+    }
+
+    private async void Start()
+    {
+        if (isStartupBlockedByNetwork)
+        {
+            uiManager?.ShowStartupNetworkError(GetNetworkErrorText());
+            return;
+        }
+
+        uiManager?.ShowStartupLoading(GetStartupLoadingText());
+        offlineCalculationNowUnixTime = startupOfflineCalculationUnixTime;
+
+        try
+        {
+            GameProgressSnapshot cloudSnapshot = await LoadCloudProgressSnapshotAsync();
+            InitializeLocalGameSystems();
+            CompensateCloudUploadDelayForStartup(cloudSnapshot);
+
+            if (ShouldApplyCloudProgress(cloudSnapshot))
+            {
+                ApplyProgressSnapshot(cloudSnapshot);
+            }
+
+            InitializeGameUI();
+            CompleteStartupAfterSaveSync();
+        }
+        finally
+        {
+            offlineCalculationNowUnixTime = 0;
+            isStartupLoading = false;
+            uiManager?.HideStartupLoading();
+        }
+    }
+
+    private void InitializeLocalGameSystems()
+    {
         LoadGame();
 
         MissionConfig resolvedMissionConfig = missionConfig != null
@@ -81,26 +140,31 @@ public class GameManager : MonoBehaviour
         SyncPendingOfflinePreviewWithCurrentDynamicStats();
     }
 
-    private void Start()
+    private void InitializeGameUI()
     {
-        if (uiManager != null)
+        if (uiManager == null)
         {
-            uiManager.InitializeShuttleButtons(HandleShuttleSendRequested);
-            uiManager.InitializeShuttleDisplays();
-            uiManager.InitializeMenuButtons(HandleExitRequested, HandleLanguageSelected);
-            uiManager.InitializeMainScreenActionButtons(OnUpgradeButtonClicked, OnBuildButtonClicked);
-            uiManager.InitializeBoostOfferButton(HandleBoostOfferAccepted);
-            uiManager.InitializeUpgradeList(
-                upgradeManager.UpgradeStates,
-                HandleUpgradeBuyRequested);
-            uiManager.InitializeBuildingList(
-                upgradeManager.BuildingStates,
-                HandleBuildingBuyRequested);
-            uiManager.InitializeMetaBonusList(
-                missionManager != null ? missionManager.MetaBonusStates : null,
-                HandleMetaBonusBuyRequested);
+            return;
         }
 
+        uiManager.InitializeShuttleButtons(HandleShuttleSendRequested);
+        uiManager.InitializeShuttleDisplays();
+        uiManager.InitializeMenuButtons(HandleExitRequested, HandleLanguageSelected);
+        uiManager.InitializeMainScreenActionButtons(OnUpgradeButtonClicked, OnBuildButtonClicked);
+        uiManager.InitializeBoostOfferButton(HandleBoostOfferAccepted);
+        uiManager.InitializeUpgradeList(
+            upgradeManager.UpgradeStates,
+            HandleUpgradeBuyRequested);
+        uiManager.InitializeBuildingList(
+            upgradeManager.BuildingStates,
+            HandleBuildingBuyRequested);
+        uiManager.InitializeMetaBonusList(
+            missionManager != null ? missionManager.MetaBonusStates : null,
+            HandleMetaBonusBuyRequested);
+    }
+
+    private void CompleteStartupAfterSaveSync()
+    {
         if (!ShouldShowOfflineRewardPopup())
         {
             if (HasPendingOfflineStateChanges())
@@ -119,6 +183,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (isStartupBlockedByNetwork || isStartupLoading)
+        {
+            return;
+        }
+
         if (uiManager != null && uiManager.IsOfflineRewardVisible)
         {
             return;
@@ -127,7 +196,7 @@ public class GameManager : MonoBehaviour
         bool shouldRefreshUi = false;
         bool shouldSaveGame = false;
 
-        if (timeSystem.UpdateTimer(Time.deltaTime))
+        if (timeSystem != null && timeSystem.UpdateTimer(Time.deltaTime))
         {
             shouldRefreshUi = true;
         }
@@ -333,7 +402,11 @@ public class GameManager : MonoBehaviour
     {
         suppressBoostOfferPopup = true;
         uiManager?.HideBoostOffer();
-        SaveGame();
+
+        if (!ShouldShowOfflineRewardPopup())
+        {
+            SaveGame();
+        }
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -461,8 +534,160 @@ public class GameManager : MonoBehaviour
             missionManager.SaveProgress();
         }
 
-        PlayerPrefs.SetString(LastSaveTimeKey, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+        long savedAtUnixTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        PlayerPrefs.SetString(LastSaveTimeKey, savedAtUnixTime.ToString());
         PlayerPrefs.Save();
+        QueueCloudSave(savedAtUnixTime);
+    }
+
+    private async Task<GameProgressSnapshot> LoadCloudProgressSnapshotAsync()
+    {
+        if (cloudProgressBridge == null)
+        {
+            cloudProgressBridge = FindAnyObjectByType<CloudProgressBridge>();
+        }
+
+        if (cloudProgressBridge == null)
+        {
+            return null;
+        }
+
+        bool signedIn = await cloudProgressBridge.InitializeAndSignInAnonymousAsync();
+
+        if (!signedIn)
+        {
+            return null;
+        }
+
+        return await cloudProgressBridge.LoadProgressAsync();
+    }
+
+    private bool ShouldApplyCloudProgress(GameProgressSnapshot snapshot)
+    {
+        if (snapshot == null || !snapshot.HasCompatibleSchema || snapshot.gameData == null)
+        {
+            return false;
+        }
+
+        if (!TryGetLocalSavedAtUnixTime(out long localSavedAt) || localSavedAt <= 0)
+        {
+            return true;
+        }
+
+        return GetSnapshotSavedAtUnixTime(snapshot) >= localSavedAt;
+    }
+
+    private void CompensateCloudUploadDelayForStartup(GameProgressSnapshot snapshot)
+    {
+        if (snapshot == null || !isStartupLoading)
+        {
+            return;
+        }
+
+        if (!TryGetLocalSavedAtUnixTime(out long localSavedAt) || localSavedAt <= 0)
+        {
+            return;
+        }
+
+        long snapshotSavedAt = GetSnapshotSavedAtUnixTime(snapshot);
+        long uploadDelaySeconds = snapshotSavedAt - localSavedAt;
+
+        if (uploadDelaySeconds <= 0 || uploadDelaySeconds > MaxCloudUploadDelayCompensationSeconds)
+        {
+            return;
+        }
+
+        snapshot.savedAtUnixTime = localSavedAt;
+        snapshot.clientSavedAtUnixTime = localSavedAt;
+    }
+
+    private void ApplyProgressSnapshot(GameProgressSnapshot snapshot)
+    {
+        if (snapshot == null || snapshot.gameData == null)
+        {
+            return;
+        }
+
+        isApplyingCloudProgress = true;
+
+        try
+        {
+            gameData.CopyFrom(snapshot.gameData);
+            upgradeManager?.ApplyProgress(snapshot);
+            missionManager?.ApplyProgress(snapshot);
+
+            long snapshotSavedAt = GetSnapshotSavedAtUnixTime(snapshot);
+
+            if (snapshotSavedAt > 0)
+            {
+                PlayerPrefs.SetString(LastSaveTimeKey, snapshotSavedAt.ToString());
+            }
+
+            SyncMissionProgress();
+            CacheOfflineProgress(CalculateOfflineProgress());
+            AdvanceTemporaryBoostTimersForInactiveTime();
+            SyncPendingOfflinePreviewWithCurrentDynamicStats();
+        }
+        finally
+        {
+            isApplyingCloudProgress = false;
+        }
+    }
+
+    private GameProgressSnapshot CreateProgressSnapshot(long savedAtUnixTime)
+    {
+        long normalizedSavedAtUnixTime = savedAtUnixTime > 0
+            ? savedAtUnixTime
+            : DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+        GameProgressSnapshot snapshot = new GameProgressSnapshot
+        {
+            savedAtUnixTime = normalizedSavedAtUnixTime,
+            clientSavedAtUnixTime = normalizedSavedAtUnixTime,
+            gameData = gameData != null ? gameData.Clone() : new GameData()
+        };
+
+        upgradeManager?.ExportProgress(snapshot);
+        missionManager?.ExportProgress(snapshot);
+        return snapshot;
+    }
+
+    private async void QueueCloudSave(long savedAtUnixTime)
+    {
+        queuedCloudSaveUnixTime = Math.Max(queuedCloudSaveUnixTime, savedAtUnixTime);
+
+        if (cloudProgressBridge == null ||
+            !cloudProgressBridge.IsReady ||
+            isApplyingCloudProgress)
+        {
+            queuedCloudSaveUnixTime = 0;
+            return;
+        }
+
+        if (cloudSaveInProgress)
+        {
+            cloudSaveQueued = true;
+            return;
+        }
+
+        try
+        {
+            do
+            {
+                cloudSaveQueued = false;
+                long snapshotSavedAtUnixTime = queuedCloudSaveUnixTime > 0
+                    ? queuedCloudSaveUnixTime
+                    : DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                queuedCloudSaveUnixTime = 0;
+                cloudSaveInProgress = true;
+                await cloudProgressBridge.SaveProgressAsync(CreateProgressSnapshot(snapshotSavedAtUnixTime));
+            }
+            while (cloudSaveQueued);
+        }
+        finally
+        {
+            cloudSaveInProgress = false;
+        }
     }
 
     private void LoadGame()
@@ -633,6 +858,11 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationPause(bool pauseStatus)
     {
+        if (isStartupBlockedByNetwork || isStartupLoading)
+        {
+            return;
+        }
+
         if (pauseStatus)
         {
             HandleApplicationSentToBackground();
@@ -644,6 +874,11 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationFocus(bool hasFocus)
     {
+        if (isStartupBlockedByNetwork || isStartupLoading)
+        {
+            return;
+        }
+
         if (!hasFocus)
         {
             HandleApplicationSentToBackground();
@@ -655,9 +890,18 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        if (isStartupBlockedByNetwork || isStartupLoading)
+        {
+            return;
+        }
+
         suppressBoostOfferPopup = true;
         uiManager?.HideBoostOffer();
-        SaveGame();
+
+        if (!ShouldShowOfflineRewardPopup())
+        {
+            SaveGame();
+        }
     }
 
     private void RefreshUI()
@@ -690,6 +934,22 @@ public class GameManager : MonoBehaviour
             GetConfiguredNoMissionsText());
         UpdateBoostUI();
         uiManager.RefreshBoostOfferTexts(pendingBoostOfferStates);
+    }
+
+    private bool ShouldBlockStartupForNetwork()
+    {
+        return requireInternetOnStartup &&
+               Application.internetReachability == NetworkReachability.NotReachable;
+    }
+
+    private string GetNetworkErrorText()
+    {
+        return GameTextProvider.UIText.NetworkErrorText;
+    }
+
+    private string GetStartupLoadingText()
+    {
+        return GameTextProvider.UIText.StartupLoadingText;
     }
 
     private OfflineProgress CalculateOfflineProgress()
@@ -886,20 +1146,33 @@ public class GameManager : MonoBehaviour
 
     private long GetOfflineSeconds()
     {
-        string savedTime = PlayerPrefs.GetString(LastSaveTimeKey, string.Empty);
-
-        if (string.IsNullOrEmpty(savedTime))
+        if (!TryGetLocalSavedAtUnixTime(out long lastSaveTime))
         {
             return 0;
         }
 
-        if (!long.TryParse(savedTime, out long lastSaveTime))
-        {
-            return 0;
-        }
-
-        long currentTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        long currentTime = offlineCalculationNowUnixTime > 0
+            ? offlineCalculationNowUnixTime
+            : DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         return Math.Max(0, currentTime - lastSaveTime);
+    }
+
+    private bool TryGetLocalSavedAtUnixTime(out long savedAtUnixTime)
+    {
+        string savedTime = PlayerPrefs.GetString(LastSaveTimeKey, string.Empty);
+        return long.TryParse(savedTime, out savedAtUnixTime) && savedAtUnixTime > 0;
+    }
+
+    private long GetSnapshotSavedAtUnixTime(GameProgressSnapshot snapshot)
+    {
+        if (snapshot == null)
+        {
+            return 0;
+        }
+
+        return snapshot.clientSavedAtUnixTime > 0
+            ? snapshot.clientSavedAtUnixTime
+            : snapshot.savedAtUnixTime;
     }
 
     private void AdvanceTemporaryBoostTimersForInactiveTime()
@@ -933,6 +1206,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        List<TemporaryBoostState> expiredBoostOffers = new List<TemporaryBoostState>();
+
         for (int i = pendingBoostOfferStates.Count - 1; i >= 0; i--)
         {
             TemporaryBoostState boostState = pendingBoostOfferStates[i];
@@ -949,9 +1224,14 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
+            expiredBoostOffers.Add(boostState);
+        }
+
+        for (int i = 0; i < expiredBoostOffers.Count; i++)
+        {
+            TemporaryBoostState boostState = expiredBoostOffers[i];
+            RemovePendingBoostOffer(boostState);
             upgradeManager.TryDeclineTemporaryBoost(boostState);
-            pendingBoostOfferStates.RemoveAt(i);
-            boostOfferAutoCloseTimers.Remove(boostState);
         }
     }
 
@@ -965,7 +1245,11 @@ public class GameManager : MonoBehaviour
         isApplicationInBackground = true;
         suppressBoostOfferPopup = true;
         uiManager?.HideBoostOffer();
-        SaveGame();
+
+        if (!ShouldShowOfflineRewardPopup())
+        {
+            SaveGame();
+        }
     }
 
     private void HandleApplicationReturnedToForeground()
@@ -1226,7 +1510,7 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
-        bool hasChanges = false;
+        List<TemporaryBoostState> expiredBoostOffers = new List<TemporaryBoostState>();
 
         for (int i = pendingBoostOfferStates.Count - 1; i >= 0; i--)
         {
@@ -1244,15 +1528,19 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
-            upgradeManager.TryDeclineTemporaryBoost(boostState);
-            pendingBoostOfferStates.RemoveAt(i);
-            boostOfferAutoCloseTimers.Remove(boostState);
-            hasChanges = true;
+            expiredBoostOffers.Add(boostState);
         }
 
-        if (!hasChanges)
+        if (expiredBoostOffers.Count <= 0)
         {
             return false;
+        }
+
+        for (int i = 0; i < expiredBoostOffers.Count; i++)
+        {
+            TemporaryBoostState boostState = expiredBoostOffers[i];
+            RemovePendingBoostOffer(boostState);
+            upgradeManager.TryDeclineTemporaryBoost(boostState);
         }
 
         RefreshBoostOfferButtons();

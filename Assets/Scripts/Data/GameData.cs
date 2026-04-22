@@ -248,3 +248,50 @@ public class GameData
         return Math.Max(1, Math.Min(MaxShuttles, count));
     }
 }
+
+[Serializable]
+public class GameProgressSnapshot
+{
+    public const int CurrentSchemaVersion = 1;
+
+    public int schemaVersion = CurrentSchemaVersion;
+    public long savedAtUnixTime;
+    public long clientSavedAtUnixTime;
+    public GameData gameData = new GameData();
+    public List<ProgressLevelState> upgradeLevels = new List<ProgressLevelState>();
+    public List<ProgressLevelState> buildingLevels = new List<ProgressLevelState>();
+    public List<ProgressLevelState> metaBonusLevels = new List<ProgressLevelState>();
+    public List<TemporaryBoostProgressState> temporaryBoosts = new List<TemporaryBoostProgressState>();
+    public int missionIndex;
+    public bool missionRewardReady;
+
+    public bool HasCompatibleSchema => schemaVersion > 0 && schemaVersion <= CurrentSchemaVersion;
+}
+
+[Serializable]
+public class ProgressLevelState
+{
+    public string id;
+    public int level;
+
+    public ProgressLevelState()
+    {
+    }
+
+    public ProgressLevelState(string id, int level)
+    {
+        this.id = id;
+        this.level = Math.Max(0, level);
+    }
+}
+
+[Serializable]
+public class TemporaryBoostProgressState
+{
+    public string id;
+    public bool isAvailable;
+    public bool isActive;
+    public float timeUntilAvailable;
+    public int nextOreThreshold;
+    public float activeRemainingTime;
+}

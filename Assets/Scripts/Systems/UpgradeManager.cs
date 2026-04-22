@@ -101,6 +101,58 @@ public class UpgradeManager
         }
     }
 
+    public void ExportProgress(GameProgressSnapshot snapshot)
+    {
+        if (snapshot == null)
+        {
+            return;
+        }
+
+        snapshot.upgradeLevels.Clear();
+        snapshot.buildingLevels.Clear();
+        snapshot.temporaryBoosts.Clear();
+
+        for (int i = 0; i < upgradeStates.Count; i++)
+        {
+            UpgradeState state = upgradeStates[i];
+            snapshot.upgradeLevels.Add(new ProgressLevelState(state.Definition.id, state.Level));
+        }
+
+        for (int i = 0; i < buildingStates.Count; i++)
+        {
+            BuildingState state = buildingStates[i];
+            snapshot.buildingLevels.Add(new ProgressLevelState(state.Definition.id, state.Level));
+        }
+
+        for (int i = 0; i < temporaryBoostStates.Count; i++)
+        {
+            TemporaryBoostState state = temporaryBoostStates[i];
+            snapshot.temporaryBoosts.Add(new TemporaryBoostProgressState
+            {
+                id = state.Definition.id,
+                isAvailable = state.IsAvailable,
+                isActive = state.IsActive,
+                timeUntilAvailable = state.TimeUntilAvailable,
+                nextOreThreshold = state.NextOreThreshold,
+                activeRemainingTime = state.ActiveRemainingTime
+            });
+        }
+    }
+
+    public void ApplyProgress(GameProgressSnapshot snapshot)
+    {
+        if (snapshot == null)
+        {
+            return;
+        }
+
+        ApplyUpgradeLevels(snapshot.upgradeLevels);
+        ApplyBuildingLevels(snapshot.buildingLevels);
+        ApplyTemporaryBoostProgress(snapshot.temporaryBoosts);
+        RecalculateIncome();
+        UpgradesChanged?.Invoke();
+    }
+
     public void ResetUpgrades()
     {
         for (int i = 0; i < upgradeStates.Count; i++)
@@ -128,6 +180,94 @@ public class UpgradeManager
         activeTemporaryBoostStates.Clear();
         RecalculateIncome();
         UpgradesChanged?.Invoke();
+    }
+
+    private void ApplyUpgradeLevels(IReadOnlyList<ProgressLevelState> savedLevels)
+    {
+        for (int i = 0; i < upgradeStates.Count; i++)
+        {
+            UpgradeState state = upgradeStates[i];
+            state.SetLevel(FindSavedLevel(savedLevels, state.Definition.id));
+        }
+    }
+
+    private void ApplyBuildingLevels(IReadOnlyList<ProgressLevelState> savedLevels)
+    {
+        for (int i = 0; i < buildingStates.Count; i++)
+        {
+            BuildingState state = buildingStates[i];
+            state.SetLevel(FindSavedLevel(savedLevels, state.Definition.id));
+        }
+    }
+
+    private void ApplyTemporaryBoostProgress(IReadOnlyList<TemporaryBoostProgressState> savedBoosts)
+    {
+        activeTemporaryBoostStates.Clear();
+
+        for (int i = 0; i < temporaryBoostStates.Count; i++)
+        {
+            TemporaryBoostState state = temporaryBoostStates[i];
+            TemporaryBoostProgressState savedBoost = FindSavedTemporaryBoost(savedBoosts, state.Definition.id);
+
+            state.SetAvailable(false);
+            state.Deactivate();
+
+            if (savedBoost == null)
+            {
+                InitializeTemporaryBoostState(state);
+                continue;
+            }
+
+            state.SetAvailable(savedBoost.isAvailable);
+            state.SetTimeUntilAvailable(savedBoost.timeUntilAvailable);
+            state.SetNextOreThreshold(savedBoost.nextOreThreshold);
+
+            if (savedBoost.isActive)
+            {
+                state.Activate(savedBoost.activeRemainingTime);
+                activeTemporaryBoostStates.Add(state);
+            }
+        }
+    }
+
+    private int FindSavedLevel(IReadOnlyList<ProgressLevelState> savedLevels, string id)
+    {
+        if (savedLevels == null || string.IsNullOrEmpty(id))
+        {
+            return 0;
+        }
+
+        for (int i = 0; i < savedLevels.Count; i++)
+        {
+            ProgressLevelState savedLevel = savedLevels[i];
+
+            if (savedLevel != null && savedLevel.id == id)
+            {
+                return Mathf.Max(0, savedLevel.level);
+            }
+        }
+
+        return 0;
+    }
+
+    private TemporaryBoostProgressState FindSavedTemporaryBoost(IReadOnlyList<TemporaryBoostProgressState> savedBoosts, string id)
+    {
+        if (savedBoosts == null || string.IsNullOrEmpty(id))
+        {
+            return null;
+        }
+
+        for (int i = 0; i < savedBoosts.Count; i++)
+        {
+            TemporaryBoostProgressState savedBoost = savedBoosts[i];
+
+            if (savedBoost != null && savedBoost.id == id)
+            {
+                return savedBoost;
+            }
+        }
+
+        return null;
     }
 
     public bool TryBuyBuilding(BuildingState state)

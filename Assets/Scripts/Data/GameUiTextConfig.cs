@@ -77,6 +77,8 @@ public class GameUiTextConfig
     public const string DefaultUnknownText = "Unknown";
     public const string DefaultMultiplierPrefixText = "x";
     public const string DefaultSecondsSuffixText = "s";
+    public const string DefaultNetworkErrorText = "Network error";
+    public const string DefaultStartupLoadingText = "Loading";
 
     [Header("HUD Labels")]
     [SerializeField] private string oreLabel = DefaultOreLabel;
@@ -146,6 +148,10 @@ public class GameUiTextConfig
     [Header("Offline")]
     [SerializeField] private string offlineWarehouseRewardPrefix = DefaultOfflineWarehouseRewardPrefix;
     [SerializeField] private string offlineWarehouseRewardResourceSuffix = DefaultOfflineWarehouseRewardResourceSuffix;
+
+    [Header("Startup")]
+    [SerializeField] private string networkErrorText = DefaultNetworkErrorText;
+    [SerializeField] private string startupLoadingText = DefaultStartupLoadingText;
 
     [Header("Effects")]
     [SerializeField] private string orePerClickEffectText = DefaultOrePerClickEffectText;
@@ -240,6 +246,8 @@ public class GameUiTextConfig
     public string UnknownText => GetValue(unknownText, DefaultUnknownText);
     public string MultiplierPrefixText => GetValue(multiplierPrefixText, DefaultMultiplierPrefixText);
     public string SecondsSuffixText => GetValue(secondsSuffixText, DefaultSecondsSuffixText);
+    public string NetworkErrorText => GetValue(networkErrorText, DefaultNetworkErrorText);
+    public string StartupLoadingText => GetValue(startupLoadingText, DefaultStartupLoadingText);
 
     private static string GetValue(string value, string fallback)
     {

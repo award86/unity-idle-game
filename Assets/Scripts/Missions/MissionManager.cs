@@ -55,6 +55,41 @@ public class MissionManager
         }
     }
 
+    public void ExportProgress(GameProgressSnapshot snapshot)
+    {
+        if (snapshot == null)
+        {
+            return;
+        }
+
+        snapshot.missionIndex = CurrentMissionIndex;
+        snapshot.missionRewardReady = IsActiveMissionReadyToClaim;
+        snapshot.metaBonusLevels.Clear();
+
+        for (int i = 0; i < metaBonusStates.Count; i++)
+        {
+            MetaBonusState state = metaBonusStates[i];
+            snapshot.metaBonusLevels.Add(new ProgressLevelState(state.Definition.id, state.Level));
+        }
+    }
+
+    public void ApplyProgress(GameProgressSnapshot snapshot)
+    {
+        if (snapshot == null)
+        {
+            return;
+        }
+
+        CurrentMissionIndex = Mathf.Clamp(snapshot.missionIndex, 0, missions.Count);
+        IsActiveMissionReadyToClaim = snapshot.missionRewardReady && HasActiveMission;
+
+        for (int i = 0; i < metaBonusStates.Count; i++)
+        {
+            MetaBonusState state = metaBonusStates[i];
+            state.SetLevel(FindSavedLevel(snapshot.metaBonusLevels, state.Definition.id));
+        }
+    }
+
     public void ResetProgress()
     {
         CurrentMissionIndex = 0;
@@ -68,6 +103,26 @@ public class MissionManager
             state.SetLevel(0);
             PlayerPrefs.DeleteKey(GetMetaBonusLevelKey(state.Definition.id));
         }
+    }
+
+    private int FindSavedLevel(IReadOnlyList<ProgressLevelState> savedLevels, string id)
+    {
+        if (savedLevels == null || string.IsNullOrEmpty(id))
+        {
+            return 0;
+        }
+
+        for (int i = 0; i < savedLevels.Count; i++)
+        {
+            ProgressLevelState savedLevel = savedLevels[i];
+
+            if (savedLevel != null && savedLevel.id == id)
+            {
+                return Mathf.Max(0, savedLevel.level);
+            }
+        }
+
+        return 0;
     }
 
     public bool TryBuyMetaBonus(MetaBonusState state)

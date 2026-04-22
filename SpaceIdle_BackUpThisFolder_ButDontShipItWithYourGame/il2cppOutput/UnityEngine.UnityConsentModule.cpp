@@ -9,9 +9,11 @@ struct Action_1_t9B103DCF4DCA2ADAA12800C4794084698B517900;
 struct CharU5BU5D_t799905CF001DD5F13F7DBB310181FC4D8B7D0AAB;
 struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771;
 struct ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918;
+struct AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C;
 struct Attribute_tFDA8EFEFB0711976D22474794576DAF28F7440AA;
 struct DelegateData_t9B286B493293CD2D23A5B2B5EF0E5B1324C2B77E;
 struct EmbeddedAttribute_t2D4F1F0FFB2E85678CD7847C4EEAF4C2310B8104;
+struct IAsyncResult_t7B9B5A0ECB35DCEC31B8A8122C37D687369253B5;
 struct MethodInfo_t;
 struct RefSafetyRulesAttribute_t8BBAC91199463222A52CDDDD50F86AD91912ECFF;
 struct String_t;
@@ -237,7 +239,7 @@ inline void Action_1_Invoke_mA0C49E7E3E4E856769E5D6FC5DF7CB90A95E28AB_inline (Ac
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 71021
+// Method Definition Index: 102496
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EmbeddedAttribute__ctor_m0B7103D0FED6E4EEA6D2F21449DE391A4127DCD1 (EmbeddedAttribute_t2D4F1F0FFB2E85678CD7847C4EEAF4C2310B8104* __this, const RuntimeMethod* method) 
 {
 	{
@@ -253,7 +255,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EmbeddedAttribute__ctor_m0B7103D0FED6E4E
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 71022
+// Method Definition Index: 102497
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RefSafetyRulesAttribute__ctor_m43EE5945539D1DA178D5E0C476BC55CFC3370C63 (RefSafetyRulesAttribute_t8BBAC91199463222A52CDDDD50F86AD91912ECFF* __this, int32_t ___0_p, const RuntimeMethod* method) 
 {
 	{
@@ -271,7 +273,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RefSafetyRulesAttribute__ctor_m43EE59455
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 71023
+// Method Definition Index: 102498
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ConsentState__ctor_mB3407A219590592A7EF832910F3CCD58F9FE72C1 (ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF* __this, const RuntimeMethod* method) 
 {
 	{
@@ -287,7 +289,7 @@ IL2CPP_EXTERN_C  void ConsentState__ctor_mB3407A219590592A7EF832910F3CCD58F9FE72
 	_thisAdjusted = reinterpret_cast<ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF*>(__this + _offset);
 	ConsentState__ctor_mB3407A219590592A7EF832910F3CCD58F9FE72C1(_thisAdjusted, method);
 }
-// Method Definition Index: 71024
+// Method Definition Index: 102499
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ConsentState_ToString_mEDD4D983C94831BA4C151A6D05B1906810146665 (ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -354,7 +356,7 @@ IL2CPP_EXTERN_C  String_t* ConsentState_ToString_mEDD4D983C94831BA4C151A6D05B190
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 71025
+// Method Definition Index: 102500
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF EndUserConsent_GetConsentState_mD5E805A905B376D596AAF31A4AB4344535F7CD8E (const RuntimeMethod* method) 
 {
 	ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF V_0;
@@ -365,7 +367,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ConsentState_t20D6467F75E4F212880A838770B6584
 		return L_0;
 	}
 }
-// Method Definition Index: 71026
+// Method Definition Index: 102501
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EndUserConsent_OnConsentStateChanged_m7A2FD500C237FDAE46112404721227038A7A259A (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -394,7 +396,7 @@ IL_0016:
 		return;
 	}
 }
-// Method Definition Index: 71027
+// Method Definition Index: 102502
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EndUserConsent_GetConsentState_Injected_mFF5752BD0372E6E5E859F47B97185C71D2094D53 (ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF* ___0_ret, const RuntimeMethod* method) 
 {
 	typedef void (*EndUserConsent_GetConsentState_Injected_mFF5752BD0372E6E5E859F47B97185C71D2094D53_ftn) (ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF*);
@@ -406,7 +408,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EndUserConsent_GetConsentState_Injected_
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
-// Method Definition Index: 601
+// Method Definition Index: 887
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_mA0C49E7E3E4E856769E5D6FC5DF7CB90A95E28AB_gshared_inline (Action_1_t9B103DCF4DCA2ADAA12800C4794084698B517900* __this, ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF ___0_obj, const RuntimeMethod* method) 
 {
 	typedef void (*FunctionPointerType) (RuntimeObject*, ConsentState_t20D6467F75E4F212880A838770B6584FD88FC8DF, const RuntimeMethod*);
