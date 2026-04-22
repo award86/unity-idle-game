@@ -89,10 +89,12 @@
     <Compile Include="Assets\Scripts\Missions\MetaBonusState.cs" />
     <Compile Include="Assets\Scripts\Upgrades\TemporaryBoostTargetType.cs" />
     <Compile Include="Assets\Scripts\Utilities\NumberFormatter.cs" />
+    <Compile Include="Assets\Scripts\MineSpriteButton.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Upgrades\UpgradeEffectDefinition.cs" />
     <Compile Include="Assets\Scripts\Data\ResourceState.cs" />
     <Compile Include="Assets\Scripts\Missions\MissionProgressData.cs" />
+    <Compile Include="Assets\Scripts\FitBackground.cs" />
     <Compile Include="Assets\Scripts\Systems\EnergySystem.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Systems\ShuttleSystem.cs" />
@@ -1310,7 +1312,6 @@
     <ProjectReference Include="Unity.2D.Animation.Runtime.csproj" />
     <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj" />
     <ProjectReference Include="Unity.Searcher.Editor.csproj" />
-    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj" />
     <ProjectReference Include="Unity.Services.CloudCode.csproj" />
     <ProjectReference Include="Unity.Burst.Editor.csproj" />
     <ProjectReference Include="Unity.Services.CloudSave.Editor.csproj" />

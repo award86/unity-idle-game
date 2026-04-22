@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private const string LastSaveTimeKey = "lastSaveTime";
     private const string LegacyUpgradeLevelKey = "upgradeLevel";
     private const string LanguageKey = "uiLanguage";
+    private const string LanguagePromptShownKey = "uiLanguagePromptShown";
 
     [SerializeField] private UIManager uiManager;
     [FormerlySerializedAs("shuttleConfig")]
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour
 
         uiManager?.ShowStartupLoading(GetStartupLoadingText());
         offlineCalculationNowUnixTime = startupOfflineCalculationUnixTime;
+        bool shouldShowInitialLanguagePrompt = false;
 
         try
         {
@@ -104,6 +106,7 @@ public class GameManager : MonoBehaviour
 
             InitializeGameUI();
             CompleteStartupAfterSaveSync();
+            shouldShowInitialLanguagePrompt = ShouldShowInitialLanguagePrompt();
         }
         finally
         {
@@ -111,6 +114,25 @@ public class GameManager : MonoBehaviour
             isStartupLoading = false;
             uiManager?.HideStartupLoading();
         }
+
+        if (shouldShowInitialLanguagePrompt)
+        {
+            ShowInitialLanguagePrompt();
+        }
+    }
+
+    private bool ShouldShowInitialLanguagePrompt()
+    {
+        return uiManager != null &&
+               !PlayerPrefs.HasKey(LanguageKey) &&
+               PlayerPrefs.GetInt(LanguagePromptShownKey, 0) == 0;
+    }
+
+    private void ShowInitialLanguagePrompt()
+    {
+        PlayerPrefs.SetInt(LanguagePromptShownKey, 1);
+        PlayerPrefs.Save();
+        uiManager.ShowLanguagePanel();
     }
 
     private void InitializeLocalGameSystems()
@@ -257,7 +279,23 @@ public class GameManager : MonoBehaviour
 
     public void OnMineButtonClicked()
     {
-        resourceSystem.MineOre();
+        TryMineOreByClick();
+    }
+
+    private int TryMineOreByClick()
+    {
+        if (resourceSystem == null)
+        {
+            return 0;
+        }
+
+        int minedOre = resourceSystem.MineOre();
+
+        if (minedOre <= 0)
+        {
+            return 0;
+        }
+
         TryAutoSendShuttle();
         bool missionChanged = SyncMissionProgress();
         RefreshUI();
@@ -266,6 +304,42 @@ public class GameManager : MonoBehaviour
         {
             SaveGame();
         }
+
+        return minedOre;
+    }
+
+    public void RegisterMineSpriteButton(MineSpriteButton mineSpriteButton)
+    {
+        if (mineSpriteButton == null || uiManager == null)
+        {
+            return;
+        }
+
+        uiManager.SetMineButtonVisible(false);
+    }
+
+    public bool OnMineSpriteClicked()
+    {
+        return MineOreFromSpriteClick() > 0;
+    }
+
+    public int MineOreFromSpriteClick()
+    {
+        if (!CanUseMineSpriteButton())
+        {
+            return 0;
+        }
+
+        return TryMineOreByClick();
+    }
+
+    public bool CanUseMineSpriteButton()
+    {
+        return resourceSystem != null &&
+               resourceSystem.CanMineOreByClick() &&
+               !isStartupBlockedByNetwork &&
+               !isStartupLoading &&
+               (uiManager == null || !uiManager.IsBusyWithOtherWindow);
     }
 
     public void OnProduceMetalButtonClicked()
@@ -1480,6 +1554,7 @@ public class GameManager : MonoBehaviour
     {
         GameTextProvider.SetLanguage(language);
         PlayerPrefs.SetInt(LanguageKey, (int)language);
+        PlayerPrefs.SetInt(LanguagePromptShownKey, 1);
         PlayerPrefs.Save();
         RefreshUI();
         TryShowNextBoostOffer();

@@ -575,6 +575,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral6237BD03D3D036B2559233CE4D08425156248036
 IL2CPP_EXTERN_C String_t* _stringLiteral6271C1E523E7F8A1674B0067D06B8C98A5779DA6;
 IL2CPP_EXTERN_C String_t* _stringLiteral6380D762F5727813F465EC949F5E70983F244D3E;
 IL2CPP_EXTERN_C String_t* _stringLiteral63DC6E0CF883CB6205EAD3B44800205FD3C2DC8A;
+IL2CPP_EXTERN_C String_t* _stringLiteral6410468465248555D531D65241BAB3AEAE701A8F;
 IL2CPP_EXTERN_C String_t* _stringLiteral64566E94BB3F20B003E394FD3F09C6027E16553A;
 IL2CPP_EXTERN_C String_t* _stringLiteral648715235D6F3AB83147AEC58E0F63515A93F2B3;
 IL2CPP_EXTERN_C String_t* _stringLiteral65538CB74B67E2AACE821C4C69AE7701F2EEFF93;
@@ -983,15 +984,15 @@ IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_SetResult_mF21C48F
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_SetStateMachine_m6449F958B734607B5BE81E8A7809671DA31C3C70_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_SetStateMachine_m9D382E265E211762EDB525CF74EBB7FA21DDDCE8_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_Start_TisU3CInitializeAndSignInAnonymousAsyncU3Ed__12_t32F3A1E194E93BC46B9FCF9DFCDD3AF32A3063E7_mCA41680A0CF053503F1B3DB1118B943406A84E07_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6_m97E10E1028C301AEB208508C219DF4D66752C484_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F_mF52ABE95BC2F00CBC90696B36150AA7032818ED9_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_Start_TisU3CLoadProgressAsyncU3Ed__15_t06FC23AAC60AF5013586E29CC12DAA3B2A31962D_mA3AEA9F4286B12DE580B67B127BA0C4032FC7D25_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_Start_TisU3CSaveProgressAsyncU3Ed__16_tD87EF1ECF8463D49E6BB48FEA93347CB93E47835_m7D5E47C48F1818F67740652DA5345FD0421900F1_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_Start_TisU3CSignInWithCustomTokensAsyncU3Ed__13_tCDF9E84B6DC487EC3CFB7C0F97AA56A70C48B647_mE9F861FA1C3C2761FFA589988079D67E424B8A83_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_Start_TisU3CSignInWithPlatformProviderAsyncU3Ed__14_tC1772115E1ED0BC44AF8DAB81B9882DE306D56F1_m3491B75A2445E3B3FF27A59E752C49401B8F1FB0_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_get_Task_m09169C120A259AF1F267F54C09A92B84D9832943_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* AsyncTaskMethodBuilder_1_get_Task_mE0BB60534FDB93C336F127873E99BED7DB840EB6_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9_m74114409B3F1C5A16935AD675698BAF22BFD7629_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C_mDCC0A7F4298A565F387F551718D3F6FDFFF444A4_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8_m21F0DCF49BDD51C472F038B69AB3FC917EF1B855_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1_mE859A826D73C8B0DC8FF01EFD8C5B3C153702752_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_Add_m5875DF2ACE933D734119C088B2E7C9C63F49B443_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Dictionary_2_ContainsKey_mDD6490A184A54B4A27D4DFBE5A4E06260F6A2394_RuntimeMethod_var;
@@ -2019,7 +2020,7 @@ struct U3CSignInWithPlatformProviderAsyncU3Ed__14_tC1772115E1ED0BC44AF8DAB81B988
 	Func_1_t60B0B212E646FAA748170ABB47E557CC31788685* ___platformSignInOperation;
 	TaskAwaiter_t9B661AC8C2EFA6BAB94C77BB24A5DDA82D61F833 ___U3CU3Eu__1;
 };
-struct U3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6 
+struct U3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F 
 {
 	int32_t ___U3CU3E1__state;
 	AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370 ___U3CU3Et__builder;
@@ -2027,7 +2028,7 @@ struct U3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE660793
 	TaskAwaiter_1_t1F3F1A2BD44A71ED705D6586CA2594868672DE35 ___U3CU3Eu__1;
 	TaskAwaiter_1_tD5422E84C51D1D331CFD16C071219F7D96137339 ___U3CU3Eu__2;
 };
-struct U3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9 
+struct U3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8 
 {
 	int32_t ___U3CU3E1__state;
 	AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D ___U3CU3Et__builder;
@@ -2035,7 +2036,7 @@ struct U3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9
 	int64_t ___savedAtUnixTime;
 	TaskAwaiter_1_t1F3F1A2BD44A71ED705D6586CA2594868672DE35 ___U3CU3Eu__1;
 };
-struct U3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C 
+struct U3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1 
 {
 	int32_t ___U3CU3E1__state;
 	AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D ___U3CU3Et__builder;
@@ -2322,6 +2323,10 @@ struct UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3  : public MonoBehavio
 	Rect_tA04E0F8A1830E767F40FB27ECD8D309303571F0D ___lastAppliedSafeArea;
 	Vector2Int_t69B2886EBAB732D9B880565E18E7568F3DE0CE6A ___lastAppliedScreenSize;
 	RectTransform_t6C5DA5E41A89E0F488B001E45E58963480E543A5* ___cachedMenuButtonRect;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___sharedOverlayButton;
+	bool ___sharedOverlayClickHandlerBound;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___languageDismissOverlayPanel;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___languageDismissOverlayButton;
 	Action_1_t3C8E12A83FD02DF88E3D45DC15401424D77A6E60* ___boostOfferAcceptHandler;
 	Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___mainScreenUpgradeAction;
 	Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___mainScreenBuildAction;
@@ -2641,12 +2646,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_AwaitUnsafeOnCo
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisYieldAwaiter_t5F0A81DC85227C01FFC38D53139B5C19D920B52A_TisU3CSignInWithCustomTokensAsyncU3Ed__13_tCDF9E84B6DC487EC3CFB7C0F97AA56A70C48B647_mD43D8A0E54A92AB4488CB2F153F8946787D7BE1A_gshared (AsyncTaskMethodBuilder_1_t651E7BA5C7209C40335555F361280911CF711AAA* __this, YieldAwaiter_t5F0A81DC85227C01FFC38D53139B5C19D920B52A* ___0_awaiter, U3CSignInWithCustomTokensAsyncU3Ed__13_tCDF9E84B6DC487EC3CFB7C0F97AA56A70C48B647* ___1_stateMachine, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisTaskAwaiter_t9B661AC8C2EFA6BAB94C77BB24A5DDA82D61F833_TisU3CSignInWithPlatformProviderAsyncU3Ed__14_tC1772115E1ED0BC44AF8DAB81B9882DE306D56F1_m5283810F21E5FC14BC08E2E2A014DF25C34264A1_gshared (AsyncTaskMethodBuilder_1_t651E7BA5C7209C40335555F361280911CF711AAA* __this, TaskAwaiter_t9B661AC8C2EFA6BAB94C77BB24A5DDA82D61F833* ___0_awaiter, U3CSignInWithPlatformProviderAsyncU3Ed__14_tC1772115E1ED0BC44AF8DAB81B9882DE306D56F1* ___1_stateMachine, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* Func_1_Invoke_m1412272198DFA4066C83206E5B43353AF10A2EEE_gshared_inline (Func_1_tD5C081AE11746B200C711DD48DBEB00E3A9276D4* __this, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C_mDCC0A7F4298A565F387F551718D3F6FDFFF444A4_gshared (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* __this, U3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C* ___0_stateMachine, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1_mE859A826D73C8B0DC8FF01EFD8C5B3C153702752_gshared (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* __this, U3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1* ___0_stateMachine, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m1BA854F3F4319EA4A4294DDFDA21C395B8D0FF87_gshared (Action_1_tD69A6DC9FBE94131E52F5A73B2A9D4AB51EEC404* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m8EDF953DA7FF0E33AE19FB51BD7DBDB7C495CFE0_gshared (Action_1_tC926860F20D428DA3E93D6FBA36420E904DD903B* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6_mD58755E1AF6CFE0256AB97FD737DD852A4B5705F_gshared (AsyncTaskMethodBuilder_1_tE810F083929D7952F192036D298085BD4B048AD0* __this, U3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6* ___0_stateMachine, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9_m74114409B3F1C5A16935AD675698BAF22BFD7629_gshared (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* __this, U3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9* ___0_stateMachine, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F_mA82C693738C5163C2EC87240624D7C503064C1D7_gshared (AsyncTaskMethodBuilder_1_tE810F083929D7952F192036D298085BD4B048AD0* __this, U3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F* ___0_stateMachine, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8_m21F0DCF49BDD51C472F038B69AB3FC917EF1B855_gshared (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* __this, U3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8* ___0_stateMachine, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_m16C1F2C61FED5955F10EB36BC1CB2DF34B128994_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Clear_m97AA589FB0CCE1240A0C9F7F7C32573B94FD2592_gshared (Dictionary_2_t1E85CF9786F2C7C796C8CC2EB86ADA13A263ECAB* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_ContainsKey_m5A4D75103E82F4CF2703F01E9E38363EAE2F8851_gshared (Dictionary_2_t1E85CF9786F2C7C796C8CC2EB86ADA13A263ECAB* __this, RuntimeObject* ___0_key, const RuntimeMethod* method) ;
@@ -2970,12 +2975,16 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void GameTextProvider_SetLanguage
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_ShouldBlockStartupForNetwork_m4BC7156D6D13D53CC211E84EEE5A1BBDA9EF4AFC (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetNetworkErrorText_m40F9BDA85BB1F64E1967D1B3C539D4819D91E912 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D AsyncVoidMethodBuilder_Create_m13D0B23DD350C14035918384E10AF641E6B9EE67 (const RuntimeMethod* method) ;
-inline void AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C_mDCC0A7F4298A565F387F551718D3F6FDFFF444A4 (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* __this, U3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C* ___0_stateMachine, const RuntimeMethod* method)
+inline void AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1_mE859A826D73C8B0DC8FF01EFD8C5B3C153702752 (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* __this, U3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1* ___0_stateMachine, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D*, U3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C*, const RuntimeMethod*))AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C_mDCC0A7F4298A565F387F551718D3F6FDFFF444A4_gshared)(__this, ___0_stateMachine, method);
+	((  void (*) (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D*, U3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1*, const RuntimeMethod*))AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1_mE859A826D73C8B0DC8FF01EFD8C5B3C153702752_gshared)(__this, ___0_stateMachine, method);
 }
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadGame_m4B7CC013AAEFD16AD55F4224D05460D911C0C88C (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602 (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___0_x, Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___1_y, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool PlayerPrefs_HasKey_mCA5C64BBA6BF8B230BC3BC92B4761DD3B11D4668 (String_t* ___0_key, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948 (String_t* ___0_key, int32_t ___1_value, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerPrefs_Save_m82567E045D69C838112EA204B60C144D4C1EA3AE (const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UIManager_ShowLanguagePanel_m5188E41FA37773F2792542475EDE9B4D802AF8B1 (UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadGame_m4B7CC013AAEFD16AD55F4224D05460D911C0C88C (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MissionConfig_t6E29F006D181A7A80BEF56E1DE14DC27F819A124* MissionConfig_CreateRuntimeDefault_m4A08C8194F582C21AA5E68FC6198483AAA75E497 (const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR MetaBonusConfig_t882DE7E5E799073EC808B441E05849B37D2783BD* MetaBonusConfig_CreateRuntimeDefault_mE95C884AD66B578B856F3D7498C50A2283EA19C9 (const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlatformSystem__ctor_m7D006DB1CF8FE8E86EA40EA118FC69EF1C7641F7 (PlatformSystem_t816E5CCCFD8A20CF1CB4CC899C72775C0221D79E* __this, GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* ___0_gameData, const RuntimeMethod* method) ;
@@ -3089,7 +3098,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveResource_m469AC83FC463C8
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameData_get_energy_m6DB8C7A4A73703758255B930025319C80694FBFF (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameData_get_metal_m7F216903C1BFFF100F6D18F7D01CE380A2486C3A (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameData_get_crystal_m63017B19359458F4885B98485A6D86A450843656 (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* __this, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948 (String_t* ___0_key, int32_t ___1_value, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameData_get_shuttleDockedOre_m0D75A6553ADC4C9EFDEC8C12CF9FEFC33B769005 (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameData_get_shuttleLoadingTargetOre_m75B7F76C04A636EE14117980E83D4834668F0D3D (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameData_get_shuttleLoadingCooldownRemaining_m84D2A22C63341C59843928E90CB4350FAB4E04B6 (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* __this, const RuntimeMethod* method) ;
@@ -3103,11 +3111,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UpgradeManager_SaveUpgradeLevels_m89C433
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MissionManager_SaveProgress_m5FAB003CE025F4ADA41F84900C2D6BE195BBB0AC (MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Int64_ToString_m284E4E55662818E38654309A41C2B07CD436F36B (int64_t* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerPrefs_SetString_mF4F457C81BB75F0213547C6287BA36E15E1F0256 (String_t* ___0_key, String_t* ___1_value, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerPrefs_Save_m82567E045D69C838112EA204B60C144D4C1EA3AE (const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_QueueCloudSave_m8BE24FD28B53F48725C96CBB9CD84415AE939AFA (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int64_t ___0_savedAtUnixTime, const RuntimeMethod* method) ;
-inline void AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6_m97E10E1028C301AEB208508C219DF4D66752C484 (AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370* __this, U3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6* ___0_stateMachine, const RuntimeMethod* method)
+inline void AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F_mF52ABE95BC2F00CBC90696B36150AA7032818ED9 (AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370* __this, U3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F* ___0_stateMachine, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370*, U3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6_mD58755E1AF6CFE0256AB97FD737DD852A4B5705F_gshared)(__this, ___0_stateMachine, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370*, U3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F_mA82C693738C5163C2EC87240624D7C503064C1D7_gshared)(__this, ___0_stateMachine, method);
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameProgressSnapshot_get_HasCompatibleSchema_m03BD8248A6104911E88814A195A2835CA3F0B1CB (GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_TryGetLocalSavedAtUnixTime_m7A801424C5B7F02B8CE0B65A1F389BECB6AA65B5 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int64_t* ___0_savedAtUnixTime, const RuntimeMethod* method) ;
@@ -3118,15 +3125,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameProgressSnapshot__ctor_m530676A2B3E2
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* GameData_Clone_mCACE8C1F4664AB636C2AB19E189284D39F51084E (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UpgradeManager_ExportProgress_mBB5A45C1537E7D31D9636FFA5E7EA13A1008A7AF (UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* __this, GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* ___0_snapshot, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MissionManager_ExportProgress_m3E8BA0F669219D7D21A67ABBA0BCE1A3C88134A5 (MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* __this, GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* ___0_snapshot, const RuntimeMethod* method) ;
-inline void AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9_m74114409B3F1C5A16935AD675698BAF22BFD7629 (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* __this, U3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9* ___0_stateMachine, const RuntimeMethod* method)
+inline void AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8_m21F0DCF49BDD51C472F038B69AB3FC917EF1B855 (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* __this, U3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8* ___0_stateMachine, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D*, U3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9*, const RuntimeMethod*))AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9_m74114409B3F1C5A16935AD675698BAF22BFD7629_gshared)(__this, ___0_stateMachine, method);
+	((  void (*) (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D*, U3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8*, const RuntimeMethod*))AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8_m21F0DCF49BDD51C472F038B69AB3FC917EF1B855_gshared)(__this, ___0_stateMachine, method);
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredShuttleCapacity_mF12DEAC2C69EB0CF16592A78CE64624A06DCCAE2 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartPlatformCapacity_m495F8C1319FB33B95509A74BE4BF3C8AE08B978B (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartShuttleOre_m25421F33D8DCD8596BE9BFEA14025D578D481790 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Mathf_Clamp_m4DC36EEFDBE5F07C16249DA568023C5ECCFF0E7B_inline (int32_t ___0_value, int32_t ___1_min, int32_t ___2_max, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool PlayerPrefs_HasKey_mCA5C64BBA6BF8B230BC3BC92B4761DD3B11D4668 (String_t* ___0_key, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float PlayerPrefs_GetFloat_m4A9B511E92C8BDEBB64D9B2557126FB030895A4D (String_t* ___0_key, float ___1_defaultValue, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartOre_mFA4DE82C107022B49810DC5E54FB256FEBD96167 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetSavedResourceAmount_mC4D45BBA9E15CCEFF36D2FD5FB8D8BD3BFC5C6D1 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_resourceType, int32_t ___1_defaultValue, String_t* ___2_legacyKey, const RuntimeMethod* method) ;
@@ -14815,7 +14821,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Awake_m4B6E8E2AF58C95C9A2A0C
 	DateTimeOffset_t4EE701FE2F386D6F932FAC9B11E4B74A5B30F0A4 V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:69>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:70>
 		il2cpp_codegen_runtime_class_init_inline(DateTimeOffset_t4EE701FE2F386D6F932FAC9B11E4B74A5B30F0A4_il2cpp_TypeInfo_var);
 		DateTimeOffset_t4EE701FE2F386D6F932FAC9B11E4B74A5B30F0A4 L_0;
 		L_0 = DateTimeOffset_get_UtcNow_mD315065704E3FE153970E6BD06362AEDD3D9765F(NULL);
@@ -14823,15 +14829,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Awake_m4B6E8E2AF58C95C9A2A0C
 		int64_t L_1;
 		L_1 = DateTimeOffset_ToUnixTimeSeconds_m91F88288451BAB5A8373467A94DAEA359AAF34BD((&V_0), NULL);
 		__this->___startupOfflineCalculationUnixTime = L_1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:70>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:71>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_2 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(GameTextProvider_t44E3C71DA6E9F8C6BFBB3748A70586A888B99B62_il2cpp_TypeInfo_var);
 		GameTextProvider_Configure_m7EE5C03C8AB9F9198AB98A56EB8406E7EB77B522_inline(L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:71>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:72>
 		int32_t L_3;
 		L_3 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteral7A76321D899E950A7D85D91986FFF09BB753AFE7, 0, NULL);
 		GameTextProvider_SetLanguage_m1D7F5B0470B648468CA370FF297109ACDAFA07E7_inline(L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:73>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:74>
 		bool L_4;
 		L_4 = GameManager_ShouldBlockStartupForNetwork_m4BC7156D6D13D53CC211E84EEE5A1BBDA9EF4AFC(__this, NULL);
 		if (!L_4)
@@ -14840,22 +14846,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Awake_m4B6E8E2AF58C95C9A2A0C
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:75>
-		__this->___isStartupBlockedByNetwork = (bool)1;
 		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:76>
+		__this->___isStartupBlockedByNetwork = (bool)1;
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:77>
 		String_t* L_5;
 		L_5 = GameManager_GetNetworkErrorText_m40F9BDA85BB1F64E1967D1B3C539D4819D91E912(__this, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_LogWarning_m33EF1B897E0C7C6FF538989610BFAFFEF4628CA9(L_5, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:77>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:78>
 		return;
 	}
 
 IL_0049:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:80>
-		__this->___isStartupLoading = (bool)1;
 		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:81>
+		__this->___isStartupLoading = (bool)1;
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:82>
 		return;
 	}
 }
@@ -14865,10 +14871,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Start_m87A71D65F3171A58DBDDB
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C_mDCC0A7F4298A565F387F551718D3F6FDFFF444A4_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1_mE859A826D73C8B0DC8FF01EFD8C5B3C153702752_RuntimeMethod_var);
 		s_Il2CppMethodInitialized = true;
 	}
-	U3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C V_0;
+	U3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1 V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	{
 		AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D L_0;
@@ -14888,11 +14894,76 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Start_m87A71D65F3171A58DBDDB
 		Il2CppCodeGenWriteBarrier((void**)(&(&V_0)->___U3CU3E4__this), (void*)__this);
 		(&V_0)->___U3CU3E1__state = (-1);
 		AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* L_1 = (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D*)(&(&V_0)->___U3CU3Et__builder);
-		AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C_mDCC0A7F4298A565F387F551718D3F6FDFFF444A4(L_1, (&V_0), AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__55_t556C2E7759060BB78EC8C73B28F1FC32DF30737C_mDCC0A7F4298A565F387F551718D3F6FDFFF444A4_RuntimeMethod_var);
+		AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1_mE859A826D73C8B0DC8FF01EFD8C5B3C153702752(L_1, (&V_0), AsyncVoidMethodBuilder_Start_TisU3CStartU3Ed__56_t023BA4514153852BE8167F57B3F9CD3D7FAB3DB1_mE859A826D73C8B0DC8FF01EFD8C5B3C153702752_RuntimeMethod_var);
 		return;
 	}
 }
 // Method Definition Index: 91831
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_ShouldShowInitialLanguagePrompt_mDF47A24E5A6EC424E1EE505DE9437D6ED2E50637 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral6410468465248555D531D65241BAB3AEAE701A8F);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7A76321D899E950A7D85D91986FFF09BB753AFE7);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:126>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:127>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:128>
+		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_1;
+		L_1 = Object_op_Inequality_mD0BE578448EAA61948F25C32F8DD55AB1F778602(L_0, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_1)
+		{
+			goto IL_0029;
+		}
+	}
+	{
+		bool L_2;
+		L_2 = PlayerPrefs_HasKey_mCA5C64BBA6BF8B230BC3BC92B4761DD3B11D4668(_stringLiteral7A76321D899E950A7D85D91986FFF09BB753AFE7, NULL);
+		if (L_2)
+		{
+			goto IL_0029;
+		}
+	}
+	{
+		int32_t L_3;
+		L_3 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteral6410468465248555D531D65241BAB3AEAE701A8F, 0, NULL);
+		return (bool)((((int32_t)L_3) == ((int32_t)0))? 1 : 0);
+	}
+
+IL_0029:
+	{
+		return (bool)0;
+	}
+}
+// Method Definition Index: 91832
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ShowInitialLanguagePrompt_mC46C18D7BCC74F47A8759F17D26C693F70259082 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral6410468465248555D531D65241BAB3AEAE701A8F);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:133>
+		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral6410468465248555D531D65241BAB3AEAE701A8F, 1, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:134>
+		PlayerPrefs_Save_m82567E045D69C838112EA204B60C144D4C1EA3AE(NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:135>
+		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
+		NullCheck(L_0);
+		UIManager_ShowLanguagePanel_m5188E41FA37773F2792542475EDE9B4D802AF8B1(L_0, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:136>
+		return;
+	}
+}
+// Method Definition Index: 91833
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_InitializeLocalGameSystems_mFB95FBE588C1F7EE9CF5789E57F0E092FCF45EB8 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -14915,11 +14986,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_InitializeLocalGameSystems_m
 	MissionConfig_t6E29F006D181A7A80BEF56E1DE14DC27F819A124* G_B3_0 = NULL;
 	MetaBonusConfig_t882DE7E5E799073EC808B441E05849B37D2783BD* G_B6_0 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:118>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:140>
 		GameManager_LoadGame_m4B7CC013AAEFD16AD55F4224D05460D911C0C88C(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:120>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:121>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:122>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:142>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:143>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:144>
 		MissionConfig_t6E29F006D181A7A80BEF56E1DE14DC27F819A124* L_0 = __this->___missionConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -14945,9 +15016,9 @@ IL_001b:
 IL_0021:
 	{
 		V_0 = G_B3_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:123>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:124>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:125>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:145>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:146>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:147>
 		MetaBonusConfig_t882DE7E5E799073EC808B441E05849B37D2783BD* L_4 = __this->___metaBonusConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_5;
@@ -14973,27 +15044,27 @@ IL_0037:
 IL_003d:
 	{
 		V_1 = G_B6_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:127>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:149>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_8 = __this->___gameData;
 		PlatformSystem_t816E5CCCFD8A20CF1CB4CC899C72775C0221D79E* L_9 = (PlatformSystem_t816E5CCCFD8A20CF1CB4CC899C72775C0221D79E*)il2cpp_codegen_object_new(PlatformSystem_t816E5CCCFD8A20CF1CB4CC899C72775C0221D79E_il2cpp_TypeInfo_var);
 		PlatformSystem__ctor_m7D006DB1CF8FE8E86EA40EA118FC69EF1C7641F7(L_9, L_8, NULL);
 		__this->___platformSystem = L_9;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___platformSystem), (void*)L_9);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:128>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:150>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_10 = __this->___gameData;
 		PlatformSystem_t816E5CCCFD8A20CF1CB4CC899C72775C0221D79E* L_11 = __this->___platformSystem;
 		ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2* L_12 = (ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2*)il2cpp_codegen_object_new(ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2_il2cpp_TypeInfo_var);
 		ShuttleSystem__ctor_m8B56B6C6531DD58BA94EAB2E5B8482F1FD04230E(L_12, L_10, L_11, NULL);
 		__this->___shuttleSystem = L_12;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___shuttleSystem), (void*)L_12);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:129>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:151>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_13 = __this->___gameData;
 		PlatformSystem_t816E5CCCFD8A20CF1CB4CC899C72775C0221D79E* L_14 = __this->___platformSystem;
 		ResourceSystem_t132669C9AFCA494480D51DAE4654F79E59DBEBAC* L_15 = (ResourceSystem_t132669C9AFCA494480D51DAE4654F79E59DBEBAC*)il2cpp_codegen_object_new(ResourceSystem_t132669C9AFCA494480D51DAE4654F79E59DBEBAC_il2cpp_TypeInfo_var);
 		ResourceSystem__ctor_m1BA01CF9710E01057D8D0FB84B14B097C5D5ABFA(L_15, L_13, L_14, NULL);
 		__this->___resourceSystem = L_15;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___resourceSystem), (void*)L_15);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:130>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:152>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_16 = __this->___gameData;
 		MissionConfig_t6E29F006D181A7A80BEF56E1DE14DC27F819A124* L_17 = V_0;
 		MetaBonusConfig_t882DE7E5E799073EC808B441E05849B37D2783BD* L_18 = V_1;
@@ -15001,11 +15072,11 @@ IL_003d:
 		MissionManager__ctor_mEF63D56BFDDCFAF4E4DD560278BC0479A6613BED(L_19, L_16, L_17, L_18, NULL);
 		__this->___missionManager = L_19;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___missionManager), (void*)L_19);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:131>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:153>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_20 = __this->___missionManager;
 		NullCheck(L_20);
 		MissionManager_LoadProgress_m7326ECAAEC564BC82B9C89AE35646BA70CCB52AC(L_20, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:132>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:154>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_21 = __this->___gameData;
 		ResourceSystem_t132669C9AFCA494480D51DAE4654F79E59DBEBAC* L_22 = __this->___resourceSystem;
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_23 = __this->___gameConfig;
@@ -15017,45 +15088,45 @@ IL_003d:
 		UpgradeManager__ctor_mB75B5682E99FBD41852B339921E0306DF07138E2(L_28, L_21, L_22, L_23, L_24, L_25, L_26, L_27, NULL);
 		__this->___upgradeManager = L_28;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___upgradeManager), (void*)L_28);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:133>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:155>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_29 = __this->___upgradeManager;
 		NullCheck(L_29);
 		UpgradeManager_LoadUpgradeLevels_m093E0E58F9952ACCC601F8E43FFCA3E0FAA4694D(L_29, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:134>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:156>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_30 = __this->___upgradeManager;
 		Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* L_31 = (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*)il2cpp_codegen_object_new(Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07_il2cpp_TypeInfo_var);
 		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_31, __this, (intptr_t)((void*)GameManager_HandleUpgradesChanged_mBC8D84CF43AB2981CF1EBDEFB5286395095123BA_RuntimeMethod_var), NULL);
 		NullCheck(L_30);
 		UpgradeManager_add_UpgradesChanged_mA9ACB466CE897A380869298BA6228A99F0484D0F(L_30, L_31, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:135>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:157>
 		ResourceSystem_t132669C9AFCA494480D51DAE4654F79E59DBEBAC* L_32 = __this->___resourceSystem;
 		TimeSystem_t34F1296B89E1E98A39ECFD7A0664582D0F05691C* L_33 = (TimeSystem_t34F1296B89E1E98A39ECFD7A0664582D0F05691C*)il2cpp_codegen_object_new(TimeSystem_t34F1296B89E1E98A39ECFD7A0664582D0F05691C_il2cpp_TypeInfo_var);
 		TimeSystem__ctor_mFD813189F0721833AE5E7926AEA5B84E3E17F12E(L_33, L_32, NULL);
 		__this->___timeSystem = L_33;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___timeSystem), (void*)L_33);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:136>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:158>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_34 = __this->___gameData;
 		ResourceSystem_t132669C9AFCA494480D51DAE4654F79E59DBEBAC* L_35 = __this->___resourceSystem;
 		EnergySystem_tCE9A72ADD9F64C0BBCFF6116E52062524FDC8867* L_36 = (EnergySystem_tCE9A72ADD9F64C0BBCFF6116E52062524FDC8867*)il2cpp_codegen_object_new(EnergySystem_tCE9A72ADD9F64C0BBCFF6116E52062524FDC8867_il2cpp_TypeInfo_var);
 		EnergySystem__ctor_mB1DB55BB8007CEFBE79E8E3DC49A5D97B5AC3DB5(L_36, L_34, L_35, NULL);
 		__this->___energySystem = L_36;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___energySystem), (void*)L_36);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:137>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:159>
 		bool L_37;
 		L_37 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:138>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:160>
 		OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845 L_38;
 		L_38 = GameManager_CalculateOfflineProgress_m50682D8EC212FD75C696C39941DED1E1FC818437(__this, NULL);
 		GameManager_CacheOfflineProgress_m6B333B7012AFAFC258521464149E7AAAB50653B0(__this, L_38, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:139>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:161>
 		GameManager_AdvanceTemporaryBoostTimersForInactiveTime_mB74C81ED177BDC933E8DC105CB1D189CCFF80A4E(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:140>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:162>
 		GameManager_SyncPendingOfflinePreviewWithCurrentDynamicStats_m8C0A811C2DD1F86F658710B04BA8796D169F9D63(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:141>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:163>
 		return;
 	}
 }
-// Method Definition Index: 91832
+// Method Definition Index: 91834
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_InitializeGameUI_m9EA362E2FD15ECB599CE9FA5AAA3DBD891231FEC (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15085,7 +15156,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_InitializeGameUI_m9EA362E2FD
 	RuntimeObject* G_B5_0 = NULL;
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B5_1 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:145>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:167>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -15096,23 +15167,23 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_InitializeGameUI_m9EA362E2FD
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:147>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:169>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:150>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:172>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		Action_1_tD69A6DC9FBE94131E52F5A73B2A9D4AB51EEC404* L_3 = (Action_1_tD69A6DC9FBE94131E52F5A73B2A9D4AB51EEC404*)il2cpp_codegen_object_new(Action_1_tD69A6DC9FBE94131E52F5A73B2A9D4AB51EEC404_il2cpp_TypeInfo_var);
 		Action_1__ctor_m1BA854F3F4319EA4A4294DDFDA21C395B8D0FF87(L_3, __this, (intptr_t)((void*)GameManager_HandleShuttleSendRequested_m917C6038025117686A4E8C9AA0432C6C01E5AF77_RuntimeMethod_var), NULL);
 		NullCheck(L_2);
 		UIManager_InitializeShuttleButtons_mCD1C8EF8FF9E5F04CB8778550B47D9B86BAC425A(L_2, L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:151>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:173>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_4 = __this->___uiManager;
 		NullCheck(L_4);
 		UIManager_InitializeShuttleDisplays_m12FF8F633B79EA8E1862EC0ABF19C7C97A159E30(L_4, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:152>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:174>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_5 = __this->___uiManager;
 		Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* L_6 = (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*)il2cpp_codegen_object_new(Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07_il2cpp_TypeInfo_var);
 		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_6, __this, (intptr_t)((void*)GameManager_HandleExitRequested_m3838FC579CFB07F0A5A21725827DCC3471912EC0_RuntimeMethod_var), NULL);
@@ -15120,7 +15191,7 @@ IL_000f:
 		Action_1__ctor_m69C3BA5FE893361A73C646E1CF36D4B221F49B98(L_7, __this, (intptr_t)((void*)GameManager_HandleLanguageSelected_mEC42EB0C02297BE8D559E86B7EECB43DAEACF9C4_RuntimeMethod_var), NULL);
 		NullCheck(L_5);
 		UIManager_InitializeMenuButtons_m8E5278938A3EEBE449C6DF7998B93B99A47A41C6(L_5, L_6, L_7, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:153>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:175>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_8 = __this->___uiManager;
 		Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* L_9 = (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*)il2cpp_codegen_object_new(Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07_il2cpp_TypeInfo_var);
 		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_9, __this, (intptr_t)((void*)GameManager_OnUpgradeButtonClicked_mC8940F1493BE0DC35CA1F113233CDD3A6E71DA05_RuntimeMethod_var), NULL);
@@ -15128,15 +15199,15 @@ IL_000f:
 		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_10, __this, (intptr_t)((void*)GameManager_OnBuildButtonClicked_m48B0E4A2124D4957AA21964E96293E372E9B1401_RuntimeMethod_var), NULL);
 		NullCheck(L_8);
 		UIManager_InitializeMainScreenActionButtons_m25C24908A16B2438012366B3941463FE07800304(L_8, L_9, L_10, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:154>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:176>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_11 = __this->___uiManager;
 		Action_1_t3C8E12A83FD02DF88E3D45DC15401424D77A6E60* L_12 = (Action_1_t3C8E12A83FD02DF88E3D45DC15401424D77A6E60*)il2cpp_codegen_object_new(Action_1_t3C8E12A83FD02DF88E3D45DC15401424D77A6E60_il2cpp_TypeInfo_var);
 		Action_1__ctor_m420EA7CC880F4499554CCC59FA9CB8CB46B35FEF(L_12, __this, (intptr_t)((void*)GameManager_HandleBoostOfferAccepted_mA471B14505BD7334AD395DEA024063B6D76778E6_RuntimeMethod_var), NULL);
 		NullCheck(L_11);
 		UIManager_InitializeBoostOfferButton_m3043BAA5FE187992C394B27716ED21C0871EE5F1(L_11, L_12, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:155>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:156>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:157>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:177>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:178>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:179>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_13 = __this->___uiManager;
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_14 = __this->___upgradeManager;
 		NullCheck(L_14);
@@ -15146,9 +15217,9 @@ IL_000f:
 		Action_1__ctor_m8B97E6804F867A7DAD01036806CF13473F2C0F5D(L_16, __this, (intptr_t)((void*)GameManager_HandleUpgradeBuyRequested_m276BBE0E051B8BCC6B5D804EC3EA7FFCD54C11A6_RuntimeMethod_var), NULL);
 		NullCheck(L_13);
 		UIManager_InitializeUpgradeList_m0670E16925944C6E61730768A398CFBCDB1C98F8(L_13, L_15, L_16, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:158>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:159>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:160>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:180>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:181>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:182>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_17 = __this->___uiManager;
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_18 = __this->___upgradeManager;
 		NullCheck(L_18);
@@ -15158,9 +15229,9 @@ IL_000f:
 		Action_1__ctor_mBBEE7028CAC0B9897E6DA00BC1B36902266A6AF1(L_20, __this, (intptr_t)((void*)GameManager_HandleBuildingBuyRequested_mD0E4072378ED88A3DC2D9401EDC0F473CF38A932_RuntimeMethod_var), NULL);
 		NullCheck(L_17);
 		UIManager_InitializeBuildingList_m1C2D1426E49338B19CC44D5C504328B354098024(L_17, L_19, L_20, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:161>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:162>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:163>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:183>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:184>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:185>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_21 = __this->___uiManager;
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_22 = __this->___missionManager;
 		if (L_22)
@@ -15192,15 +15263,15 @@ IL_00ee:
 		Action_1__ctor_m859EE0F12AD57999FB6ED975FC30C9AA9E112DA4(L_25, __this, (intptr_t)((void*)GameManager_HandleMetaBonusBuyRequested_m819B0B54D7A8F97E3D76ECF30DDF140EC121D08D_RuntimeMethod_var), NULL);
 		NullCheck(G_B5_1);
 		UIManager_InitializeMetaBonusList_m4B4DC439619C3D0D02E51F1A648B90CD7BE34C7D(G_B5_1, G_B5_0, L_25, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:164>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:186>
 		return;
 	}
 }
-// Method Definition Index: 91833
+// Method Definition Index: 91835
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_CompleteStartupAfterSaveSync_mF233CBF165E16038177E5A5AB52A0A2DE9E7D889 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:168>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:190>
 		bool L_0;
 		L_0 = GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline(__this, NULL);
 		if (L_0)
@@ -15209,7 +15280,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_CompleteStartupAfterSaveSync
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:170>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:192>
 		bool L_1;
 		L_1 = GameManager_HasPendingOfflineStateChanges_m2D0BB05E4DA0DEBF9863D56C9ADDE3C2AED0036A(__this, NULL);
 		if (!L_1)
@@ -15218,32 +15289,32 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_CompleteStartupAfterSaveSync
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:172>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:194>
 		GameManager_ApplyPendingOfflineProgress_m047C832C97D1D069248BF861DEB9DC82713900F0(__this, NULL);
 	}
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:175>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:197>
 		bool L_2;
 		L_2 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:176>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:198>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
 	}
 
 IL_0023:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:179>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:201>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:180>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:202>
 		GameManager_ShowOfflineRewardIfNeeded_m5B122D31E1520B72D8557AEA329898A8E8D5C406(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:181>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:203>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:182>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:204>
 		return;
 	}
 }
-// Method Definition Index: 91834
+// Method Definition Index: 91836
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Update_m7F29D8E933B8D21D2E67507979C0F12ACF87BB41 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15255,7 +15326,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Update_m7F29D8E933B8D21D2E67
 	bool V_0 = false;
 	bool V_1 = false;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:186>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:208>
 		bool L_0 = __this->___isStartupBlockedByNetwork;
 		if (L_0)
 		{
@@ -15272,13 +15343,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Update_m7F29D8E933B8D21D2E67
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:188>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:210>
 		return;
 	}
 
 IL_0011:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:191>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:213>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_3;
@@ -15299,17 +15370,17 @@ IL_0011:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:193>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:215>
 		return;
 	}
 
 IL_002d:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:196>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:218>
 		V_0 = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:197>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:219>
 		V_1 = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:199>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:221>
 		TimeSystem_t34F1296B89E1E98A39ECFD7A0664582D0F05691C* L_6 = __this->___timeSystem;
 		if (!L_6)
 		{
@@ -15329,13 +15400,13 @@ IL_002d:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:201>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:223>
 		V_0 = (bool)1;
 	}
 
 IL_004d:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:204>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:226>
 		EnergySystem_tCE9A72ADD9F64C0BBCFF6116E52062524FDC8867* L_10 = __this->___energySystem;
 		if (!L_10)
 		{
@@ -15355,13 +15426,13 @@ IL_004d:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:206>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:228>
 		V_0 = (bool)1;
 	}
 
 IL_0069:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:209>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:231>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_14 = __this->___upgradeManager;
 		if (!L_14)
 		{
@@ -15369,19 +15440,19 @@ IL_0069:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:211>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:233>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_15 = __this->___upgradeManager;
 		float L_16;
 		L_16 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
 		NullCheck(L_15);
 		UpgradeManager_Update_mF25DEE426CC4B4A993E2C9908F740ACE0663757A(L_15, L_16, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:212>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:234>
 		GameManager_UpdateBoostUI_m29AA2ADB95643321737841D1031FEC66833ADBC4(__this, NULL);
 	}
 
 IL_0087:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:215>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:237>
 		ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2* L_17 = __this->___shuttleSystem;
 		if (!L_17)
 		{
@@ -15401,13 +15472,13 @@ IL_0087:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:217>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:239>
 		V_0 = (bool)1;
 	}
 
 IL_00a3:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:220>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:242>
 		bool L_21;
 		L_21 = GameManager_TryAutoSendShuttle_m437FB17C42D5C0B7D8F1E686F3CA24C0BB356A20(__this, NULL);
 		if (!L_21)
@@ -15416,15 +15487,15 @@ IL_00a3:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:222>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:244>
 		V_0 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:223>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:245>
 		V_1 = (bool)1;
 	}
 
 IL_00af:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:226>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:248>
 		bool L_22;
 		L_22 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
 		if (!L_22)
@@ -15433,15 +15504,15 @@ IL_00af:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:228>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:250>
 		V_0 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:229>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:251>
 		V_1 = (bool)1;
 	}
 
 IL_00bb:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:232>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:254>
 		float L_23;
 		L_23 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
 		bool L_24;
@@ -15452,15 +15523,15 @@ IL_00bb:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:234>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:256>
 		V_0 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:235>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:257>
 		V_1 = (bool)1;
 	}
 
 IL_00cc:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:238>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:260>
 		bool L_25 = V_0;
 		if (!L_25)
 		{
@@ -15468,18 +15539,18 @@ IL_00cc:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:240>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:262>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
 	}
 
 IL_00d5:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:243>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:265>
 		float L_26 = __this->___autoSaveTimer;
 		float L_27;
 		L_27 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
 		__this->___autoSaveTimer = ((float)il2cpp_codegen_add(L_26, L_27));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:245>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:267>
 		float L_28 = __this->___autoSaveTimer;
 		if ((!(((float)L_28) >= ((float)(5.0f)))))
 		{
@@ -15487,16 +15558,16 @@ IL_00d5:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:247>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:269>
 		__this->___autoSaveTimer = (0.0f);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:248>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:270>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
 		goto IL_0110;
 	}
 
 IL_0107:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:250>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:272>
 		bool L_29 = V_1;
 		if (!L_29)
 		{
@@ -15504,56 +15575,56 @@ IL_0107:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:252>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:274>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
 	}
 
 IL_0110:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:255>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:277>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:256>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:278>
 		return;
 	}
 }
-// Method Definition Index: 91835
+// Method Definition Index: 91837
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnMineButtonClicked_mC1EBC30202FA4C549F4F777EF23061FD466412A8 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:260>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:282>
 		ResourceSystem_t132669C9AFCA494480D51DAE4654F79E59DBEBAC* L_0 = __this->___resourceSystem;
 		NullCheck(L_0);
 		ResourceSystem_MineOre_m1AED9F74A30E289A6E2BFEA15441053E4E4E0F9B(L_0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:261>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:283>
 		bool L_1;
 		L_1 = GameManager_TryAutoSendShuttle_m437FB17C42D5C0B7D8F1E686F3CA24C0BB356A20(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:262>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:284>
 		bool L_2;
 		L_2 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:263>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:285>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:265>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:287>
 		if (!L_2)
 		{
 			goto IL_0026;
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:267>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:289>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
 	}
 
 IL_0026:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:269>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:291>
 		return;
 	}
 }
-// Method Definition Index: 91836
+// Method Definition Index: 91838
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnProduceMetalButtonClicked_m5E51FF38D1F09F91067E95189150CC480C16ED19 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:273>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:295>
 		ResourceSystem_t132669C9AFCA494480D51DAE4654F79E59DBEBAC* L_0 = __this->___resourceSystem;
 		if (!L_0)
 		{
@@ -15573,24 +15644,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnProduceMetalButtonClicked_
 
 IL_0015:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:275>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:297>
 		return;
 	}
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:278>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:300>
 		bool L_3;
 		L_3 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:279>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:301>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:280>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:302>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:281>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:303>
 		return;
 	}
 }
-// Method Definition Index: 91837
+// Method Definition Index: 91839
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnUpgradeButtonClicked_mC8940F1493BE0DC35CA1F113233CDD3A6E71DA05 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15600,7 +15671,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnUpgradeButtonClicked_mC894
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:285>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:307>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -15630,15 +15701,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnUpgradeButtonClicked_mC894
 
 IL_0023:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:287>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:309>
 		return;
 	}
 
 IL_0024:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:290>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:312>
 		GameManager_PrepareMainPanelOpen_m635DB3CE12F2E8758FEEBD31FB983A9C005C7158(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:291>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:313>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_5 = __this->___uiManager;
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_6 = __this->___upgradeManager;
 		NullCheck(L_6);
@@ -15646,15 +15717,15 @@ IL_0024:
 		L_7 = UpgradeManager_GetPreferredAffordableUpgradeCategory_m9DC32965B8E07C7EE6B9883679E011BC23D28087(L_6, NULL);
 		NullCheck(L_5);
 		UIManager_SetUpgradeCategory_m799650EBB02E5448A0E21988812634F98A4EFF5B(L_5, L_7, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:292>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:314>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_8 = __this->___uiManager;
 		NullCheck(L_8);
 		UIManager_OpenUpgradePanel_mBFD4111E2BB6DF9733A107974F7F6379F9206515(L_8, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:293>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:315>
 		return;
 	}
 }
-// Method Definition Index: 91838
+// Method Definition Index: 91840
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnBuildButtonClicked_m48B0E4A2124D4957AA21964E96293E372E9B1401 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15664,7 +15735,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnBuildButtonClicked_m48B0E4
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:297>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:319>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -15675,23 +15746,23 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnBuildButtonClicked_m48B0E4
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:299>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:321>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:302>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:324>
 		GameManager_PrepareMainPanelOpen_m635DB3CE12F2E8758FEEBD31FB983A9C005C7158(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:303>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:325>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		NullCheck(L_2);
 		UIManager_OpenBuildingPanel_m93BFE79BD71A4CF8D7BE5F9390CBD47C41392905(L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:304>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:326>
 		return;
 	}
 }
-// Method Definition Index: 91839
+// Method Definition Index: 91841
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnMissionButtonClicked_m391741DA2420F8E01A02447DB3B72BC7E583D1BF (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15701,7 +15772,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnMissionButtonClicked_m3917
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:308>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:330>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -15712,27 +15783,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnMissionButtonClicked_m3917
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:310>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:332>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:313>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:335>
 		GameManager_PrepareMainPanelOpen_m635DB3CE12F2E8758FEEBD31FB983A9C005C7158(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:314>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:336>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		NullCheck(L_2);
 		UIManager_OpenMissionPanel_mAF94D531160044FD320095600E1E8A68EC4E38F0(L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:315>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:337>
 		return;
 	}
 }
-// Method Definition Index: 91840
+// Method Definition Index: 91842
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnClaimMissionRewardButtonClicked_m712E16618670A6264683E911C4AEA9A23DD96A9B (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:319>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:341>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_0 = __this->___missionManager;
 		if (!L_0)
 		{
@@ -15752,38 +15823,38 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnClaimMissionRewardButtonCl
 
 IL_0015:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:321>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:343>
 		return;
 	}
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:324>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:346>
 		bool L_3;
 		L_3 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:325>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:347>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:326>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:348>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:327>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:349>
 		return;
 	}
 }
-// Method Definition Index: 91841
+// Method Definition Index: 91843
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnSendShuttleButtonClicked_mAE1B4D69DEF414349AE62834D5CFF169C33FE1EE (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:331>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:353>
 		GameManager_OnSendShuttleButtonClicked_m428CC89ADFEA7C98740505623163E8C8B192330D(__this, 0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:332>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:354>
 		return;
 	}
 }
-// Method Definition Index: 91842
+// Method Definition Index: 91844
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnSendShuttleButtonClicked_m428CC89ADFEA7C98740505623163E8C8B192330D (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_shuttleIndex, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:336>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:358>
 		ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2* L_0 = __this->___shuttleSystem;
 		if (L_0)
 		{
@@ -15791,13 +15862,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnSendShuttleButtonClicked_m
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:338>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:360>
 		return;
 	}
 
 IL_0009:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:341>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:363>
 		ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2* L_1 = __this->___shuttleSystem;
 		int32_t L_2 = ___0_shuttleIndex;
 		NullCheck(L_1);
@@ -15809,21 +15880,21 @@ IL_0009:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:343>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:365>
 		return;
 	}
 
 IL_0019:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:346>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:368>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:347>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:369>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:348>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:370>
 		return;
 	}
 }
-// Method Definition Index: 91843
+// Method Definition Index: 91845
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnMenuButtonClicked_m257366FEA10922D8FD7B7B4C9BFEB7BE4B4D4CCA (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15833,7 +15904,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnMenuButtonClicked_m257366F
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:352>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:374>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -15844,41 +15915,41 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnMenuButtonClicked_m257366F
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:354>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:376>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:357>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:379>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		NullCheck(L_2);
 		UIManager_HideUpgradePanel_mB737B395DC46A7CC0A5049308EDD3735820F410D(L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:358>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:380>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_3 = __this->___uiManager;
 		NullCheck(L_3);
 		UIManager_HideBuildPanel_m53FF887B061B0B5F30B29BDC26F9727A142D2970(L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:359>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:381>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_4 = __this->___uiManager;
 		NullCheck(L_4);
 		UIManager_HideMissionPanel_mEE9935C3B6A48CAB812ECABA2CB5D8738D520F52(L_4, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:360>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:382>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_5 = __this->___uiManager;
 		NullCheck(L_5);
 		UIManager_HideLanguagePanel_m84A16D0263B1DC10BC3632394936D4CF664C6660(L_5, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:361>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:383>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_6 = __this->___uiManager;
 		NullCheck(L_6);
 		UIManager_HideResetConfirmation_mD364FF7373BC9028C60C13A5FB7C653DA1C1982E(L_6, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:362>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:384>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_7 = __this->___uiManager;
 		NullCheck(L_7);
 		UIManager_ToggleMenu_m18CE6E492CA6AE63FA247C497EA77690CD47EA24(L_7, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:363>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:385>
 		return;
 	}
 }
-// Method Definition Index: 91844
+// Method Definition Index: 91846
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnResetProgressButtonClicked_m879A5E2A559A1903598FFCB103FC335FCD5D0761 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15888,7 +15959,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnResetProgressButtonClicked
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:367>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:389>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -15899,25 +15970,25 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnResetProgressButtonClicked
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:369>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:391>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:372>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:394>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		NullCheck(L_2);
 		UIManager_HideMenu_mE8F8C54BB88337C3EC1EC27D3FF22B2CB1C30EE7(L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:373>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:395>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_3 = __this->___uiManager;
 		NullCheck(L_3);
 		UIManager_ShowResetConfirmation_m394EC84FB8F9FFBB418DE288438E3A799B9D25F0(L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:374>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:396>
 		return;
 	}
 }
-// Method Definition Index: 91845
+// Method Definition Index: 91847
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnConfirmResetButtonClicked_m8F024909C865EAEBF283641018127408F871DAC9 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15927,13 +15998,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnConfirmResetButtonClicked_
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:378>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:400>
 		GameManager_ResetGame_mAA7635DBAEDF23E8D37A64870D9D66D0A695D20C(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:379>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:401>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:380>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:402>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:382>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:404>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -15944,25 +16015,25 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnConfirmResetButtonClicked_
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:384>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:406>
 		return;
 	}
 
 IL_0021:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:387>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:409>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		NullCheck(L_2);
 		UIManager_HideResetConfirmation_mD364FF7373BC9028C60C13A5FB7C653DA1C1982E(L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:388>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:410>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_3 = __this->___uiManager;
 		NullCheck(L_3);
 		UIManager_HideMenu_mE8F8C54BB88337C3EC1EC27D3FF22B2CB1C30EE7(L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:389>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:411>
 		return;
 	}
 }
-// Method Definition Index: 91846
+// Method Definition Index: 91848
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnCancelResetButtonClicked_mA4DF6745D182F12E3641DB985123BF040AC15058 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -15972,7 +16043,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnCancelResetButtonClicked_m
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:393>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:415>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -15983,21 +16054,21 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnCancelResetButtonClicked_m
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:395>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:417>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:398>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:420>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		NullCheck(L_2);
 		UIManager_HideResetConfirmation_mD364FF7373BC9028C60C13A5FB7C653DA1C1982E(L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:399>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:421>
 		return;
 	}
 }
-// Method Definition Index: 91847
+// Method Definition Index: 91849
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnExitGameButtonClicked_m988806C7C9E0ED0E9DE11A7EEF4E24A859DCC4C0 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16009,9 +16080,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnExitGameButtonClicked_m988
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B2_0 = NULL;
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B1_0 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:403>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:425>
 		__this->___suppressBoostOfferPopup = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:404>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:426>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_1 = L_0;
 		if (L_1)
@@ -16033,7 +16104,7 @@ IL_0013:
 
 IL_0018:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:406>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:428>
 		bool L_2;
 		L_2 = GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline(__this, NULL);
 		if (L_2)
@@ -16042,20 +16113,20 @@ IL_0018:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:408>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:430>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
 	}
 
 IL_0026:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:414>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:436>
 		il2cpp_codegen_runtime_class_init_inline(Application_tDB03BE91CDF0ACA614A5E0B67CFB77C44EB19B21_il2cpp_TypeInfo_var);
 		Application_Quit_mE304382DB9A6455C2A474C8F364C7387F37E9281(NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:416>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:438>
 		return;
 	}
 }
-// Method Definition Index: 91848
+// Method Definition Index: 91850
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnClaimOfflineRewardButtonClicked_mBF5F72A6B6EC09DF363F7DFA463834107C572AEA (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16065,15 +16136,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnClaimOfflineRewardButtonCl
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:420>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:442>
 		GameManager_ApplyPendingOfflineProgress_m047C832C97D1D069248BF861DEB9DC82713900F0(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:422>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:444>
 		bool L_0;
 		L_0 = GameManager_TryAutoSendShuttle_m437FB17C42D5C0B7D8F1E686F3CA24C0BB356A20(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:423>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:445>
 		bool L_1;
 		L_1 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:425>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:447>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_3;
@@ -16084,7 +16155,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnClaimOfflineRewardButtonCl
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:427>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:449>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_4 = __this->___uiManager;
 		NullCheck(L_4);
 		UIManager_HideOfflineReward_mA74782EBBE7CB546969C7ABAF2C780D9E1FF2B8D(L_4, NULL);
@@ -16092,17 +16163,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnClaimOfflineRewardButtonCl
 
 IL_002d:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:430>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:452>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:431>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:453>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:432>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:454>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:433>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:455>
 		return;
 	}
 }
-// Method Definition Index: 91849
+// Method Definition Index: 91851
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnUpgradeCategoryTabClicked_mE5B8015D1C51BBD128D2F428A8646DF7831CBB33 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_categoryIndex, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16114,7 +16185,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnUpgradeCategoryTabClicked_
 	}
 	int32_t V_0 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:437>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:459>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -16143,16 +16214,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnUpgradeCategoryTabClicked_
 
 IL_0025:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:439>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:461>
 		return;
 	}
 
 IL_0026:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:442>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:464>
 		int32_t L_8 = ___0_categoryIndex;
 		V_0 = L_8;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:444>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:466>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_9 = __this->___upgradeManager;
 		if (!L_9)
 		{
@@ -16173,32 +16244,32 @@ IL_0026:
 
 IL_003e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:446>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:468>
 		return;
 	}
 
 IL_003f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:449>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:471>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_13 = __this->___uiManager;
 		int32_t L_14 = V_0;
 		NullCheck(L_13);
 		UIManager_SetUpgradeCategory_m799650EBB02E5448A0E21988812634F98A4EFF5B(L_13, L_14, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:450>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:472>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:451>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:473>
 		return;
 	}
 }
-// Method Definition Index: 91850
+// Method Definition Index: 91852
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnClaimOfflineRewardX2ButtonClicked_m08B41B12B73DF90A358B17116D74447AD21ED0D6 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:456>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:478>
 		return;
 	}
 }
-// Method Definition Index: 91851
+// Method Definition Index: 91853
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnAcceptBoostButtonClicked_m950F31671A94BEC7C1759EE981A7C6AAC481D457 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16209,7 +16280,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnAcceptBoostButtonClicked_m
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:460>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:482>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_0 = __this->___pendingBoostOfferStates;
 		NullCheck(L_0);
 		int32_t L_1;
@@ -16220,27 +16291,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnAcceptBoostButtonClicked_m
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:462>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:484>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:465>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:487>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_2 = __this->___pendingBoostOfferStates;
 		NullCheck(L_2);
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_3;
 		L_3 = List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6(L_2, 0, List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6_RuntimeMethod_var);
 		GameManager_HandleBoostOfferAccepted_mA471B14505BD7334AD395DEA024063B6D76778E6(__this, L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:466>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:488>
 		return;
 	}
 }
-// Method Definition Index: 91852
+// Method Definition Index: 91854
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleBoostOfferAccepted_mA471B14505BD7334AD395DEA024063B6D76778E6 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* ___0_boostState, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:470>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:492>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_0 = __this->___upgradeManager;
 		if (!L_0)
 		{
@@ -16257,13 +16328,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleBoostOfferAccepted_mA4
 
 IL_000b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:472>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:494>
 		return;
 	}
 
 IL_000c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:475>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:497>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_2 = __this->___upgradeManager;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_3 = ___0_boostState;
 		NullCheck(L_2);
@@ -16275,36 +16346,36 @@ IL_000c:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:477>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:499>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:478>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:500>
 		return;
 	}
 
 IL_0021:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:481>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:503>
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_5 = ___0_boostState;
 		GameManager_RemovePendingBoostOffer_m52B73482598BCED39A4E1E447018534E99479F6E(__this, L_5, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:482>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:504>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:483>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:505>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:484>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:506>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:485>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:507>
 		return;
 	}
 }
-// Method Definition Index: 91853
+// Method Definition Index: 91855
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnBoostOfferOverlayClicked_m3CE1B185986430A66069EE17423D6ABAA2BC9BEB (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:492>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:514>
 		return;
 	}
 }
-// Method Definition Index: 91854
+// Method Definition Index: 91856
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16339,7 +16410,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveGame_mF0BF04DE7453D8BB42
 	int32_t G_B5_0 = 0;
 	String_t* G_B5_1 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:496>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:518>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_0 = __this->___gameData;
 		if (L_0)
 		{
@@ -16347,72 +16418,72 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveGame_mF0BF04DE7453D8BB42
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:498>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:520>
 		return;
 	}
 
 IL_0009:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:501>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:523>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_1 = __this->___gameData;
 		NullCheck(L_1);
 		int32_t L_2;
 		L_2 = GameData_get_ore_mF0A8FE2768F4351BCA0C5396E8DE1C307DB82832(L_1, NULL);
 		GameManager_SaveResource_m469AC83FC463C85FDDEAF74D4348431D39CFE1E2(__this, 0, L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:502>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:524>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = __this->___gameData;
 		NullCheck(L_3);
 		int32_t L_4;
 		L_4 = GameData_get_energy_m6DB8C7A4A73703758255B930025319C80694FBFF(L_3, NULL);
 		GameManager_SaveResource_m469AC83FC463C85FDDEAF74D4348431D39CFE1E2(__this, 1, L_4, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:503>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:525>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_5 = __this->___gameData;
 		NullCheck(L_5);
 		int32_t L_6;
 		L_6 = GameData_get_metal_m7F216903C1BFFF100F6D18F7D01CE380A2486C3A(L_5, NULL);
 		GameManager_SaveResource_m469AC83FC463C85FDDEAF74D4348431D39CFE1E2(__this, 2, L_6, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:504>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:526>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_7 = __this->___gameData;
 		NullCheck(L_7);
 		int32_t L_8;
 		L_8 = GameData_get_crystal_m63017B19359458F4885B98485A6D86A450843656(L_7, NULL);
 		GameManager_SaveResource_m469AC83FC463C85FDDEAF74D4348431D39CFE1E2(__this, 3, L_8, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:505>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:527>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_9 = __this->___gameData;
 		NullCheck(L_9);
 		int32_t L_10;
 		L_10 = GameData_get_ore_mF0A8FE2768F4351BCA0C5396E8DE1C307DB82832(L_9, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral9142F09677E9992064465E148A01EAAED49A58DF, L_10, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:506>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:528>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_11 = __this->___gameData;
 		NullCheck(L_11);
 		int32_t L_12 = L_11->___shuttleOre;
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteralEECAC69AB912F861E9995778D998E9D3159DDFCF, L_12, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:507>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:529>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_13 = __this->___gameData;
 		NullCheck(L_13);
 		int32_t L_14;
 		L_14 = GameData_get_shuttleDockedOre_m0D75A6553ADC4C9EFDEC8C12CF9FEFC33B769005(L_13, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteralE1B924134EEC983A3AAF7AA93B16967ADE47410E, L_14, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:508>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:530>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_15 = __this->___gameData;
 		NullCheck(L_15);
 		int32_t L_16;
 		L_16 = GameData_get_shuttleLoadingOre_mF01A87061C84B7F39EE13651210F9FB7D5FC2B08(L_15, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral8BA0A05199247302D357385F02E0BDE95EC7FF28, L_16, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:509>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:531>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_17 = __this->___gameData;
 		NullCheck(L_17);
 		int32_t L_18;
 		L_18 = GameData_get_shuttleLoadingTargetOre_m75B7F76C04A636EE14117980E83D4834668F0D3D(L_17, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteralF728C59E48AF66D10E5AAD0ACE30928625D53CF4, L_18, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:510>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:532>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_19 = __this->___gameData;
 		NullCheck(L_19);
 		float L_20;
 		L_20 = GameData_get_shuttleLoadingCooldownRemaining_m84D2A22C63341C59843928E90CB4350FAB4E04B6(L_19, NULL);
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(_stringLiteralD383A2D2540F348550A9B3C081FBD25008D97A56, L_20, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:511>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:533>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_21 = __this->___gameData;
 		NullCheck(L_21);
 		bool L_22;
@@ -16439,58 +16510,58 @@ IL_00e4:
 IL_00e5:
 	{
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(G_B5_1, G_B5_0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:512>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:534>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_23 = __this->___gameData;
 		NullCheck(L_23);
 		int32_t L_24;
 		L_24 = GameData_get_shuttleDeliveringOre_m5C623CF78DAC9C57A3158F0D1A2021FDC4244EF0(L_23, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral407904453046C59EF6C8FD59799CE61D1C7F9C12, L_24, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:513>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:535>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_25 = __this->___gameData;
 		NullCheck(L_25);
 		int32_t L_26 = L_25->___platformCapacity;
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral5F265D23AF069FADFA661A3A82562872DB41010E, L_26, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:514>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:536>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_27 = __this->___gameData;
 		NullCheck(L_27);
 		int32_t L_28 = L_27->___shuttleCapacity;
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral13F8DA16237E2DBA1D0E004C99874E69FEF6D2D9, L_28, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:515>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:537>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_29 = __this->___gameData;
 		NullCheck(L_29);
 		float L_30;
 		L_30 = GameData_get_shuttleSendCooldownRemaining_m08B900FDC954B425DB677C8563A3EA193753528F(L_29, NULL);
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(_stringLiteral7EE69DA62C6CA04F252EA57A196B1E4053B99E7B, L_30, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:516>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:538>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_31 = __this->___gameData;
 		NullCheck(L_31);
 		int32_t L_32 = L_31->___orePerClick;
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral8824974E30ED00F9ECEE9399391B93C5C903A296, L_32, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:517>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:539>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_33 = __this->___gameData;
 		NullCheck(L_33);
 		int32_t L_34 = L_33->___orePerSecond;
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral25D8D4191DD1CDD3A3BB4EE644728201D4E1FB7D, L_34, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:518>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:540>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_35 = __this->___gameData;
 		NullCheck(L_35);
 		float L_36 = L_35->___energyRegenTimer;
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(_stringLiteral841BB20ED4F980B83A6557C2048A6C9F6892F9F3, L_36, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:519>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:541>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_37 = __this->___gameData;
 		NullCheck(L_37);
 		int32_t L_38 = L_37->___totalOreEarned;
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteralCD93D27417A16D1E5F1DE4C3683A42DD48736BDE, L_38, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:520>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:542>
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral69BA8D363A92AFA375AC9CE7199D8907C19A0FE8, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:522>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:544>
 		V_1 = 0;
 		goto IL_01b7;
 	}
 
 IL_01a0:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:524>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:546>
 		int32_t L_39 = V_1;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_40 = __this->___gameData;
 		int32_t L_41 = V_1;
@@ -16498,14 +16569,14 @@ IL_01a0:
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_42;
 		L_42 = GameData_GetShuttleState_m6390763F32E79D52F36C68CEC51A3D85DA0BED4B(L_40, L_41, NULL);
 		GameManager_SaveShuttleState_m140AE95B424F0950008212ED71F3F183084572B1(__this, L_39, L_42, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:522>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:544>
 		int32_t L_43 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add(L_43, 1));
 	}
 
 IL_01b7:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:522>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:544>
 		int32_t L_44 = V_1;
 		if ((((int32_t)L_44) < ((int32_t)3)))
 		{
@@ -16513,7 +16584,7 @@ IL_01b7:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:527>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:549>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_45 = __this->___upgradeManager;
 		if (!L_45)
 		{
@@ -16521,7 +16592,7 @@ IL_01b7:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:529>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:551>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_46 = __this->___upgradeManager;
 		NullCheck(L_46);
 		UpgradeManager_SaveUpgradeLevels_m89C433278D9DEF5D6FB76A9F1B1F39F11DC3183D(L_46, NULL);
@@ -16529,7 +16600,7 @@ IL_01b7:
 
 IL_01ce:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:532>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:554>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_47 = __this->___missionManager;
 		if (!L_47)
 		{
@@ -16537,7 +16608,7 @@ IL_01ce:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:534>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:556>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_48 = __this->___missionManager;
 		NullCheck(L_48);
 		MissionManager_SaveProgress_m5FAB003CE025F4ADA41F84900C2D6BE195BBB0AC(L_48, NULL);
@@ -16545,7 +16616,7 @@ IL_01ce:
 
 IL_01e1:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:537>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:559>
 		il2cpp_codegen_runtime_class_init_inline(DateTimeOffset_t4EE701FE2F386D6F932FAC9B11E4B74A5B30F0A4_il2cpp_TypeInfo_var);
 		DateTimeOffset_t4EE701FE2F386D6F932FAC9B11E4B74A5B30F0A4 L_49;
 		L_49 = DateTimeOffset_get_UtcNow_mD315065704E3FE153970E6BD06362AEDD3D9765F(NULL);
@@ -16553,32 +16624,32 @@ IL_01e1:
 		int64_t L_50;
 		L_50 = DateTimeOffset_ToUnixTimeSeconds_m91F88288451BAB5A8373467A94DAEA359AAF34BD((&V_2), NULL);
 		V_0 = L_50;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:538>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:560>
 		String_t* L_51;
 		L_51 = Int64_ToString_m284E4E55662818E38654309A41C2B07CD436F36B((&V_0), NULL);
 		PlayerPrefs_SetString_mF4F457C81BB75F0213547C6287BA36E15E1F0256(_stringLiteral6D4D340E83EB0EF66AEBFD07147327F7FE2C9872, L_51, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:539>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:561>
 		PlayerPrefs_Save_m82567E045D69C838112EA204B60C144D4C1EA3AE(NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:540>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:562>
 		int64_t L_52 = V_0;
 		GameManager_QueueCloudSave_m8BE24FD28B53F48725C96CBB9CD84415AE939AFA(__this, L_52, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:541>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:563>
 		return;
 	}
 }
-// Method Definition Index: 91855
+// Method Definition Index: 91857
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_1_tCB3DD24A8B0F9EF121F14ABE620C87C9DD7F821D* GameManager_LoadCloudProgressSnapshotAsync_m5BABB72A935950AD4813AF9CFA4D7F923D309C94 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncTaskMethodBuilder_1_Create_m13F9DBFF5A4B26B6441F1F9C67E4E715E098783F_RuntimeMethod_var);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6_m97E10E1028C301AEB208508C219DF4D66752C484_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F_mF52ABE95BC2F00CBC90696B36150AA7032818ED9_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncTaskMethodBuilder_1_get_Task_mE0BB60534FDB93C336F127873E99BED7DB840EB6_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370_il2cpp_TypeInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
-	U3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6 V_0;
+	U3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	{
 		il2cpp_codegen_runtime_class_init_inline(AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370_il2cpp_TypeInfo_var);
@@ -16596,19 +16667,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_1_tCB3DD24A8B0F9EF121F14ABE620C87C9DD7F8
 		Il2CppCodeGenWriteBarrier((void**)(&(&V_0)->___U3CU3E4__this), (void*)__this);
 		(&V_0)->___U3CU3E1__state = (-1);
 		AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370* L_1 = (AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370*)(&(&V_0)->___U3CU3Et__builder);
-		AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6_m97E10E1028C301AEB208508C219DF4D66752C484(L_1, (&V_0), AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__80_tE3DAA95A4B398E9BC74D98BE6607931C998F28B6_m97E10E1028C301AEB208508C219DF4D66752C484_RuntimeMethod_var);
+		AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F_mF52ABE95BC2F00CBC90696B36150AA7032818ED9(L_1, (&V_0), AsyncTaskMethodBuilder_1_Start_TisU3CLoadCloudProgressSnapshotAsyncU3Ed__83_t0A3B80803536129D443BE28984828F7F4978247F_mF52ABE95BC2F00CBC90696B36150AA7032818ED9_RuntimeMethod_var);
 		AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370* L_2 = (AsyncTaskMethodBuilder_1_t946907162065224B39F77FB798E6CD290D5F9370*)(&(&V_0)->___U3CU3Et__builder);
 		Task_1_tCB3DD24A8B0F9EF121F14ABE620C87C9DD7F821D* L_3;
 		L_3 = AsyncTaskMethodBuilder_1_get_Task_mE0BB60534FDB93C336F127873E99BED7DB840EB6(L_2, AsyncTaskMethodBuilder_1_get_Task_mE0BB60534FDB93C336F127873E99BED7DB840EB6_RuntimeMethod_var);
 		return L_3;
 	}
 }
-// Method Definition Index: 91856
+// Method Definition Index: 91858
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_ShouldApplyCloudProgress_m92FBAD3D7D01469E3E27CD11BA3D7D188964665F (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* ___0_snapshot, const RuntimeMethod* method) 
 {
 	int64_t V_0 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:567>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:589>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_0 = ___0_snapshot;
 		if (!L_0)
 		{
@@ -16637,13 +16708,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_ShouldApplyCloudProgress_m92
 
 IL_0013:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:569>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:591>
 		return (bool)0;
 	}
 
 IL_0015:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:572>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:594>
 		bool L_5;
 		L_5 = GameManager_TryGetLocalSavedAtUnixTime_m7A801424C5B7F02B8CE0B65A1F389BECB6AA65B5(__this, (&V_0), NULL);
 		if (!L_5)
@@ -16661,13 +16732,13 @@ IL_0015:
 
 IL_0024:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:574>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:596>
 		return (bool)1;
 	}
 
 IL_0026:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:577>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:599>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_7 = ___0_snapshot;
 		int64_t L_8;
 		L_8 = GameManager_GetSnapshotSavedAtUnixTime_m45069FBB58A9893BDDFFB41BF35EB8883AFBEF87(__this, L_7, NULL);
@@ -16675,13 +16746,13 @@ IL_0026:
 		return (bool)((((int32_t)((((int64_t)L_8) < ((int64_t)L_9))? 1 : 0)) == ((int32_t)0))? 1 : 0);
 	}
 }
-// Method Definition Index: 91857
+// Method Definition Index: 91859
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_CompensateCloudUploadDelayForStartup_m7F3A7593F1D6E0625C3F8A531C4BDFD538E6113A (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* ___0_snapshot, const RuntimeMethod* method) 
 {
 	int64_t V_0 = 0;
 	int64_t V_1 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:582>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:604>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_0 = ___0_snapshot;
 		if (!L_0)
 		{
@@ -16698,13 +16769,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_CompensateCloudUploadDelayFo
 
 IL_000b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:584>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:606>
 		return;
 	}
 
 IL_000c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:587>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:609>
 		bool L_2;
 		L_2 = GameManager_TryGetLocalSavedAtUnixTime_m7A801424C5B7F02B8CE0B65A1F389BECB6AA65B5(__this, (&V_0), NULL);
 		if (!L_2)
@@ -16722,20 +16793,20 @@ IL_000c:
 
 IL_001b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:589>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:611>
 		return;
 	}
 
 IL_001c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:592>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:614>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_4 = ___0_snapshot;
 		int64_t L_5;
 		L_5 = GameManager_GetSnapshotSavedAtUnixTime_m45069FBB58A9893BDDFFB41BF35EB8883AFBEF87(__this, L_4, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:593>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:615>
 		int64_t L_6 = V_0;
 		V_1 = ((int64_t)il2cpp_codegen_subtract(L_5, L_6));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:595>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:617>
 		int64_t L_7 = V_1;
 		if ((((int64_t)L_7) <= ((int64_t)((int64_t)0))))
 		{
@@ -16752,27 +16823,27 @@ IL_001c:
 
 IL_0031:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:597>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:619>
 		return;
 	}
 
 IL_0032:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:600>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:622>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_9 = ___0_snapshot;
 		int64_t L_10 = V_0;
 		NullCheck(L_9);
 		L_9->___savedAtUnixTime = L_10;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:601>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:623>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_11 = ___0_snapshot;
 		int64_t L_12 = V_0;
 		NullCheck(L_11);
 		L_11->___clientSavedAtUnixTime = L_12;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:602>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:624>
 		return;
 	}
 }
-// Method Definition Index: 91858
+// Method Definition Index: 91860
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ApplyProgressSnapshot_m2B58FE52B289CA5B311C4B97B216608A3749D3EE (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* ___0_snapshot, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16787,7 +16858,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ApplyProgressSnapshot_m2B58F
 	MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* G_B9_0 = NULL;
 	MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* G_B8_0 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:606>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:628>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_0 = ___0_snapshot;
 		if (!L_0)
 		{
@@ -16806,13 +16877,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ApplyProgressSnapshot_m2B58F
 
 IL_000b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:608>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:630>
 		return;
 	}
 
 IL_000c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:611>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:633>
 		__this->___isApplyingCloudProgress = (bool)1;
 	}
 	{
@@ -16821,23 +16892,23 @@ IL_000c:
 
 FINALLY_0087:
 			{
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:633>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:655>
 				__this->___isApplyingCloudProgress = (bool)0;
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:634>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:656>
 				return;
 			}
 		});
 		try
 		{
 			{
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:615>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:637>
 				GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = __this->___gameData;
 				GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_4 = ___0_snapshot;
 				NullCheck(L_4);
 				GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_5 = L_4->___gameData;
 				NullCheck(L_3);
 				GameData_CopyFrom_m134455844548831DAC895572C79397DDEE617401(L_3, L_5, NULL);
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:616>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:638>
 				UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_6 = __this->___upgradeManager;
 				UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_7 = L_6;
 				if (L_7)
@@ -16860,7 +16931,7 @@ IL_0030_1:
 
 IL_0036_1:
 			{
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:617>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:639>
 				MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_9 = __this->___missionManager;
 				MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_10 = L_9;
 				if (L_10)
@@ -16883,12 +16954,12 @@ IL_0042_1:
 
 IL_0048_1:
 			{
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:619>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:641>
 				GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_12 = ___0_snapshot;
 				int64_t L_13;
 				L_13 = GameManager_GetSnapshotSavedAtUnixTime_m45069FBB58A9893BDDFFB41BF35EB8883AFBEF87(__this, L_12, NULL);
 				V_0 = L_13;
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:621>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:643>
 				int64_t L_14 = V_0;
 				if ((((int64_t)L_14) <= ((int64_t)((int64_t)0))))
 				{
@@ -16896,7 +16967,7 @@ IL_0048_1:
 				}
 			}
 			{
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:623>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:645>
 				String_t* L_15;
 				L_15 = Int64_ToString_m284E4E55662818E38654309A41C2B07CD436F36B((&V_0), NULL);
 				PlayerPrefs_SetString_mF4F457C81BB75F0213547C6287BA36E15E1F0256(_stringLiteral6D4D340E83EB0EF66AEBFD07147327F7FE2C9872, L_15, NULL);
@@ -16904,18 +16975,18 @@ IL_0048_1:
 
 IL_0066_1:
 			{
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:626>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:648>
 				bool L_16;
 				L_16 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:627>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:649>
 				OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845 L_17;
 				L_17 = GameManager_CalculateOfflineProgress_m50682D8EC212FD75C696C39941DED1E1FC818437(__this, NULL);
 				GameManager_CacheOfflineProgress_m6B333B7012AFAFC258521464149E7AAAB50653B0(__this, L_17, NULL);
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:628>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:650>
 				GameManager_AdvanceTemporaryBoostTimersForInactiveTime_mB74C81ED177BDC933E8DC105CB1D189CCFF80A4E(__this, NULL);
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:629>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:651>
 				GameManager_SyncPendingOfflinePreviewWithCurrentDynamicStats_m8C0A811C2DD1F86F658710B04BA8796D169F9D63(__this, NULL);
-				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:630>
+				//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:652>
 				goto IL_008f;
 			}
 		}
@@ -16927,11 +16998,11 @@ IL_0066_1:
 
 IL_008f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:635>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:657>
 		return;
 	}
 }
-// Method Definition Index: 91859
+// Method Definition Index: 91861
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* GameManager_CreateProgressSnapshot_m6451194462A284C86D911EC519E3EC152981B9A7 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int64_t ___0_savedAtUnixTime, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -16959,9 +17030,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameProgressSnapshot_t23209B4D0A8B234518E63AD
 	MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* G_B11_0 = NULL;
 	MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* G_B10_0 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:639>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:640>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:641>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:661>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:662>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:663>
 		int64_t L_0 = ___0_savedAtUnixTime;
 		if ((((int64_t)L_0) > ((int64_t)((int64_t)0))))
 		{
@@ -16988,12 +17059,12 @@ IL_0014:
 IL_0015:
 	{
 		V_0 = G_B3_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:643>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:644>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:645>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:646>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:647>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:648>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:665>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:666>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:667>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:668>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:669>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:670>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_4 = (GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2*)il2cpp_codegen_object_new(GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2_il2cpp_TypeInfo_var);
 		GameProgressSnapshot__ctor_m530676A2B3E2BDA6AE4C771B95060EA029272DDC(L_4, NULL);
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_5 = L_4;
@@ -17041,7 +17112,7 @@ IL_0044:
 		G_B6_1->___gameData = G_B6_0;
 		Il2CppCodeGenWriteBarrier((void**)(&G_B6_1->___gameData), (void*)G_B6_0);
 		V_1 = G_B6_2;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:650>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:672>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_14 = __this->___upgradeManager;
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_15 = L_14;
 		if (L_15)
@@ -17064,7 +17135,7 @@ IL_0056:
 
 IL_005c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:651>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:673>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_17 = __this->___missionManager;
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_18 = L_17;
 		if (L_18)
@@ -17087,21 +17158,21 @@ IL_0068:
 
 IL_006e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:652>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:674>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_20 = V_1;
 		return L_20;
 	}
 }
-// Method Definition Index: 91860
+// Method Definition Index: 91862
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_QueueCloudSave_m8BE24FD28B53F48725C96CBB9CD84415AE939AFA (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int64_t ___0_savedAtUnixTime, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9_m74114409B3F1C5A16935AD675698BAF22BFD7629_RuntimeMethod_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8_m21F0DCF49BDD51C472F038B69AB3FC917EF1B855_RuntimeMethod_var);
 		s_Il2CppMethodInitialized = true;
 	}
-	U3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9 V_0;
+	U3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8 V_0;
 	memset((&V_0), 0, sizeof(V_0));
 	{
 		AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D L_0;
@@ -17123,11 +17194,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_QueueCloudSave_m8BE24FD28B53
 		(&V_0)->___savedAtUnixTime = L_1;
 		(&V_0)->___U3CU3E1__state = (-1);
 		AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D* L_2 = (AsyncVoidMethodBuilder_t253E37B63E7E7B504878AE6563347C147F98EF2D*)(&(&V_0)->___U3CU3Et__builder);
-		AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9_m74114409B3F1C5A16935AD675698BAF22BFD7629(L_2, (&V_0), AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__85_t256FC80FBE4D61DF2150C3122E7454CC17A9C9A9_m74114409B3F1C5A16935AD675698BAF22BFD7629_RuntimeMethod_var);
+		AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8_m21F0DCF49BDD51C472F038B69AB3FC917EF1B855(L_2, (&V_0), AsyncVoidMethodBuilder_Start_TisU3CQueueCloudSaveU3Ed__88_t8CC7920735F91694CCDC3A90BD75ABFFD6CB99C8_m21F0DCF49BDD51C472F038B69AB3FC917EF1B855_RuntimeMethod_var);
 		return;
 	}
 }
-// Method Definition Index: 91861
+// Method Definition Index: 91863
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadGame_m4B7CC013AAEFD16AD55F4224D05460D911C0C88C (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17164,14 +17235,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadGame_m4B7CC013AAEFD16AD5
 	float G_B3_0 = 0.0f;
 	float G_B6_0 = 0.0f;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:695>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:717>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_0 = (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6*)il2cpp_codegen_object_new(GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6_il2cpp_TypeInfo_var);
 		GameData__ctor_mA9048174D2C20A10AD865A4B919045878E27099A(L_0, NULL);
 		__this->___gameData = L_0;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___gameData), (void*)L_0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:697>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:698>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:699>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:719>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:720>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:721>
 		int32_t L_1;
 		L_1 = GameManager_GetConfiguredShuttleCapacity_mF12DEAC2C69EB0CF16592A78CE64624A06DCCAE2(__this, NULL);
 		int32_t L_2;
@@ -17181,9 +17252,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadGame_m4B7CC013AAEFD16AD5
 		int32_t L_4;
 		L_4 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(L_1, L_3, NULL);
 		V_0 = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:700>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:701>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:702>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:722>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:723>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:724>
 		int32_t L_5;
 		L_5 = GameManager_GetConfiguredStartPlatformCapacity_m495F8C1319FB33B95509A74BE4BF3C8AE08B978B(__this, NULL);
 		int32_t L_6;
@@ -17193,9 +17264,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadGame_m4B7CC013AAEFD16AD5
 		int32_t L_8;
 		L_8 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(L_5, L_7, NULL);
 		V_1 = L_8;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:703>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:704>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:705>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:725>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:726>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:727>
 		int32_t L_9;
 		L_9 = GameManager_GetConfiguredStartShuttleOre_m25421F33D8DCD8596BE9BFEA14025D578D481790(__this, NULL);
 		int32_t L_10;
@@ -17203,10 +17274,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadGame_m4B7CC013AAEFD16AD5
 		int32_t L_11;
 		L_11 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_10, NULL);
 		V_2 = L_11;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:706>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:707>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:708>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:709>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:728>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:729>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:730>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:731>
 		int32_t L_12;
 		L_12 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteralE1B924134EEC983A3AAF7AA93B16967ADE47410E, 0, NULL);
 		int32_t L_13;
@@ -17215,33 +17286,33 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadGame_m4B7CC013AAEFD16AD5
 		int32_t L_15;
 		L_15 = Mathf_Clamp_m4DC36EEFDBE5F07C16249DA568023C5ECCFF0E7B_inline(L_13, 0, L_14, NULL);
 		V_3 = L_15;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:710>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:711>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:712>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:732>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:733>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:734>
 		int32_t L_16;
 		L_16 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteral8BA0A05199247302D357385F02E0BDE95EC7FF28, 0, NULL);
 		int32_t L_17;
 		L_17 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_16, NULL);
 		V_4 = L_17;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:713>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:714>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:715>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:735>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:736>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:737>
 		int32_t L_18;
 		L_18 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteralF728C59E48AF66D10E5AAD0ACE30928625D53CF4, 0, NULL);
 		int32_t L_19;
 		L_19 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_18, NULL);
 		V_5 = L_19;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:716>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:717>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:718>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:738>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:739>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:740>
 		int32_t L_20;
 		L_20 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteral407904453046C59EF6C8FD59799CE61D1C7F9C12, 0, NULL);
 		int32_t L_21;
 		L_21 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_20, NULL);
 		V_6 = L_21;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:719>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:720>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:721>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:741>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:742>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:743>
 		bool L_22;
 		L_22 = PlayerPrefs_HasKey_mCA5C64BBA6BF8B230BC3BC92B4761DD3B11D4668(_stringLiteralD383A2D2540F348550A9B3C081FBD25008D97A56, NULL);
 		if (L_22)
@@ -17264,9 +17335,9 @@ IL_00bf:
 IL_00ce:
 	{
 		V_7 = G_B3_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:722>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:723>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:724>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:744>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:745>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:746>
 		bool L_24;
 		L_24 = PlayerPrefs_HasKey_mCA5C64BBA6BF8B230BC3BC92B4761DD3B11D4668(_stringLiteral7EE69DA62C6CA04F252EA57A196B1E4053B99E7B, NULL);
 		if (L_24)
@@ -17289,7 +17360,7 @@ IL_00e3:
 IL_00f2:
 	{
 		V_8 = G_B6_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:726>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:748>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_26 = __this->___gameData;
 		int32_t L_27;
 		L_27 = GameManager_GetConfiguredStartOre_mFA4DE82C107022B49810DC5E54FB256FEBD96167(__this, NULL);
@@ -17297,7 +17368,7 @@ IL_00f2:
 		L_28 = GameManager_GetSavedResourceAmount_mC4D45BBA9E15CCEFF36D2FD5FB8D8BD3BFC5C6D1(__this, 0, L_27, _stringLiteral9142F09677E9992064465E148A01EAAED49A58DF, NULL);
 		NullCheck(L_26);
 		GameData_set_ore_m516F47EB287340D548B317C31ED2FCF3E290DBE7(L_26, L_28, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:727>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:749>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_29 = __this->___gameData;
 		int32_t L_30;
 		L_30 = GameManager_GetConfiguredStartEnergy_m3F4693914743DD733B08D5A7E117D81DABF30246(__this, NULL);
@@ -17305,7 +17376,7 @@ IL_00f2:
 		L_31 = GameManager_GetSavedResourceAmount_mC4D45BBA9E15CCEFF36D2FD5FB8D8BD3BFC5C6D1(__this, 1, L_30, (String_t*)NULL, NULL);
 		NullCheck(L_29);
 		GameData_set_energy_m9DC505B6416C46427DFA783AD5937F98C6D99949(L_29, L_31, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:728>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:750>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_32 = __this->___gameData;
 		int32_t L_33;
 		L_33 = GameManager_GetConfiguredStartMetal_m35D171B3C4863ABD4BF36CBFD93BD077E0181676(__this, NULL);
@@ -17313,7 +17384,7 @@ IL_00f2:
 		L_34 = GameManager_GetSavedResourceAmount_mC4D45BBA9E15CCEFF36D2FD5FB8D8BD3BFC5C6D1(__this, 2, L_33, (String_t*)NULL, NULL);
 		NullCheck(L_32);
 		GameData_set_metal_m48357AE30A58EC0EB74CEF747D3FDD13118BEDC7(L_32, L_34, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:729>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:751>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_35 = __this->___gameData;
 		int32_t L_36;
 		L_36 = GameManager_GetConfiguredStartCrystal_m3096ECABF5026A1D8C818C7E971E413F5AD4E3BD(__this, NULL);
@@ -17321,22 +17392,22 @@ IL_00f2:
 		L_37 = GameManager_GetSavedResourceAmount_mC4D45BBA9E15CCEFF36D2FD5FB8D8BD3BFC5C6D1(__this, 3, L_36, (String_t*)NULL, NULL);
 		NullCheck(L_35);
 		GameData_set_crystal_m55C861EC6335A26122CA8103A6AFFA93C884E186(L_35, L_37, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:730>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:752>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_38 = __this->___gameData;
 		int32_t L_39 = V_2;
 		NullCheck(L_38);
 		L_38->___shuttleOre = L_39;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:731>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:753>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_40 = __this->___gameData;
 		int32_t L_41 = V_3;
 		NullCheck(L_40);
 		GameData_set_shuttleDockedOre_m82CDF72E226BF670071FC9305D0E702BFEEDAEA7(L_40, L_41, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:732>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:754>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_42 = __this->___gameData;
 		int32_t L_43 = V_4;
 		NullCheck(L_42);
 		GameData_set_shuttleLoadingOre_mCACC7FC1652BF0F30D390CDF98F0625A822B6F9F(L_42, L_43, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:733>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:755>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_44 = __this->___gameData;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_45 = __this->___gameData;
 		NullCheck(L_45);
@@ -17347,54 +17418,54 @@ IL_00f2:
 		L_48 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(L_46, L_47, NULL);
 		NullCheck(L_44);
 		GameData_set_shuttleLoadingTargetOre_m2A99A730EAF74C4ADE5CBA114796FE720660B842(L_44, L_48, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:734>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:756>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_49 = __this->___gameData;
 		int32_t L_50 = V_6;
 		NullCheck(L_49);
 		GameData_set_shuttleDeliveringOre_m842005DDE774A2349DE54FC40C5D69CED55F7722(L_49, L_50, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:735>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:757>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_51 = __this->___gameData;
 		int32_t L_52;
 		L_52 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteral3D0545791B0B5FA8D3769A5AD38CCE35C54FE1F8, 0, NULL);
 		NullCheck(L_51);
 		GameData_set_shuttleSendAfterLoading_mDB34C5D4B4CD103E84D63A57D7404223385E0546(L_51, (bool)((((int32_t)L_52) == ((int32_t)1))? 1 : 0), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:736>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:758>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_53 = __this->___gameData;
 		int32_t L_54 = V_1;
 		NullCheck(L_53);
 		L_53->___platformCapacity = L_54;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:737>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:759>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_55 = __this->___gameData;
 		int32_t L_56 = V_0;
 		NullCheck(L_55);
 		L_55->___shuttleCapacity = L_56;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:738>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:760>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_57 = __this->___gameData;
 		float L_58;
 		L_58 = GameManager_GetConfiguredShuttleLoadingTimeSeconds_m4641BF379DC392B34860B842B78C59EEA525A450(__this, NULL);
 		NullCheck(L_57);
 		L_57->___shuttleLoadingTimeSeconds = L_58;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:739>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:761>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_59 = __this->___gameData;
 		float L_60 = V_7;
 		float L_61;
 		L_61 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_60, NULL);
 		NullCheck(L_59);
 		GameData_set_shuttleLoadingCooldownRemaining_mF9FB5D11C9FD20E3C89F96DA61BFB55325A133FE(L_59, L_61, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:740>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:762>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_62 = __this->___gameData;
 		float L_63;
 		L_63 = GameManager_GetConfiguredShuttleTravelTimeSeconds_mE9CF1892BBB6CF53E5E1E0F58A44B2C096ECC651(__this, NULL);
 		NullCheck(L_62);
 		L_62->___shuttleTravelTimeSeconds = L_63;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:741>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:763>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_64 = __this->___gameData;
 		float L_65 = V_8;
 		float L_66;
 		L_66 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_65, NULL);
 		NullCheck(L_64);
 		GameData_set_shuttleSendCooldownRemaining_mDCE379CDD189B69D97E2D56209CD0C05AE9F0D67(L_64, L_66, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:742>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:764>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_67 = __this->___gameData;
 		int32_t L_68;
 		L_68 = GameManager_GetConfiguredStartOrePerClick_mA5C343BD9B53CCA8EDED5DBF8430866B6891D6C6(__this, NULL);
@@ -17402,7 +17473,7 @@ IL_00f2:
 		L_69 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteral8824974E30ED00F9ECEE9399391B93C5C903A296, L_68, NULL);
 		NullCheck(L_67);
 		L_67->___orePerClick = L_69;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:743>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:765>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_70 = __this->___gameData;
 		int32_t L_71;
 		L_71 = GameManager_GetConfiguredStartOrePerSecond_m51278DE0892573A6C37FB20AA25E13AC5CCFA398(__this, NULL);
@@ -17410,49 +17481,49 @@ IL_00f2:
 		L_72 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteral25D8D4191DD1CDD3A3BB4EE644728201D4E1FB7D, L_71, NULL);
 		NullCheck(L_70);
 		L_70->___orePerSecond = L_72;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:744>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:766>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_73 = __this->___gameData;
 		int32_t L_74;
 		L_74 = GameManager_GetConfiguredStartEnergyMax_mA88963250FEAE738B3D323F3ED39E1F84887227C(__this, NULL);
 		NullCheck(L_73);
 		L_73->___energyMax = L_74;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:745>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:767>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_75 = __this->___gameData;
 		int32_t L_76;
 		L_76 = GameManager_GetConfiguredStartEnergyRegenAmount_mE438FD940C5C46D9B0EF1E20CA1D3E12FE17ED93(__this, NULL);
 		NullCheck(L_75);
 		L_75->___energyRegenAmount = L_76;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:746>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:768>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_77 = __this->___gameData;
 		float L_78;
 		L_78 = GameManager_GetConfiguredStartEnergyRegenInterval_m47742C0FF7169EAFB2E61639FF1673DED8A1CB6C(__this, NULL);
 		NullCheck(L_77);
 		L_77->___energyRegenInterval = L_78;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:747>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:769>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_79 = __this->___gameData;
 		float L_80;
 		L_80 = PlayerPrefs_GetFloat_m4A9B511E92C8BDEBB64D9B2557126FB030895A4D(_stringLiteral841BB20ED4F980B83A6557C2048A6C9F6892F9F3, (0.0f), NULL);
 		NullCheck(L_79);
 		L_79->___energyRegenTimer = L_80;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:748>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:770>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_81 = __this->___gameData;
 		int32_t L_82;
 		L_82 = GameManager_GetConfiguredMetalPerCraft_mEC3F24DA51D95D672AB73AB1EAC7970C866FE52B(__this, NULL);
 		NullCheck(L_81);
 		L_81->___metalPerCraft = L_82;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:749>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:771>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_83 = __this->___gameData;
 		int32_t L_84;
 		L_84 = GameManager_GetConfiguredMetalOreCost_m481D955BCD914B7C8282F68DD285BD89C0C54D05(__this, NULL);
 		NullCheck(L_83);
 		L_83->___metalOreCost = L_84;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:750>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:772>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_85 = __this->___gameData;
 		int32_t L_86;
 		L_86 = GameManager_GetConfiguredMetalEnergyCost_m37C120EDAF0C742D5DC76C67587D72F7542C5FCB(__this, NULL);
 		NullCheck(L_85);
 		L_85->___metalEnergyCost = L_86;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:751>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:773>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_87 = __this->___gameData;
 		int32_t L_88;
 		L_88 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(_stringLiteralCD93D27417A16D1E5F1DE4C3683A42DD48736BDE, 0, NULL);
@@ -17460,22 +17531,22 @@ IL_00f2:
 		L_89 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_88, NULL);
 		NullCheck(L_87);
 		L_87->___totalOreEarned = L_89;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:752>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:774>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_90 = __this->___gameData;
 		NullCheck(L_90);
 		GameData_EnsureDefaultResources_m4DF405CA1B681AE53078E7E97A2B4F7D07066DD5(L_90, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:753>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:775>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_91 = __this->___gameData;
 		NullCheck(L_91);
 		GameData_EnsureDefaultShuttles_mE2793CEC1E120857E9396358324B63D52280F57B(L_91, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:755>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:777>
 		V_9 = 0;
 		goto IL_0334;
 	}
 
 IL_0319:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:757>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:779>
 		int32_t L_92 = V_9;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_93 = __this->___gameData;
 		int32_t L_94 = V_9;
@@ -17483,14 +17554,14 @@ IL_0319:
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_95;
 		L_95 = GameData_GetShuttleState_m6390763F32E79D52F36C68CEC51A3D85DA0BED4B(L_93, L_94, NULL);
 		GameManager_LoadShuttleState_m6931518646ECFDDB84F6C9FA00E6162FA0CA24D6(__this, L_92, L_95, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:755>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:777>
 		int32_t L_96 = V_9;
 		V_9 = ((int32_t)il2cpp_codegen_add(L_96, 1));
 	}
 
 IL_0334:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:755>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:777>
 		int32_t L_97 = V_9;
 		if ((((int32_t)L_97) < ((int32_t)3)))
 		{
@@ -17498,11 +17569,11 @@ IL_0334:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:759>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:781>
 		return;
 	}
 }
-// Method Definition Index: 91862
+// Method Definition Index: 91864
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ResetGame_mAA7635DBAEDF23E8D37A64870D9D66D0A695D20C (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -17533,22 +17604,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ResetGame_mAA7635DBAEDF23E8D
 	}
 	int32_t V_0 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:763>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:785>
 		__this->___pendingOfflineWarehouseOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:764>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:786>
 		__this->___pendingOfflineShowRewardPopup = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:765>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:787>
 		__this->___pendingOfflinePreviewData = (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6*)NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___pendingOfflinePreviewData), (void*)(GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6*)NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:766>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:788>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_0 = __this->___pendingBoostOfferStates;
 		NullCheck(L_0);
 		List_1_Clear_mE31FF79B23D181FC6E494F45637854199D444FDD_inline(L_0, List_1_Clear_mE31FF79B23D181FC6E494F45637854199D444FDD_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:767>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:789>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_1 = __this->___boostOfferAutoCloseTimers;
 		NullCheck(L_1);
 		Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C(L_1, Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:769>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:791>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_2 = __this->___gameData;
 		if (L_2)
 		{
@@ -17556,7 +17627,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ResetGame_mAA7635DBAEDF23E8D
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:771>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:793>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6*)il2cpp_codegen_object_new(GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6_il2cpp_TypeInfo_var);
 		GameData__ctor_mA9048174D2C20A10AD865A4B919045878E27099A(L_3, NULL);
 		__this->___gameData = L_3;
@@ -17565,217 +17636,217 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ResetGame_mAA7635DBAEDF23E8D
 
 IL_003e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:774>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:796>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_4 = __this->___gameData;
 		int32_t L_5;
 		L_5 = GameManager_GetConfiguredStartOre_mFA4DE82C107022B49810DC5E54FB256FEBD96167(__this, NULL);
 		NullCheck(L_4);
 		GameData_set_ore_m516F47EB287340D548B317C31ED2FCF3E290DBE7(L_4, L_5, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:775>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:797>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_6 = __this->___gameData;
 		int32_t L_7;
 		L_7 = GameManager_GetConfiguredStartEnergy_m3F4693914743DD733B08D5A7E117D81DABF30246(__this, NULL);
 		NullCheck(L_6);
 		GameData_set_energy_m9DC505B6416C46427DFA783AD5937F98C6D99949(L_6, L_7, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:776>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:798>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_8 = __this->___gameData;
 		int32_t L_9;
 		L_9 = GameManager_GetConfiguredStartMetal_m35D171B3C4863ABD4BF36CBFD93BD077E0181676(__this, NULL);
 		NullCheck(L_8);
 		GameData_set_metal_m48357AE30A58EC0EB74CEF747D3FDD13118BEDC7(L_8, L_9, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:777>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:799>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_10 = __this->___gameData;
 		int32_t L_11;
 		L_11 = GameManager_GetConfiguredStartCrystal_m3096ECABF5026A1D8C818C7E971E413F5AD4E3BD(__this, NULL);
 		NullCheck(L_10);
 		GameData_set_crystal_m55C861EC6335A26122CA8103A6AFFA93C884E186(L_10, L_11, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:778>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:800>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_12 = __this->___gameData;
 		int32_t L_13;
 		L_13 = GameManager_GetConfiguredStartShuttleOre_m25421F33D8DCD8596BE9BFEA14025D578D481790(__this, NULL);
 		NullCheck(L_12);
 		L_12->___shuttleOre = L_13;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:779>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:801>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_14 = __this->___gameData;
 		NullCheck(L_14);
 		GameData_set_shuttleDockedOre_m82CDF72E226BF670071FC9305D0E702BFEEDAEA7(L_14, 0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:780>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:802>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_15 = __this->___gameData;
 		NullCheck(L_15);
 		GameData_set_shuttleLoadingOre_mCACC7FC1652BF0F30D390CDF98F0625A822B6F9F(L_15, 0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:781>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:803>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_16 = __this->___gameData;
 		NullCheck(L_16);
 		GameData_set_shuttleLoadingTargetOre_m2A99A730EAF74C4ADE5CBA114796FE720660B842(L_16, 0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:782>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:804>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_17 = __this->___gameData;
 		NullCheck(L_17);
 		GameData_set_shuttleSendAfterLoading_mDB34C5D4B4CD103E84D63A57D7404223385E0546(L_17, (bool)0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:783>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:805>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_18 = __this->___gameData;
 		NullCheck(L_18);
 		GameData_set_shuttleDeliveringOre_m842005DDE774A2349DE54FC40C5D69CED55F7722(L_18, 0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:784>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:806>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_19 = __this->___gameData;
 		NullCheck(L_19);
 		L_19->___shuttleCount = 1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:785>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:807>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_20 = __this->___gameData;
 		NullCheck(L_20);
 		L_20->___shuttleAutoSendCount = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:786>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:808>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_21 = __this->___gameData;
 		int32_t L_22;
 		L_22 = GameManager_GetConfiguredStartPlatformCapacity_m495F8C1319FB33B95509A74BE4BF3C8AE08B978B(__this, NULL);
 		NullCheck(L_21);
 		L_21->___platformCapacity = L_22;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:787>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:809>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_23 = __this->___gameData;
 		int32_t L_24;
 		L_24 = GameManager_GetConfiguredShuttleCapacity_mF12DEAC2C69EB0CF16592A78CE64624A06DCCAE2(__this, NULL);
 		NullCheck(L_23);
 		L_23->___shuttleCapacity = L_24;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:788>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:810>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_25 = __this->___gameData;
 		float L_26;
 		L_26 = GameManager_GetConfiguredShuttleLoadingTimeSeconds_m4641BF379DC392B34860B842B78C59EEA525A450(__this, NULL);
 		NullCheck(L_25);
 		L_25->___shuttleLoadingTimeSeconds = L_26;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:789>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:811>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_27 = __this->___gameData;
 		NullCheck(L_27);
 		GameData_set_shuttleLoadingCooldownRemaining_mF9FB5D11C9FD20E3C89F96DA61BFB55325A133FE(L_27, (0.0f), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:790>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:812>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_28 = __this->___gameData;
 		float L_29;
 		L_29 = GameManager_GetConfiguredShuttleTravelTimeSeconds_mE9CF1892BBB6CF53E5E1E0F58A44B2C096ECC651(__this, NULL);
 		NullCheck(L_28);
 		L_28->___shuttleTravelTimeSeconds = L_29;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:791>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:813>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_30 = __this->___gameData;
 		NullCheck(L_30);
 		GameData_set_shuttleSendCooldownRemaining_mDCE379CDD189B69D97E2D56209CD0C05AE9F0D67(L_30, (0.0f), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:792>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:814>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_31 = __this->___gameData;
 		NullCheck(L_31);
 		GameData_set_shuttleAutoSendEnabled_mBE68A543B7AAA6DEAC0834A55D46C7F703E412B3(L_31, (bool)0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:793>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:815>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_32 = __this->___gameData;
 		int32_t L_33;
 		L_33 = GameManager_GetConfiguredStartOrePerClick_mA5C343BD9B53CCA8EDED5DBF8430866B6891D6C6(__this, NULL);
 		NullCheck(L_32);
 		L_32->___orePerClick = L_33;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:794>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:816>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_34 = __this->___gameData;
 		int32_t L_35;
 		L_35 = GameManager_GetConfiguredStartOrePerSecond_m51278DE0892573A6C37FB20AA25E13AC5CCFA398(__this, NULL);
 		NullCheck(L_34);
 		L_34->___orePerSecond = L_35;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:795>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:817>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_36 = __this->___gameData;
 		int32_t L_37;
 		L_37 = GameManager_GetConfiguredStartEnergyMax_mA88963250FEAE738B3D323F3ED39E1F84887227C(__this, NULL);
 		NullCheck(L_36);
 		L_36->___energyMax = L_37;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:796>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:818>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_38 = __this->___gameData;
 		int32_t L_39;
 		L_39 = GameManager_GetConfiguredStartEnergyRegenAmount_mE438FD940C5C46D9B0EF1E20CA1D3E12FE17ED93(__this, NULL);
 		NullCheck(L_38);
 		L_38->___energyRegenAmount = L_39;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:797>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:819>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_40 = __this->___gameData;
 		float L_41;
 		L_41 = GameManager_GetConfiguredStartEnergyRegenInterval_m47742C0FF7169EAFB2E61639FF1673DED8A1CB6C(__this, NULL);
 		NullCheck(L_40);
 		L_40->___energyRegenInterval = L_41;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:798>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:820>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_42 = __this->___gameData;
 		NullCheck(L_42);
 		L_42->___energyRegenTimer = (0.0f);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:799>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:821>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_43 = __this->___gameData;
 		int32_t L_44;
 		L_44 = GameManager_GetConfiguredMetalPerCraft_mEC3F24DA51D95D672AB73AB1EAC7970C866FE52B(__this, NULL);
 		NullCheck(L_43);
 		L_43->___metalPerCraft = L_44;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:800>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:822>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_45 = __this->___gameData;
 		int32_t L_46;
 		L_46 = GameManager_GetConfiguredMetalOreCost_m481D955BCD914B7C8282F68DD285BD89C0C54D05(__this, NULL);
 		NullCheck(L_45);
 		L_45->___metalOreCost = L_46;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:801>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:823>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_47 = __this->___gameData;
 		int32_t L_48;
 		L_48 = GameManager_GetConfiguredMetalEnergyCost_m37C120EDAF0C742D5DC76C67587D72F7542C5FCB(__this, NULL);
 		NullCheck(L_47);
 		L_47->___metalEnergyCost = L_48;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:802>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:824>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_49 = __this->___gameData;
 		NullCheck(L_49);
 		L_49->___totalOreEarned = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:803>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:825>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_50 = __this->___gameData;
 		NullCheck(L_50);
 		GameData_EnsureDefaultResources_m4DF405CA1B681AE53078E7E97A2B4F7D07066DD5(L_50, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:804>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:826>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_51 = __this->___gameData;
 		NullCheck(L_51);
 		GameData_EnsureDefaultShuttles_mE2793CEC1E120857E9396358324B63D52280F57B(L_51, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:806>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral9142F09677E9992064465E148A01EAAED49A58DF, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:807>
-		GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E(__this, 0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:808>
-		GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E(__this, 1, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:809>
-		GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E(__this, 2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:810>
-		GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E(__this, 3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:811>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralEECAC69AB912F861E9995778D998E9D3159DDFCF, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:812>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralE1B924134EEC983A3AAF7AA93B16967ADE47410E, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:813>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral8BA0A05199247302D357385F02E0BDE95EC7FF28, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:814>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralF728C59E48AF66D10E5AAD0ACE30928625D53CF4, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:815>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralD383A2D2540F348550A9B3C081FBD25008D97A56, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:816>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral3D0545791B0B5FA8D3769A5AD38CCE35C54FE1F8, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:817>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral407904453046C59EF6C8FD59799CE61D1C7F9C12, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:818>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral5F265D23AF069FADFA661A3A82562872DB41010E, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:819>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral13F8DA16237E2DBA1D0E004C99874E69FEF6D2D9, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:820>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral7EE69DA62C6CA04F252EA57A196B1E4053B99E7B, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:821>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral8824974E30ED00F9ECEE9399391B93C5C903A296, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:822>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral25D8D4191DD1CDD3A3BB4EE644728201D4E1FB7D, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:823>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral841BB20ED4F980B83A6557C2048A6C9F6892F9F3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:824>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralCD93D27417A16D1E5F1DE4C3683A42DD48736BDE, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:825>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral69BA8D363A92AFA375AC9CE7199D8907C19A0FE8, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:826>
-		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral6D4D340E83EB0EF66AEBFD07147327F7FE2C9872, NULL);
 		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:828>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral9142F09677E9992064465E148A01EAAED49A58DF, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:829>
+		GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E(__this, 0, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:830>
+		GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E(__this, 1, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:831>
+		GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E(__this, 2, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:832>
+		GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E(__this, 3, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:833>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralEECAC69AB912F861E9995778D998E9D3159DDFCF, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:834>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralE1B924134EEC983A3AAF7AA93B16967ADE47410E, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:835>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral8BA0A05199247302D357385F02E0BDE95EC7FF28, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:836>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralF728C59E48AF66D10E5AAD0ACE30928625D53CF4, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:837>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralD383A2D2540F348550A9B3C081FBD25008D97A56, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:838>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral3D0545791B0B5FA8D3769A5AD38CCE35C54FE1F8, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:839>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral407904453046C59EF6C8FD59799CE61D1C7F9C12, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:840>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral5F265D23AF069FADFA661A3A82562872DB41010E, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:841>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral13F8DA16237E2DBA1D0E004C99874E69FEF6D2D9, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:842>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral7EE69DA62C6CA04F252EA57A196B1E4053B99E7B, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:843>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral8824974E30ED00F9ECEE9399391B93C5C903A296, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:844>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral25D8D4191DD1CDD3A3BB4EE644728201D4E1FB7D, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:845>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral841BB20ED4F980B83A6557C2048A6C9F6892F9F3, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:846>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteralCD93D27417A16D1E5F1DE4C3683A42DD48736BDE, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:847>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral69BA8D363A92AFA375AC9CE7199D8907C19A0FE8, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:848>
+		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(_stringLiteral6D4D340E83EB0EF66AEBFD07147327F7FE2C9872, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:850>
 		V_0 = 0;
 		goto IL_02f7;
 	}
 
 IL_02db:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:830>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:852>
 		int32_t L_52 = V_0;
 		GameManager_DeleteShuttleState_m78C0821572B704B8C35C9A31D9D270FD16ED9580(__this, L_52, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:831>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:853>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_53 = __this->___gameData;
 		int32_t L_54 = V_0;
 		NullCheck(L_53);
@@ -17783,14 +17854,14 @@ IL_02db:
 		L_55 = GameData_GetShuttleState_m6390763F32E79D52F36C68CEC51A3D85DA0BED4B(L_53, L_54, NULL);
 		NullCheck(L_55);
 		ShuttleState_Reset_mA29F958FB7AAA774686221C33A63337975D28080(L_55, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:828>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:850>
 		int32_t L_56 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_add(L_56, 1));
 	}
 
 IL_02f7:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:828>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:850>
 		int32_t L_57 = V_0;
 		if ((((int32_t)L_57) < ((int32_t)3)))
 		{
@@ -17798,7 +17869,7 @@ IL_02f7:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:834>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:856>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_58 = __this->___upgradeManager;
 		if (!L_58)
 		{
@@ -17806,7 +17877,7 @@ IL_02f7:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:836>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:858>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_59 = __this->___upgradeManager;
 		NullCheck(L_59);
 		UpgradeManager_ResetUpgrades_m81AB9183DC092862F01B750F7A7F75F629833418(L_59, NULL);
@@ -17814,7 +17885,7 @@ IL_02f7:
 
 IL_030e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:839>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:861>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_60 = __this->___missionManager;
 		if (!L_60)
 		{
@@ -17822,11 +17893,11 @@ IL_030e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:841>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:863>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_61 = __this->___missionManager;
 		NullCheck(L_61);
 		MissionManager_ResetProgress_mB08E2C64E2F03267CBFDD534A39B572ECB538DEA(L_61, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:843>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:865>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_62 = __this->___upgradeManager;
 		if (!L_62)
 		{
@@ -17834,7 +17905,7 @@ IL_030e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:845>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:867>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_63 = __this->___upgradeManager;
 		NullCheck(L_63);
 		UpgradeManager_RecalculateIncome_m729BD77B320DE384FFEC3B1EED09698E87877FD6(L_63, NULL);
@@ -17842,7 +17913,7 @@ IL_030e:
 
 IL_0334:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:849>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:871>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_64 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_65;
@@ -17853,23 +17924,23 @@ IL_0334:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:851>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:873>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_66 = __this->___uiManager;
 		NullCheck(L_66);
 		UIManager_HideOfflineReward_mA74782EBBE7CB546969C7ABAF2C780D9E1FF2B8D(L_66, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:852>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:874>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_67 = __this->___uiManager;
 		NullCheck(L_67);
 		UIManager_HideUpgradePanel_mB737B395DC46A7CC0A5049308EDD3735820F410D(L_67, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:853>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:875>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_68 = __this->___uiManager;
 		NullCheck(L_68);
 		UIManager_HideBuildPanel_m53FF887B061B0B5F30B29BDC26F9727A142D2970(L_68, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:854>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:876>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_69 = __this->___uiManager;
 		NullCheck(L_69);
 		UIManager_HideMissionPanel_mEE9935C3B6A48CAB812ECABA2CB5D8738D520F52(L_69, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:855>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:877>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_70 = __this->___uiManager;
 		NullCheck(L_70);
 		UIManager_HideBoostOffer_m756E340C6D7C8B728DDFB6C082CEFCDB9A4ED47D(L_70, NULL);
@@ -17877,15 +17948,15 @@ IL_0334:
 
 IL_0379:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:857>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:879>
 		return;
 	}
 }
-// Method Definition Index: 91863
+// Method Definition Index: 91865
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnApplicationPause_mE62C52D195AFC9932425A8F55D8206FC4E2424C8 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, bool ___0_pauseStatus, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:861>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:883>
 		bool L_0 = __this->___isStartupBlockedByNetwork;
 		if (L_0)
 		{
@@ -17902,13 +17973,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnApplicationPause_mE62C52D1
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:863>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:885>
 		return;
 	}
 
 IL_0011:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:866>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:888>
 		bool L_2 = ___0_pauseStatus;
 		if (!L_2)
 		{
@@ -17916,25 +17987,25 @@ IL_0011:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:868>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:890>
 		GameManager_HandleApplicationSentToBackground_m79FE50D5AB1C89CBFCF9B7899C48B990DAB4F097(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:869>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:891>
 		return;
 	}
 
 IL_001b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:872>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:894>
 		GameManager_HandleApplicationReturnedToForeground_mCCB8A16AF36B63769434A816B1F3A62AB74407BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:873>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:895>
 		return;
 	}
 }
-// Method Definition Index: 91864
+// Method Definition Index: 91866
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnApplicationFocus_m6681147F48A4C044AE359F6F3C317AC29ABFBB6E (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, bool ___0_hasFocus, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:877>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:899>
 		bool L_0 = __this->___isStartupBlockedByNetwork;
 		if (L_0)
 		{
@@ -17951,13 +18022,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnApplicationFocus_m6681147F
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:879>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:901>
 		return;
 	}
 
 IL_0011:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:882>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:904>
 		bool L_2 = ___0_hasFocus;
 		if (L_2)
 		{
@@ -17965,27 +18036,27 @@ IL_0011:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:884>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:906>
 		GameManager_HandleApplicationSentToBackground_m79FE50D5AB1C89CBFCF9B7899C48B990DAB4F097(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:885>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:907>
 		return;
 	}
 
 IL_001b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:888>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:910>
 		GameManager_HandleApplicationReturnedToForeground_mCCB8A16AF36B63769434A816B1F3A62AB74407BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:889>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:911>
 		return;
 	}
 }
-// Method Definition Index: 91865
+// Method Definition Index: 91867
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnApplicationQuit_mF34E37140942EC2EBCF4E58123C45152E67149F1 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B5_0 = NULL;
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B4_0 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:893>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:915>
 		bool L_0 = __this->___isStartupBlockedByNetwork;
 		if (L_0)
 		{
@@ -18002,15 +18073,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnApplicationQuit_mF34E37140
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:895>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:917>
 		return;
 	}
 
 IL_0011:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:898>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:920>
 		__this->___suppressBoostOfferPopup = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:899>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:921>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_3 = L_2;
 		if (L_3)
@@ -18032,7 +18103,7 @@ IL_0024:
 
 IL_0029:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:901>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:923>
 		bool L_4;
 		L_4 = GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline(__this, NULL);
 		if (L_4)
@@ -18041,17 +18112,17 @@ IL_0029:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:903>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:925>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
 	}
 
 IL_0037:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:905>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:927>
 		return;
 	}
 }
-// Method Definition Index: 91866
+// Method Definition Index: 91868
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18073,7 +18144,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RefreshUI_m93E28EC6143C3CB66
 	memset((&G_B8_0), 0, sizeof(G_B8_0));
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B8_1 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:909>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:931>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -18084,27 +18155,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RefreshUI_m93E28EC6143C3CB66
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:911>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:933>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:914>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:936>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_2;
 		L_2 = GameManager_GetDisplayGameData_mAC9B239F2F6B3C4567F899EFBED2BA9BEE9CC371(__this, NULL);
 		V_0 = L_2;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:915>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:937>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_3 = __this->___uiManager;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_4 = V_0;
 		NullCheck(L_3);
 		UIManager_UpdateUI_m309BFB26F031E7A891BC355216B1ED77A93A3AF0(L_3, L_4, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:916>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:917>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:918>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:919>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:920>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:921>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:938>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:939>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:940>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:941>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:942>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:943>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_5 = __this->___uiManager;
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_6 = __this->___upgradeManager;
 		NullCheck(L_6);
@@ -18128,24 +18199,24 @@ IL_000f:
 		L_15 = UpgradeManager_IsUpgradeCategoryUnlocked_m36B0B3EA89467C24945E998D90928C75178C385C(L_14, 3, NULL);
 		NullCheck(L_5);
 		UIManager_UpdateUpgradeCategoryTabs_m1AC7F533EF9711A2995CDE4FA826DE2B870D2D19(L_5, L_7, L_9, L_11, L_13, L_15, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:922>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:944>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_16 = __this->___uiManager;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_17 = V_0;
 		NullCheck(L_16);
 		UIManager_RefreshUpgradeList_m04838AC6CF88A7A1B60B50F6C7A908FC2378E6D1(L_16, L_17, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:923>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:945>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_18 = __this->___uiManager;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_19 = V_0;
 		NullCheck(L_18);
 		UIManager_RefreshBuildingList_m1FCB8E6746AB1035F65457149F043969751B1F56(L_18, L_19, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:924>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:946>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_20 = __this->___uiManager;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_21 = V_0;
 		NullCheck(L_20);
 		UIManager_RefreshMetaBonusList_mCD4ECAC2375DCDD597F5BB4B2314DB28AA07F2D9(L_20, L_21, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:925>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:926>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:927>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:947>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:948>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:949>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_22 = __this->___uiManager;
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_23 = __this->___upgradeManager;
 		NullCheck(L_23);
@@ -18178,7 +18249,7 @@ IL_00ae:
 	{
 		NullCheck(G_B5_1);
 		UIManager_SetMainScreenUpgradeButtonVisible_mAE9E4937ECF09E370064BCF3D9F6AF0F57963D8F(G_B5_1, (bool)G_B5_0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:928>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:950>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_27 = __this->___uiManager;
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_28 = __this->___upgradeManager;
 		NullCheck(L_28);
@@ -18186,16 +18257,16 @@ IL_00ae:
 		L_29 = UpgradeManager_HasAffordableBuilding_m50B862F07A6E3C22CA72205EC834582B28468B36(L_28, NULL);
 		NullCheck(L_27);
 		UIManager_SetMainScreenBuildButtonVisible_mFFF70F0619E0739A019479B4DCBCB8EEF2339C06(L_27, L_29, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:929>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:951>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_30 = __this->___uiManager;
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_31 = __this->___missionManager;
 		NullCheck(L_30);
 		UIManager_SetMainScreenMissionButtonVisible_mD49140D33FD8F6914C6B6B18F16AC51B82AFA143(L_30, (bool)((!(((RuntimeObject*)(MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB*)L_31) <= ((RuntimeObject*)(RuntimeObject*)NULL)))? 1 : 0), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:930>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:931>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:932>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:933>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:934>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:952>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:953>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:954>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:955>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:956>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_32 = __this->___uiManager;
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_33 = __this->___missionManager;
 		if (L_33)
@@ -18230,18 +18301,18 @@ IL_0107:
 		L_38 = GameManager_GetConfiguredNoMissionsText_mDC52A4BAB427BE12F0B75838BBDA3ABF7AB5AD6A(__this, NULL);
 		NullCheck(G_B8_1);
 		UIManager_UpdateMissionInfo_m52F6DC265947FD1B6D9C9FF44FBE3FA770E2B9D5(G_B8_1, G_B8_0, L_38, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:935>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:957>
 		GameManager_UpdateBoostUI_m29AA2ADB95643321737841D1031FEC66833ADBC4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:936>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:958>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_39 = __this->___uiManager;
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_40 = __this->___pendingBoostOfferStates;
 		NullCheck(L_39);
 		UIManager_RefreshBoostOfferTexts_mF13EDFB237FF1C46A327F2D93AD0C4AC3E451DDB(L_39, L_40, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:937>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:959>
 		return;
 	}
 }
-// Method Definition Index: 91867
+// Method Definition Index: 91869
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_ShouldBlockStartupForNetwork_m4BC7156D6D13D53CC211E84EEE5A1BBDA9EF4AFC (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18251,8 +18322,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_ShouldBlockStartupForNetwork
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:941>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:942>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:963>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:964>
 		bool L_0 = __this->___requireInternetOnStartup;
 		if (!L_0)
 		{
@@ -18271,7 +18342,7 @@ IL_0011:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 91868
+// Method Definition Index: 91870
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetNetworkErrorText_m40F9BDA85BB1F64E1967D1B3C539D4819D91E912 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18281,7 +18352,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetNetworkErrorText_m40
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:947>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:969>
 		il2cpp_codegen_runtime_class_init_inline(GameTextProvider_t44E3C71DA6E9F8C6BFBB3748A70586A888B99B62_il2cpp_TypeInfo_var);
 		GameUiTextConfig_t70EFB4ECA9E6905894438691DFFEF6A47E1E1156* L_0;
 		L_0 = GameTextProvider_get_UIText_m2D6963B6CDCB0B5595DD12126DAD2CD2DEF4CC22(NULL);
@@ -18291,7 +18362,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetNetworkErrorText_m40
 		return L_1;
 	}
 }
-// Method Definition Index: 91869
+// Method Definition Index: 91871
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetStartupLoadingText_m281E4A92E64BDDCCC2FA823505C74AC50D0D91DD (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18301,7 +18372,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetStartupLoadingText_m
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:952>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:974>
 		il2cpp_codegen_runtime_class_init_inline(GameTextProvider_t44E3C71DA6E9F8C6BFBB3748A70586A888B99B62_il2cpp_TypeInfo_var);
 		GameUiTextConfig_t70EFB4ECA9E6905894438691DFFEF6A47E1E1156* L_0;
 		L_0 = GameTextProvider_get_UIText_m2D6963B6CDCB0B5595DD12126DAD2CD2DEF4CC22(NULL);
@@ -18311,7 +18382,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetStartupLoadingText_m
 		return L_1;
 	}
 }
-// Method Definition Index: 91870
+// Method Definition Index: 91872
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845 GameManager_CalculateOfflineProgress_m50682D8EC212FD75C696C39941DED1E1FC818437 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -18364,23 +18435,23 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR OfflineProgress_t386B8BAFF83D31702BD28847717B
 	int32_t G_B46_0 = 0;
 	OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845* G_B46_1 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:957>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:979>
 		int64_t L_0;
 		L_0 = GameManager_GetOfflineSeconds_m61C2220D2878E20FB7FE143D4FAE8E781D0FB44E(__this, NULL);
 		V_0 = L_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:958>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:980>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_1 = __this->___gameData;
 		NullCheck(L_1);
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_2;
 		L_2 = GameData_Clone_mCACE8C1F4664AB636C2AB19E189284D39F51084E(L_1, NULL);
 		V_1 = L_2;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:959>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:981>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_3;
 		L_3 = GameManager_CreateOfflineBoostSnapshots_mCF22A4E05162B475E8D37A916DE5D502E0C201A9(__this, NULL);
 		V_2 = L_3;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:960>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:961>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:962>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:982>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:983>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:984>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_4 = V_1;
 		NullCheck(L_4);
 		int32_t L_5 = L_4->___orePerSecond;
@@ -18390,9 +18461,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR OfflineProgress_t386B8BAFF83D31702BD28847717B
 		int32_t L_8;
 		L_8 = GameManager_RemoveTemporaryBoostMultiplier_mB1EA284DB523D2FBCBC30E3123E4540CE711CD62(__this, L_5, L_7, NULL);
 		V_3 = L_8;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:963>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:964>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:965>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:985>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:986>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:987>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_9 = V_1;
 		NullCheck(L_9);
 		float L_10 = L_9->___shuttleTravelTimeSeconds;
@@ -18402,10 +18473,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR OfflineProgress_t386B8BAFF83D31702BD28847717B
 		float L_13;
 		L_13 = GameManager_RemoveTemporaryTravelSpeedMultiplier_m3EF5B96A85934878B9D37EA650FB88A370A66180(__this, L_10, L_12, NULL);
 		V_4 = L_13;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:966>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:988>
 		int64_t L_14 = V_0;
 		V_5 = (bool)((((int32_t)((((int64_t)L_14) < ((int64_t)((int64_t)((int32_t)120))))? 1 : 0)) == ((int32_t)0))? 1 : 0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:968>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:990>
 		int64_t L_15 = V_0;
 		if ((((int64_t)L_15) > ((int64_t)((int64_t)0))))
 		{
@@ -18413,11 +18484,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR OfflineProgress_t386B8BAFF83D31702BD28847717B
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:970>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:971>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:972>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:973>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:974>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:992>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:993>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:994>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:995>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:996>
 		il2cpp_codegen_initobj((&V_17), sizeof(OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845));
 		(&V_17)->___warehouseOre = 0;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_16 = V_1;
@@ -18429,13 +18500,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR OfflineProgress_t386B8BAFF83D31702BD28847717B
 
 IL_0070:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:977>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:999>
 		int64_t L_18 = V_0;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		int64_t L_19;
 		L_19 = Math_Min_mD731E8A02F13C67C1EAC7C1E7F81909FE466F079(L_18, ((int64_t)((int32_t)7200)), NULL);
 		V_0 = L_19;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:979>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1001>
 		EnergySystem_tCE9A72ADD9F64C0BBCFF6116E52062524FDC8867* L_20 = __this->___energySystem;
 		if (!L_20)
 		{
@@ -18443,20 +18514,20 @@ IL_0070:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:981>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1003>
 		EnergySystem_tCE9A72ADD9F64C0BBCFF6116E52062524FDC8867* L_21 = __this->___energySystem;
 		int64_t L_22 = V_0;
 		NullCheck(L_21);
 		EnergyOfflineProgress_t40DD1C4EE732668893F4737A15787928D78D7C27 L_23;
 		L_23 = EnergySystem_CalculateOfflineProgress_m6EA3576E953D6DAE0CD397C152A3CA18814561F0(L_21, L_22, NULL);
 		V_18 = L_23;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:982>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1004>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_24 = V_1;
 		EnergyOfflineProgress_t40DD1C4EE732668893F4737A15787928D78D7C27 L_25 = V_18;
 		int32_t L_26 = L_25.___energy;
 		NullCheck(L_24);
 		GameData_set_energy_m9DC505B6416C46427DFA783AD5937F98C6D99949(L_24, L_26, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:983>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1005>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_27 = V_1;
 		EnergyOfflineProgress_t40DD1C4EE732668893F4737A15787928D78D7C27 L_28 = V_18;
 		float L_29 = L_28.___regenTimer;
@@ -18466,14 +18537,14 @@ IL_0070:
 
 IL_00ad:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:986>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1008>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_30 = V_1;
 		NullCheck(L_30);
 		bool L_31 = L_30->___hasMiningPlatform;
 		V_6 = L_31;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:987>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:988>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:989>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1009>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1010>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1011>
 		bool L_32 = V_6;
 		if (L_32)
 		{
@@ -18503,34 +18574,34 @@ IL_00c7:
 IL_00d3:
 	{
 		V_7 = G_B7_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:990>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1012>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_39 = V_1;
 		NullCheck(L_39);
 		int32_t L_40 = L_39->___shuttleOre;
 		int32_t L_41;
 		L_41 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_40, NULL);
 		V_8 = L_41;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:991>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1013>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_42 = V_1;
 		NullCheck(L_42);
 		int32_t L_43 = L_42->___shuttleCapacity;
 		int32_t L_44;
 		L_44 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(1, L_43, NULL);
 		V_9 = L_44;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:992>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1014>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_45 = V_1;
 		NullCheck(L_45);
 		float L_46 = L_45->___shuttleLoadingTimeSeconds;
 		float L_47;
 		L_47 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_46, NULL);
 		V_10 = L_47;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:993>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1015>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_48 = V_1;
 		NullCheck(L_48);
 		int32_t L_49;
 		L_49 = GameData_get_ActiveShuttleCount_m3CCA88F301CFCE1CB301481FC1D9BE19495C24D4(L_48, NULL);
 		V_11 = L_49;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:994>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1016>
 		bool L_50 = V_6;
 		if (L_50)
 		{
@@ -18554,17 +18625,17 @@ IL_0112:
 IL_0118:
 	{
 		V_12 = G_B10_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:995>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1017>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_53 = (ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0*)(ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0*)SZArrayNew(ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0_il2cpp_TypeInfo_var, (uint32_t)3);
 		V_13 = L_53;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:997>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1019>
 		V_19 = 0;
 		goto IL_013f;
 	}
 
 IL_0127:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:999>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1021>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_54 = V_13;
 		int32_t L_55 = V_19;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_56 = V_1;
@@ -18578,14 +18649,14 @@ IL_0127:
 		NullCheck(L_54);
 		ArrayElementTypeCheck (L_54, L_59);
 		(L_54)->SetAt(static_cast<il2cpp_array_size_t>(L_55), (ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B*)L_59);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:997>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1019>
 		int32_t L_60 = V_19;
 		V_19 = ((int32_t)il2cpp_codegen_add(L_60, 1));
 	}
 
 IL_013f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:997>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1019>
 		int32_t L_61 = V_19;
 		if ((((int32_t)L_61) < ((int32_t)3)))
 		{
@@ -18593,11 +18664,11 @@ IL_013f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1002>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1024>
 		V_14 = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1003>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1025>
 		V_15 = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1004>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1026>
 		int64_t L_62 = V_0;
 		V_16 = L_62;
 		goto IL_032e;
@@ -18605,34 +18676,34 @@ IL_013f:
 
 IL_0152:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1008>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1030>
 		int32_t L_63 = V_3;
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_64 = V_2;
 		int32_t L_65;
 		L_65 = GameManager_GetOfflineBoostedOrePerSecond_m1DE4D30F3AF9A5D2D35516306B4F28FE529F1A1A(__this, L_63, L_64, NULL);
 		V_20 = L_65;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1009>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1031>
 		float L_66 = V_4;
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_67 = V_2;
 		float L_68;
 		L_68 = GameManager_GetOfflineBoostedTravelTime_m0C8B1E1C5F1E1C185BC95F5CD1B5D4F11B9999EE(__this, L_66, L_67, NULL);
 		V_21 = L_68;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1010>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1032>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_69 = V_2;
 		int64_t L_70;
 		L_70 = GameManager_GetNextOfflineBoostExpirationSeconds_m905894B6EB150E527F304E6073EAD6F2BDB5453C(__this, L_69, NULL);
 		V_22 = L_70;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1012>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1013>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1014>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1015>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1016>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1017>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1018>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1019>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1020>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1021>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1022>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1034>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1035>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1036>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1037>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1038>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1039>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1040>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1041>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1042>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1043>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1044>
 		bool L_71 = V_6;
 		if (!L_71)
 		{
@@ -18657,13 +18728,13 @@ IL_0152:
 
 IL_0191:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1027>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1049>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_80 = V_13;
 		int32_t L_81 = V_11;
 		int64_t L_82;
 		L_82 = GameManager_GetNextOfflineLoadingEventSeconds_m4BC53E14F1DFAD8B23E5940241004D5D7BE3D691(__this, L_80, L_81, NULL);
 		V_23 = L_82;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1029>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1051>
 		int64_t L_83 = V_23;
 		if ((((int64_t)L_83) <= ((int64_t)((int64_t)0))))
 		{
@@ -18671,20 +18742,20 @@ IL_0191:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1031>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1053>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_84 = V_13;
 		int32_t L_85 = V_11;
 		int64_t L_86;
 		L_86 = GameManager_GetNextOfflineTravelEventSeconds_m9239722C198B38A0E3C9133221B3F6955F7F3E01(__this, L_84, L_85, NULL);
 		V_28 = L_86;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1032>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1054>
 		int64_t L_87 = V_16;
 		int64_t L_88 = V_23;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		int64_t L_89;
 		L_89 = Math_Min_mD731E8A02F13C67C1EAC7C1E7F81909FE466F079(L_87, L_88, NULL);
 		V_29 = L_89;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1034>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1056>
 		int64_t L_90 = V_28;
 		if ((((int64_t)L_90) <= ((int64_t)((int64_t)0))))
 		{
@@ -18692,7 +18763,7 @@ IL_0191:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1036>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1058>
 		int64_t L_91 = V_29;
 		int64_t L_92 = V_28;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
@@ -18703,7 +18774,7 @@ IL_0191:
 
 IL_01cb:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1039>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1061>
 		int64_t L_94 = V_22;
 		if ((((int64_t)L_94) <= ((int64_t)((int64_t)0))))
 		{
@@ -18711,7 +18782,7 @@ IL_01cb:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1041>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1063>
 		int64_t L_95 = V_29;
 		int64_t L_96 = V_22;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
@@ -18722,7 +18793,7 @@ IL_01cb:
 
 IL_01dc:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1044>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1066>
 		int64_t L_98 = V_29;
 		if ((((int64_t)L_98) > ((int64_t)((int64_t)0))))
 		{
@@ -18730,21 +18801,21 @@ IL_01dc:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1046>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1068>
 		V_29 = ((int64_t)1);
 	}
 
 IL_01e6:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1049>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1050>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1051>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1052>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1053>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1054>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1055>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1056>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1057>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1071>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1072>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1073>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1074>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1075>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1076>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1077>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1078>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1079>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_99 = V_13;
 		int32_t L_100 = V_11;
 		int64_t L_101 = V_29;
@@ -18752,39 +18823,39 @@ IL_01e6:
 		int32_t L_103 = V_9;
 		float L_104 = V_21;
 		GameManager_AdvanceOfflineLoading_m491196824E24D182BEB05F7FDCB3043041FE2777(__this, L_99, L_100, L_101, L_102, L_103, L_104, (&V_8), (&V_15), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1058>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1080>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_105 = V_13;
 		int32_t L_106 = V_11;
 		int64_t L_107 = V_29;
 		GameManager_AdvanceOfflineTravel_mF674150129BB343E093FE0FC83FB204552BC983A(__this, L_105, L_106, L_107, (&V_15), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1059>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1081>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_108 = V_2;
 		int64_t L_109 = V_29;
 		GameManager_AdvanceOfflineBoosts_m0B41F655CE5FC8E4640FEC24E2D2DE60D4D72FC5(__this, L_108, L_109, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1060>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1082>
 		int64_t L_110 = V_16;
 		int64_t L_111 = V_29;
 		V_16 = ((int64_t)il2cpp_codegen_subtract(L_110, L_111));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1061>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1083>
 		goto IL_032e;
 	}
 
 IL_021f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1064>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1086>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_112 = V_13;
 		int32_t L_113 = V_11;
 		int64_t L_114;
 		L_114 = GameManager_GetNextOfflineTravelEventSeconds_m9239722C198B38A0E3C9133221B3F6955F7F3E01(__this, L_112, L_113, NULL);
 		V_24 = L_114;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1065>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1066>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1067>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1068>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1069>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1070>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1071>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1072>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1087>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1088>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1089>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1090>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1091>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1092>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1093>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1094>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_115 = V_13;
 		int32_t L_116 = V_11;
 		int32_t L_117 = V_12;
@@ -18795,12 +18866,12 @@ IL_021f:
 		int64_t L_122;
 		L_122 = GameManager_GetNextOfflineAutoReadySeconds_m7EF508FFFB1FC3B6C4BE0DD5BDE93530CACB627A(__this, L_115, L_116, L_117, L_118, L_119, L_120, L_121, NULL);
 		V_25 = L_122;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1074>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1096>
 		V_26 = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1075>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1097>
 		int64_t L_123 = V_16;
 		V_27 = L_123;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1077>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1099>
 		int64_t L_124 = V_24;
 		if ((((int64_t)L_124) <= ((int64_t)((int64_t)0))))
 		{
@@ -18808,20 +18879,20 @@ IL_021f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1079>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1101>
 		int64_t L_125 = V_27;
 		int64_t L_126 = V_24;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		int64_t L_127;
 		L_127 = Math_Min_mD731E8A02F13C67C1EAC7C1E7F81909FE466F079(L_125, L_126, NULL);
 		V_27 = L_127;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1080>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1102>
 		V_26 = (bool)1;
 	}
 
 IL_025c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1083>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1105>
 		int64_t L_128 = V_25;
 		if ((((int64_t)L_128) <= ((int64_t)((int64_t)0))))
 		{
@@ -18829,20 +18900,20 @@ IL_025c:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1085>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1107>
 		int64_t L_129 = V_27;
 		int64_t L_130 = V_25;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		int64_t L_131;
 		L_131 = Math_Min_mD731E8A02F13C67C1EAC7C1E7F81909FE466F079(L_129, L_130, NULL);
 		V_27 = L_131;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1086>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1108>
 		V_26 = (bool)1;
 	}
 
 IL_0270:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1089>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1111>
 		int64_t L_132 = V_22;
 		if ((((int64_t)L_132) <= ((int64_t)((int64_t)0))))
 		{
@@ -18850,20 +18921,20 @@ IL_0270:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1091>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1113>
 		int64_t L_133 = V_27;
 		int64_t L_134 = V_22;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		int64_t L_135;
 		L_135 = Math_Min_mD731E8A02F13C67C1EAC7C1E7F81909FE466F079(L_133, L_134, NULL);
 		V_27 = L_135;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1092>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1114>
 		V_26 = (bool)1;
 	}
 
 IL_0284:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1095>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1117>
 		bool L_136 = V_26;
 		if (L_136)
 		{
@@ -18871,7 +18942,7 @@ IL_0284:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1097>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1119>
 		int32_t L_137 = V_20;
 		if ((((int32_t)L_137) <= ((int32_t)0)))
 		{
@@ -18879,13 +18950,13 @@ IL_0284:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1102>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1124>
 		int32_t L_138 = V_7;
 		int32_t L_139 = V_8;
 		int32_t L_140;
 		L_140 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, ((int32_t)il2cpp_codegen_subtract(L_138, L_139)), NULL);
 		V_30 = L_140;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1104>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1126>
 		int32_t L_141 = V_30;
 		if ((((int32_t)L_141) <= ((int32_t)0)))
 		{
@@ -18893,7 +18964,7 @@ IL_0284:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1109>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1131>
 		int32_t L_142 = V_30;
 		int64_t L_143 = V_16;
 		int32_t L_144 = V_20;
@@ -18901,25 +18972,25 @@ IL_0284:
 		int64_t L_145;
 		L_145 = Math_Min_mD731E8A02F13C67C1EAC7C1E7F81909FE466F079(((int64_t)L_142), ((int64_t)il2cpp_codegen_multiply(L_143, ((int64_t)L_144))), NULL);
 		V_31 = ((int32_t)L_145);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1110>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1132>
 		int32_t L_146 = V_8;
 		int32_t L_147 = V_31;
 		V_8 = ((int32_t)il2cpp_codegen_add(L_146, L_147));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1111>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1133>
 		int32_t L_148 = V_14;
 		int32_t L_149 = V_31;
 		V_14 = ((int32_t)il2cpp_codegen_add(L_148, L_149));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1112>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1134>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_150 = V_2;
 		int64_t L_151 = V_16;
 		GameManager_AdvanceOfflineBoosts_m0B41F655CE5FC8E4640FEC24E2D2DE60D4D72FC5(__this, L_150, L_151, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1113>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1135>
 		goto IL_0337;
 	}
 
 IL_02cf:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1116>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1138>
 		int64_t L_152 = V_27;
 		if ((((int64_t)L_152) > ((int64_t)((int64_t)0))))
 		{
@@ -18927,13 +18998,13 @@ IL_02cf:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1118>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1140>
 		V_27 = ((int64_t)1);
 	}
 
 IL_02d9:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1121>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1143>
 		bool L_153 = V_6;
 		if (!L_153)
 		{
@@ -18956,23 +19027,23 @@ IL_02d9:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1123>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1145>
 		int32_t L_157 = V_7;
 		int32_t L_158 = V_8;
 		int32_t L_159;
 		L_159 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, ((int32_t)il2cpp_codegen_subtract(L_157, L_158)), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1124>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1146>
 		int64_t L_160 = V_27;
 		int32_t L_161 = V_20;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		int64_t L_162;
 		L_162 = Math_Min_mD731E8A02F13C67C1EAC7C1E7F81909FE466F079(((int64_t)L_159), ((int64_t)il2cpp_codegen_multiply(L_160, ((int64_t)L_161))), NULL);
 		V_32 = ((int32_t)L_162);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1125>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1147>
 		int32_t L_163 = V_8;
 		int32_t L_164 = V_32;
 		V_8 = ((int32_t)il2cpp_codegen_add(L_163, L_164));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1126>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1148>
 		int32_t L_165 = V_14;
 		int32_t L_166 = V_32;
 		V_14 = ((int32_t)il2cpp_codegen_add(L_165, L_166));
@@ -18980,16 +19051,16 @@ IL_02d9:
 
 IL_0310:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1129>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1151>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_167 = V_13;
 		int32_t L_168 = V_11;
 		int64_t L_169 = V_27;
 		GameManager_AdvanceOfflineTravel_mF674150129BB343E093FE0FC83FB204552BC983A(__this, L_167, L_168, L_169, (&V_15), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1130>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1152>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_170 = V_2;
 		int64_t L_171 = V_27;
 		GameManager_AdvanceOfflineBoosts_m0B41F655CE5FC8E4640FEC24E2D2DE60D4D72FC5(__this, L_170, L_171, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1131>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1153>
 		int64_t L_172 = V_16;
 		int64_t L_173 = V_27;
 		V_16 = ((int64_t)il2cpp_codegen_subtract(L_172, L_173));
@@ -18997,7 +19068,7 @@ IL_0310:
 
 IL_032e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1006>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1028>
 		int64_t L_174 = V_16;
 		if ((((int64_t)L_174) > ((int64_t)((int64_t)0))))
 		{
@@ -19007,17 +19078,17 @@ IL_032e:
 
 IL_0337:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1134>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1135>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1136>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1137>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1138>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1139>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1140>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1141>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1142>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1143>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1144>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1156>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1157>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1158>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1159>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1160>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1161>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1162>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1163>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1164>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1165>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1166>
 		il2cpp_codegen_initobj((&V_17), sizeof(OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845));
 		int32_t L_175 = V_15;
 		(&V_17)->___warehouseOre = L_175;
@@ -19067,7 +19138,7 @@ IL_0371:
 		return L_185;
 	}
 }
-// Method Definition Index: 91871
+// Method Definition Index: 91873
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetOfflineSeconds_m61C2220D2878E20FB7FE143D4FAE8E781D0FB44E (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19083,7 +19154,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetOfflineSeconds_m61C222
 	memset((&V_2), 0, sizeof(V_2));
 	int64_t G_B5_0 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1149>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1171>
 		bool L_0;
 		L_0 = GameManager_TryGetLocalSavedAtUnixTime_m7A801424C5B7F02B8CE0B65A1F389BECB6AA65B5(__this, (&V_0), NULL);
 		if (L_0)
@@ -19092,15 +19163,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetOfflineSeconds_m61C222
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1151>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1173>
 		return ((int64_t)0);
 	}
 
 IL_000d:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1154>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1155>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1156>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1176>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1177>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1178>
 		int64_t L_1 = __this->___offlineCalculationNowUnixTime;
 		if ((((int64_t)L_1) > ((int64_t)((int64_t)0))))
 		{
@@ -19127,7 +19198,7 @@ IL_0026:
 IL_002c:
 	{
 		V_1 = G_B5_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1157>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1179>
 		int64_t L_5 = V_1;
 		int64_t L_6 = V_0;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
@@ -19136,7 +19207,7 @@ IL_002c:
 		return L_7;
 	}
 }
-// Method Definition Index: 91872
+// Method Definition Index: 91874
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_TryGetLocalSavedAtUnixTime_m7A801424C5B7F02B8CE0B65A1F389BECB6AA65B5 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int64_t* ___0_savedAtUnixTime, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19146,11 +19217,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_TryGetLocalSavedAtUnixTime_m
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1162>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1184>
 		String_t* L_0 = ((String_t_StaticFields*)il2cpp_codegen_static_fields_for(il2cpp_defaults.string_class))->___Empty;
 		String_t* L_1;
 		L_1 = PlayerPrefs_GetString_mE80FED64ACC3134149C8202FDDDE774C29CB0AF2(_stringLiteral6D4D340E83EB0EF66AEBFD07147327F7FE2C9872, L_0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1163>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1185>
 		int64_t* L_2 = ___0_savedAtUnixTime;
 		bool L_3;
 		L_3 = Int64_TryParse_m3FC0128C89CC2331239FC2A0A749BF33455F03D2(L_1, L_2, NULL);
@@ -19170,11 +19241,11 @@ IL_001e:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 91873
+// Method Definition Index: 91875
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetSnapshotSavedAtUnixTime_m45069FBB58A9893BDDFFB41BF35EB8883AFBEF87 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* ___0_snapshot, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1168>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1190>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_0 = ___0_snapshot;
 		if (L_0)
 		{
@@ -19182,15 +19253,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetSnapshotSavedAtUnixTim
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1170>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1192>
 		return ((int64_t)0);
 	}
 
 IL_0006:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1173>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1174>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1175>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1195>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1196>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1197>
 		GameProgressSnapshot_t23209B4D0A8B234518E63AD8DD195D299F8AB0E2* L_1 = ___0_snapshot;
 		NullCheck(L_1);
 		int64_t L_2 = L_1->___clientSavedAtUnixTime;
@@ -19214,12 +19285,12 @@ IL_0017:
 		return L_6;
 	}
 }
-// Method Definition Index: 91874
+// Method Definition Index: 91876
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceTemporaryBoostTimersForInactiveTime_mB74C81ED177BDC933E8DC105CB1D189CCFF80A4E (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	int64_t V_0 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1180>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1202>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_0 = __this->___upgradeManager;
 		if (L_0)
 		{
@@ -19227,17 +19298,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceTemporaryBoostTimersF
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1182>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1204>
 		return;
 	}
 
 IL_0009:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1185>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1207>
 		int64_t L_1;
 		L_1 = GameManager_GetOfflineSeconds_m61C2220D2878E20FB7FE143D4FAE8E781D0FB44E(__this, NULL);
 		V_0 = L_1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1187>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1209>
 		int64_t L_2 = V_0;
 		if ((((int64_t)L_2) > ((int64_t)((int64_t)0))))
 		{
@@ -19245,22 +19316,22 @@ IL_0009:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1189>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1211>
 		return;
 	}
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1192>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1214>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_3 = __this->___upgradeManager;
 		int64_t L_4 = V_0;
 		NullCheck(L_3);
 		UpgradeManager_AdvanceTime_m1511C0B52869C1DBFB6F173038AE842E0C7939AC(L_3, ((float)L_4), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1193>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1215>
 		return;
 	}
 }
-// Method Definition Index: 91875
+// Method Definition Index: 91877
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceBoostOfferAutoCloseForInactiveTime_m73210D7620DC69E78FEB05A828BE8FA2BA3FBA13 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19285,7 +19356,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceBoostOfferAutoCloseFo
 	int32_t V_6 = 0;
 	TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* V_7 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1197>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1219>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_0 = __this->___upgradeManager;
 		if (!L_0)
 		{
@@ -19305,17 +19376,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceBoostOfferAutoCloseFo
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1199>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1221>
 		return;
 	}
 
 IL_0017:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1202>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1224>
 		int64_t L_3;
 		L_3 = GameManager_GetOfflineSeconds_m61C2220D2878E20FB7FE143D4FAE8E781D0FB44E(__this, NULL);
 		V_0 = L_3;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1204>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1226>
 		int64_t L_4 = V_0;
 		if ((((int64_t)L_4) > ((int64_t)((int64_t)0))))
 		{
@@ -19323,17 +19394,17 @@ IL_0017:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1206>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1228>
 		return;
 	}
 
 IL_0024:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1209>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1231>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_5 = (List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE*)il2cpp_codegen_object_new(List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE_il2cpp_TypeInfo_var);
 		List_1__ctor_m39A22B9766B240D18FFE2D608699E76318BDD602(L_5, List_1__ctor_m39A22B9766B240D18FFE2D608699E76318BDD602_RuntimeMethod_var);
 		V_1 = L_5;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1211>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1233>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_6 = __this->___pendingBoostOfferStates;
 		NullCheck(L_6);
 		int32_t L_7;
@@ -19344,14 +19415,14 @@ IL_0024:
 
 IL_003a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1213>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1235>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_8 = __this->___pendingBoostOfferStates;
 		int32_t L_9 = V_2;
 		NullCheck(L_8);
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_10;
 		L_10 = List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6(L_8, L_9, List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6_RuntimeMethod_var);
 		V_3 = L_10;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1215>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1237>
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_11 = V_3;
 		if (!L_11)
 		{
@@ -19370,7 +19441,7 @@ IL_003a:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1220>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1242>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_15 = __this->___boostOfferAutoCloseTimers;
 		V_4 = L_15;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_16 = V_3;
@@ -19385,7 +19456,7 @@ IL_003a:
 		int64_t L_22 = V_0;
 		NullCheck(L_17);
 		Dictionary_2_set_Item_mC024C8E3E13DF06F066DD12E4714A1A61A339C40(L_17, L_18, ((float)il2cpp_codegen_subtract(L_21, ((float)L_22))), Dictionary_2_set_Item_mC024C8E3E13DF06F066DD12E4714A1A61A339C40_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1222>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1244>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_23 = __this->___boostOfferAutoCloseTimers;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_24 = V_3;
 		NullCheck(L_23);
@@ -19397,7 +19468,7 @@ IL_003a:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1227>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1249>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_26 = V_1;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_27 = V_3;
 		NullCheck(L_26);
@@ -19406,14 +19477,14 @@ IL_003a:
 
 IL_0092:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1211>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1233>
 		int32_t L_28 = V_2;
 		V_2 = ((int32_t)il2cpp_codegen_subtract(L_28, 1));
 	}
 
 IL_0096:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1211>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1233>
 		int32_t L_29 = V_2;
 		if ((((int32_t)L_29) >= ((int32_t)0)))
 		{
@@ -19421,37 +19492,37 @@ IL_0096:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1230>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1252>
 		V_6 = 0;
 		goto IL_00c5;
 	}
 
 IL_009f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1232>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1254>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_30 = V_1;
 		int32_t L_31 = V_6;
 		NullCheck(L_30);
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_32;
 		L_32 = List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6(L_30, L_31, List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6_RuntimeMethod_var);
 		V_7 = L_32;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1233>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1255>
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_33 = V_7;
 		GameManager_RemovePendingBoostOffer_m52B73482598BCED39A4E1E447018534E99479F6E(__this, L_33, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1234>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1256>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_34 = __this->___upgradeManager;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_35 = V_7;
 		NullCheck(L_34);
 		bool L_36;
 		L_36 = UpgradeManager_TryDeclineTemporaryBoost_m0D979D3B89845062B4FC7EB47299D761BB30525F(L_34, L_35, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1230>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1252>
 		int32_t L_37 = V_6;
 		V_6 = ((int32_t)il2cpp_codegen_add(L_37, 1));
 	}
 
 IL_00c5:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1230>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1252>
 		int32_t L_38 = V_6;
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_39 = V_1;
 		NullCheck(L_39);
@@ -19463,17 +19534,17 @@ IL_00c5:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1236>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1258>
 		return;
 	}
 }
-// Method Definition Index: 91876
+// Method Definition Index: 91878
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleApplicationSentToBackground_m79FE50D5AB1C89CBFCF9B7899C48B990DAB4F097 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B4_0 = NULL;
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B3_0 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1240>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1262>
 		bool L_0 = __this->___isApplicationInBackground;
 		if (!L_0)
 		{
@@ -19481,17 +19552,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleApplicationSentToBackg
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1242>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1264>
 		return;
 	}
 
 IL_0009:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1245>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1267>
 		__this->___isApplicationInBackground = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1246>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1268>
 		__this->___suppressBoostOfferPopup = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1247>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1269>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_1 = __this->___uiManager;
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = L_1;
 		if (L_2)
@@ -19513,7 +19584,7 @@ IL_0023:
 
 IL_0028:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1249>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1271>
 		bool L_3;
 		L_3 = GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline(__this, NULL);
 		if (L_3)
@@ -19522,21 +19593,21 @@ IL_0028:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1251>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1273>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
 	}
 
 IL_0036:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1253>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1275>
 		return;
 	}
 }
-// Method Definition Index: 91877
+// Method Definition Index: 91879
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleApplicationReturnedToForeground_mCCB8A16AF36B63769434A816B1F3A62AB74407BB (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1257>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1279>
 		bool L_0 = __this->___isApplicationInBackground;
 		if (L_0)
 		{
@@ -19544,27 +19615,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleApplicationReturnedToF
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1259>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1281>
 		return;
 	}
 
 IL_0009:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1262>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1284>
 		__this->___isApplicationInBackground = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1263>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1285>
 		__this->___suppressBoostOfferPopup = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1265>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1287>
 		OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845 L_1;
 		L_1 = GameManager_CalculateOfflineProgress_m50682D8EC212FD75C696C39941DED1E1FC818437(__this, NULL);
 		GameManager_CacheOfflineProgress_m6B333B7012AFAFC258521464149E7AAAB50653B0(__this, L_1, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1266>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1288>
 		GameManager_AdvanceTemporaryBoostTimersForInactiveTime_mB74C81ED177BDC933E8DC105CB1D189CCFF80A4E(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1267>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1289>
 		GameManager_AdvanceBoostOfferAutoCloseForInactiveTime_m73210D7620DC69E78FEB05A828BE8FA2BA3FBA13(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1268>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1290>
 		GameManager_SyncPendingOfflinePreviewWithCurrentDynamicStats_m8C0A811C2DD1F86F658710B04BA8796D169F9D63(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1270>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1292>
 		bool L_2;
 		L_2 = GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline(__this, NULL);
 		if (L_2)
@@ -19573,7 +19644,7 @@ IL_0009:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1272>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1294>
 		bool L_3;
 		L_3 = GameManager_HasPendingOfflineStateChanges_m2D0BB05E4DA0DEBF9863D56C9ADDE3C2AED0036A(__this, NULL);
 		if (!L_3)
@@ -19582,32 +19653,32 @@ IL_0009:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1274>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1296>
 		GameManager_ApplyPendingOfflineProgress_m047C832C97D1D069248BF861DEB9DC82713900F0(__this, NULL);
 	}
 
 IL_004b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1277>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1299>
 		bool L_4;
 		L_4 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1278>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1300>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
 	}
 
 IL_0058:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1281>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1303>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1282>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1304>
 		GameManager_ShowOfflineRewardIfNeeded_m5B122D31E1520B72D8557AEA329898A8E8D5C406(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1283>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1305>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1284>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1306>
 		return;
 	}
 }
-// Method Definition Index: 91878
+// Method Definition Index: 91880
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartShuttleOre_m25421F33D8DCD8596BE9BFEA14025D578D481790 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19617,9 +19688,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartShuttle
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1288>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1289>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1290>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1310>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1311>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1312>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19642,7 +19713,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91879
+// Method Definition Index: 91881
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartPlatformCapacity_m495F8C1319FB33B95509A74BE4BF3C8AE08B978B (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19652,9 +19723,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartPlatfor
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1295>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1296>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1297>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1317>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1318>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1319>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19677,7 +19748,7 @@ IL_0011:
 		return L_3;
 	}
 }
-// Method Definition Index: 91880
+// Method Definition Index: 91882
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredShuttleCapacity_mF12DEAC2C69EB0CF16592A78CE64624A06DCCAE2 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19687,9 +19758,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredShuttleCapac
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1302>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1303>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1304>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1324>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1325>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1326>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19712,7 +19783,7 @@ IL_0011:
 		return L_3;
 	}
 }
-// Method Definition Index: 91881
+// Method Definition Index: 91883
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetConfiguredShuttleLoadingTimeSeconds_m4641BF379DC392B34860B842B78C59EEA525A450 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19722,9 +19793,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetConfiguredShuttleLoading
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1309>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1310>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1311>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1331>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1332>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1333>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19747,7 +19818,7 @@ IL_0014:
 		return L_3;
 	}
 }
-// Method Definition Index: 91882
+// Method Definition Index: 91884
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetConfiguredShuttleTravelTimeSeconds_mE9CF1892BBB6CF53E5E1E0F58A44B2C096ECC651 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19757,9 +19828,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetConfiguredShuttleTravelT
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1316>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1317>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1318>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1338>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1339>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1340>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19782,7 +19853,7 @@ IL_0014:
 		return L_3;
 	}
 }
-// Method Definition Index: 91883
+// Method Definition Index: 91885
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartOre_mFA4DE82C107022B49810DC5E54FB256FEBD96167 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19792,9 +19863,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartOre_mFA
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1323>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1324>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1325>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1345>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1346>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1347>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19817,7 +19888,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91884
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartEnergy_m3F4693914743DD733B08D5A7E117D81DABF30246 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19827,9 +19898,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartEnergy_
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1330>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1331>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1332>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1352>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1353>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1354>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19852,7 +19923,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91887
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartMetal_m35D171B3C4863ABD4BF36CBFD93BD077E0181676 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19862,9 +19933,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartMetal_m
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1337>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1338>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1339>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1359>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1360>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1361>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19887,7 +19958,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91886
+// Method Definition Index: 91888
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartCrystal_m3096ECABF5026A1D8C818C7E971E413F5AD4E3BD (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19897,9 +19968,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartCrystal
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1344>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1345>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1346>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1366>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1367>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1368>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19922,7 +19993,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91887
+// Method Definition Index: 91889
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartOrePerClick_mA5C343BD9B53CCA8EDED5DBF8430866B6891D6C6 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19932,9 +20003,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartOrePerC
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1351>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1352>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1353>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1373>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1374>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1375>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19957,7 +20028,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91888
+// Method Definition Index: 91890
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartOrePerSecond_m51278DE0892573A6C37FB20AA25E13AC5CCFA398 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -19967,9 +20038,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartOrePerS
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1358>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1359>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1360>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1380>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1381>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1382>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19992,7 +20063,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91889
+// Method Definition Index: 91891
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartEnergyMax_mA88963250FEAE738B3D323F3ED39E1F84887227C (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20002,9 +20073,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartEnergyM
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1365>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1366>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1367>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1387>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1388>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1389>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20027,7 +20098,7 @@ IL_0011:
 		return L_3;
 	}
 }
-// Method Definition Index: 91890
+// Method Definition Index: 91892
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartEnergyRegenAmount_mE438FD940C5C46D9B0EF1E20CA1D3E12FE17ED93 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20037,9 +20108,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredStartEnergyR
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1372>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1373>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1374>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1394>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1395>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1396>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20062,7 +20133,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91891
+// Method Definition Index: 91893
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetConfiguredStartEnergyRegenInterval_m47742C0FF7169EAFB2E61639FF1673DED8A1CB6C (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20072,9 +20143,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetConfiguredStartEnergyReg
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1379>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1380>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1381>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1401>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1402>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1403>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20097,7 +20168,7 @@ IL_0014:
 		return L_3;
 	}
 }
-// Method Definition Index: 91892
+// Method Definition Index: 91894
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredMetalPerCraft_mEC3F24DA51D95D672AB73AB1EAC7970C866FE52B (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20107,9 +20178,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredMetalPerCraf
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1386>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1387>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1388>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1408>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1409>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1410>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20132,7 +20203,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91893
+// Method Definition Index: 91895
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredMetalOreCost_m481D955BCD914B7C8282F68DD285BD89C0C54D05 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20142,9 +20213,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredMetalOreCost
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1393>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1394>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1395>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1415>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1416>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1417>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20167,7 +20238,7 @@ IL_0011:
 		return L_3;
 	}
 }
-// Method Definition Index: 91894
+// Method Definition Index: 91896
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredMetalEnergyCost_m37C120EDAF0C742D5DC76C67587D72F7542C5FCB (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20177,9 +20248,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetConfiguredMetalEnergyC
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1400>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1401>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1402>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1422>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1423>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1424>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20202,7 +20273,7 @@ IL_0010:
 		return L_3;
 	}
 }
-// Method Definition Index: 91895
+// Method Definition Index: 91897
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetConfiguredBoostOfferAutoCloseSeconds_m4F6CAD90DCB79D54B9F6B55D39E894638D2F1C18 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20212,9 +20283,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetConfiguredBoostOfferAuto
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1407>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1408>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1409>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1429>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1430>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1431>
 		ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* L_0 = __this->___gameConfig;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20237,7 +20308,7 @@ IL_0014:
 		return L_3;
 	}
 }
-// Method Definition Index: 91896
+// Method Definition Index: 91898
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetConfiguredNoMissionsText_mDC52A4BAB427BE12F0B75838BBDA3ABF7AB5AD6A (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20247,14 +20318,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetConfiguredNoMissions
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1414>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1436>
 		il2cpp_codegen_runtime_class_init_inline(GameTextProvider_t44E3C71DA6E9F8C6BFBB3748A70586A888B99B62_il2cpp_TypeInfo_var);
 		String_t* L_0;
 		L_0 = GameTextProvider_get_NoMissionsText_m1F401D138799D7FD01847C902BE122B1B3735289(NULL);
 		return L_0;
 	}
 }
-// Method Definition Index: 91897
+// Method Definition Index: 91899
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ShowOfflineRewardIfNeeded_m5B122D31E1520B72D8557AEA329898A8E8D5C406 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20264,7 +20335,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ShowOfflineRewardIfNeeded_m5
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1419>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1441>
 		bool L_0;
 		L_0 = GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline(__this, NULL);
 		if (!L_0)
@@ -20285,26 +20356,26 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ShowOfflineRewardIfNeeded_m5
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1421>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1443>
 		return;
 	}
 
 IL_0017:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1424>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1446>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_3 = __this->___uiManager;
 		int32_t L_4 = __this->___pendingOfflineWarehouseOre;
 		NullCheck(L_3);
 		UIManager_ShowOfflineReward_m9D93EB74CF9A6319982D4F0E7C39739249AF82EA(L_3, L_4, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1425>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1447>
 		return;
 	}
 }
-// Method Definition Index: 91898
+// Method Definition Index: 91900
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleUpgradeBuyRequested_m276BBE0E051B8BCC6B5D804EC3EA7FFCD54C11A6 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, UpgradeState_tA5D79ADC06492A50CDA406A7F15843F511229B33* ___0_state, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1429>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1451>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_0 = __this->___upgradeManager;
 		if (!L_0)
 		{
@@ -20325,31 +20396,31 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleUpgradeBuyRequested_m2
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1431>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1453>
 		return;
 	}
 
 IL_0017:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1434>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1456>
 		bool L_4;
 		L_4 = GameManager_TryAutoSendShuttle_m437FB17C42D5C0B7D8F1E686F3CA24C0BB356A20(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1435>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1457>
 		bool L_5;
 		L_5 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1436>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1458>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1437>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1459>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1438>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1460>
 		return;
 	}
 }
-// Method Definition Index: 91899
+// Method Definition Index: 91901
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleBuildingBuyRequested_mD0E4072378ED88A3DC2D9401EDC0F473CF38A932 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, BuildingState_tCAAA6343564D19AFEA91028B73DA957B0A789868* ___0_state, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1442>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1464>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_0 = __this->___upgradeManager;
 		if (!L_0)
 		{
@@ -20370,31 +20441,31 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleBuildingBuyRequested_m
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1444>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1466>
 		return;
 	}
 
 IL_0017:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1447>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1469>
 		bool L_4;
 		L_4 = GameManager_TryAutoSendShuttle_m437FB17C42D5C0B7D8F1E686F3CA24C0BB356A20(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1448>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1470>
 		bool L_5;
 		L_5 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1449>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1471>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1450>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1472>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1451>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1473>
 		return;
 	}
 }
-// Method Definition Index: 91900
+// Method Definition Index: 91902
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleMetaBonusBuyRequested_m819B0B54D7A8F97E3D76ECF30DDF140EC121D08D (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, MetaBonusState_tE6513CDCD84EE929EDC04203A38CDD74724015A7* ___0_state, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1455>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1477>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_0 = __this->___missionManager;
 		if (!L_0)
 		{
@@ -20415,13 +20486,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleMetaBonusBuyRequested_
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1457>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1479>
 		return;
 	}
 
 IL_0017:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1460>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1482>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_4 = __this->___upgradeManager;
 		if (!L_4)
 		{
@@ -20429,7 +20500,7 @@ IL_0017:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1462>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1484>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_5 = __this->___upgradeManager;
 		NullCheck(L_5);
 		UpgradeManager_RecalculateIncome_m729BD77B320DE384FFEC3B1EED09698E87877FD6(L_5, NULL);
@@ -20437,82 +20508,85 @@ IL_0017:
 
 IL_002a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1465>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1487>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1466>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1488>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1467>
-		return;
-	}
-}
-// Method Definition Index: 91901
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleShuttleSendRequested_m917C6038025117686A4E8C9AA0432C6C01E5AF77 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_shuttleIndex, const RuntimeMethod* method) 
-{
-	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1471>
-		int32_t L_0 = ___0_shuttleIndex;
-		GameManager_OnSendShuttleButtonClicked_m428CC89ADFEA7C98740505623163E8C8B192330D(__this, L_0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1472>
-		return;
-	}
-}
-// Method Definition Index: 91902
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleExitRequested_m3838FC579CFB07F0A5A21725827DCC3471912EC0 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
-{
-	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1476>
-		GameManager_OnExitGameButtonClicked_m988806C7C9E0ED0E9DE11A7EEF4E24A859DCC4C0(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1477>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1489>
 		return;
 	}
 }
 // Method Definition Index: 91903
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleShuttleSendRequested_m917C6038025117686A4E8C9AA0432C6C01E5AF77 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_shuttleIndex, const RuntimeMethod* method) 
+{
+	{
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1493>
+		int32_t L_0 = ___0_shuttleIndex;
+		GameManager_OnSendShuttleButtonClicked_m428CC89ADFEA7C98740505623163E8C8B192330D(__this, L_0, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1494>
+		return;
+	}
+}
+// Method Definition Index: 91904
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleExitRequested_m3838FC579CFB07F0A5A21725827DCC3471912EC0 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
+{
+	{
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1498>
+		GameManager_OnExitGameButtonClicked_m988806C7C9E0ED0E9DE11A7EEF4E24A859DCC4C0(__this, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1499>
+		return;
+	}
+}
+// Method Definition Index: 91905
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleLanguageSelected_mEC42EB0C02297BE8D559E86B7EECB43DAEACF9C4 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_language, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameTextProvider_t44E3C71DA6E9F8C6BFBB3748A70586A888B99B62_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral6410468465248555D531D65241BAB3AEAE701A8F);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7A76321D899E950A7D85D91986FFF09BB753AFE7);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1481>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1503>
 		int32_t L_0 = ___0_language;
 		il2cpp_codegen_runtime_class_init_inline(GameTextProvider_t44E3C71DA6E9F8C6BFBB3748A70586A888B99B62_il2cpp_TypeInfo_var);
 		GameTextProvider_SetLanguage_m1D7F5B0470B648468CA370FF297109ACDAFA07E7_inline(L_0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1482>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1504>
 		int32_t L_1 = ___0_language;
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral7A76321D899E950A7D85D91986FFF09BB753AFE7, L_1, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1483>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1505>
+		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(_stringLiteral6410468465248555D531D65241BAB3AEAE701A8F, 1, NULL);
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1506>
 		PlayerPrefs_Save_m82567E045D69C838112EA204B60C144D4C1EA3AE(NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1484>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1507>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1485>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1508>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1486>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1509>
 		return;
 	}
 }
-// Method Definition Index: 91904
+// Method Definition Index: 91906
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_HandleUpgradesChanged_mBC8D84CF43AB2981CF1EBDEFB5286395095123BA (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1490>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1513>
 		bool L_0;
 		L_0 = GameManager_TryAutoSendShuttle_m437FB17C42D5C0B7D8F1E686F3CA24C0BB356A20(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1491>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1514>
 		bool L_1;
 		L_1 = GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1492>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1515>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1493>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1516>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1494>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1517>
 		return;
 	}
 }
-// Method Definition Index: 91905
+// Method Definition Index: 91907
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_UpdateBoostUI_m29AA2ADB95643321737841D1031FEC66833ADBC4 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20522,7 +20596,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_UpdateBoostUI_m29AA2ADB95643
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1498>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1521>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20542,13 +20616,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_UpdateBoostUI_m29AA2ADB95643
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1500>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1523>
 		return;
 	}
 
 IL_0017:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1503>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1526>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_3 = __this->___uiManager;
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_4 = __this->___upgradeManager;
 		NullCheck(L_4);
@@ -20556,11 +20630,11 @@ IL_0017:
 		L_5 = UpgradeManager_get_ActiveTemporaryBoostStates_m79681FB28CE4580AD3269FD8915E256E6CC1A681_inline(L_4, NULL);
 		NullCheck(L_3);
 		UIManager_UpdateBoostUI_m5222587A6EA17EC68D95524F559D51C13508245D(L_3, L_5, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1504>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1527>
 		return;
 	}
 }
-// Method Definition Index: 91906
+// Method Definition Index: 91908
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_UpdateBoostOfferAutoClose_mBE1FDE1767E66B7382997FFBED99D3CC606D5652 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, float ___0_deltaTime, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20584,7 +20658,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_UpdateBoostOfferAutoClose_mB
 	int32_t V_5 = 0;
 	TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* V_6 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1508>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1531>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_0 = __this->___upgradeManager;
 		if (!L_0)
 		{
@@ -20604,17 +20678,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_UpdateBoostOfferAutoClose_mB
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1510>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1533>
 		return (bool)0;
 	}
 
 IL_0018:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1513>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1536>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_3 = (List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE*)il2cpp_codegen_object_new(List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE_il2cpp_TypeInfo_var);
 		List_1__ctor_m39A22B9766B240D18FFE2D608699E76318BDD602(L_3, List_1__ctor_m39A22B9766B240D18FFE2D608699E76318BDD602_RuntimeMethod_var);
 		V_0 = L_3;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1515>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1538>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_4 = __this->___pendingBoostOfferStates;
 		NullCheck(L_4);
 		int32_t L_5;
@@ -20625,14 +20699,14 @@ IL_0018:
 
 IL_002e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1517>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1540>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_6 = __this->___pendingBoostOfferStates;
 		int32_t L_7 = V_1;
 		NullCheck(L_6);
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_8;
 		L_8 = List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6(L_6, L_7, List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6_RuntimeMethod_var);
 		V_2 = L_8;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1519>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1542>
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_9 = V_2;
 		if (!L_9)
 		{
@@ -20651,7 +20725,7 @@ IL_002e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1524>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1547>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_13 = __this->___boostOfferAutoCloseTimers;
 		V_3 = L_13;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_14 = V_2;
@@ -20666,7 +20740,7 @@ IL_002e:
 		float L_20 = ___0_deltaTime;
 		NullCheck(L_15);
 		Dictionary_2_set_Item_mC024C8E3E13DF06F066DD12E4714A1A61A339C40(L_15, L_16, ((float)il2cpp_codegen_subtract(L_19, L_20)), Dictionary_2_set_Item_mC024C8E3E13DF06F066DD12E4714A1A61A339C40_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1526>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1549>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_21 = __this->___boostOfferAutoCloseTimers;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_22 = V_2;
 		NullCheck(L_21);
@@ -20678,7 +20752,7 @@ IL_002e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1531>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1554>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_24 = V_0;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_25 = V_2;
 		NullCheck(L_24);
@@ -20687,14 +20761,14 @@ IL_002e:
 
 IL_0082:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1515>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1538>
 		int32_t L_26 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_subtract(L_26, 1));
 	}
 
 IL_0086:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1515>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1538>
 		int32_t L_27 = V_1;
 		if ((((int32_t)L_27) >= ((int32_t)0)))
 		{
@@ -20702,7 +20776,7 @@ IL_0086:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1534>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1557>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_28 = V_0;
 		NullCheck(L_28);
 		int32_t L_29;
@@ -20713,43 +20787,43 @@ IL_0086:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1536>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1559>
 		return (bool)0;
 	}
 
 IL_0095:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1539>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1562>
 		V_5 = 0;
 		goto IL_00c0;
 	}
 
 IL_009a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1541>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1564>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_30 = V_0;
 		int32_t L_31 = V_5;
 		NullCheck(L_30);
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_32;
 		L_32 = List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6(L_30, L_31, List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6_RuntimeMethod_var);
 		V_6 = L_32;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1542>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1565>
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_33 = V_6;
 		GameManager_RemovePendingBoostOffer_m52B73482598BCED39A4E1E447018534E99479F6E(__this, L_33, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1543>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1566>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_34 = __this->___upgradeManager;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_35 = V_6;
 		NullCheck(L_34);
 		bool L_36;
 		L_36 = UpgradeManager_TryDeclineTemporaryBoost_m0D979D3B89845062B4FC7EB47299D761BB30525F(L_34, L_35, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1539>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1562>
 		int32_t L_37 = V_5;
 		V_5 = ((int32_t)il2cpp_codegen_add(L_37, 1));
 	}
 
 IL_00c0:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1539>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1562>
 		int32_t L_38 = V_5;
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_39 = V_0;
 		NullCheck(L_39);
@@ -20761,13 +20835,13 @@ IL_00c0:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1546>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1569>
 		GameManager_RefreshBoostOfferButtons_m9FA2B0129988E5FF46A63A645729F1759445F0D7(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1547>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1570>
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91907
+// Method Definition Index: 91909
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnDestroy_m15D42F0A634069A09307B19FBC237FD09A026AE4 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20778,7 +20852,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnDestroy_m15D42F0A634069A09
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1552>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1575>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_0 = __this->___upgradeManager;
 		if (!L_0)
 		{
@@ -20786,7 +20860,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnDestroy_m15D42F0A634069A09
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1554>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1577>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_1 = __this->___upgradeManager;
 		Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* L_2 = (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*)il2cpp_codegen_object_new(Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07_il2cpp_TypeInfo_var);
 		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_2, __this, (intptr_t)((void*)GameManager_HandleUpgradesChanged_mBC8D84CF43AB2981CF1EBDEFB5286395095123BA_RuntimeMethod_var), NULL);
@@ -20796,11 +20870,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_OnDestroy_m15D42F0A634069A09
 
 IL_001f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1556>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1579>
 		return;
 	}
 }
-// Method Definition Index: 91908
+// Method Definition Index: 91910
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_PrepareMainPanelOpen_m635DB3CE12F2E8758FEEBD31FB983A9C005C7158 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -20810,7 +20884,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_PrepareMainPanelOpen_m635DB3
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1560>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1583>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20821,31 +20895,31 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_PrepareMainPanelOpen_m635DB3
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1562>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1585>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1565>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1588>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		NullCheck(L_2);
 		UIManager_HideMenu_mE8F8C54BB88337C3EC1EC27D3FF22B2CB1C30EE7(L_2, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1566>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1589>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_3 = __this->___uiManager;
 		NullCheck(L_3);
 		UIManager_HideResetConfirmation_mD364FF7373BC9028C60C13A5FB7C653DA1C1982E(L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1567>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1590>
 		return;
 	}
 }
-// Method Definition Index: 91909
+// Method Definition Index: 91911
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_TryAutoSendShuttle_m437FB17C42D5C0B7D8F1E686F3CA24C0BB356A20 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
 	int32_t V_1 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1571>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1594>
 		ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2* L_0 = __this->___shuttleSystem;
 		if (!L_0)
 		{
@@ -20865,22 +20939,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_TryAutoSendShuttle_m437FB17C
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1573>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1596>
 		return (bool)0;
 	}
 
 IL_0018:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1576>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1599>
 		V_0 = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1578>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1601>
 		V_1 = 0;
 		goto IL_0042;
 	}
 
 IL_001e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1580>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1603>
 		ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2* L_3 = __this->___shuttleSystem;
 		int32_t L_4 = V_1;
 		NullCheck(L_3);
@@ -20892,7 +20966,7 @@ IL_001e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1585>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1608>
 		ShuttleSystem_t1ED0C3A2811B5193754646FADACC7D62E9486BD2* L_6 = __this->___shuttleSystem;
 		int32_t L_7 = V_1;
 		NullCheck(L_6);
@@ -20904,14 +20978,14 @@ IL_001e:
 
 IL_003e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1578>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1601>
 		int32_t L_10 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add(L_10, 1));
 	}
 
 IL_0042:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1578>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1601>
 		int32_t L_11 = V_1;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_12 = __this->___gameData;
 		NullCheck(L_12);
@@ -20923,18 +20997,18 @@ IL_0042:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1588>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1611>
 		bool L_14 = V_0;
 		return L_14;
 	}
 }
-// Method Definition Index: 91910
+// Method Definition Index: 91912
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_SyncMissionProgress_mE77C83BD0D78A3DCB0DD2FD2A3EFCB6FC33ECC5B (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1593>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1594>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1595>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1616>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1617>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1618>
 		MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* L_0 = __this->___missionManager;
 		if (!L_0)
 		{
@@ -20962,32 +21036,32 @@ IL_0022:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 91911
+// Method Definition Index: 91913
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_CacheOfflineProgress_m6B333B7012AFAFC258521464149E7AAAB50653B0 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845 ___0_offlineProgress, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1600>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1623>
 		OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845 L_0 = ___0_offlineProgress;
 		int32_t L_1 = L_0.___warehouseOre;
 		__this->___pendingOfflineWarehouseOre = L_1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1601>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1624>
 		OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845 L_2 = ___0_offlineProgress;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = L_2.___previewData;
 		__this->___pendingOfflinePreviewData = L_3;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___pendingOfflinePreviewData), (void*)L_3);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1602>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1625>
 		OfflineProgress_t386B8BAFF83D31702BD28847717B43E20E512845 L_4 = ___0_offlineProgress;
 		bool L_5 = L_4.___shouldShowPopup;
 		__this->___pendingOfflineShowRewardPopup = L_5;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1603>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1626>
 		return;
 	}
 }
-// Method Definition Index: 91912
+// Method Definition Index: 91914
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SyncPendingOfflinePreviewWithCurrentDynamicStats_m8C0A811C2DD1F86F658710B04BA8796D169F9D63 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1607>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1630>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_0 = __this->___pendingOfflinePreviewData;
 		if (!L_0)
 		{
@@ -21004,38 +21078,38 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SyncPendingOfflinePreviewWit
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1609>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1632>
 		return;
 	}
 
 IL_0011:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1612>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1635>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_2 = __this->___pendingOfflinePreviewData;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = __this->___gameData;
 		NullCheck(L_3);
 		int32_t L_4 = L_3->___orePerClick;
 		NullCheck(L_2);
 		L_2->___orePerClick = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1613>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1636>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_5 = __this->___pendingOfflinePreviewData;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_6 = __this->___gameData;
 		NullCheck(L_6);
 		int32_t L_7 = L_6->___orePerSecond;
 		NullCheck(L_5);
 		L_5->___orePerSecond = L_7;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1614>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1637>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_8 = __this->___pendingOfflinePreviewData;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_9 = __this->___gameData;
 		NullCheck(L_9);
 		float L_10 = L_9->___shuttleTravelTimeSeconds;
 		NullCheck(L_8);
 		L_8->___shuttleTravelTimeSeconds = L_10;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1615>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1638>
 		return;
 	}
 }
-// Method Definition Index: 91913
+// Method Definition Index: 91915
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SyncPendingBoostOffers_m03D697C73FABED090836ECDE80EFD9E00E30C854 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21062,7 +21136,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SyncPendingBoostOffers_m03D6
 	int32_t V_5 = 0;
 	TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* V_6 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1619>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1642>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_0 = __this->___upgradeManager;
 		if (L_0)
 		{
@@ -21070,27 +21144,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SyncPendingBoostOffers_m03D6
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1621>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1644>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_1 = __this->___pendingBoostOfferStates;
 		NullCheck(L_1);
 		List_1_Clear_mE31FF79B23D181FC6E494F45637854199D444FDD_inline(L_1, List_1_Clear_mE31FF79B23D181FC6E494F45637854199D444FDD_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1622>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1645>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_2 = __this->___boostOfferAutoCloseTimers;
 		NullCheck(L_2);
 		Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C(L_2, Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1623>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1646>
 		return;
 	}
 
 IL_001f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1626>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1649>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_3 = __this->___upgradeManager;
 		NullCheck(L_3);
 		RuntimeObject* L_4;
 		L_4 = UpgradeManager_GetAvailableTemporaryBoosts_mB5D971259D7BBC99B726850F6837BA2871266475(L_3, NULL);
 		V_0 = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1628>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1651>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_5 = __this->___pendingBoostOfferStates;
 		NullCheck(L_5);
 		int32_t L_6;
@@ -21101,23 +21175,23 @@ IL_001f:
 
 IL_003b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1630>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1653>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_7 = __this->___pendingBoostOfferStates;
 		int32_t L_8 = V_1;
 		NullCheck(L_7);
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_9;
 		L_9 = List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6(L_7, L_8, List_1_get_Item_mAF618F6788E6821123FA7FE3D172368C4C4E81B6_RuntimeMethod_var);
 		V_2 = L_9;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1631>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1654>
 		V_3 = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1633>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1656>
 		V_4 = 0;
 		goto IL_0064;
 	}
 
 IL_004f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1635>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1658>
 		RuntimeObject* L_10 = V_0;
 		int32_t L_11 = V_4;
 		NullCheck(L_10);
@@ -21130,22 +21204,22 @@ IL_004f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1637>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1660>
 		V_3 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1638>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1661>
 		goto IL_006e;
 	}
 
 IL_005e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1633>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1656>
 		int32_t L_14 = V_4;
 		V_4 = ((int32_t)il2cpp_codegen_add(L_14, 1));
 	}
 
 IL_0064:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1633>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1656>
 		int32_t L_15 = V_4;
 		RuntimeObject* L_16 = V_0;
 		NullCheck(L_16);
@@ -21159,7 +21233,7 @@ IL_0064:
 
 IL_006e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1642>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1665>
 		bool L_18 = V_3;
 		if (L_18)
 		{
@@ -21167,12 +21241,12 @@ IL_006e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1647>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1670>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_19 = __this->___pendingBoostOfferStates;
 		int32_t L_20 = V_1;
 		NullCheck(L_19);
 		List_1_RemoveAt_m10C1FAB403D8EF12F73DC41DB6B57E2F078ED0D4(L_19, L_20, List_1_RemoveAt_m10C1FAB403D8EF12F73DC41DB6B57E2F078ED0D4_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1648>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1671>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_21 = __this->___boostOfferAutoCloseTimers;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_22 = V_2;
 		NullCheck(L_21);
@@ -21182,14 +21256,14 @@ IL_006e:
 
 IL_008a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1628>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1651>
 		int32_t L_24 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_subtract(L_24, 1));
 	}
 
 IL_008e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1628>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1651>
 		int32_t L_25 = V_1;
 		if ((((int32_t)L_25) >= ((int32_t)0)))
 		{
@@ -21197,21 +21271,21 @@ IL_008e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1651>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1674>
 		V_5 = 0;
 		goto IL_00d6;
 	}
 
 IL_0097:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1653>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1676>
 		RuntimeObject* L_26 = V_0;
 		int32_t L_27 = V_5;
 		NullCheck(L_26);
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_28;
 		L_28 = InterfaceFuncInvoker1< TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336*, int32_t >::Invoke(0, IReadOnlyList_1_t6A16CDA8A518C5B165FC42B24DF58F75E685616D_il2cpp_TypeInfo_var, L_26, L_27);
 		V_6 = L_28;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1655>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1678>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_29 = __this->___pendingBoostOfferStates;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_30 = V_6;
 		NullCheck(L_29);
@@ -21223,12 +21297,12 @@ IL_0097:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1660>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1683>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_32 = __this->___pendingBoostOfferStates;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_33 = V_6;
 		NullCheck(L_32);
 		List_1_Add_m66321C717391F2248519807BF8DB40AF5EB7E4F3_inline(L_32, L_33, List_1_Add_m66321C717391F2248519807BF8DB40AF5EB7E4F3_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1661>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1684>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_34 = __this->___boostOfferAutoCloseTimers;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_35 = V_6;
 		float L_36;
@@ -21239,14 +21313,14 @@ IL_0097:
 
 IL_00d0:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1651>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1674>
 		int32_t L_37 = V_5;
 		V_5 = ((int32_t)il2cpp_codegen_add(L_37, 1));
 	}
 
 IL_00d6:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1651>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1674>
 		int32_t L_38 = V_5;
 		RuntimeObject* L_39 = V_0;
 		NullCheck(L_39);
@@ -21258,11 +21332,11 @@ IL_00d6:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1663>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1686>
 		return;
 	}
 }
-// Method Definition Index: 91914
+// Method Definition Index: 91916
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RefreshBoostOfferButtons_m9FA2B0129988E5FF46A63A645729F1759445F0D7 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21273,7 +21347,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RefreshBoostOfferButtons_m9F
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1667>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1690>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -21284,13 +21358,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RefreshBoostOfferButtons_m9F
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1669>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1692>
 		return;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1672>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1695>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_2 = __this->___pendingBoostOfferStates;
 		NullCheck(L_2);
 		int32_t L_3;
@@ -21301,26 +21375,26 @@ IL_000f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1674>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1697>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_4 = __this->___uiManager;
 		NullCheck(L_4);
 		UIManager_HideBoostOffer_m756E340C6D7C8B728DDFB6C082CEFCDB9A4ED47D(L_4, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1675>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1698>
 		return;
 	}
 
 IL_0029:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1678>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1701>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_5 = __this->___uiManager;
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_6 = __this->___pendingBoostOfferStates;
 		NullCheck(L_5);
 		UIManager_ShowBoostOffers_mF937ED4559AB099DC257CC19EE1EDA38004A7CA4(L_5, L_6, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1679>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1702>
 		return;
 	}
 }
-// Method Definition Index: 91915
+// Method Definition Index: 91917
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RemovePendingBoostOffer_m52B73482598BCED39A4E1E447018534E99479F6E (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* ___0_boostState, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21334,7 +21408,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RemovePendingBoostOffer_m52B
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B5_0 = NULL;
 	UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* G_B4_0 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1683>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1706>
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_0 = ___0_boostState;
 		if (L_0)
 		{
@@ -21342,25 +21416,25 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RemovePendingBoostOffer_m52B
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1685>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1708>
 		return;
 	}
 
 IL_0004:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1688>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1711>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_1 = __this->___pendingBoostOfferStates;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_2 = ___0_boostState;
 		NullCheck(L_1);
 		bool L_3;
 		L_3 = List_1_Remove_mA0B2BFF3869C52E5F3BF7179DC148F52C31E9699(L_1, L_2, List_1_Remove_mA0B2BFF3869C52E5F3BF7179DC148F52C31E9699_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1689>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1712>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_4 = __this->___boostOfferAutoCloseTimers;
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_5 = ___0_boostState;
 		NullCheck(L_4);
 		bool L_6;
 		L_6 = Dictionary_2_Remove_m006B9BAAF2F9E7033688182CB8EBB4A3CB073FE9(L_4, L_5, Dictionary_2_Remove_m006B9BAAF2F9E7033688182CB8EBB4A3CB073FE9_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1691>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1714>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_7 = __this->___pendingBoostOfferStates;
 		NullCheck(L_7);
 		int32_t L_8;
@@ -21371,7 +21445,7 @@ IL_0004:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1693>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1716>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_9 = __this->___uiManager;
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_10 = L_9;
 		if (L_10)
@@ -21393,11 +21467,11 @@ IL_0037:
 
 IL_003c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1695>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1718>
 		return;
 	}
 }
-// Method Definition Index: 91916
+// Method Definition Index: 91918
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21407,9 +21481,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_TryShowNextBoostOffer_mA977C
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1699>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1700>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1701>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1722>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1723>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1724>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -21436,13 +21510,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_TryShowNextBoostOffer_mA977C
 
 IL_001e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1703>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1726>
 		return;
 	}
 
 IL_001f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1706>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1729>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_4 = __this->___uiManager;
 		NullCheck(L_4);
 		bool L_5;
@@ -21453,25 +21527,25 @@ IL_001f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1708>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1731>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_6 = __this->___uiManager;
 		NullCheck(L_6);
 		UIManager_HideBoostOffer_m756E340C6D7C8B728DDFB6C082CEFCDB9A4ED47D(L_6, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1709>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1732>
 		return;
 	}
 
 IL_0038:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1712>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1735>
 		GameManager_SyncPendingBoostOffers_m03D697C73FABED090836ECDE80EFD9E00E30C854(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1713>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1736>
 		GameManager_RefreshBoostOfferButtons_m9FA2B0129988E5FF46A63A645729F1759445F0D7(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1714>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1737>
 		return;
 	}
 }
-// Method Definition Index: 91917
+// Method Definition Index: 91919
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DismissPendingBoostOffer_m04DF34F0100143EA2DF39C1A4BB15F6AB6B2ADB0 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21486,7 +21560,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DismissPendingBoostOffer_m04
 	}
 	int32_t V_0 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1718>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1741>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_0 = __this->___uiManager;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -21497,7 +21571,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DismissPendingBoostOffer_m04
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1720>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1743>
 		UIManager_t16825A2483574F37D7D47AB939A6FA639678B1F3* L_2 = __this->___uiManager;
 		NullCheck(L_2);
 		UIManager_HideBoostOffer_m756E340C6D7C8B728DDFB6C082CEFCDB9A4ED47D(L_2, NULL);
@@ -21505,7 +21579,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DismissPendingBoostOffer_m04
 
 IL_0019:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1723>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1746>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_3 = __this->___upgradeManager;
 		if (!L_3)
 		{
@@ -21525,28 +21599,28 @@ IL_0019:
 
 IL_002f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1725>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1748>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_6 = __this->___pendingBoostOfferStates;
 		NullCheck(L_6);
 		List_1_Clear_mE31FF79B23D181FC6E494F45637854199D444FDD_inline(L_6, List_1_Clear_mE31FF79B23D181FC6E494F45637854199D444FDD_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1726>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1749>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_7 = __this->___boostOfferAutoCloseTimers;
 		NullCheck(L_7);
 		Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C(L_7, Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1727>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1750>
 		return;
 	}
 
 IL_0046:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1730>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1753>
 		V_0 = 0;
 		goto IL_0066;
 	}
 
 IL_004a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1732>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1755>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_8 = __this->___upgradeManager;
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_9 = __this->___pendingBoostOfferStates;
 		int32_t L_10 = V_0;
@@ -21556,14 +21630,14 @@ IL_004a:
 		NullCheck(L_8);
 		bool L_12;
 		L_12 = UpgradeManager_TryDeclineTemporaryBoost_m0D979D3B89845062B4FC7EB47299D761BB30525F(L_8, L_11, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1730>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1753>
 		int32_t L_13 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_add(L_13, 1));
 	}
 
 IL_0066:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1730>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1753>
 		int32_t L_14 = V_0;
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_15 = __this->___pendingBoostOfferStates;
 		NullCheck(L_15);
@@ -21575,19 +21649,19 @@ IL_0066:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1735>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1758>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_17 = __this->___pendingBoostOfferStates;
 		NullCheck(L_17);
 		List_1_Clear_mE31FF79B23D181FC6E494F45637854199D444FDD_inline(L_17, List_1_Clear_mE31FF79B23D181FC6E494F45637854199D444FDD_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1736>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1759>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_18 = __this->___boostOfferAutoCloseTimers;
 		NullCheck(L_18);
 		Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C(L_18, Dictionary_2_Clear_m22A6F729B5005D92C11FB84963B9940F9D401F3C_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1737>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1760>
 		return;
 	}
 }
-// Method Definition Index: 91918
+// Method Definition Index: 91920
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DismissBoostOfferAndRefresh_m1F2DDD87C353963A4643D06D96A287ECB88C4C63 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21598,7 +21672,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DismissBoostOfferAndRefresh_
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1741>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1764>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_0 = __this->___pendingBoostOfferStates;
 		NullCheck(L_0);
 		int32_t L_1;
@@ -21631,29 +21705,29 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DismissBoostOfferAndRefresh_
 
 IL_0029:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1743>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1766>
 		return;
 	}
 
 IL_002a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1746>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1769>
 		GameManager_DismissPendingBoostOffer_m04DF34F0100143EA2DF39C1A4BB15F6AB6B2ADB0(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1747>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1770>
 		GameManager_RefreshUI_m93E28EC6143C3CB66852D6C3B881D94FF536FC42(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1748>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1771>
 		GameManager_SaveGame_mF0BF04DE7453D8BB42D0A0933F964450CD7AE2BB(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1749>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1772>
 		GameManager_TryShowNextBoostOffer_mA977CC9BCA94B954540AD1516E477BFDE6B52BF4(__this, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1750>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1773>
 		return;
 	}
 }
-// Method Definition Index: 91919
+// Method Definition Index: 91921
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ApplyPendingOfflineProgress_m047C832C97D1D069248BF861DEB9DC82713900F0 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1754>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1777>
 		bool L_0;
 		L_0 = GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline(__this, NULL);
 		if (L_0)
@@ -21670,13 +21744,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_ApplyPendingOfflineProgress_
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1756>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1779>
 		return;
 	}
 
 IL_0011:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1759>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1782>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_2 = __this->___pendingOfflinePreviewData;
 		if (!L_2)
 		{
@@ -21684,7 +21758,7 @@ IL_0011:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1761>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1784>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = __this->___gameData;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_4 = __this->___pendingOfflinePreviewData;
 		NullCheck(L_3);
@@ -21693,31 +21767,31 @@ IL_0011:
 
 IL_002a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1764>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1787>
 		__this->___pendingOfflineWarehouseOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1765>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1788>
 		__this->___pendingOfflinePreviewData = (GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6*)NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___pendingOfflinePreviewData), (void*)(GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6*)NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1766>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1789>
 		__this->___pendingOfflineShowRewardPopup = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1767>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1790>
 		return;
 	}
 }
-// Method Definition Index: 91920
+// Method Definition Index: 91922
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1771>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1794>
 		bool L_0 = __this->___pendingOfflineShowRewardPopup;
 		return L_0;
 	}
 }
-// Method Definition Index: 91921
+// Method Definition Index: 91923
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* GameManager_GetDisplayGameData_mAC9B239F2F6B3C4567F899EFBED2BA9BEE9CC371 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1776>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1799>
 		bool L_0;
 		L_0 = GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline(__this, NULL);
 		if (!L_0)
@@ -21735,23 +21809,23 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameData_t857DCFA51343FE2611A88BE4D943BDA16FB
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1778>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1801>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_2 = __this->___gameData;
 		return L_2;
 	}
 
 IL_0017:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1781>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1804>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = __this->___pendingOfflinePreviewData;
 		return L_3;
 	}
 }
-// Method Definition Index: 91922
+// Method Definition Index: 91924
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_HasPendingOfflineStateChanges_m2D0BB05E4DA0DEBF9863D56C9ADDE3C2AED0036A (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1786>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1809>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_0 = __this->___pendingOfflinePreviewData;
 		if (L_0)
 		{
@@ -21759,28 +21833,28 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_HasPendingOfflineStateChange
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1788>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1811>
 		return (bool)0;
 	}
 
 IL_000a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1791>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1792>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1793>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1794>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1795>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1796>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1797>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1798>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1799>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1800>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1801>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1802>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1803>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1804>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1805>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1806>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1814>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1815>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1816>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1817>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1818>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1819>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1820>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1821>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1822>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1823>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1824>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1825>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1826>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1827>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1828>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1829>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_1 = __this->___pendingOfflinePreviewData;
 		NullCheck(L_1);
 		int32_t L_2;
@@ -21999,26 +22073,26 @@ IL_01a6:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91923
+// Method Definition Index: 91925
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* GameManager_BuildOfflinePreviewData_mAD511B7CB41D0AF5920D083CB29F02B742ECDA96 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* ___0_previewData, int32_t ___1_shuttleOre, ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* ___2_shuttleStates, int32_t ___3_minedOre, int32_t ___4_warehouseOre, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1816>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1839>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_0 = ___0_previewData;
 		int32_t L_1 = ___1_shuttleOre;
 		int32_t L_2;
 		L_2 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_1, NULL);
 		NullCheck(L_0);
 		L_0->___shuttleOre = L_2;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1818>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1841>
 		V_0 = 0;
 		goto IL_0024;
 	}
 
 IL_0011:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1820>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1843>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = ___0_previewData;
 		int32_t L_4 = V_0;
 		NullCheck(L_3);
@@ -22031,14 +22105,14 @@ IL_0011:
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_9 = (L_6)->GetAt(static_cast<il2cpp_array_size_t>(L_8));
 		NullCheck(L_5);
 		ShuttleState_CopyFrom_mF76EFC9B95CBC2A06A6788FA821A5406A78D1ED1(L_5, L_9, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1818>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1841>
 		int32_t L_10 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_add(L_10, 1));
 	}
 
 IL_0024:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1818>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1841>
 		int32_t L_11 = V_0;
 		if ((((int32_t)L_11) < ((int32_t)3)))
 		{
@@ -22046,7 +22120,7 @@ IL_0024:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1823>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1846>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_12 = ___0_previewData;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_13 = L_12;
 		NullCheck(L_13);
@@ -22055,7 +22129,7 @@ IL_0024:
 		int32_t L_15 = ___4_warehouseOre;
 		NullCheck(L_13);
 		GameData_set_ore_m516F47EB287340D548B317C31ED2FCF3E290DBE7(L_13, ((int32_t)il2cpp_codegen_add(L_14, L_15)), NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1824>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1847>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_16 = ___0_previewData;
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_17 = L_16;
 		NullCheck(L_17);
@@ -22063,20 +22137,20 @@ IL_0024:
 		int32_t L_19 = ___3_minedOre;
 		NullCheck(L_17);
 		L_17->___totalOreEarned = ((int32_t)il2cpp_codegen_add(L_18, L_19));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1825>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1848>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_20 = ___0_previewData;
 		return L_20;
 	}
 }
-// Method Definition Index: 91924
+// Method Definition Index: 91926
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_IsOfflineShuttleBusy_m7B10D83B894F97B2DA574C004E26D5B67F16AD25 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* ___0_shuttleState, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1830>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1831>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1832>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1833>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1834>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1853>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1854>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1855>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1856>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1857>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_0 = ___0_shuttleState;
 		NullCheck(L_0);
 		float L_1 = L_0->___loadingCooldownRemaining;
@@ -22124,7 +22198,7 @@ IL_0036:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91925
+// Method Definition Index: 91927
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineLoadingEventSeconds_m4BC53E14F1DFAD8B23E5940241004D5D7BE3D691 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* ___0_shuttleStates, int32_t ___1_activeShuttleCount, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22138,16 +22212,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineLoadingEven
 	float V_2 = 0.0f;
 	int64_t V_3 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1839>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1862>
 		V_0 = ((int64_t)0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1841>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1864>
 		V_1 = 0;
 		goto IL_002e;
 	}
 
 IL_0007:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1843>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1866>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_0 = ___0_shuttleStates;
 		int32_t L_1 = V_1;
 		NullCheck(L_0);
@@ -22156,7 +22230,7 @@ IL_0007:
 		NullCheck(L_3);
 		float L_4 = L_3->___loadingCooldownRemaining;
 		V_2 = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1845>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1868>
 		float L_5 = V_2;
 		if ((((float)L_5) <= ((float)(0.0f))))
 		{
@@ -22164,13 +22238,13 @@ IL_0007:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1850>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1873>
 		float L_6 = V_2;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		double L_7;
 		L_7 = ceil(((double)L_6));
 		V_3 = il2cpp_codegen_cast_double_to_int<int64_t>(L_7);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1852>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1875>
 		int64_t L_8 = V_0;
 		if (!L_8)
 		{
@@ -22188,21 +22262,21 @@ IL_0007:
 
 IL_0028:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1854>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1877>
 		int64_t L_11 = V_3;
 		V_0 = L_11;
 	}
 
 IL_002a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1841>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1864>
 		int32_t L_12 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add(L_12, 1));
 	}
 
 IL_002e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1841>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1864>
 		int32_t L_13 = V_1;
 		int32_t L_14 = ___1_activeShuttleCount;
 		if ((((int32_t)L_13) < ((int32_t)L_14)))
@@ -22211,12 +22285,12 @@ IL_002e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1858>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1881>
 		int64_t L_15 = V_0;
 		return L_15;
 	}
 }
-// Method Definition Index: 91926
+// Method Definition Index: 91928
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceOfflineLoading_m491196824E24D182BEB05F7FDCB3043041FE2777 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* ___0_shuttleStates, int32_t ___1_activeShuttleCount, int64_t ___2_deltaSeconds, float ___3_shuttleLoadingTime, int32_t ___4_shuttleCapacity, float ___5_shuttleTravelTime, int32_t* ___6_storedPlatformOre, int32_t* ___7_warehouseOre, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22235,7 +22309,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceOfflineLoading_m49119
 	int32_t V_7 = 0;
 	int32_t V_8 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1871>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1894>
 		int64_t L_0 = ___2_deltaSeconds;
 		if ((((int64_t)L_0) > ((int64_t)((int64_t)0))))
 		{
@@ -22243,27 +22317,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceOfflineLoading_m49119
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1873>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1896>
 		return;
 	}
 
 IL_0006:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1876>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1899>
 		V_0 = 0;
 		goto IL_008f;
 	}
 
 IL_000d:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1878>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1901>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_1 = ___0_shuttleStates;
 		int32_t L_2 = V_0;
 		NullCheck(L_1);
 		int32_t L_3 = L_2;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_4 = (L_1)->GetAt(static_cast<il2cpp_array_size_t>(L_3));
 		V_1 = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1880>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1903>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_5 = V_1;
 		NullCheck(L_5);
 		float L_6 = L_5->___loadingCooldownRemaining;
@@ -22282,7 +22356,7 @@ IL_000d:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1885>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1908>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_9 = V_1;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_10 = V_1;
 		NullCheck(L_10);
@@ -22292,10 +22366,10 @@ IL_000d:
 		L_13 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), ((float)il2cpp_codegen_subtract(L_11, ((float)L_12))), NULL);
 		NullCheck(L_9);
 		L_9->___loadingCooldownRemaining = L_13;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1887>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1888>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1889>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1890>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1910>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1911>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1912>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1913>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_14 = V_1;
 		NullCheck(L_14);
 		int32_t L_15 = L_14->___loadingTargetOre;
@@ -22306,7 +22380,7 @@ IL_000d:
 		int32_t L_19;
 		L_19 = GameManager_GetOfflineLoadedOre_m2ED5C81BF7D8D273CC9CBE4CC6315DCB6F100C57(__this, L_15, L_16, L_18, NULL);
 		V_2 = L_19;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1891>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1914>
 		int32_t L_20 = V_2;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_21 = V_1;
 		NullCheck(L_21);
@@ -22315,7 +22389,7 @@ IL_000d:
 		int32_t L_23;
 		L_23 = Math_Max_m530EBA549AFD98CFC2BD29FE86C6376E67DF11CF(0, ((int32_t)il2cpp_codegen_subtract(L_20, L_22)), NULL);
 		V_3 = L_23;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1893>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1916>
 		int32_t L_24 = V_3;
 		if ((((int32_t)L_24) <= ((int32_t)0)))
 		{
@@ -22323,7 +22397,7 @@ IL_000d:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1898>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1921>
 		int32_t L_25 = V_3;
 		int32_t* L_26 = ___6_storedPlatformOre;
 		int32_t L_27 = *((int32_t*)L_26);
@@ -22331,13 +22405,13 @@ IL_000d:
 		int32_t L_28;
 		L_28 = Math_Min_m53C488772A34D53917BCA2A491E79A0A5356ED52(L_25, L_27, NULL);
 		V_4 = L_28;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1899>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1922>
 		int32_t* L_29 = ___6_storedPlatformOre;
 		int32_t* L_30 = ___6_storedPlatformOre;
 		int32_t L_31 = *((int32_t*)L_30);
 		int32_t L_32 = V_4;
 		*((int32_t*)L_29) = (int32_t)((int32_t)il2cpp_codegen_subtract(L_31, L_32));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1900>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1923>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_33 = V_1;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_34 = L_33;
 		NullCheck(L_34);
@@ -22349,14 +22423,14 @@ IL_000d:
 
 IL_008b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1876>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1899>
 		int32_t L_37 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_add(L_37, 1));
 	}
 
 IL_008f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1876>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1899>
 		int32_t L_38 = V_0;
 		int32_t L_39 = ___1_activeShuttleCount;
 		if ((((int32_t)L_38) < ((int32_t)L_39)))
@@ -22365,21 +22439,21 @@ IL_008f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1903>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1926>
 		V_5 = 0;
 		goto IL_0169;
 	}
 
 IL_009e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1905>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1928>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_40 = ___0_shuttleStates;
 		int32_t L_41 = V_5;
 		NullCheck(L_40);
 		int32_t L_42 = L_41;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_43 = (L_40)->GetAt(static_cast<il2cpp_array_size_t>(L_42));
 		V_6 = L_43;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1907>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1930>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_44 = V_6;
 		NullCheck(L_44);
 		float L_45 = L_44->___loadingCooldownRemaining;
@@ -22398,9 +22472,9 @@ IL_009e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1912>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1913>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1914>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1935>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1936>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1937>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_48 = V_6;
 		NullCheck(L_48);
 		int32_t L_49 = L_48->___loadingTargetOre;
@@ -22415,13 +22489,13 @@ IL_009e:
 		int32_t L_55;
 		L_55 = Math_Min_m53C488772A34D53917BCA2A491E79A0A5356ED52(L_52, L_54, NULL);
 		V_7 = L_55;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1915>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1938>
 		int32_t* L_56 = ___6_storedPlatformOre;
 		int32_t* L_57 = ___6_storedPlatformOre;
 		int32_t L_58 = *((int32_t*)L_57);
 		int32_t L_59 = V_7;
 		*((int32_t*)L_56) = (int32_t)((int32_t)il2cpp_codegen_subtract(L_58, L_59));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1916>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1939>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_60 = V_6;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_61 = L_60;
 		NullCheck(L_61);
@@ -22429,7 +22503,7 @@ IL_009e:
 		int32_t L_63 = V_7;
 		NullCheck(L_61);
 		L_61->___loadingOre = ((int32_t)il2cpp_codegen_add(L_62, L_63));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1917>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1940>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_64 = V_6;
 		int32_t L_65 = ___4_shuttleCapacity;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_66 = V_6;
@@ -22442,19 +22516,19 @@ IL_009e:
 		L_70 = Mathf_Min_m888083F74FF5655778F0403BB5E9608BEFDEA8CB_inline(L_65, ((int32_t)il2cpp_codegen_add(L_67, L_69)), NULL);
 		NullCheck(L_64);
 		L_64->___dockedOre = L_70;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1919>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1942>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_71 = V_6;
 		NullCheck(L_71);
 		L_71->___loadingOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1920>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1943>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_72 = V_6;
 		NullCheck(L_72);
 		L_72->___loadingTargetOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1921>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1944>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_73 = V_6;
 		NullCheck(L_73);
 		L_73->___loadingCooldownRemaining = (0.0f);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1923>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1946>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_74 = V_6;
 		NullCheck(L_74);
 		bool L_75 = L_74->___sendAfterLoading;
@@ -22464,20 +22538,20 @@ IL_009e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1928>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1951>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_76 = V_6;
 		NullCheck(L_76);
 		int32_t L_77 = L_76->___dockedOre;
 		V_8 = L_77;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1929>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1952>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_78 = V_6;
 		NullCheck(L_78);
 		L_78->___dockedOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1930>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1953>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_79 = V_6;
 		NullCheck(L_79);
 		L_79->___sendAfterLoading = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1931>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1954>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_80 = V_6;
 		int32_t L_81 = V_8;
 		float L_82 = ___5_shuttleTravelTime;
@@ -22487,14 +22561,14 @@ IL_009e:
 
 IL_0163:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1903>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1926>
 		int32_t L_84 = V_5;
 		V_5 = ((int32_t)il2cpp_codegen_add(L_84, 1));
 	}
 
 IL_0169:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1903>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1926>
 		int32_t L_85 = V_5;
 		int32_t L_86 = ___1_activeShuttleCount;
 		if ((((int32_t)L_85) < ((int32_t)L_86)))
@@ -22503,11 +22577,11 @@ IL_0169:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1933>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1956>
 		return;
 	}
 }
-// Method Definition Index: 91927
+// Method Definition Index: 91929
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_TryStartOfflineAutoActions_m6C3F228CD0828817B8CC9A5FAE065FAA25B63181 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* ___0_shuttleStates, int32_t ___1_activeShuttleCount, int32_t ___2_autoSendCount, int32_t* ___3_storedPlatformOre, int32_t ___4_platformCapacity, int32_t ___5_shuttleCapacity, float ___6_shuttleLoadingTime, float ___7_shuttleTravelTime, int32_t* ___8_warehouseOre, const RuntimeMethod* method) 
 {
 	bool V_0 = false;
@@ -22520,29 +22594,29 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_TryStartOfflineAutoActions_m
 	int32_t V_7 = 0;
 	int32_t V_8 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1946>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1969>
 		V_0 = (bool)0;
 	}
 
 IL_0002:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1951>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1974>
 		V_1 = (bool)0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1953>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1976>
 		V_2 = 0;
 		goto IL_0124;
 	}
 
 IL_000b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1955>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1978>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_0 = ___0_shuttleStates;
 		int32_t L_1 = V_2;
 		NullCheck(L_0);
 		int32_t L_2 = L_1;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_3 = (L_0)->GetAt(static_cast<il2cpp_array_size_t>(L_2));
 		V_3 = L_3;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1957>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1980>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_4 = V_3;
 		bool L_5;
 		L_5 = GameManager_IsOfflineShuttleBusy_m7B10D83B894F97B2DA574C004E26D5B67F16AD25(__this, L_4, NULL);
@@ -22552,7 +22626,7 @@ IL_000b:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1962>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1985>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_6 = V_3;
 		NullCheck(L_6);
 		int32_t L_7 = L_6->___dockedOre;
@@ -22563,32 +22637,32 @@ IL_000b:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1964>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1987>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_9 = V_3;
 		NullCheck(L_9);
 		int32_t L_10 = L_9->___dockedOre;
 		V_7 = L_10;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1965>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1988>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_11 = V_3;
 		NullCheck(L_11);
 		L_11->___dockedOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1966>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1989>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_12 = V_3;
 		int32_t L_13 = V_7;
 		float L_14 = ___7_shuttleTravelTime;
 		int32_t* L_15 = ___8_warehouseOre;
 		GameManager_StartOfflineTravel_m3DF9D30483537DEEE230970C395A65CEA74F8A5E(__this, L_12, L_13, L_14, L_15, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1967>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1990>
 		V_0 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1968>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1991>
 		V_1 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1969>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1992>
 		goto IL_0120;
 	}
 
 IL_004a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1972>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1995>
 		int32_t L_16 = ___4_platformCapacity;
 		int32_t L_17 = ___5_shuttleCapacity;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_18 = V_3;
@@ -22597,11 +22671,11 @@ IL_004a:
 		int32_t L_20;
 		L_20 = GameManager_GetOfflineAutoSendThreshold_m101EE124A329FC737FE27323668A7A070ADB7026(__this, L_16, L_17, L_19, NULL);
 		V_4 = L_20;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1973>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1974>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1975>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1976>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1977>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1996>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1997>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1998>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1999>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2000>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_21 = ___0_shuttleStates;
 		int32_t L_22 = ___1_activeShuttleCount;
 		int32_t* L_23 = ___3_storedPlatformOre;
@@ -22610,7 +22684,7 @@ IL_004a:
 		int32_t L_26;
 		L_26 = GameManager_GetOfflineAvailablePlatformOreForLoading_m4438E88E389E0345F4E606DD6C79B13E67170F0D(__this, L_21, L_22, L_24, L_25, NULL);
 		V_5 = L_26;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1979>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2002>
 		int32_t L_27 = V_4;
 		if ((((int32_t)L_27) <= ((int32_t)0)))
 		{
@@ -22626,9 +22700,9 @@ IL_004a:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1984>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1985>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1986>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2007>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2008>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2009>
 		int32_t L_30 = V_5;
 		int32_t L_31 = ___5_shuttleCapacity;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_32 = V_3;
@@ -22639,7 +22713,7 @@ IL_004a:
 		int32_t L_35;
 		L_35 = Mathf_Min_m888083F74FF5655778F0403BB5E9608BEFDEA8CB_inline(L_30, L_34, NULL);
 		V_6 = L_35;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1988>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2011>
 		int32_t L_36 = V_6;
 		if ((((int32_t)L_36) <= ((int32_t)0)))
 		{
@@ -22647,7 +22721,7 @@ IL_004a:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1993>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2016>
 		float L_37 = ___6_shuttleLoadingTime;
 		if ((!(((float)L_37) > ((float)(0.0f)))))
 		{
@@ -22655,21 +22729,21 @@ IL_004a:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1995>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2018>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_38 = V_3;
 		int32_t L_39 = V_6;
 		NullCheck(L_38);
 		L_38->___loadingTargetOre = L_39;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1996>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2019>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_40 = V_3;
 		NullCheck(L_40);
 		L_40->___loadingOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1997>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2020>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_41 = V_3;
 		float L_42 = ___6_shuttleLoadingTime;
 		NullCheck(L_41);
 		L_41->___loadingCooldownRemaining = L_42;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1998>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2021>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_43 = V_3;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_44 = V_3;
 		NullCheck(L_44);
@@ -22678,23 +22752,23 @@ IL_004a:
 		int32_t L_47 = ___5_shuttleCapacity;
 		NullCheck(L_43);
 		L_43->___sendAfterLoading = (bool)((((int32_t)((((int32_t)((int32_t)il2cpp_codegen_add(L_45, L_46))) < ((int32_t)L_47))? 1 : 0)) == ((int32_t)0))? 1 : 0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1999>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2022>
 		V_0 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2000>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2023>
 		V_1 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2001>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2024>
 		goto IL_0120;
 	}
 
 IL_00d7:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2004>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2027>
 		int32_t* L_48 = ___3_storedPlatformOre;
 		int32_t* L_49 = ___3_storedPlatformOre;
 		int32_t L_50 = *((int32_t*)L_49);
 		int32_t L_51 = V_6;
 		*((int32_t*)L_48) = (int32_t)((int32_t)il2cpp_codegen_subtract(L_50, L_51));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2005>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2028>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_52 = V_3;
 		int32_t L_53 = ___5_shuttleCapacity;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_54 = V_3;
@@ -22705,7 +22779,7 @@ IL_00d7:
 		L_57 = Mathf_Min_m888083F74FF5655778F0403BB5E9608BEFDEA8CB_inline(L_53, ((int32_t)il2cpp_codegen_add(L_55, L_56)), NULL);
 		NullCheck(L_52);
 		L_52->___dockedOre = L_57;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2007>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2030>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_58 = V_3;
 		NullCheck(L_58);
 		int32_t L_59 = L_58->___dockedOre;
@@ -22716,16 +22790,16 @@ IL_00d7:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2009>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2032>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_61 = V_3;
 		NullCheck(L_61);
 		int32_t L_62 = L_61->___dockedOre;
 		V_8 = L_62;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2010>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2033>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_63 = V_3;
 		NullCheck(L_63);
 		L_63->___dockedOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2011>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2034>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_64 = V_3;
 		int32_t L_65 = V_8;
 		float L_66 = ___7_shuttleTravelTime;
@@ -22735,22 +22809,22 @@ IL_00d7:
 
 IL_011c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2014>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2037>
 		V_0 = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2015>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2038>
 		V_1 = (bool)1;
 	}
 
 IL_0120:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1953>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1976>
 		int32_t L_68 = V_2;
 		V_2 = ((int32_t)il2cpp_codegen_add(L_68, 1));
 	}
 
 IL_0124:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1953>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1976>
 		int32_t L_69 = V_2;
 		int32_t L_70 = ___1_activeShuttleCount;
 		int32_t L_71 = ___2_autoSendCount;
@@ -22762,7 +22836,7 @@ IL_0124:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2018>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2041>
 		bool L_73 = V_1;
 		if (L_73)
 		{
@@ -22770,12 +22844,12 @@ IL_0124:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2020>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2043>
 		bool L_74 = V_0;
 		return L_74;
 	}
 }
-// Method Definition Index: 91928
+// Method Definition Index: 91930
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetOfflineAvailablePlatformOreForLoading_m4438E88E389E0345F4E606DD6C79B13E67170F0D (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* ___0_shuttleStates, int32_t ___1_activeShuttleCount, int32_t ___2_storedPlatformOre, int32_t ___3_shuttleIndex, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22787,16 +22861,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetOfflineAvailablePlatfo
 	int32_t V_0 = 0;
 	int32_t V_1 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2029>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2052>
 		V_0 = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2031>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2054>
 		V_1 = 0;
 		goto IL_0029;
 	}
 
 IL_0006:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2033>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2056>
 		int32_t L_0 = V_1;
 		int32_t L_1 = ___3_shuttleIndex;
 		if ((((int32_t)L_0) == ((int32_t)L_1)))
@@ -22805,7 +22879,7 @@ IL_0006:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2038>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2061>
 		int32_t L_2 = V_0;
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_3 = ___0_shuttleStates;
 		int32_t L_4 = V_1;
@@ -22829,14 +22903,14 @@ IL_0006:
 
 IL_0025:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2031>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2054>
 		int32_t L_14 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add(L_14, 1));
 	}
 
 IL_0029:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2031>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2054>
 		int32_t L_15 = V_1;
 		int32_t L_16 = ___1_activeShuttleCount;
 		if ((((int32_t)L_15) < ((int32_t)L_16)))
@@ -22845,7 +22919,7 @@ IL_0029:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2041>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2064>
 		int32_t L_17 = ___2_storedPlatformOre;
 		int32_t L_18 = V_0;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
@@ -22854,18 +22928,18 @@ IL_0029:
 		return L_19;
 	}
 }
-// Method Definition Index: 91929
+// Method Definition Index: 91931
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetOfflineAutoSendThreshold_m101EE124A329FC737FE27323668A7A070ADB7026 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_platformCapacity, int32_t ___1_shuttleCapacity, int32_t ___2_currentDockedOre, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2046>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2069>
 		int32_t L_0 = ___1_shuttleCapacity;
 		int32_t L_1 = ___2_currentDockedOre;
 		int32_t L_2;
 		L_2 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, ((int32_t)il2cpp_codegen_subtract(L_0, L_1)), NULL);
 		V_0 = L_2;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2048>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2071>
 		int32_t L_3 = V_0;
 		if ((((int32_t)L_3) > ((int32_t)0)))
 		{
@@ -22873,13 +22947,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetOfflineAutoSendThresho
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2050>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2073>
 		return 0;
 	}
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2053>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2076>
 		int32_t L_4 = ___0_platformCapacity;
 		int32_t L_5 = V_0;
 		int32_t L_6;
@@ -22889,11 +22963,11 @@ IL_0010:
 		return L_7;
 	}
 }
-// Method Definition Index: 91930
+// Method Definition Index: 91932
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_StartOfflineTravel_m3DF9D30483537DEEE230970C395A65CEA74F8A5E (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* ___0_shuttleState, int32_t ___1_cargoAmount, float ___2_shuttleTravelTime, int32_t* ___3_warehouseOre, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2058>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2081>
 		int32_t L_0 = ___1_cargoAmount;
 		if ((((int32_t)L_0) > ((int32_t)0)))
 		{
@@ -22901,21 +22975,21 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_StartOfflineTravel_m3DF9D304
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2060>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2083>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_1 = ___0_shuttleState;
 		NullCheck(L_1);
 		L_1->___deliveringOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2061>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2084>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_2 = ___0_shuttleState;
 		NullCheck(L_2);
 		L_2->___sendCooldownRemaining = (0.0f);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2062>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2085>
 		return;
 	}
 
 IL_0017:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2065>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2088>
 		float L_3 = ___2_shuttleTravelTime;
 		if ((!(((float)L_3) <= ((float)(0.0f)))))
 		{
@@ -22923,41 +22997,41 @@ IL_0017:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2067>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2090>
 		int32_t* L_4 = ___3_warehouseOre;
 		int32_t* L_5 = ___3_warehouseOre;
 		int32_t L_6 = *((int32_t*)L_5);
 		int32_t L_7 = ___1_cargoAmount;
 		*((int32_t*)L_4) = (int32_t)((int32_t)il2cpp_codegen_add(L_6, L_7));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2068>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2091>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_8 = ___0_shuttleState;
 		NullCheck(L_8);
 		L_8->___deliveringOre = 0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2069>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2092>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_9 = ___0_shuttleState;
 		NullCheck(L_9);
 		L_9->___sendCooldownRemaining = (0.0f);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2070>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2093>
 		return;
 	}
 
 IL_003a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2073>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2096>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_10 = ___0_shuttleState;
 		int32_t L_11 = ___1_cargoAmount;
 		NullCheck(L_10);
 		L_10->___deliveringOre = L_11;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2074>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2097>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_12 = ___0_shuttleState;
 		float L_13 = ___2_shuttleTravelTime;
 		NullCheck(L_12);
 		L_12->___sendCooldownRemaining = L_13;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2075>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2098>
 		return;
 	}
 }
-// Method Definition Index: 91931
+// Method Definition Index: 91933
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineTravelEventSeconds_m9239722C198B38A0E3C9133221B3F6955F7F3E01 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* ___0_shuttleStates, int32_t ___1_activeShuttleCount, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22971,16 +23045,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineTravelEvent
 	float V_2 = 0.0f;
 	int64_t V_3 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2079>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2102>
 		V_0 = ((int64_t)0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2081>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2104>
 		V_1 = 0;
 		goto IL_002e;
 	}
 
 IL_0007:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2083>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2106>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_0 = ___0_shuttleStates;
 		int32_t L_1 = V_1;
 		NullCheck(L_0);
@@ -22989,7 +23063,7 @@ IL_0007:
 		NullCheck(L_3);
 		float L_4 = L_3->___sendCooldownRemaining;
 		V_2 = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2085>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2108>
 		float L_5 = V_2;
 		if ((((float)L_5) <= ((float)(0.0f))))
 		{
@@ -22997,13 +23071,13 @@ IL_0007:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2090>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2113>
 		float L_6 = V_2;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		double L_7;
 		L_7 = ceil(((double)L_6));
 		V_3 = il2cpp_codegen_cast_double_to_int<int64_t>(L_7);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2092>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2115>
 		int64_t L_8 = V_0;
 		if (!L_8)
 		{
@@ -23021,21 +23095,21 @@ IL_0007:
 
 IL_0028:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2094>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2117>
 		int64_t L_11 = V_3;
 		V_0 = L_11;
 	}
 
 IL_002a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2081>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2104>
 		int32_t L_12 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add(L_12, 1));
 	}
 
 IL_002e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2081>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2104>
 		int32_t L_13 = V_1;
 		int32_t L_14 = ___1_activeShuttleCount;
 		if ((((int32_t)L_13) < ((int32_t)L_14)))
@@ -23044,12 +23118,12 @@ IL_002e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2098>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2121>
 		int64_t L_15 = V_0;
 		return L_15;
 	}
 }
-// Method Definition Index: 91932
+// Method Definition Index: 91934
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineAutoReadySeconds_m7EF508FFFB1FC3B6C4BE0DD5BDE93530CACB627A (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* ___0_shuttleStates, int32_t ___1_activeShuttleCount, int32_t ___2_autoSendCount, int32_t ___3_storedPlatformOre, int32_t ___4_platformCapacity, int32_t ___5_shuttleCapacity, int32_t ___6_orePerSecond, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23065,7 +23139,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineAutoReadySe
 	int32_t V_4 = 0;
 	int64_t V_5 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2110>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2133>
 		int32_t L_0 = ___6_orePerSecond;
 		if ((((int32_t)L_0) > ((int32_t)0)))
 		{
@@ -23073,29 +23147,29 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineAutoReadySe
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2112>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2135>
 		return ((int64_t)0);
 	}
 
 IL_0008:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2115>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2138>
 		V_0 = ((int64_t)0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2117>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2140>
 		V_1 = 0;
 		goto IL_0061;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2119>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2142>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_1 = ___0_shuttleStates;
 		int32_t L_2 = V_1;
 		NullCheck(L_1);
 		int32_t L_3 = L_2;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_4 = (L_1)->GetAt(static_cast<il2cpp_array_size_t>(L_3));
 		V_2 = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2121>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2144>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_5 = V_2;
 		bool L_6;
 		L_6 = GameManager_IsOfflineShuttleBusy_m7B10D83B894F97B2DA574C004E26D5B67F16AD25(__this, L_5, NULL);
@@ -23105,7 +23179,7 @@ IL_000f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2126>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2149>
 		int32_t L_7 = ___4_platformCapacity;
 		int32_t L_8 = ___5_shuttleCapacity;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_9 = V_2;
@@ -23114,7 +23188,7 @@ IL_000f:
 		int32_t L_11;
 		L_11 = GameManager_GetOfflineAutoSendThreshold_m101EE124A329FC737FE27323668A7A070ADB7026(__this, L_7, L_8, L_10, NULL);
 		V_3 = L_11;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2128>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2151>
 		int32_t L_12 = V_3;
 		if ((((int32_t)L_12) <= ((int32_t)0)))
 		{
@@ -23130,11 +23204,11 @@ IL_000f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2133>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2156>
 		int32_t L_15 = V_3;
 		int32_t L_16 = ___3_storedPlatformOre;
 		V_4 = ((int32_t)il2cpp_codegen_subtract(L_15, L_16));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2134>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2157>
 		int32_t L_17 = V_4;
 		int32_t L_18 = ___6_orePerSecond;
 		int32_t L_19;
@@ -23143,7 +23217,7 @@ IL_000f:
 		int64_t L_20;
 		L_20 = Math_Max_mD37411571F0547F04F280D5A8D1F044819AFA597(((int64_t)1), ((int64_t)L_19), NULL);
 		V_5 = L_20;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2136>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2159>
 		int64_t L_21 = V_0;
 		if (!L_21)
 		{
@@ -23161,21 +23235,21 @@ IL_000f:
 
 IL_005a:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2138>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2161>
 		int64_t L_24 = V_5;
 		V_0 = L_24;
 	}
 
 IL_005d:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2117>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2140>
 		int32_t L_25 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add(L_25, 1));
 	}
 
 IL_0061:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2117>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2140>
 		int32_t L_26 = V_1;
 		int32_t L_27 = ___1_activeShuttleCount;
 		int32_t L_28 = ___2_autoSendCount;
@@ -23187,32 +23261,32 @@ IL_0061:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2142>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2165>
 		int64_t L_30 = V_0;
 		return L_30;
 	}
 }
-// Method Definition Index: 91933
+// Method Definition Index: 91935
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceOfflineTravel_mF674150129BB343E093FE0FC83FB204552BC983A (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* ___0_shuttleStates, int32_t ___1_activeShuttleCount, int64_t ___2_deltaSeconds, int32_t* ___3_warehouseOre, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
 	ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* V_1 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2147>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2170>
 		V_0 = 0;
 		goto IL_005c;
 	}
 
 IL_0004:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2149>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2172>
 		ShuttleStateU5BU5D_t87EC1A7E358A8CF7EF63C97E64322286E79693E0* L_0 = ___0_shuttleStates;
 		int32_t L_1 = V_0;
 		NullCheck(L_0);
 		int32_t L_2 = L_1;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_3 = (L_0)->GetAt(static_cast<il2cpp_array_size_t>(L_2));
 		V_1 = L_3;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2151>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2174>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_4 = V_1;
 		NullCheck(L_4);
 		float L_5 = L_4->___sendCooldownRemaining;
@@ -23222,7 +23296,7 @@ IL_0004:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2156>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2179>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_6 = V_1;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_7 = V_1;
 		NullCheck(L_7);
@@ -23232,7 +23306,7 @@ IL_0004:
 		L_10 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), ((float)il2cpp_codegen_subtract(L_8, ((float)L_9))), NULL);
 		NullCheck(L_6);
 		L_6->___sendCooldownRemaining = L_10;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2158>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2181>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_11 = V_1;
 		NullCheck(L_11);
 		float L_12 = L_11->___sendCooldownRemaining;
@@ -23251,7 +23325,7 @@ IL_0004:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2160>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2183>
 		int32_t* L_15 = ___3_warehouseOre;
 		int32_t* L_16 = ___3_warehouseOre;
 		int32_t L_17 = *((int32_t*)L_16);
@@ -23259,7 +23333,7 @@ IL_0004:
 		NullCheck(L_18);
 		int32_t L_19 = L_18->___deliveringOre;
 		*((int32_t*)L_15) = (int32_t)((int32_t)il2cpp_codegen_add(L_17, L_19));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2161>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2184>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_20 = V_1;
 		NullCheck(L_20);
 		L_20->___deliveringOre = 0;
@@ -23267,14 +23341,14 @@ IL_0004:
 
 IL_0058:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2147>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2170>
 		int32_t L_21 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_add(L_21, 1));
 	}
 
 IL_005c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2147>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2170>
 		int32_t L_22 = V_0;
 		int32_t L_23 = ___1_activeShuttleCount;
 		if ((((int32_t)L_22) < ((int32_t)L_23)))
@@ -23283,45 +23357,45 @@ IL_005c:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2164>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2187>
 		return;
 	}
 }
-// Method Definition Index: 91934
+// Method Definition Index: 91936
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_HasPendingShuttleStateChanges_m77DF0559DA12CDE1EAE54479F89AD4FEA9C5BDE8 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
 	ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* V_1 = NULL;
 	ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* V_2 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2168>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2191>
 		V_0 = 0;
 		goto IL_0093;
 	}
 
 IL_0007:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2170>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2193>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_0 = __this->___pendingOfflinePreviewData;
 		int32_t L_1 = V_0;
 		NullCheck(L_0);
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_2;
 		L_2 = GameData_GetShuttleState_m6390763F32E79D52F36C68CEC51A3D85DA0BED4B(L_0, L_1, NULL);
 		V_1 = L_2;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2171>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2194>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_3 = __this->___gameData;
 		int32_t L_4 = V_0;
 		NullCheck(L_3);
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_5;
 		L_5 = GameData_GetShuttleState_m6390763F32E79D52F36C68CEC51A3D85DA0BED4B(L_3, L_4, NULL);
 		V_2 = L_5;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2173>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2174>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2175>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2176>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2177>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2178>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2179>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2196>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2197>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2198>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2199>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2200>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2201>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2202>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_6 = V_1;
 		NullCheck(L_6);
 		int32_t L_7 = L_6->___dockedOre;
@@ -23412,20 +23486,20 @@ IL_0007:
 
 IL_008d:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2181>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2204>
 		return (bool)1;
 	}
 
 IL_008f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2168>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2191>
 		int32_t L_36 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_add(L_36, 1));
 	}
 
 IL_0093:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2168>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2191>
 		int32_t L_37 = V_0;
 		if ((((int32_t)L_37) < ((int32_t)3)))
 		{
@@ -23433,8 +23507,8 @@ IL_0093:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2185>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2186>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2208>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2209>
 		GameData_t857DCFA51343FE2611A88BE4D943BDA16FBCE8B6* L_38 = __this->___pendingOfflinePreviewData;
 		NullCheck(L_38);
 		int32_t L_39 = L_38->___shuttleCount;
@@ -23461,7 +23535,7 @@ IL_00ce:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91935
+// Method Definition Index: 91937
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* GameManager_CreateOfflineBoostSnapshots_mCF22A4E05162B475E8D37A916DE5D502E0C201A9 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23481,11 +23555,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B
 	OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 V_4;
 	memset((&V_4), 0, sizeof(V_4));
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2191>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2214>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_0 = (List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0*)il2cpp_codegen_object_new(List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0_il2cpp_TypeInfo_var);
 		List_1__ctor_m2195A14257E1EBA8B52A9E3080D0E4B048E34535(L_0, List_1__ctor_m2195A14257E1EBA8B52A9E3080D0E4B048E34535_RuntimeMethod_var);
 		V_0 = L_0;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2193>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2216>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_1 = __this->___upgradeManager;
 		if (L_1)
 		{
@@ -23493,34 +23567,34 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2195>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2218>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_2 = V_0;
 		return L_2;
 	}
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2198>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2221>
 		UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* L_3 = __this->___upgradeManager;
 		NullCheck(L_3);
 		RuntimeObject* L_4;
 		L_4 = UpgradeManager_get_ActiveTemporaryBoostStates_m79681FB28CE4580AD3269FD8915E256E6CC1A681_inline(L_3, NULL);
 		V_1 = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2200>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2223>
 		V_2 = 0;
 		goto IL_007d;
 	}
 
 IL_0020:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2202>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2225>
 		RuntimeObject* L_5 = V_1;
 		int32_t L_6 = V_2;
 		NullCheck(L_5);
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_7;
 		L_7 = InterfaceFuncInvoker1< TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336*, int32_t >::Invoke(0, IReadOnlyList_1_t6A16CDA8A518C5B165FC42B24DF58F75E685616D_il2cpp_TypeInfo_var, L_5, L_6);
 		V_3 = L_7;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2204>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2227>
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_8 = V_3;
 		NullCheck(L_8);
 		bool L_9;
@@ -23541,12 +23615,12 @@ IL_0020:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2209>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2210>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2211>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2212>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2213>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2214>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2232>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2233>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2234>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2235>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2236>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2237>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_12 = V_0;
 		il2cpp_codegen_initobj((&V_4), sizeof(OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728));
 		TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* L_13 = V_3;
@@ -23573,14 +23647,14 @@ IL_0020:
 
 IL_0079:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2200>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2223>
 		int32_t L_21 = V_2;
 		V_2 = ((int32_t)il2cpp_codegen_add(L_21, 1));
 	}
 
 IL_007d:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2200>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2223>
 		int32_t L_22 = V_2;
 		RuntimeObject* L_23 = V_1;
 		NullCheck(L_23);
@@ -23592,12 +23666,12 @@ IL_007d:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2217>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2240>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_25 = V_0;
 		return L_25;
 	}
 }
-// Method Definition Index: 91936
+// Method Definition Index: 91938
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetOfflineBoostMultiplier_mD40182C65B989D5C05C93176F22D63A5A92C7A7A (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* ___0_boostSnapshots, int32_t ___1_targetType, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23612,9 +23686,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetOfflineBoostMultiplier_m
 	OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 V_2;
 	memset((&V_2), 0, sizeof(V_2));
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2224>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2247>
 		V_0 = (1.0f);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2226>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2249>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_0 = ___0_boostSnapshots;
 		if (L_0)
 		{
@@ -23622,28 +23696,28 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetOfflineBoostMultiplier_m
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2228>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2251>
 		float L_1 = V_0;
 		return L_1;
 	}
 
 IL_000b:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2231>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2254>
 		V_1 = 0;
 		goto IL_0044;
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2233>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2256>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_2 = ___0_boostSnapshots;
 		int32_t L_3 = V_1;
 		NullCheck(L_2);
 		OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 L_4;
 		L_4 = List_1_get_Item_m00CF4A157B7FFCBC1DD0385EDE08D1FB777139C0(L_2, L_3, List_1_get_Item_m00CF4A157B7FFCBC1DD0385EDE08D1FB777139C0_RuntimeMethod_var);
 		V_2 = L_4;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2235>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2258>
 		OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 L_5 = V_2;
 		int32_t L_6 = L_5.___targetType;
 		int32_t L_7 = ___1_targetType;
@@ -23661,7 +23735,7 @@ IL_000f:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2240>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2263>
 		float L_10 = V_0;
 		OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 L_11 = V_2;
 		float L_12 = L_11.___multiplier;
@@ -23672,14 +23746,14 @@ IL_000f:
 
 IL_0040:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2231>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2254>
 		int32_t L_14 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add(L_14, 1));
 	}
 
 IL_0044:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2231>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2254>
 		int32_t L_15 = V_1;
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_16 = ___0_boostSnapshots;
 		NullCheck(L_16);
@@ -23691,12 +23765,12 @@ IL_0044:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2243>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2266>
 		float L_18 = V_0;
 		return L_18;
 	}
 }
-// Method Definition Index: 91937
+// Method Definition Index: 91939
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineBoostExpirationSeconds_m905894B6EB150E527F304E6073EAD6F2BDB5453C (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* ___0_boostSnapshots, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23712,7 +23786,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineBoostExpira
 	float V_2 = 0.0f;
 	int64_t V_3 = 0;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2248>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2271>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_0 = ___0_boostSnapshots;
 		if (!L_0)
 		{
@@ -23732,22 +23806,22 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int64_t GameManager_GetNextOfflineBoostExpira
 
 IL_000c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2250>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2273>
 		return ((int64_t)0);
 	}
 
 IL_000f:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2253>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2276>
 		V_0 = ((int64_t)0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2255>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2278>
 		V_1 = 0;
 		goto IL_0048;
 	}
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2257>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2280>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_3 = ___0_boostSnapshots;
 		int32_t L_4 = V_1;
 		NullCheck(L_3);
@@ -23755,7 +23829,7 @@ IL_0016:
 		L_5 = List_1_get_Item_m00CF4A157B7FFCBC1DD0385EDE08D1FB777139C0(L_3, L_4, List_1_get_Item_m00CF4A157B7FFCBC1DD0385EDE08D1FB777139C0_RuntimeMethod_var);
 		float L_6 = L_5.___remainingTime;
 		V_2 = L_6;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2259>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2282>
 		float L_7 = V_2;
 		if ((((float)L_7) <= ((float)(0.0f))))
 		{
@@ -23763,7 +23837,7 @@ IL_0016:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2264>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2287>
 		float L_8 = V_2;
 		il2cpp_codegen_runtime_class_init_inline(Math_tEB65DE7CA8B083C412C969C92981C030865486CE_il2cpp_TypeInfo_var);
 		double L_9;
@@ -23771,7 +23845,7 @@ IL_0016:
 		int64_t L_10;
 		L_10 = Math_Max_mD37411571F0547F04F280D5A8D1F044819AFA597(((int64_t)1), il2cpp_codegen_cast_double_to_int<int64_t>(L_9), NULL);
 		V_3 = L_10;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2266>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2289>
 		int64_t L_11 = V_0;
 		if (!L_11)
 		{
@@ -23789,21 +23863,21 @@ IL_0016:
 
 IL_0042:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2268>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2291>
 		int64_t L_14 = V_3;
 		V_0 = L_14;
 	}
 
 IL_0044:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2255>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2278>
 		int32_t L_15 = V_1;
 		V_1 = ((int32_t)il2cpp_codegen_add(L_15, 1));
 	}
 
 IL_0048:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2255>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2278>
 		int32_t L_16 = V_1;
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_17 = ___0_boostSnapshots;
 		NullCheck(L_17);
@@ -23815,12 +23889,12 @@ IL_0048:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2272>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2295>
 		int64_t L_19 = V_0;
 		return L_19;
 	}
 }
-// Method Definition Index: 91938
+// Method Definition Index: 91940
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceOfflineBoosts_m0B41F655CE5FC8E4640FEC24E2D2DE60D4D72FC5 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* ___0_boostSnapshots, int64_t ___1_deltaSeconds, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23836,7 +23910,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceOfflineBoosts_m0B41F6
 	OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 V_1;
 	memset((&V_1), 0, sizeof(V_1));
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2277>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2300>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_0 = ___0_boostSnapshots;
 		if (!L_0)
 		{
@@ -23853,13 +23927,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_AdvanceOfflineBoosts_m0B41F6
 
 IL_0008:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2279>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2302>
 		return;
 	}
 
 IL_0009:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2282>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2305>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_2 = ___0_boostSnapshots;
 		NullCheck(L_2);
 		int32_t L_3;
@@ -23870,21 +23944,21 @@ IL_0009:
 
 IL_0014:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2284>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2307>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_4 = ___0_boostSnapshots;
 		int32_t L_5 = V_0;
 		NullCheck(L_4);
 		OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 L_6;
 		L_6 = List_1_get_Item_m00CF4A157B7FFCBC1DD0385EDE08D1FB777139C0(L_4, L_5, List_1_get_Item_m00CF4A157B7FFCBC1DD0385EDE08D1FB777139C0_RuntimeMethod_var);
 		V_1 = L_6;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2285>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2308>
 		OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 L_7 = V_1;
 		float L_8 = L_7.___remainingTime;
 		int64_t L_9 = ___1_deltaSeconds;
 		float L_10;
 		L_10 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), ((float)il2cpp_codegen_subtract(L_8, ((float)L_9))), NULL);
 		(&V_1)->___remainingTime = L_10;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2287>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2310>
 		OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 L_11 = V_1;
 		float L_12 = L_11.___remainingTime;
 		if ((!(((float)L_12) <= ((float)(0.0f)))))
@@ -23893,18 +23967,18 @@ IL_0014:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2289>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2312>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_13 = ___0_boostSnapshots;
 		int32_t L_14 = V_0;
 		NullCheck(L_13);
 		List_1_RemoveAt_m84DE67BEDB9B88AD0E661F54EA9B7FE5F2BB0C78(L_13, L_14, List_1_RemoveAt_m84DE67BEDB9B88AD0E661F54EA9B7FE5F2BB0C78_RuntimeMethod_var);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2290>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2313>
 		goto IL_0054;
 	}
 
 IL_004c:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2293>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2316>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_15 = ___0_boostSnapshots;
 		int32_t L_16 = V_0;
 		OfflineBoostSnapshot_tE3A057BD59B6958F5265AF8D036539444E905728 L_17 = V_1;
@@ -23914,14 +23988,14 @@ IL_004c:
 
 IL_0054:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2282>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2305>
 		int32_t L_18 = V_0;
 		V_0 = ((int32_t)il2cpp_codegen_subtract(L_18, 1));
 	}
 
 IL_0058:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2282>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2305>
 		int32_t L_19 = V_0;
 		if ((((int32_t)L_19) >= ((int32_t)0)))
 		{
@@ -23929,21 +24003,21 @@ IL_0058:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2295>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2318>
 		return;
 	}
 }
-// Method Definition Index: 91939
+// Method Definition Index: 91941
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetOfflineBoostedOrePerSecond_m1DE4D30F3AF9A5D2D35516306B4F28FE529F1A1A (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_baseOrePerSecond, List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* ___1_boostSnapshots, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2299>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2322>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_0 = ___1_boostSnapshots;
 		float L_1;
 		L_1 = GameManager_GetOfflineBoostMultiplier_mD40182C65B989D5C05C93176F22D63A5A92C7A7A(__this, L_0, 1, NULL);
 		V_0 = L_1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2300>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2323>
 		int32_t L_2 = ___0_baseOrePerSecond;
 		float L_3 = V_0;
 		int32_t L_4;
@@ -23953,17 +24027,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetOfflineBoostedOrePerSe
 		return L_5;
 	}
 }
-// Method Definition Index: 91940
+// Method Definition Index: 91942
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetOfflineBoostedTravelTime_m0C8B1E1C5F1E1C185BC95F5CD1B5D4F11B9999EE (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, float ___0_baseTravelTime, List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* ___1_boostSnapshots, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2305>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2328>
 		List_1_t11E25FF984A25B59FE5AD5C7EA1947C9E686B2F0* L_0 = ___1_boostSnapshots;
 		float L_1;
 		L_1 = GameManager_GetOfflineBoostMultiplier_mD40182C65B989D5C05C93176F22D63A5A92C7A7A(__this, L_0, 2, NULL);
 		V_0 = L_1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2306>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2329>
 		float L_2 = ___0_baseTravelTime;
 		float L_3 = V_0;
 		float L_4;
@@ -23973,11 +24047,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_GetOfflineBoostedTravelTime
 		return L_5;
 	}
 }
-// Method Definition Index: 91941
+// Method Definition Index: 91943
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_RemoveTemporaryBoostMultiplier_mB1EA284DB523D2FBCBC30E3123E4540CE711CD62 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_boostedValue, float ___1_multiplier, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2311>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2334>
 		float L_0 = ___1_multiplier;
 		if ((!(((float)L_0) <= ((float)(1.0f)))))
 		{
@@ -23985,7 +24059,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_RemoveTemporaryBoostMulti
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2313>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2336>
 		int32_t L_1 = ___0_boostedValue;
 		int32_t L_2;
 		L_2 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_1, NULL);
@@ -23994,7 +24068,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_RemoveTemporaryBoostMulti
 
 IL_0010:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2316>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2339>
 		int32_t L_3 = ___0_boostedValue;
 		float L_4 = ___1_multiplier;
 		int32_t L_5;
@@ -24004,11 +24078,11 @@ IL_0010:
 		return L_6;
 	}
 }
-// Method Definition Index: 91942
+// Method Definition Index: 91944
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_RemoveTemporaryTravelSpeedMultiplier_m3EF5B96A85934878B9D37EA650FB88A370A66180 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, float ___0_boostedTravelTime, float ___1_speedMultiplier, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2321>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2344>
 		float L_0 = ___1_speedMultiplier;
 		if ((!(((float)L_0) <= ((float)(1.0f)))))
 		{
@@ -24016,7 +24090,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_RemoveTemporaryTravelSpeedM
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2323>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2346>
 		float L_1 = ___0_boostedTravelTime;
 		float L_2;
 		L_2 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_1, NULL);
@@ -24025,7 +24099,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float GameManager_RemoveTemporaryTravelSpeedM
 
 IL_0014:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2326>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2349>
 		float L_3 = ___0_boostedTravelTime;
 		float L_4 = ___1_speedMultiplier;
 		float L_5;
@@ -24033,7 +24107,7 @@ IL_0014:
 		return L_5;
 	}
 }
-// Method Definition Index: 91943
+// Method Definition Index: 91945
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveShuttleState_m140AE95B424F0950008212ED71F3F183084572B1 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_shuttleIndex, ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* ___1_shuttleState, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24053,7 +24127,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveShuttleState_m140AE95B42
 	int32_t G_B5_0 = 0;
 	String_t* G_B5_1 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2331>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2354>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_0 = ___1_shuttleState;
 		if (L_0)
 		{
@@ -24061,13 +24135,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveShuttleState_m140AE95B42
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2333>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2356>
 		return;
 	}
 
 IL_0004:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2336>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2359>
 		int32_t L_1 = ___0_shuttleIndex;
 		String_t* L_2;
 		L_2 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_1, _stringLiteralABC97240EBAD951522F4E886CC235D0992394970, NULL);
@@ -24077,7 +24151,7 @@ IL_0004:
 		int32_t L_5;
 		L_5 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_4, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(L_2, L_5, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2337>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2360>
 		int32_t L_6 = ___0_shuttleIndex;
 		String_t* L_7;
 		L_7 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_6, _stringLiteral411D013D5B34821F02804A2BA0369D1D5E343C23, NULL);
@@ -24087,7 +24161,7 @@ IL_0004:
 		int32_t L_10;
 		L_10 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_9, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(L_7, L_10, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2338>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2361>
 		int32_t L_11 = ___0_shuttleIndex;
 		String_t* L_12;
 		L_12 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_11, _stringLiteral3C8D5FD0BB41738B13B0ECDD3BB5791A20D60B65, NULL);
@@ -24100,7 +24174,7 @@ IL_0004:
 		int32_t L_17;
 		L_17 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(L_14, L_16, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(L_12, L_17, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2339>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2362>
 		int32_t L_18 = ___0_shuttleIndex;
 		String_t* L_19;
 		L_19 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_18, _stringLiteralB49A36EA3431770FC136832B8AB3FF794805D99F, NULL);
@@ -24129,7 +24203,7 @@ IL_0077:
 IL_0078:
 	{
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(G_B5_1, G_B5_0, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2340>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2363>
 		int32_t L_22 = ___0_shuttleIndex;
 		String_t* L_23;
 		L_23 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_22, _stringLiteralFDD74B49E1AD33ED4934CE44AFA417000258154C, NULL);
@@ -24139,7 +24213,7 @@ IL_0078:
 		int32_t L_26;
 		L_26 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_25, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(L_23, L_26, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2341>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2364>
 		int32_t L_27 = ___0_shuttleIndex;
 		String_t* L_28;
 		L_28 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_27, _stringLiteral4538D5D820FA1B30C2E79503EA9F5EE5A8D81CD8, NULL);
@@ -24149,7 +24223,7 @@ IL_0078:
 		float L_31;
 		L_31 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_30, NULL);
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(L_28, L_31, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2342>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2365>
 		int32_t L_32 = ___0_shuttleIndex;
 		String_t* L_33;
 		L_33 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_32, _stringLiteral3B883EEDDA798918DBAB25A1D77B702EEDB8D8F7, NULL);
@@ -24159,11 +24233,11 @@ IL_0078:
 		float L_36;
 		L_36 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_35, NULL);
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(L_33, L_36, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2343>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2366>
 		return;
 	}
 }
-// Method Definition Index: 91944
+// Method Definition Index: 91946
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadShuttleState_m6931518646ECFDDB84F6C9FA00E6162FA0CA24D6 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_shuttleIndex, ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* ___1_shuttleState, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24186,7 +24260,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadShuttleState_m6931518646
 	String_t* G_B6_1 = NULL;
 	ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* G_B6_2 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2347>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2370>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_0 = ___1_shuttleState;
 		if (L_0)
 		{
@@ -24194,13 +24268,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadShuttleState_m6931518646
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2349>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2372>
 		return;
 	}
 
 IL_0004:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2352>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2375>
 		int32_t L_1 = ___0_shuttleIndex;
 		if (L_1)
 		{
@@ -24208,10 +24282,10 @@ IL_0004:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2354>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2355>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2356>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2357>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2377>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2378>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2379>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2380>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_2 = ___1_shuttleState;
 		int32_t L_3 = ___0_shuttleIndex;
 		String_t* L_4;
@@ -24229,9 +24303,9 @@ IL_0004:
 		L_10 = Mathf_Clamp_m4DC36EEFDBE5F07C16249DA568023C5ECCFF0E7B_inline(L_7, 0, L_9, NULL);
 		NullCheck(L_2);
 		L_2->___dockedOre = L_10;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2358>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2359>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2360>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2381>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2382>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2383>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_11 = ___1_shuttleState;
 		int32_t L_12 = ___0_shuttleIndex;
 		String_t* L_13;
@@ -24246,9 +24320,9 @@ IL_0004:
 		L_17 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_16, NULL);
 		NullCheck(L_11);
 		L_11->___loadingOre = L_17;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2361>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2362>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2363>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2384>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2385>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2386>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_18 = ___1_shuttleState;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_19 = ___1_shuttleState;
 		NullCheck(L_19);
@@ -24266,9 +24340,9 @@ IL_0004:
 		L_26 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(L_20, L_25, NULL);
 		NullCheck(L_18);
 		L_18->___loadingTargetOre = L_26;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2364>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2365>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2366>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2387>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2388>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2389>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_27 = ___1_shuttleState;
 		int32_t L_28 = ___0_shuttleIndex;
 		String_t* L_29;
@@ -24306,9 +24380,9 @@ IL_00b0:
 		L_32 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(G_B6_1, G_B6_0, NULL);
 		NullCheck(G_B6_2);
 		G_B6_2->___sendAfterLoading = (bool)((((int32_t)L_32) == ((int32_t)1))? 1 : 0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2367>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2368>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2369>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2390>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2391>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2392>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_33 = ___1_shuttleState;
 		int32_t L_34 = ___0_shuttleIndex;
 		String_t* L_35;
@@ -24323,9 +24397,9 @@ IL_00b0:
 		L_39 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_38, NULL);
 		NullCheck(L_33);
 		L_33->___deliveringOre = L_39;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2370>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2371>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2372>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2393>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2394>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2395>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_40 = ___1_shuttleState;
 		int32_t L_41 = ___0_shuttleIndex;
 		String_t* L_42;
@@ -24340,9 +24414,9 @@ IL_00b0:
 		L_46 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_45, NULL);
 		NullCheck(L_40);
 		L_40->___loadingCooldownRemaining = L_46;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2373>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2374>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2375>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2396>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2397>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2398>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_47 = ___1_shuttleState;
 		int32_t L_48 = ___0_shuttleIndex;
 		String_t* L_49;
@@ -24357,16 +24431,16 @@ IL_00b0:
 		L_53 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_52, NULL);
 		NullCheck(L_47);
 		L_47->___sendCooldownRemaining = L_53;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2376>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2399>
 		return;
 	}
 
 IL_013e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2379>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2380>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2381>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2382>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2402>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2403>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2404>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2405>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_54 = ___1_shuttleState;
 		int32_t L_55 = ___0_shuttleIndex;
 		String_t* L_56;
@@ -24380,7 +24454,7 @@ IL_013e:
 		L_60 = Mathf_Clamp_m4DC36EEFDBE5F07C16249DA568023C5ECCFF0E7B_inline(L_57, 0, L_59, NULL);
 		NullCheck(L_54);
 		L_54->___dockedOre = L_60;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2383>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2406>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_61 = ___1_shuttleState;
 		int32_t L_62 = ___0_shuttleIndex;
 		String_t* L_63;
@@ -24391,9 +24465,9 @@ IL_013e:
 		L_65 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_64, NULL);
 		NullCheck(L_61);
 		L_61->___loadingOre = L_65;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2384>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2385>
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2386>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2407>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2408>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2409>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_66 = ___1_shuttleState;
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_67 = ___1_shuttleState;
 		NullCheck(L_67);
@@ -24407,7 +24481,7 @@ IL_013e:
 		L_72 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(L_68, L_71, NULL);
 		NullCheck(L_66);
 		L_66->___loadingTargetOre = L_72;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2387>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2410>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_73 = ___1_shuttleState;
 		int32_t L_74 = ___0_shuttleIndex;
 		String_t* L_75;
@@ -24416,7 +24490,7 @@ IL_013e:
 		L_76 = PlayerPrefs_GetInt_m8AD1FA8BA54CC6CE2B2AEEE36B6D75587BB1692D(L_75, 0, NULL);
 		NullCheck(L_73);
 		L_73->___sendAfterLoading = (bool)((((int32_t)L_76) == ((int32_t)1))? 1 : 0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2388>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2411>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_77 = ___1_shuttleState;
 		int32_t L_78 = ___0_shuttleIndex;
 		String_t* L_79;
@@ -24427,7 +24501,7 @@ IL_013e:
 		L_81 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_80, NULL);
 		NullCheck(L_77);
 		L_77->___deliveringOre = L_81;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2389>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2412>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_82 = ___1_shuttleState;
 		int32_t L_83 = ___0_shuttleIndex;
 		String_t* L_84;
@@ -24438,7 +24512,7 @@ IL_013e:
 		L_86 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_85, NULL);
 		NullCheck(L_82);
 		L_82->___loadingCooldownRemaining = L_86;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2390>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2413>
 		ShuttleState_tDBC235A0EEB736A7A783EDEA5DF0736901FD376B* L_87 = ___1_shuttleState;
 		int32_t L_88 = ___0_shuttleIndex;
 		String_t* L_89;
@@ -24449,11 +24523,11 @@ IL_013e:
 		L_91 = Mathf_Max_mF5379E63D2BBAC76D090748695D833934F8AD051_inline((0.0f), L_90, NULL);
 		NullCheck(L_87);
 		L_87->___sendCooldownRemaining = L_91;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2391>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2414>
 		return;
 	}
 }
-// Method Definition Index: 91945
+// Method Definition Index: 91947
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DeleteShuttleState_m78C0821572B704B8C35C9A31D9D270FD16ED9580 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_shuttleIndex, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24469,46 +24543,46 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DeleteShuttleState_m78C08215
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2395>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2418>
 		int32_t L_0 = ___0_shuttleIndex;
 		String_t* L_1;
 		L_1 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_0, _stringLiteralABC97240EBAD951522F4E886CC235D0992394970, NULL);
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(L_1, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2396>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2419>
 		int32_t L_2 = ___0_shuttleIndex;
 		String_t* L_3;
 		L_3 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_2, _stringLiteral411D013D5B34821F02804A2BA0369D1D5E343C23, NULL);
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2397>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2420>
 		int32_t L_4 = ___0_shuttleIndex;
 		String_t* L_5;
 		L_5 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_4, _stringLiteral3C8D5FD0BB41738B13B0ECDD3BB5791A20D60B65, NULL);
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(L_5, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2398>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2421>
 		int32_t L_6 = ___0_shuttleIndex;
 		String_t* L_7;
 		L_7 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_6, _stringLiteralB49A36EA3431770FC136832B8AB3FF794805D99F, NULL);
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(L_7, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2399>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2422>
 		int32_t L_8 = ___0_shuttleIndex;
 		String_t* L_9;
 		L_9 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_8, _stringLiteralFDD74B49E1AD33ED4934CE44AFA417000258154C, NULL);
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(L_9, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2400>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2423>
 		int32_t L_10 = ___0_shuttleIndex;
 		String_t* L_11;
 		L_11 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_10, _stringLiteral4538D5D820FA1B30C2E79503EA9F5EE5A8D81CD8, NULL);
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(L_11, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2401>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2424>
 		int32_t L_12 = ___0_shuttleIndex;
 		String_t* L_13;
 		L_13 = GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED(__this, L_12, _stringLiteral3B883EEDDA798918DBAB25A1D77B702EEDB8D8F7, NULL);
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(L_13, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2402>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2425>
 		return;
 	}
 }
-// Method Definition Index: 91946
+// Method Definition Index: 91948
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetShuttleStateKey_m0318D5A35838D8C3B5775B20D0A59C48E2DD65ED (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_shuttleIndex, String_t* ___1_suffix, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24519,7 +24593,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetShuttleStateKey_m031
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2406>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2429>
 		String_t* L_0;
 		L_0 = Int32_ToString_m030E01C24E294D6762FB0B6F37CB541581F55CA5((&___0_shuttleIndex), NULL);
 		String_t* L_1 = ___1_suffix;
@@ -24528,12 +24602,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetShuttleStateKey_m031
 		return L_2;
 	}
 }
-// Method Definition Index: 91947
+// Method Definition Index: 91949
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetOfflineLoadedOre_m2ED5C81BF7D8D273CC9CBE4CC6315DCB6F100C57 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_targetOre, float ___1_loadingTimeSeconds, float ___2_loadingCooldownRemaining, const RuntimeMethod* method) 
 {
 	float V_0 = 0.0f;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2411>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2434>
 		int32_t L_0 = ___0_targetOre;
 		if ((((int32_t)L_0) > ((int32_t)0)))
 		{
@@ -24541,13 +24615,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetOfflineLoadedOre_m2ED5
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2413>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2436>
 		return 0;
 	}
 
 IL_0006:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2416>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2439>
 		float L_1 = ___1_loadingTimeSeconds;
 		if ((((float)L_1) <= ((float)(0.0f))))
 		{
@@ -24564,20 +24638,20 @@ IL_0006:
 
 IL_0016:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2418>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2441>
 		int32_t L_3 = ___0_targetOre;
 		return L_3;
 	}
 
 IL_0018:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2421>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2444>
 		float L_4 = ___2_loadingCooldownRemaining;
 		float L_5 = ___1_loadingTimeSeconds;
 		float L_6;
 		L_6 = Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline(((float)(L_4/L_5)), NULL);
 		V_0 = ((float)il2cpp_codegen_subtract((1.0f), L_6));
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2422>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2445>
 		int32_t L_7 = ___0_targetOre;
 		float L_8 = V_0;
 		int32_t L_9;
@@ -24588,11 +24662,11 @@ IL_0018:
 		return L_11;
 	}
 }
-// Method Definition Index: 91948
+// Method Definition Index: 91950
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveResource_m469AC83FC463C85FDDEAF74D4348431D39CFE1E2 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_resourceType, int32_t ___1_amount, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2427>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2450>
 		int32_t L_0 = ___0_resourceType;
 		String_t* L_1;
 		L_1 = GameManager_GetResourceKey_mC83C658DA1A1271069B16E03FC2DA5E0BD7A11A7(__this, L_0, NULL);
@@ -24600,21 +24674,21 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveResource_m469AC83FC463C8
 		int32_t L_3;
 		L_3 = Mathf_Max_m7FA442918DE37E3A00106D1F2E789D65829792B8_inline(0, L_2, NULL);
 		PlayerPrefs_SetInt_m956D3E2DB966F20CF42F842880DDF9E2BE94D948(L_1, L_3, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2428>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2451>
 		return;
 	}
 }
-// Method Definition Index: 91949
+// Method Definition Index: 91951
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetSavedResourceAmount_mC4D45BBA9E15CCEFF36D2FD5FB8D8BD3BFC5C6D1 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_resourceType, int32_t ___1_defaultValue, String_t* ___2_legacyKey, const RuntimeMethod* method) 
 {
 	String_t* V_0 = NULL;
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2432>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2455>
 		int32_t L_0 = ___0_resourceType;
 		String_t* L_1;
 		L_1 = GameManager_GetResourceKey_mC83C658DA1A1271069B16E03FC2DA5E0BD7A11A7(__this, L_0, NULL);
 		V_0 = L_1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2434>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2457>
 		String_t* L_2 = V_0;
 		bool L_3;
 		L_3 = PlayerPrefs_HasKey_mCA5C64BBA6BF8B230BC3BC92B4761DD3B11D4668(L_2, NULL);
@@ -24624,7 +24698,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetSavedResourceAmount_mC
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2436>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2459>
 		String_t* L_4 = V_0;
 		int32_t L_5 = ___1_defaultValue;
 		int32_t L_6;
@@ -24636,7 +24710,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_GetSavedResourceAmount_mC
 
 IL_001e:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2439>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2462>
 		String_t* L_8 = ___2_legacyKey;
 		bool L_9;
 		L_9 = String_IsNullOrEmpty_mEA9E3FB005AC28FE02E69FCF95A7B8456192B478(L_8, NULL);
@@ -24646,7 +24720,7 @@ IL_001e:
 		}
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2441>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2464>
 		String_t* L_10 = ___2_legacyKey;
 		int32_t L_11 = ___1_defaultValue;
 		int32_t L_12;
@@ -24658,12 +24732,12 @@ IL_001e:
 
 IL_0034:
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2444>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2467>
 		int32_t L_14 = ___1_defaultValue;
 		return L_14;
 	}
 }
-// Method Definition Index: 91950
+// Method Definition Index: 91952
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetResourceKey_mC83C658DA1A1271069B16E03FC2DA5E0BD7A11A7 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_resourceType, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24674,7 +24748,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetResourceKey_mC83C658
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2449>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2472>
 		Il2CppFakeBox<int32_t> L_0(ResourceType_tCC4FCEFAC9F1B387899CE4572A9F0CE36DBABCBF_il2cpp_TypeInfo_var, (&___0_resourceType));
 		String_t* L_1;
 		L_1 = Enum_ToString_m946B0B83C4470457D0FF555D862022C72BB55741((Enum_t2A1A94B24E3B776EEF4E5E485E290BB9D4D072E2*)(&L_0), NULL);
@@ -24683,20 +24757,20 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* GameManager_GetResourceKey_mC83C658
 		return L_2;
 	}
 }
-// Method Definition Index: 91951
+// Method Definition Index: 91953
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_DeleteResourceKey_mD067C09F5ED722A5647E4A302226121D43D4F63E (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, int32_t ___0_resourceType, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2454>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2477>
 		int32_t L_0 = ___0_resourceType;
 		String_t* L_1;
 		L_1 = GameManager_GetResourceKey_mC83C658DA1A1271069B16E03FC2DA5E0BD7A11A7(__this, L_0, NULL);
 		PlayerPrefs_DeleteKey_mF3A7857B52DCEF4139843CD28716788624C2AD30(L_1, NULL);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2455>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:2478>
 		return;
 	}
 }
-// Method Definition Index: 91952
+// Method Definition Index: 91954
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager__ctor_mF453CED520617BFB65C52405A964E06CF17DB368 (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24709,14 +24783,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager__ctor_mF453CED520617BFB65C52
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:40>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:41>
 		__this->___requireInternetOnStartup = (bool)1;
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:54>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:55>
 		List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE* L_0 = (List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE*)il2cpp_codegen_object_new(List_1_t82C4648C1441A4EC9E99DC0C6E479DB65EFDB1FE_il2cpp_TypeInfo_var);
 		List_1__ctor_m39A22B9766B240D18FFE2D608699E76318BDD602(L_0, List_1__ctor_m39A22B9766B240D18FFE2D608699E76318BDD602_RuntimeMethod_var);
 		__this->___pendingBoostOfferStates = L_0;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___pendingBoostOfferStates), (void*)L_0);
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:55>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:56>
 		Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B* L_1 = (Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B*)il2cpp_codegen_object_new(Dictionary_2_t2BEF325AC1BABBF322919B14ED3252CA405D8F1B_il2cpp_TypeInfo_var);
 		Dictionary_2__ctor_m57F718500CD893C49733D25AA8A3AABDE530D23E(L_1, Dictionary_2__ctor_m57F718500CD893C49733D25AA8A3AABDE530D23E_RuntimeMethod_var);
 		__this->___boostOfferAutoCloseTimers = L_1;
@@ -24834,7 +24908,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool CloudProgressBridge_get_IsRe
 		return L_0;
 	}
 }
-// Method Definition Index: 93905
+// Method Definition Index: 93912
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* CloudCodeService_get_Instance_mF03061DB5F070D4F233633779D826B8FFD4FC8B0_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24871,7 +24945,7 @@ IL_0006:
 		return L_3;
 	}
 }
-// Method Definition Index: 92368
+// Method Definition Index: 92375
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void GameTextProvider_Configure_m7EE5C03C8AB9F9198AB98A56EB8406E7EB77B522_inline (ShuttleConfig_t903B87A56504D2E52C4DACC2C35BC190236A6CC9* ___0_gameConfig, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24890,7 +24964,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void GameTextProvider_Configure_m
 		return;
 	}
 }
-// Method Definition Index: 92369
+// Method Definition Index: 92376
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void GameTextProvider_SetLanguage_m1D7F5B0470B648468CA370FF297109ACDAFA07E7_inline (int32_t ___0_language, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24908,7 +24982,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void GameTextProvider_SetLanguage
 		return;
 	}
 }
-// Method Definition Index: 92066
+// Method Definition Index: 92068
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* UpgradeManager_get_UpgradeStates_mEE3F753F570877F9B1BD92AC968D02C95345CDDE_inline (UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* __this, const RuntimeMethod* method) 
 {
 	{
@@ -24917,7 +24991,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* UpgradeManager_get
 		return L_0;
 	}
 }
-// Method Definition Index: 92067
+// Method Definition Index: 92069
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* UpgradeManager_get_BuildingStates_m06CF7C45B71A0160F8D535EA78C17E9C2D208B88_inline (UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* __this, const RuntimeMethod* method) 
 {
 	{
@@ -24926,7 +25000,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* UpgradeManager_get
 		return L_0;
 	}
 }
-// Method Definition Index: 91989
+// Method Definition Index: 91991
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* MissionManager_get_MetaBonusStates_m170D8B8409C8D692FAC0263C91129C0A7CE0DAD4_inline (MissionManager_t7954D64D5E38849C7B4923FB0A540AA3919E03FB* __this, const RuntimeMethod* method) 
 {
 	{
@@ -24935,11 +25009,11 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* MissionManager_get
 		return L_0;
 	}
 }
-// Method Definition Index: 91920
+// Method Definition Index: 91922
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool GameManager_ShouldShowOfflineRewardPopup_mE3B8C8FE8E62599C9E2C3F0C3A6AA303308AFF94_inline (GameManager_tFE129A0017AF5BBD30FDCD4403B9CCEAE064C6B6* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1771>
+		//<source_info:E:/Archive/Documents/IdleSpace/Assets/Scripts/GameManager.cs:1794>
 		bool L_0 = __this->___pendingOfflineShowRewardPopup;
 		return L_0;
 	}
@@ -24980,7 +25054,7 @@ IL_000c:
 		return L_6;
 	}
 }
-// Method Definition Index: 92068
+// Method Definition Index: 92070
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* UpgradeManager_get_ActiveTemporaryBoostStates_m79681FB28CE4580AD3269FD8915E256E6CC1A681_inline (UpgradeManager_tC626958A87CDF2056B0FCE14521CA5CDE6635966* __this, const RuntimeMethod* method) 
 {
 	{
@@ -25039,7 +25113,7 @@ IL_0006:
 		return L_3;
 	}
 }
-// Method Definition Index: 92322
+// Method Definition Index: 92329
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool TemporaryBoostState_get_IsActive_m009C33473209D4831D068E1B15879A218BA5B6FA_inline (TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* __this, const RuntimeMethod* method) 
 {
 	{
@@ -25048,7 +25122,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool TemporaryBoostState_get_IsAc
 		return L_0;
 	}
 }
-// Method Definition Index: 92328
+// Method Definition Index: 92335
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float TemporaryBoostState_get_ActiveRemainingTime_m568DCDBB017B217218E6C79681A599F96032BAFD_inline (TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* __this, const RuntimeMethod* method) 
 {
 	{
@@ -25057,7 +25131,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float TemporaryBoostState_get_Act
 		return L_0;
 	}
 }
-// Method Definition Index: 92319
+// Method Definition Index: 92326
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR TemporaryBoostDefinition_t66056159A27997EB83344A270E7742DD3A793B0C* TemporaryBoostState_get_Definition_m3873B328F8CCAB712A3FD3A96B1ACB5ECC154A41_inline (TemporaryBoostState_tBB4F5ABDA7E5E291C6CEBDF50AA405B82B3FF336* __this, const RuntimeMethod* method) 
 {
 	{

@@ -110,9 +110,24 @@ public class ResourceSystem
         return platformSystem.AddOre(amount, allowDuringShuttleLoading);
     }
 
-    public void MineOre()
+    public bool CanMineOreByClick()
     {
-        AddProducedOre(gameData.orePerClick, true);
+        if (gameData.orePerClick <= 0)
+        {
+            return false;
+        }
+
+        if (!gameData.hasMiningPlatform)
+        {
+            return !IsShuttleBusy() && gameData.shuttleOre < gameData.shuttleCapacity;
+        }
+
+        return platformSystem != null && platformSystem.GetFreeCapacity() > 0;
+    }
+
+    public int MineOre()
+    {
+        return AddProducedOre(gameData.orePerClick, true);
     }
 
     public void AddPassiveOre()

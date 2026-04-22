@@ -28725,7 +28725,7 @@ IL2CPP_EXTERN_C  void U3CDeleteAsyncU3Ed__15_SetStateMachine_m7C387ED1B97A7A3E9A
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
-// Method Definition Index: 98337
+// Method Definition Index: 98344
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR CorePackageRegistry_t8A84619B4312955D3D73A62BDFF6042EBE1F0275* CorePackageRegistry_get_Instance_m9D9D57AF47C2D9C332C67F69AF4E0121E3352DE0_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;

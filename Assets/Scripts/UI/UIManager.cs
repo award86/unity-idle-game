@@ -144,6 +144,10 @@ public class UIManager : MonoBehaviour
     private Rect lastAppliedSafeArea;
     private Vector2Int lastAppliedScreenSize;
     private RectTransform cachedMenuButtonRect;
+    private Button sharedOverlayButton;
+    private bool sharedOverlayClickHandlerBound;
+    private GameObject languageDismissOverlayPanel;
+    private Button languageDismissOverlayButton;
     private Action<TemporaryBoostState> boostOfferAcceptHandler;
     private Action mainScreenUpgradeAction;
     private Action mainScreenBuildAction;
@@ -1505,9 +1509,16 @@ public class UIManager : MonoBehaviour
         HideBuildPanel();
         HideMissionPanel();
         HideResetConfirmation();
+        EnsureLanguageDismissOverlay();
+        SetLanguageDismissOverlayVisible(true);
 
         if (languagePanel != null)
         {
+            if (languageDismissOverlayPanel != null)
+            {
+                languageDismissOverlayPanel.transform.SetAsLastSibling();
+            }
+
             languagePanel.transform.SetAsLastSibling();
             languagePanel.SetActive(true);
         }
@@ -1520,6 +1531,13 @@ public class UIManager : MonoBehaviour
         if (languagePanel != null)
         {
             languagePanel.SetActive(false);
+        }
+
+        SetLanguageDismissOverlayVisible(false);
+
+        if (!IsMenuVisible)
+        {
+            HideSharedOverlay();
         }
 
         RefreshMainScreenActionButtons();
@@ -1562,6 +1580,20 @@ public class UIManager : MonoBehaviour
         if (mainScreenMissionButton != null)
         {
             mainScreenMissionButton.SetActive(isVisible);
+        }
+    }
+
+    public void SetMineButtonVisible(bool isVisible)
+    {
+        EnsureMainButtonTexts();
+
+        if (mineButton != null)
+        {
+            mineButton.gameObject.SetActive(isVisible);
+        }
+        else if (mineButtonText != null)
+        {
+            mineButtonText.gameObject.SetActive(isVisible);
         }
     }
 
@@ -1847,6 +1879,98 @@ public class UIManager : MonoBehaviour
         SetSharedOverlayVisible(false);
     }
 
+    private void EnsureLanguageDismissOverlay()
+    {
+        if (languageDismissOverlayPanel != null)
+        {
+            return;
+        }
+
+        if (languagePanel == null)
+        {
+            return;
+        }
+
+        Transform overlayParent = languagePanel.transform.parent;
+
+        if (overlayParent == null && rootCanvas != null)
+        {
+            overlayParent = rootCanvas.transform;
+        }
+
+        if (overlayParent == null)
+        {
+            return;
+        }
+
+        GameObject overlayObject = new GameObject(
+            "LanguageDismissOverlay",
+            typeof(RectTransform),
+            typeof(CanvasRenderer),
+            typeof(Image),
+            typeof(Button));
+        overlayObject.transform.SetParent(overlayParent, false);
+
+        RectTransform overlayRect = overlayObject.GetComponent<RectTransform>();
+        overlayRect.anchorMin = Vector2.zero;
+        overlayRect.anchorMax = Vector2.one;
+        overlayRect.offsetMin = Vector2.zero;
+        overlayRect.offsetMax = Vector2.zero;
+
+        Image overlayImage = overlayObject.GetComponent<Image>();
+        overlayImage.color = Color.clear;
+        overlayImage.raycastTarget = true;
+
+        languageDismissOverlayButton = overlayObject.GetComponent<Button>();
+        languageDismissOverlayButton.transition = Selectable.Transition.None;
+        languageDismissOverlayButton.onClick.AddListener(HideLanguagePanel);
+
+        languageDismissOverlayPanel = overlayObject;
+        languageDismissOverlayPanel.SetActive(false);
+    }
+
+    private void SetLanguageDismissOverlayVisible(bool isVisible)
+    {
+        if (languageDismissOverlayPanel != null)
+        {
+            languageDismissOverlayPanel.SetActive(isVisible);
+        }
+    }
+
+    private void EnsureSharedOverlayClickHandler()
+    {
+        if (sharedOverlayPanel == null || sharedOverlayClickHandlerBound)
+        {
+            return;
+        }
+
+        Graphic overlayGraphic = sharedOverlayPanel.GetComponent<Graphic>();
+
+        if (overlayGraphic != null)
+        {
+            overlayGraphic.raycastTarget = true;
+        }
+
+        sharedOverlayButton = sharedOverlayPanel.GetComponent<Button>();
+
+        if (sharedOverlayButton == null)
+        {
+            sharedOverlayButton = sharedOverlayPanel.AddComponent<Button>();
+            sharedOverlayButton.transition = Selectable.Transition.None;
+        }
+
+        sharedOverlayButton.onClick.AddListener(HandleSharedOverlayClicked);
+        sharedOverlayClickHandlerBound = true;
+    }
+
+    private void HandleSharedOverlayClicked()
+    {
+        if (IsLanguagePanelVisible)
+        {
+            HideLanguagePanel();
+        }
+    }
+
     private void BringBoostOffersAboveSharedOverlay()
     {
         if (sharedOverlayPanel == null || !sharedOverlayPanel.activeSelf)
@@ -2048,6 +2172,27 @@ public class UIManager : MonoBehaviour
     private bool IsPlatformBarActive()
     {
         return IsBarActive(platformFillImage, platformBarText);
+    }
+
+    private void SetPlatformBarVisible(bool isVisible)
+    {
+        RectTransform platformBarRoot = GetBarRoot(platformFillImage, platformBarText);
+
+        if (platformBarRoot != null)
+        {
+            platformBarRoot.gameObject.SetActive(isVisible);
+            return;
+        }
+
+        if (platformFillImage != null)
+        {
+            platformFillImage.gameObject.SetActive(isVisible);
+        }
+
+        if (platformBarText != null)
+        {
+            platformBarText.gameObject.SetActive(isVisible);
+        }
     }
 
     private bool IsShuttleBarActive()
@@ -2532,8 +2677,27 @@ public class UIManager : MonoBehaviour
             return;
         }
 
-        int currentPlatformOre = gameData.hasMiningPlatform ? gameData.shuttleOre : 0;
-        int maxPlatformOre = gameData.hasMiningPlatform ? gameData.platformCapacity : 0;
+        if (!gameData.hasMiningPlatform)
+        {
+            SetPlatformBarVisible(false);
+
+            if (platformFillImage != null)
+            {
+                platformFillImage.fillAmount = 0f;
+            }
+
+            if (platformBarText != null)
+            {
+                platformBarText.text = string.Empty;
+            }
+
+            return;
+        }
+
+        SetPlatformBarVisible(true);
+
+        int currentPlatformOre = gameData.shuttleOre;
+        int maxPlatformOre = gameData.platformCapacity;
 
         if (platformFillImage != null)
         {
