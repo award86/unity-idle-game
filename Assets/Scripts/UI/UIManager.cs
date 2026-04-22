@@ -144,8 +144,6 @@ public class UIManager : MonoBehaviour
     private Rect lastAppliedSafeArea;
     private Vector2Int lastAppliedScreenSize;
     private RectTransform cachedMenuButtonRect;
-    private Button sharedOverlayButton;
-    private bool sharedOverlayClickHandlerBound;
     private GameObject languageDismissOverlayPanel;
     private Button languageDismissOverlayButton;
     private Action<TemporaryBoostState> boostOfferAcceptHandler;
@@ -1755,17 +1753,6 @@ public class UIManager : MonoBehaviour
         RefreshMainScreenActionButtons();
     }
 
-    public void ShowBoostOffer(TemporaryBoostState boostState)
-    {
-        if (boostState == null)
-        {
-            HideBoostOffer();
-            return;
-        }
-
-        ShowBoostOffers(new[] { boostState });
-    }
-
     public void HideBoostOffer()
     {
         for (int i = 0; i < boostOfferButtons.Count; i++)
@@ -1934,40 +1921,6 @@ public class UIManager : MonoBehaviour
         if (languageDismissOverlayPanel != null)
         {
             languageDismissOverlayPanel.SetActive(isVisible);
-        }
-    }
-
-    private void EnsureSharedOverlayClickHandler()
-    {
-        if (sharedOverlayPanel == null || sharedOverlayClickHandlerBound)
-        {
-            return;
-        }
-
-        Graphic overlayGraphic = sharedOverlayPanel.GetComponent<Graphic>();
-
-        if (overlayGraphic != null)
-        {
-            overlayGraphic.raycastTarget = true;
-        }
-
-        sharedOverlayButton = sharedOverlayPanel.GetComponent<Button>();
-
-        if (sharedOverlayButton == null)
-        {
-            sharedOverlayButton = sharedOverlayPanel.AddComponent<Button>();
-            sharedOverlayButton.transition = Selectable.Transition.None;
-        }
-
-        sharedOverlayButton.onClick.AddListener(HandleSharedOverlayClicked);
-        sharedOverlayClickHandlerBound = true;
-    }
-
-    private void HandleSharedOverlayClicked()
-    {
-        if (IsLanguagePanelVisible)
-        {
-            HideLanguagePanel();
         }
     }
 
@@ -2775,54 +2728,6 @@ public class UIManager : MonoBehaviour
                     NumberFormatter.FormatInt(maxShuttleOre);
             }
         }
-    }
-
-    private int GetDisplayedShuttleLoad(GameData gameData)
-    {
-        if (gameData == null)
-        {
-            return 0;
-        }
-
-        if (!gameData.hasMiningPlatform)
-        {
-            if (gameData.shuttleLoadingCooldownRemaining > 0f || gameData.shuttleLoadingOre > 0)
-            {
-                return Mathf.Max(0, gameData.shuttleLoadingOre);
-            }
-
-            if (gameData.shuttleDeliveringOre > 0 || gameData.shuttleSendCooldownRemaining > 0f)
-            {
-                return Mathf.Max(0, gameData.shuttleDeliveringOre);
-            }
-
-            return Mathf.Max(0, gameData.shuttleOre);
-        }
-
-        int totalShuttleOre = 0;
-
-        for (int i = 0; i < gameData.ActiveShuttleCount; i++)
-        {
-            ShuttleState shuttleState = gameData.GetShuttleState(i);
-            int shuttleLoad;
-
-            if (shuttleState.loadingCooldownRemaining > 0f || shuttleState.loadingOre > 0)
-            {
-                shuttleLoad = Mathf.Clamp(shuttleState.dockedOre + shuttleState.loadingOre, 0, gameData.shuttleCapacity);
-            }
-            else if (shuttleState.dockedOre > 0)
-            {
-                shuttleLoad = Mathf.Max(0, shuttleState.dockedOre);
-            }
-            else
-            {
-                shuttleLoad = Mathf.Max(0, shuttleState.deliveringOre);
-            }
-
-            totalShuttleOre += shuttleLoad;
-        }
-
-        return totalShuttleOre;
     }
 
     private void UpdateSendButton(int shuttleIndex, GameData gameData)

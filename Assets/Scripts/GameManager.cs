@@ -318,11 +318,6 @@ public class GameManager : MonoBehaviour
         uiManager.SetMineButtonVisible(false);
     }
 
-    public bool OnMineSpriteClicked()
-    {
-        return MineOreFromSpriteClick() > 0;
-    }
-
     public int MineOreFromSpriteClick()
     {
         if (!CanUseMineSpriteButton())
@@ -1280,33 +1275,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        List<TemporaryBoostState> expiredBoostOffers = new List<TemporaryBoostState>();
-
-        for (int i = pendingBoostOfferStates.Count - 1; i >= 0; i--)
-        {
-            TemporaryBoostState boostState = pendingBoostOfferStates[i];
-
-            if (boostState == null || !boostOfferAutoCloseTimers.ContainsKey(boostState))
-            {
-                continue;
-            }
-
-            boostOfferAutoCloseTimers[boostState] -= inactiveSeconds;
-
-            if (boostOfferAutoCloseTimers[boostState] > 0f)
-            {
-                continue;
-            }
-
-            expiredBoostOffers.Add(boostState);
-        }
-
-        for (int i = 0; i < expiredBoostOffers.Count; i++)
-        {
-            TemporaryBoostState boostState = expiredBoostOffers[i];
-            RemovePendingBoostOffer(boostState);
-            upgradeManager.TryDeclineTemporaryBoost(boostState);
-        }
+        AdvanceBoostOfferAutoCloseTimers(inactiveSeconds);
     }
 
     private void HandleApplicationSentToBackground()
@@ -1580,46 +1549,47 @@ public class GameManager : MonoBehaviour
 
     private bool UpdateBoostOfferAutoClose(float deltaTime)
     {
-        if (upgradeManager == null || pendingBoostOfferStates.Count <= 0)
+        if (!AdvanceBoostOfferAutoCloseTimers(deltaTime))
         {
             return false;
         }
 
-        List<TemporaryBoostState> expiredBoostOffers = new List<TemporaryBoostState>();
+        RefreshBoostOfferButtons();
+        return true;
+    }
+
+    private bool AdvanceBoostOfferAutoCloseTimers(float deltaSeconds)
+    {
+        if (upgradeManager == null || pendingBoostOfferStates.Count <= 0 || deltaSeconds <= 0f)
+        {
+            return false;
+        }
+
+        bool expiredAnyOffer = false;
 
         for (int i = pendingBoostOfferStates.Count - 1; i >= 0; i--)
         {
             TemporaryBoostState boostState = pendingBoostOfferStates[i];
 
-            if (boostState == null || !boostOfferAutoCloseTimers.ContainsKey(boostState))
+            if (boostState == null || !boostOfferAutoCloseTimers.TryGetValue(boostState, out float remainingSeconds))
             {
                 continue;
             }
 
-            boostOfferAutoCloseTimers[boostState] -= deltaTime;
+            remainingSeconds -= deltaSeconds;
 
-            if (boostOfferAutoCloseTimers[boostState] > 0f)
+            if (remainingSeconds > 0f)
             {
+                boostOfferAutoCloseTimers[boostState] = remainingSeconds;
                 continue;
             }
 
-            expiredBoostOffers.Add(boostState);
-        }
-
-        if (expiredBoostOffers.Count <= 0)
-        {
-            return false;
-        }
-
-        for (int i = 0; i < expiredBoostOffers.Count; i++)
-        {
-            TemporaryBoostState boostState = expiredBoostOffers[i];
             RemovePendingBoostOffer(boostState);
             upgradeManager.TryDeclineTemporaryBoost(boostState);
+            expiredAnyOffer = true;
         }
 
-        RefreshBoostOfferButtons();
-        return true;
+        return expiredAnyOffer;
     }
 
     private void OnDestroy()
@@ -1786,42 +1756,6 @@ public class GameManager : MonoBehaviour
 
         SyncPendingBoostOffers();
         RefreshBoostOfferButtons();
-    }
-
-    private void DismissPendingBoostOffer()
-    {
-        if (uiManager != null)
-        {
-            uiManager.HideBoostOffer();
-        }
-
-        if (upgradeManager == null || pendingBoostOfferStates.Count <= 0)
-        {
-            pendingBoostOfferStates.Clear();
-            boostOfferAutoCloseTimers.Clear();
-            return;
-        }
-
-        for (int i = 0; i < pendingBoostOfferStates.Count; i++)
-        {
-            upgradeManager.TryDeclineTemporaryBoost(pendingBoostOfferStates[i]);
-        }
-
-        pendingBoostOfferStates.Clear();
-        boostOfferAutoCloseTimers.Clear();
-    }
-
-    private void DismissBoostOfferAndRefresh()
-    {
-        if (pendingBoostOfferStates.Count <= 0 && (uiManager == null || !uiManager.IsBoostOfferVisible))
-        {
-            return;
-        }
-
-        DismissPendingBoostOffer();
-        RefreshUI();
-        SaveGame();
-        TryShowNextBoostOffer();
     }
 
     private void ApplyPendingOfflineProgress()
